@@ -3,6 +3,8 @@ import 'package:dawrni/core/rescourcs/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_button.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
+import 'package:dawrni/features/auth/client/views/register_client_view.dart';
+import 'package:dawrni/features/home/views/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -58,12 +60,14 @@ class _OTPViewState extends State<OTPView> {
                 length: 4,
                 pinTheme: PinTheme(
                   shape: PinCodeFieldShape.underline,
-                  borderRadius: BorderRadius.circular(20),
-                  fieldHeight: 40,
+                  borderRadius: BorderRadius.circular(30),
+                  fieldHeight: 50,
                   fieldWidth: 50,
                   activeFillColor: AppColors.secondColor,
                   inactiveColor: AppColors.secondColor,
+                  selectedColor: AppColors.secondColor,
                   activeColor: AppColors.offWhite,
+                  selectedFillColor: AppColors.secondColor,
                   inactiveFillColor: AppColors.secondColor,
                 ),
                 cursorColor: Colors.black,
@@ -74,7 +78,8 @@ class _OTPViewState extends State<OTPView> {
                   BoxShadow(
                     offset: Offset(0, 1),
                     color: Colors.black12,
-                    blurRadius: 10,
+                    blurRadius: 30,
+                    blurStyle: BlurStyle.normal,
                   )
                 ],
                 onChanged: (value) {
@@ -82,10 +87,7 @@ class _OTPViewState extends State<OTPView> {
                     isEmpty = value.isEmpty;
                   });
                 },
-                onCompleted: (value) {
-                  // Handle OTP verification here
-                  print("OTP Entered: $value");
-                },
+                onCompleted: (value) {},
               ),
               const CustomSizedBox(value: .04),
               forgetPasswordButton(),
@@ -149,7 +151,7 @@ class _OTPViewState extends State<OTPView> {
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () => navigateTo(const RegisterClientView()),
           child: const Text(
             'Sign Up here',
             style: TextStyle(
@@ -173,7 +175,7 @@ class _OTPViewState extends State<OTPView> {
             colorFilter:
                 ColorFilter.mode(AppColors.offWhite, BlendMode.modulate),
             child: CustomButton(
-              function: () {},
+              function: ()=>navigateTo(MainView()),
               color: AppColors.primaryColor,
               textColor: AppColors.white,
               fontSize: .04,
@@ -181,7 +183,7 @@ class _OTPViewState extends State<OTPView> {
             ),
           )
         : CustomButton(
-            function: () {},
+            function: ()=>navigateTo(MainView()),
             color: AppColors.primaryColor,
             textColor: AppColors.white,
             fontSize: .04,

@@ -61,12 +61,13 @@ class _MainViewState extends State<MainView> {
               key: _bottomNavigationKey,
               index: 2,
               height: 55.0,
-              items: const [
-                Icon(
-                  Icons.add,
-                  size: 20,
-                  color: AppColors.white,
-                ),
+              items:  [
+                Image.asset('assets/Search.png'),
+                // Icon(
+                //   Icons.content_paste_rounded,
+                //   size: 20,
+                //   color: AppColors.white,
+                // ),
                 Icon(
                   Icons.list,
                   size: 20,

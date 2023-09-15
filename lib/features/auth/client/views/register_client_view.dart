@@ -4,6 +4,8 @@ import 'package:dawrni/core/widgets/custom_button.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/custom_text_filed.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
+import 'package:dawrni/features/auth/client/views/login_client_view.dart';
+import 'package:dawrni/features/auth/client/views/otp_view.dart';
 import 'package:flutter/material.dart';
 
 class RegisterClientView extends StatefulWidget {
@@ -58,7 +60,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () => navigateTo(LoginClientView()),
           child: const Text(
             'Sign In here',
             style: TextStyle(
@@ -77,7 +79,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
 
   CustomButton registerButton() {
     return CustomButton(
-      function: () {},
+      function: () => navigateTo(OTPView()),
       color: AppColors.primaryColor,
       textColor: AppColors.white,
       fontSize: .04,

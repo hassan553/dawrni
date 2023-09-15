@@ -8,6 +8,8 @@ import 'package:dawrni/features/auth/client/views/forget_password_view.dart';
 import 'package:dawrni/features/auth/client/views/register_client_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../../home/views/main_view.dart';
+
 class LoginClientView extends StatefulWidget {
   const LoginClientView({super.key});
 
@@ -164,7 +166,7 @@ class _LoginClientViewState extends State<LoginClientView> {
               child: const Text(
                 'Forget Password ?',
                 style: TextStyle(
-                  color: Color(0xFFFF8700),
+                  color: AppColors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                   decoration: TextDecoration.underline,
@@ -179,70 +181,73 @@ class _LoginClientViewState extends State<LoginClientView> {
     );
   }
 
-  Container companyOrClientButton(BuildContext context) {
-    return Container(
-      width: screenSize(context).width,
-      height: 50,
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-      decoration: ShapeDecoration(
-        color: AppColors.secondColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+  Widget companyOrClientButton(BuildContext context) {
+    return InkWell(
+      onTap: ()=>navigateTo(MainView()),
+      child: Container(
+        width: screenSize(context).width,
+        height: 50,
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        decoration: ShapeDecoration(
+          color: AppColors.secondColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
         ),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: InkWell(
-              onTap: () => setState(() {
-                isClient = false;
-              }),
-              child: Container(
-                height: 50,
-                alignment: Alignment.center,
-                padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
-                decoration: ShapeDecoration(
-                  color: isClient == false
-                      ? AppColors.primaryColor
-                      : AppColors.secondColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+        child: Row(
+          children: [
+            Expanded(
+              child: InkWell(
+                onTap: () => setState(() {
+                  isClient = false;
+                }),
+                child: Container(
+                  height: 50,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
+                  decoration: ShapeDecoration(
+                    color: isClient == false
+                        ? AppColors.primaryColor
+                        : AppColors.secondColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                   ),
-                ),
-                child: const ResponsiveText(
-                  text: 'Client',
-                  scaleFactor: .04,
-                  color: AppColors.white,
+                  child: const ResponsiveText(
+                    text: 'Client',
+                    scaleFactor: .04,
+                    color: AppColors.white,
+                  ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: InkWell(
-              onTap: () => setState(() {
-                isClient = true;
-              }),
-              child: Container(
-                height: 50,
-                alignment: Alignment.center,
-                padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
-                decoration: ShapeDecoration(
-                  color: isClient == true
-                      ? AppColors.primaryColor
-                      : AppColors.secondColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+            Expanded(
+              child: InkWell(
+                onTap: () => setState(() {
+                  isClient = true;
+                }),
+                child: Container(
+                  height: 50,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
+                  decoration: ShapeDecoration(
+                    color: isClient == true
+                        ? AppColors.primaryColor
+                        : AppColors.secondColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                   ),
-                ),
-                child: const ResponsiveText(
-                  text: 'Company',
-                  scaleFactor: .04,
-                  color: AppColors.white,
+                  child: const ResponsiveText(
+                    text: 'Company',
+                    scaleFactor: .04,
+                    color: AppColors.white,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

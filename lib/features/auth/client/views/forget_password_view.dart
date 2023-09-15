@@ -3,6 +3,8 @@ import 'package:dawrni/core/rescourcs/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_button.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
+import 'package:dawrni/features/auth/client/views/login_client_view.dart';
+import 'package:dawrni/features/home/views/main_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_text_filed.dart';
@@ -125,7 +127,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () => navigateTo(LoginClientView()),
           child: const Text(
             'Sign In here',
             style: TextStyle(
@@ -148,7 +150,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             colorFilter:
                 ColorFilter.mode(AppColors.offWhite, BlendMode.modulate),
             child: CustomButton(
-              function: () {},
+              function: () => navigateTo(MainView()),
               color: AppColors.primaryColor,
               textColor: AppColors.white,
               fontSize: .04,
@@ -156,7 +158,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             ),
           )
         : CustomButton(
-            function: () {},
+            function: () => navigateTo(MainView()),
             color: AppColors.primaryColor,
             textColor: AppColors.white,
             fontSize: .04,

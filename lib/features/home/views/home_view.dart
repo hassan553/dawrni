@@ -49,7 +49,6 @@ class HomeView extends StatelessWidget {
               shrinkWrap: true,
               reverse: false,
               scrollDirection: Axis.horizontal,
-              clipBehavior: Clip.antiAlias,
               separatorBuilder: (context, index) => const SizedBox(width: 5),
               itemBuilder: (context, index) => categoryWidget(
                   context,

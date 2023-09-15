@@ -1,6 +1,8 @@
 import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/core/rescourcs/app_colors.dart';
+import 'package:dawrni/core/widgets/custom_slide_button.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
+import 'package:dawrni/features/auth/client/views/login_client_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/contants/painter.dart';
@@ -18,17 +20,20 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   final List<OnboardingModel> onboardingData = [
     OnboardingModel(
-      image: 'assets/Group 34209.png', // Replace with your image path
+      image: 'assets/Group 34209.png',
+      image2: 'assets/Group 79.png', // Replace with your image path
       title: 'Discover, Book, and Enjoy a World of   ',
       title2: 'Services',
     ),
     OnboardingModel(
-      image: 'assets/Group 34208.png', // Replace with your image path
+      image: 'assets/Group 34208.png',
+      image2: 'assets/Group 80.png', // Replace with your image path
       title: 'Welcome to MyApp',
       title2: 'This is the first onboarding screen.',
     ),
     OnboardingModel(
-      image: 'assets/Group 34210.png', // Replace with your image path
+      image: 'assets/Group 34210.png',
+      image2: 'assets/Group 81.png', // Replace with your image path
       title: 'Getting Started',
       title2: 'Swipe to the right to see the second screen.',
     ),
@@ -48,34 +53,29 @@ class _OnboardingViewState extends State<OnboardingView> {
           image: DecorationImage(
             image: AssetImage(
                 'assets/Vector.jpg'), // Replace with your image asset path
-            fit: BoxFit.cover, // How the image should be inscribed into the box
+            fit: BoxFit.fill, // How the image should be inscribed into the box
           ),
         ),
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: [
             Opacity(
-              opacity: .8,
+              opacity: .83,
               child: Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: ShapeDecoration(
-                  color: const Color(0xFF262626),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40),
-                  ),
-                ),
+                color: const Color(0xFF262626),
               ),
             ),
             Column(
               children: [
                 Expanded(
-                  flex: 10,
+                  flex: 13,
                   child: PageView.builder(
                     controller: _pageController,
                     itemCount: onboardingData.length,
                     onPageChanged: (int page) {
                       setState(() {
                         _currentPage = page;
+                       
                       });
                     },
                     itemBuilder: (context, index) {
@@ -85,26 +85,60 @@ class _OnboardingViewState extends State<OnboardingView> {
                     },
                   ),
                 ),
-                const Spacer(
-                  flex: 1,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: _buildPageIndicator(),
-                ),
-                const Spacer(
-                  flex: 1,
-                ),
-                if (_currentPage == onboardingData.length - 1)
-                  ElevatedButton(
-                    onPressed: () {
-                      // Handle the action when the user presses the "Get Started" button.
-                    },
-                    child: const Text('Get Started'),
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(horizontal: 25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: _buildPageIndicator(),
                   ),
-                const Spacer(
-                  flex: 1,
                 ),
+                const Spacer(),
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(horizontal: 25),
+                  child: BookBotton(
+                    title: 'Next',
+                    function: () {
+                      if (_currentPage == onboardingData.length - 1) {
+                        navigateOff(const LoginClientView());
+                      } else {
+                        _pageController.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.bounceInOut);
+                      }
+                    },
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(horizontal: 25),
+                  child: Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: TextButton(
+                      onPressed: () {
+                        if (_currentPage == onboardingData.length - 1) {
+                          navigateOff(const LoginClientView());
+                        } else {
+                          _pageController.nextPage(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.bounceInOut);
+                        }
+                      },
+                      child: const Text(
+                        'Skip >',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const Spacer(),
               ],
             ),
           ],
@@ -138,11 +172,13 @@ class _OnboardingViewState extends State<OnboardingView> {
 
 class OnboardingModel {
   final String image;
+  final String image2;
   final String title;
   final String title2;
 
   OnboardingModel({
     required this.image,
+    required this.image2,
     required this.title,
     required this.title2,
   });
@@ -151,7 +187,7 @@ class OnboardingModel {
 class OnboardingPage extends StatelessWidget {
   final OnboardingModel data;
 
-   const OnboardingPage({required this.data});
+  const OnboardingPage({required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -165,37 +201,13 @@ class OnboardingPage extends StatelessWidget {
           Image.asset(
             data.image,
             fit: BoxFit.fill,
+            height: screenSize(context).height * .4,
           ),
-          const SizedBox(height: 20.0),
-          Padding(
-            padding: const EdgeInsetsDirectional.only(start: 15.0),
-            child: Wrap(
-              children: [
-                ResponsiveText(
-                  text: data.title,
-                  scaleFactor: .08,
-                  color: AppColors.white,
-                ),
-                const Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    RotatedTrapezoidalContainer(
-                      width: 150.0,
-                      height: 40.0,
-                      color: AppColors.primaryColor,
-                      rotationAngle: 180.0,
-                    ),
-                    FittedBox(
-                      child: ResponsiveText(
-                        text: 'Services',
-                        scaleFactor: .07,
-                        color: AppColors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          const SizedBox(height: 20),
+          Image.asset(
+            data.image2,
+            fit: BoxFit.fill,
+            height: 120,
           ),
         ],
       ),

@@ -1,11 +1,7 @@
 import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/core/rescourcs/app_colors.dart';
-import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:slider_button/slider_button.dart';
-
 import '../../../core/widgets/custom_slide_button.dart';
 
 class BookingView extends StatefulWidget {

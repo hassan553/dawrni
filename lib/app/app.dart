@@ -23,7 +23,7 @@ class Dawrni extends StatelessWidget {
       title: 'Dawrni',
       theme: appTheme(),
       textDirection: TextDirection.ltr,
-      home:  CompanyDetailsView(),
+      home: SplashView(),
     );
   }
 }

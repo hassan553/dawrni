@@ -28,11 +28,13 @@ AppBar customAppBar(advancedDrawerController) {
               builder: (_, value, __) {
                 return AnimatedSwitcher(
                   duration: const Duration(milliseconds: 250),
-                  child: Icon(
-                    value.visible ? Icons.clear : Icons.menu,
-                    key: ValueKey<bool>(value.visible),
-                    size: 25,
-                  ),
+                  child: value.visible
+                      ? Icon(
+                          Icons.clear,
+                          key: ValueKey<bool>(value.visible),
+                          size: 25,
+                        )
+                      : Image.asset('assets/Category.png'),
                 );
               },
             ),

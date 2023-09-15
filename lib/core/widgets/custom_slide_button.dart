@@ -20,7 +20,7 @@ class BookBotton extends StatelessWidget {
       child: Container(
           width: screenSize(context).width,
           height: 50,
-          padding: const EdgeInsetsDirectional.only(start: 20, end: 4),
+          padding: const EdgeInsetsDirectional.only(start: 20, end: 20),
           decoration: ShapeDecoration(
             gradient: const LinearGradient(
               begin: Alignment(-1.00, -0.00),
@@ -37,13 +37,14 @@ class BookBotton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               ResponsiveText(
-                text: title??" ",
-                scaleFactor: .04,
+              ResponsiveText(
+                text: title ?? " ",
+                scaleFactor: .05,
                 color: AppColors.white,
               ),
               const Spacer(),
-              Image.asset('assets/is.png'),
+              Image.asset('assets/Group 34092.png'),
+              const SizedBox(width: 10),
             ],
           )),
     );

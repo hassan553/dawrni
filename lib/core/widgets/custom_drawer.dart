@@ -1,6 +1,9 @@
+import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/core/rescourcs/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
+import 'package:dawrni/features/home/views/main_view.dart';
+import 'package:dawrni/features/settings/view/about_us_view.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -19,13 +22,14 @@ class CustomDrawer extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Row(
-              //   children: [
-              //     Icon(Icons.add),
-              //     const Spacer(),
-              //     Icon(Icons.add),
-              //   ],
-              // ),
+              Row(
+                children: [
+                  Icon(Icons.add),
+                  const Spacer(),
+                  Icon(Icons.add),
+                ],
+              ),
+              const Spacer(flex: 2),
               Container(
                 width: 64,
                 height: 64,
@@ -56,32 +60,37 @@ class CustomDrawer extends StatelessWidget {
                     Icons.home,
                     color: AppColors.offWhite,
                     size: 30,
-                  )),
+                  ),
+                  () => navigateTo(const MainView())),
               customListTile(
                   'About us',
                   Image.asset(
                     'assets/clarity_info-standard-line.png',
                     fit: BoxFit.fill,
-                  )),
+                  ),
+                  () => navigateTo(const AboutUsView())),
               customListTile(
                   'Privacy Policy',
                   Image.asset(
                     'assets/Group 34140.png',
                     fit: BoxFit.fill,
-                  )),
+                  ),
+                  () => navigateTo(const MainView())),
               customListTile(
                   'Contact us',
                   Image.asset(
                     'assets/iconoir_headset-help.png',
                     fit: BoxFit.fill,
-                  )),
+                  ),
+                  () => navigateTo(const MainView())),
               customListTile(
                   'Settings',
                   Icon(
                     Icons.settings,
                     color: AppColors.offWhite,
                     size: 30,
-                  )),
+                  ),
+                  () => navigateTo(const MainView())),
               const Spacer(flex: 1),
               customListTile(
                   'Logout',
@@ -89,7 +98,8 @@ class CustomDrawer extends StatelessWidget {
                     Icons.logout,
                     size: 30,
                     color: AppColors.offWhite,
-                  )),
+                  ),
+                  () {}),
               const Spacer(flex: 2),
             ],
           ),
@@ -98,9 +108,11 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  ListTile customListTile(String title, Widget icon) {
+  ListTile customListTile(String title, Widget icon, Function function) {
     return ListTile(
-      onTap: () {},
+      onTap: () {
+        function();
+      },
       leading: icon,
       title: Text(title),
     );
