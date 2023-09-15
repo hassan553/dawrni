@@ -47,6 +47,7 @@ class HomeView extends StatelessWidget {
             height: 153,
             child: ListView.separated(
               shrinkWrap: true,
+              reverse: false,
               scrollDirection: Axis.horizontal,
               clipBehavior: Clip.antiAlias,
               separatorBuilder: (context, index) => const SizedBox(width: 5),
