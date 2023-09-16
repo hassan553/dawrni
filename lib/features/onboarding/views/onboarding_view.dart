@@ -3,6 +3,7 @@ import 'package:dawrni/core/rescourcs/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_slide_button.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/auth/client/views/login_client_view.dart';
+import 'package:dawrni/features/onboarding/views/select_language_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/contants/painter.dart';
@@ -49,21 +50,21 @@ class _OnboardingViewState extends State<OnboardingView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(.4),
+          image: const DecorationImage(
             image: AssetImage(
                 'assets/Vector.jpg'), // Replace with your image asset path
-            fit: BoxFit.fill, // How the image should be inscribed into the box
+            fit: BoxFit.cover,
+            alignment: Alignment
+                .bottomCenter, // How the image should be inscribed into the box
           ),
         ),
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: [
-            Opacity(
-              opacity: .83,
-              child: Container(
-                color: const Color(0xFF262626),
-              ),
+            Container(
+              color: Colors.black.withOpacity(.8),
             ),
             Column(
               children: [
@@ -75,7 +76,6 @@ class _OnboardingViewState extends State<OnboardingView> {
                     onPageChanged: (int page) {
                       setState(() {
                         _currentPage = page;
-                       
                       });
                     },
                     itemBuilder: (context, index) {
@@ -99,9 +99,10 @@ class _OnboardingViewState extends State<OnboardingView> {
                       const EdgeInsetsDirectional.symmetric(horizontal: 25),
                   child: BookBotton(
                     title: 'Next',
+                    image: 'assets/Group 340921.png',
                     function: () {
                       if (_currentPage == onboardingData.length - 1) {
-                        navigateOff(const LoginClientView());
+                        navigateOff(const SelectLanguageView());
                       } else {
                         _pageController.nextPage(
                             duration: const Duration(milliseconds: 500),
@@ -119,7 +120,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     child: TextButton(
                       onPressed: () {
                         if (_currentPage == onboardingData.length - 1) {
-                          navigateOff(const LoginClientView());
+                          navigateOff(const SelectLanguageView());
                         } else {
                           _pageController.nextPage(
                               duration: const Duration(milliseconds: 500),
@@ -201,6 +202,7 @@ class OnboardingPage extends StatelessWidget {
           Image.asset(
             data.image,
             fit: BoxFit.fill,
+            width: screenSize(context).width,
             height: screenSize(context).height * .4,
           ),
           const SizedBox(height: 20),

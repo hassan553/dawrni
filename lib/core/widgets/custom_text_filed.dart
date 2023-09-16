@@ -11,6 +11,7 @@ class CustomTextFieldWidget extends StatelessWidget {
   final bool obscure;
   final dynamic focusNode;
   final void Function(String)? onChange;
+  final int? maxLines;
   const CustomTextFieldWidget({
     super.key,
     required this.controller,
@@ -21,6 +22,7 @@ class CustomTextFieldWidget extends StatelessWidget {
     this.keyboard,
     this.suffixIcons,
     this.valid,
+    this.maxLines,
     this.onChange,
   });
 
@@ -33,13 +35,14 @@ class CustomTextFieldWidget extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       focusNode: focusNode,
       controller: controller,
+      maxLines: maxLines ?? 1,
       textAlignVertical: TextAlignVertical.center,
       cursorColor: AppColors.white,
       style: const TextStyle(color: AppColors.white),
       obscureText: obscure,
       keyboardType: keyboard,
       decoration: InputDecoration(
-        contentPadding: const EdgeInsetsDirectional.only(top: 5, start: 20),
+        contentPadding: const EdgeInsetsDirectional.only(top: 8, start: 20),
         filled: true,
         hintText: hintText,
         fillColor: AppColors.secondColor,

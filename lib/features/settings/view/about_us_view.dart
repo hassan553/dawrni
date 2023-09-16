@@ -10,20 +10,30 @@ class AboutUsView extends StatelessWidget {
     return Scaffold(
       appBar: settingAppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(27.0),
+        padding: const EdgeInsetsDirectional.all(27.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 20),
             topPartText(),
             const SizedBox(height: 50),
             emailInfo(context),
+            const SizedBox(height: 70),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                customIcon('assets/Icon.png', 'Twitter'),
+                customIcon('assets/Icon2.png', 'Facebook'),
+                customIcon('assets/Group 215.png', 'LinkedIn'),
+              ],
+            ),
             const SizedBox(height: 50),
             Text(
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
               textAlign: TextAlign.start,
               style: TextStyle(
                 color: AppColors.offWhite,
-                fontSize: 14,
+                fontSize: 16,
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w400,
               ),
@@ -35,10 +45,28 @@ class AboutUsView extends StatelessWidget {
     );
   }
 
+  Row customIcon(String image, String title) {
+    return Row(
+      children: [
+        Image.asset(image),
+        const SizedBox(width: 13),
+        Text(
+          title,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+            fontFamily: 'Montserrat',
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ],
+    );
+  }
+
   AppBar settingAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
-      title: InkWell(
+      leading: InkWell(
         onTap: () => pop(),
         child: Container(
           width: 40,

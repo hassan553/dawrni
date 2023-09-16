@@ -7,10 +7,12 @@ import 'package:flutter/widgets.dart';
 class BookBotton extends StatelessWidget {
   final void Function()? function;
   final String? title;
+  final String? image;
   const BookBotton({
     super.key,
     this.function,
     this.title,
+    this.image,
   });
 
   @override
@@ -43,7 +45,7 @@ class BookBotton extends StatelessWidget {
                 color: AppColors.white,
               ),
               const Spacer(),
-              Image.asset('assets/Group 34092.png'),
+              Image.asset(image??'assets/Group 34092.png'),
               const SizedBox(width: 10),
             ],
           )),

@@ -21,9 +21,9 @@ class FavouriteView extends StatelessWidget {
           children: [
             const CustomSizedBox(value: .01),
             const ResponsiveText(
-              text: 'You Favourites ',
+              text: 'Your Favorites ',
               color: AppColors.white,
-              scaleFactor: .06,
+              scaleFactor: .05,
               fontWeight: FontWeight.bold,
             ),
             const CustomSizedBox(value: .03),

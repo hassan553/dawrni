@@ -6,7 +6,6 @@ import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/auth/client/views/login_client_view.dart';
 import 'package:dawrni/features/home/views/main_view.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../core/widgets/custom_text_filed.dart';
 
 class ForgetPassword extends StatefulWidget {
@@ -25,34 +24,44 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const CustomSizedBox(value: .04),
-              topImage(context),
-              const CustomSizedBox(value: .1),
-              const ResponsiveText(
-                text: 'Password Confirmation',
-                scaleFactor: .06,
-                fontWeight: FontWeight.bold,
-              ),
-              const CustomSizedBox(value: .02),
-              ResponsiveText(
-                text:
-                    'Your password will be your key to secure access in the future',
-                scaleFactor: .04,
-                color: AppColors.offWhite,
-              ),
-              const CustomSizedBox(value: .07),
-              enterIinfo(),
-              const CustomSizedBox(value: .02),
-              forgetPasswordButton(),
-              const CustomSizedBox(value: .03),
-              signUpButton()
-            ],
+          child: Container(
+        height: screenSize(context).height,
+        decoration: const BoxDecoration(
+          color: Color(0xff262626),
+          image: DecorationImage(
+            alignment: Alignment.bottomRight,
+            image: AssetImage("assets/Asset 1 1.png"),
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const CustomSizedBox(value: .04),
+                topImage(context),
+                const CustomSizedBox(value: .1),
+                const ResponsiveText(
+                  text: 'Password Confirmation',
+                  scaleFactor: .06,
+                  fontWeight: FontWeight.bold,
+                ),
+                const CustomSizedBox(value: .02),
+                ResponsiveText(
+                  text:
+                      'Your password will be your key to secure access in the future',
+                  scaleFactor: .04,
+                  color: AppColors.offWhite,
+                ),
+                const CustomSizedBox(value: .07),
+                enterIinfo(),
+                const CustomSizedBox(value: .02),
+                forgetPasswordButton(),
+                const CustomSizedBox(value: .03),
+                signUpButton()
+              ],
+            ),
           ),
         ),
       )),

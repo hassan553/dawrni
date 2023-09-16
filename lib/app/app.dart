@@ -1,8 +1,10 @@
 import 'package:dawrni/features/auth/client/views/forget_password_view.dart';
 import 'package:dawrni/features/auth/client/views/login_client_view.dart';
 import 'package:dawrni/features/auth/client/views/otp_view.dart';
+import 'package:dawrni/features/auth/client/views/register_client_view.dart';
 import 'package:dawrni/features/home/views/company_details_view.dart';
 import 'package:dawrni/features/home/views/main_view.dart';
+import 'package:dawrni/features/onboarding/views/select_language_view.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,9 +19,9 @@ class Dawrni extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      // useInheritedMediaQuery: true,
-      // locale: DevicePreview.locale(context),
-      // builder: DevicePreview.appBuilder,
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       title: 'Dawrni',
       theme: appTheme(),
       textDirection: TextDirection.ltr,

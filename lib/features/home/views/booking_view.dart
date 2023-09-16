@@ -122,7 +122,10 @@ class _BookingViewState extends State<BookingView> {
                                   4, (index) => hourWidget(context)),
                             ),
                             const SizedBox(height: 30),
-                            const BookBotton(title: 'Confrim date and time'),
+                            const BookBotton(
+                              title: 'Confrim date and time',
+                              image: 'assets/Group 340921.png',
+                            ),
                             const SizedBox(height: 80),
                           ],
                         ),

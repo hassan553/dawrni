@@ -58,6 +58,11 @@ class HomeView extends StatelessWidget {
               itemCount: 100,
             ),
           ),
+          const CustomSizedBox(value: .02),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: _buildPageIndicator(),
+          ),
           const CustomSizedBox(value: .04),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +78,7 @@ class HomeView extends StatelessWidget {
                 child: ResponsiveText(
                   text: 'View All >>',
                   color: AppColors.offWhite,
-                  scaleFactor: .04,
+                  scaleFactor: .03,
                 ),
               ),
             ],
@@ -146,6 +151,28 @@ class HomeView extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  List<Widget> _buildPageIndicator() {
+    List<Widget> indicators = [];
+    for (int i = 0; i < 8; i++) {
+      indicators.add(
+        i == 0 ? _buildIndicator(true) : _buildIndicator(false),
+      );
+    }
+    return indicators;
+  }
+
+  Widget _buildIndicator(bool isActive) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 2.0),
+      height: 3.0,
+      width: isActive ? 9 : 5.0,
+      decoration: BoxDecoration(
+        color: isActive ? AppColors.white : Colors.grey,
+        borderRadius: BorderRadius.circular(4.0),
       ),
     );
   }

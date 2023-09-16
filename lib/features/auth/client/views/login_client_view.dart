@@ -25,7 +25,6 @@ class _LoginClientViewState extends State<LoginClientView> {
   final formKey = GlobalKey<FormState>();
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     name.clear();
     password.clear();
@@ -37,26 +36,37 @@ class _LoginClientViewState extends State<LoginClientView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        child: Container(
+          height: screenSize(context).height,
+          decoration:const  BoxDecoration(
+                 color: Color(0xff262626),
+            image:  DecorationImage(
+              alignment: Alignment.bottomRight,
+              image: AssetImage("assets/Asset 1 1.png"),
+            ),
+          ),
           child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const CustomSizedBox(value: .04),
-              topImage(context),
-              const CustomSizedBox(value: .08),
-              companyOrClientButton(context),
-              const CustomSizedBox(value: .08),
-              enterIfonBody(),
-              const CustomSizedBox(value: .03),
-              loginButton(),
-              const CustomSizedBox(value: .03),
-              signUpButton()
-            ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const CustomSizedBox(value: .04),
+                  topImage(context),
+                  const CustomSizedBox(value: .08),
+                  companyOrClientButton(context),
+                  const CustomSizedBox(value: .08),
+                  enterIfonBody(),
+                  const CustomSizedBox(value: .03),
+                  loginButton(),
+                  const CustomSizedBox(value: .03),
+                  signUpButton()
+                ],
+              ),
+            ),
           ),
         ),
-      )),
+      ),
     );
   }
 
@@ -100,7 +110,7 @@ class _LoginClientViewState extends State<LoginClientView> {
             colorFilter:
                 ColorFilter.mode(AppColors.offWhite, BlendMode.modulate),
             child: CustomButton(
-              function: () {},
+              function: () => navigateTo(MainView()),
               color: AppColors.primaryColor,
               textColor: AppColors.white,
               fontSize: .04,
@@ -108,7 +118,7 @@ class _LoginClientViewState extends State<LoginClientView> {
             ),
           )
         : CustomButton(
-            function: () {},
+            function: () => navigateTo(MainView()),
             color: AppColors.primaryColor,
             textColor: AppColors.white,
             fontSize: .04,
@@ -183,7 +193,7 @@ class _LoginClientViewState extends State<LoginClientView> {
 
   Widget companyOrClientButton(BuildContext context) {
     return InkWell(
-      onTap: ()=>navigateTo(MainView()),
+      onTap: () => navigateTo(MainView()),
       child: Container(
         width: screenSize(context).width,
         height: 50,
@@ -204,7 +214,8 @@ class _LoginClientViewState extends State<LoginClientView> {
                 child: Container(
                   height: 50,
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
                   decoration: ShapeDecoration(
                     color: isClient == false
                         ? AppColors.primaryColor
@@ -229,7 +240,8 @@ class _LoginClientViewState extends State<LoginClientView> {
                 child: Container(
                   height: 50,
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
                   decoration: ShapeDecoration(
                     color: isClient == true
                         ? AppColors.primaryColor

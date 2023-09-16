@@ -18,10 +18,41 @@ class CompanyDetailsView extends StatelessWidget {
         height: screenSize(context).height,
         child: Stack(
           children: [
-            Image.asset(
-              'assets/is.png',
-              fit: BoxFit.fill,
-              width: screenSize(context).width,
+            Stack(
+              children: [
+                Image.asset(
+                  'assets/is.png',
+                  fit: BoxFit.fill,
+                  width: screenSize(context).width,
+                ),
+                Positioned(
+                  top: 40,
+                  left: 30,
+                  child: InkWell(
+                    onTap: () => pop(),
+                    child: Container(
+                      width: 50,
+                      height: 40,
+                      alignment: Alignment.center,
+                      // padding: const EdgeInsetsDirectional.all(5),
+                      decoration: ShapeDecoration(
+                        color: Colors.white.withOpacity(0.10000000149011612),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      child: const Align(
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.arrow_back_ios_new,
+                          color: AppColors.white,
+                          size: 30,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
             Positioned(
               top: 75,
@@ -41,9 +72,10 @@ class CompanyDetailsView extends StatelessWidget {
                         color: Theme.of(context).scaffoldBackgroundColor),
                     child: ListView(shrinkWrap: true, children: [
                       Padding(
-                          padding: const EdgeInsetsDirectional.symmetric(
-                              horizontal: 21),
-                          child: topPart()),
+                        padding: const EdgeInsetsDirectional.symmetric(
+                            horizontal: 21),
+                        child: topPart(),
+                      ),
                       const SizedBox(height: 40),
                       Padding(
                         padding: const EdgeInsetsDirectional.symmetric(
@@ -152,8 +184,9 @@ class CompanyDetailsView extends StatelessWidget {
               ),
               const SizedBox(height: 18),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset('assets/im.png'),
+                  Image.asset('assets/im.png', width: 16, fit: BoxFit.fill),
                   const SizedBox(width: 8),
                   ResponsiveText(
                     text: 'Apartment repair',

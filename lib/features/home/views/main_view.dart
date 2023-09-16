@@ -1,6 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:dawrni/core/widgets/customAppBar.dart';
+import 'package:dawrni/features/appointments/view/appointments_view.dart';
 import 'package:dawrni/features/favourites/view/favourites_view.dart';
 import 'package:dawrni/features/home/views/home_view.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +18,10 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  int _index = 0;
+  int _index = 2;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-  List screens = [
-    HomeView(),
+  List screens = const [
+    AppointmentsView(),
     FavouriteView(),
     HomeView(),
     HomeView(),
@@ -54,40 +55,24 @@ class _MainViewState extends State<MainView> {
         appBar: customAppBar(_advancedDrawerController),
         body: screens[_index],
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(2.0),
+          padding: const EdgeInsets.only(left: 6, right: 6, bottom: 20),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: CurvedNavigationBar(
               key: _bottomNavigationKey,
               index: 2,
-              height: 55.0,
-              items:  [
-                Image.asset('assets/Search.png'),
-                // Icon(
-                //   Icons.content_paste_rounded,
-                //   size: 20,
-                //   color: AppColors.white,
-                // ),
-                Icon(
-                  Icons.list,
-                  size: 20,
-                  color: AppColors.white,
-                ),
-                Icon(
-                  Icons.home,
-                  size: 20,
-                  color: AppColors.white,
-                ),
-                Icon(
-                  Icons.compare_arrows,
-                  size: 20,
-                  color: AppColors.white,
-                ),
-                Icon(
-                  Icons.call_split,
-                  size: 20,
-                  color: AppColors.white,
-                ),
+              height: 60.0,
+              items: [
+                Image.asset('assets/Group 34119.png',
+                    width: 16, fit: BoxFit.fill),
+                Image.asset('assets/Bookmark_light.png',
+                    width: 16, fit: BoxFit.fill),
+                Image.asset('assets/Group 34124.png',
+                    width: 16, fit: BoxFit.fill),
+                Image.asset('assets/Chat_light.png',
+                    width: 20, fit: BoxFit.fill),
+                Image.asset('assets/Group 34120.png',
+                    width: 16, fit: BoxFit.fill),
               ],
               color: AppColors.secondColor,
               buttonBackgroundColor: AppColors.primaryColor,

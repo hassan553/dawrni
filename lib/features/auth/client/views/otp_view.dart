@@ -31,123 +31,123 @@ class _OTPViewState extends State<OTPView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const CustomSizedBox(value: .04),
-              topImage(context),
-              const CustomSizedBox(value: .1),
-              const ResponsiveText(
-                text: 'OTP Verification',
-                scaleFactor: .06,
-                fontWeight: FontWeight.bold,
-              ),
-              const CustomSizedBox(value: .02),
-              FittedBox(
-                child: ResponsiveText(
-                  text: 'Enter the OTP code sent to +965 546 65874',
-                  scaleFactor: .05,
-                  color: AppColors.offWhite,
+          child: Container(
+        height: screenSize(context).height,
+        decoration:const  BoxDecoration(
+          color:        Color(0xff262626),
+          image:  DecorationImage(
+            alignment: Alignment.bottomRight,
+            image: AssetImage("assets/Asset 1 1.png"),
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const CustomSizedBox(value: .04),
+                topImage(context),
+                const CustomSizedBox(value: .1),
+                const ResponsiveText(
+                  text: 'OTP Verification',
+                  scaleFactor: .06,
+                  fontWeight: FontWeight.bold,
                 ),
-              ),
-              const CustomSizedBox(value: .04),
-              PinCodeTextField(
-                appContext: context,
-                controller: codeController,
-                length: 4,
-                pinTheme: PinTheme(
-                  shape: PinCodeFieldShape.underline,
-                  borderRadius: BorderRadius.circular(30),
-                  fieldHeight: 50,
-                  fieldWidth: 50,
-                  activeFillColor: AppColors.secondColor,
-                  inactiveColor: AppColors.secondColor,
-                  selectedColor: AppColors.secondColor,
-                  activeColor: AppColors.offWhite,
-                  selectedFillColor: AppColors.secondColor,
-                  inactiveFillColor: AppColors.secondColor,
+                const CustomSizedBox(value: .02),
+                FittedBox(
+                  child: ResponsiveText(
+                    text: 'Enter the OTP code sent to +965 546 65874',
+                    scaleFactor: .05,
+                    color: AppColors.offWhite,
+                  ),
                 ),
-                cursorColor: Colors.black,
-                animationDuration: const Duration(milliseconds: 300),
-                enableActiveFill: true,
-                keyboardType: TextInputType.number,
-                boxShadows: const [
-                  BoxShadow(
-                    offset: Offset(0, 1),
-                    color: Colors.black12,
-                    blurRadius: 30,
-                    blurStyle: BlurStyle.normal,
-                  )
-                ],
-                onChanged: (value) {
-                  setState(() {
-                    isEmpty = value.isEmpty;
-                  });
-                },
-                onCompleted: (value) {},
-              ),
-              const CustomSizedBox(value: .04),
-              forgetPasswordButton(),
-              const CustomSizedBox(value: .03),
-              signUpButton()
-            ],
+                const CustomSizedBox(value: .07),
+                // _buildPinCodeFields(context),
+                PinCodeTextField(
+                  appContext: context,
+                  controller: codeController,
+                  length: 4,
+                  pinTheme: PinTheme(
+                    shape: PinCodeFieldShape.box,
+                    borderRadius: BorderRadius.circular(10),
+                    fieldHeight: 50,
+                    fieldWidth: 60,
+                    activeFillColor: AppColors.secondColor,
+                    inactiveColor: AppColors.secondColor,
+                    selectedColor: AppColors.secondColor,
+                    activeColor: AppColors.offWhite,
+                    selectedFillColor: AppColors.secondColor,
+                    inactiveFillColor: AppColors.secondColor,
+                  ),
+                  cursorColor: Colors.black,
+                  animationDuration: const Duration(milliseconds: 300),
+                  enableActiveFill: true,
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) {
+                    setState(() {
+                      isEmpty = value.isEmpty;
+                    });
+                  },
+                  onCompleted: (value) {},
+                ),
+                const CustomSizedBox(value: .03),
+                forgetPasswordButton(),
+                const CustomSizedBox(value: .03),
+                signUpButton()
+              ],
+            ),
           ),
         ),
       )),
     );
   }
 
-  // PinCodeFields otpEnterCode() {
-  //   return PinCodeFields(
-  //     controller: codeController,
-  //     onChange: (value) {
-  //       setState(() {
-  //         if (value.isEmpty || value.length < 4) {
-  //           isEmpty = true;
-  //         }
-  //       });
-  //     },
-  //     onComplete: (value) {
-  //       setState(() {
-  //         isEmpty = false;
-  //       });
-  //     },
-  //     length: 4,
-  //     fieldBorderStyle: FieldBorderStyle.leftRight,
-  //     responsive: true,
-  //     fieldHeight: 50.0,
-  //     fieldWidth: 100.0,
-  //     borderWidth: 5.0,
-  //     activeBorderColor: AppColors.secondColor,
-  //     activeBackgroundColor: AppColors.secondColor,
-  //     keyboardType: TextInputType.number,
-  //     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-  //     autoHideKeyboard: false,
-  //     fieldBackgroundColor: AppColors.secondColor,
-  //     textStyle: const TextStyle(
-  //       fontSize: 30.0,
-  //       fontWeight: FontWeight.bold,
-  //       color: Colors.red,
-  //     ),
-  //   );
-  // }
+  Widget _buildPinCodeFields(BuildContext context) {
+    return Container(
+      child: PinCodeTextField(
+        appContext: context,
+        autoFocus: true,
+        cursorColor: Colors.black,
+        keyboardType: TextInputType.number,
+        length: 4,
+        obscureText: false,
+        animationType: AnimationType.scale,
+        pinTheme: PinTheme(
+          shape: PinCodeFieldShape.box,
+          borderRadius: BorderRadius.circular(8),
+          fieldHeight: 50,
+          fieldWidth: 40,
+          borderWidth: 1,
+          activeColor: AppColors.secondColor,
+          inactiveColor: AppColors.secondColor,
+          inactiveFillColor: AppColors.secondColor,
+          activeFillColor: AppColors.secondColor,
+          selectedColor: AppColors.secondColor,
+          selectedFillColor: Colors.white,
+        ),
+        animationDuration: const Duration(milliseconds: 300),
+        backgroundColor: Colors.white,
+        enableActiveFill: true,
+        onCompleted: (submitedCode) {},
+        onChanged: (value) {
+          print(value);
+        },
+      ),
+    );
+  }
 
   Row signUpButton() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text(
-          'If you have an account? ',
+          'If you have an account?',
           style: TextStyle(
             color: Colors.white,
             fontSize: 14,
             fontFamily: 'Montserrat',
             fontWeight: FontWeight.w400,
-            height: 1.43,
-            letterSpacing: 0.20,
           ),
         ),
         TextButton(
@@ -160,8 +160,6 @@ class _OTPViewState extends State<OTPView> {
               fontFamily: 'Montserrat',
               fontWeight: FontWeight.w700,
               decoration: TextDecoration.underline,
-              height: 1.43,
-              letterSpacing: 0.20,
             ),
           ),
         ),
@@ -175,7 +173,7 @@ class _OTPViewState extends State<OTPView> {
             colorFilter:
                 ColorFilter.mode(AppColors.offWhite, BlendMode.modulate),
             child: CustomButton(
-              function: ()=>navigateTo(MainView()),
+              function: () => navigateTo(MainView()),
               color: AppColors.primaryColor,
               textColor: AppColors.white,
               fontSize: .04,
@@ -183,7 +181,7 @@ class _OTPViewState extends State<OTPView> {
             ),
           )
         : CustomButton(
-            function: ()=>navigateTo(MainView()),
+            function: () => navigateTo(MainView()),
             color: AppColors.primaryColor,
             textColor: AppColors.white,
             fontSize: .04,

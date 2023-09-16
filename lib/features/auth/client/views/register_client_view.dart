@@ -7,6 +7,7 @@ import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/auth/client/views/login_client_view.dart';
 import 'package:dawrni/features/auth/client/views/otp_view.dart';
 import 'package:flutter/material.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 class RegisterClientView extends StatefulWidget {
   const RegisterClientView({super.key});
@@ -16,7 +17,7 @@ class RegisterClientView extends StatefulWidget {
 }
 
 class _RegisterClientViewState extends State<RegisterClientView> {
-  bool isClient = false;
+  bool isCompany = false;
   final name = TextEditingController();
   final phoneNumber = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -24,22 +25,34 @@ class _RegisterClientViewState extends State<RegisterClientView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+          child: Container(
+        height: screenSize(context).height,
+        decoration:const  BoxDecoration(
+          color: Color(0xff262626),
+          image:  DecorationImage(
+            alignment: Alignment.bottomRight,
+            image: AssetImage("assets/Asset 1 1.png"),
+          ),
+        ),
+        child: SingleChildScrollView(
           child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const CustomSizedBox(value: .04),
-            topImage(context),
-            const CustomSizedBox(value: .1),
-            companyOrClientButton(context),
-            const CustomSizedBox(value: .02),
-            enterIfonBody(),
-            const CustomSizedBox(value: .03),
-            registerButton(),
-            const CustomSizedBox(value: .03),
-            signUpButton()
-          ],
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const CustomSizedBox(value: .04),
+                topImage(context),
+                const CustomSizedBox(value: .1),
+                companyOrClientButton(context),
+                const CustomSizedBox(value: .08),
+                enterIfonBody(),
+                const CustomSizedBox(value: .03),
+                registerButton(),
+                const CustomSizedBox(value: .03),
+                signUpButton()
+              ],
+            ),
+          ),
         ),
       )),
     );
@@ -101,23 +114,61 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                 return 'Not Valid empty value';
               }
             },
-            hintText: isClient == false ? 'Full name' : 'Company',
+            hintText: isCompany == false ? 'Full name' : 'Company',
           ),
           const CustomSizedBox(value: .02),
-          CustomTextFieldWidget(
-              icon: Icon(
-                Icons.lock_outline,
+          Visibility(
+            visible: isCompany,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CustomTextFieldWidget(
+                  suffixIcons: Image.asset('assets/Group 34146.png'),
+                  icon: Image.asset('assets/im.png'),
+                  controller: name,
+                  valid: (String? value) {
+                    if (value == null) {
+                      return 'Not Valid empty value';
+                    }
+                  },
+                  hintText:
+                      isCompany == false ? 'Full name' : 'Service Company',
+                ),
+                const CustomSizedBox(value: .02),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 70,
+            child: IntlPhoneField(
+              decoration: InputDecoration(
+                hintText: 'Phone Number',
+                hintStyle: TextStyle(color: AppColors.offWhite, fontSize: 14),
+                prefixStyle: TextStyle(color: AppColors.offWhite),
+                iconColor: AppColors.white,
+                fillColor: AppColors.secondColor,
+                filled: true,
+                focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: AppColors.secondColor),
+                    borderRadius: BorderRadius.circular(15)),
+                border: OutlineInputBorder(
+                    borderSide: const BorderSide(color: AppColors.secondColor),
+                    borderRadius: BorderRadius.circular(15)),
+              ),
+              enabled: true,
+              style: TextStyle(color: AppColors.offWhite, fontSize: 16),
+              textAlignVertical: TextAlignVertical.center,
+              cursorColor: AppColors.primaryColor,
+              dropdownIcon: Icon(
+                Icons.arrow_drop_down,
                 color: AppColors.offWhite,
               ),
-              controller: phoneNumber,
-              valid: (String? value) {
-                if (value == null) {
-                  return 'Not Valid empty value';
-                } else if (value.length < 8) {
-                  return 'short password';
-                }
-              },
-              hintText: 'Password'),
+              dropdownTextStyle:
+                  TextStyle(color: AppColors.offWhite, fontSize: 16),
+              initialCountryCode: 'Ku',
+              onChanged: (phone) {},
+            ),
+          )
         ],
       ),
     );
@@ -139,14 +190,14 @@ class _RegisterClientViewState extends State<RegisterClientView> {
           Expanded(
             child: InkWell(
               onTap: () => setState(() {
-                isClient = false;
+                isCompany = false;
               }),
               child: Container(
                 height: 50,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
                 decoration: ShapeDecoration(
-                  color: isClient == false
+                  color: isCompany == false
                       ? AppColors.primaryColor
                       : AppColors.secondColor,
                   shape: RoundedRectangleBorder(
@@ -164,14 +215,14 @@ class _RegisterClientViewState extends State<RegisterClientView> {
           Expanded(
             child: InkWell(
               onTap: () => setState(() {
-                isClient = true;
+                isCompany = true;
               }),
               child: Container(
                 height: 50,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
                 decoration: ShapeDecoration(
-                  color: isClient == true
+                  color: isCompany == true
                       ? AppColors.primaryColor
                       : AppColors.secondColor,
                   shape: RoundedRectangleBorder(

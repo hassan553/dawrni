@@ -3,7 +3,10 @@ import 'package:dawrni/core/rescourcs/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/home/views/main_view.dart';
+import 'package:dawrni/features/settings/view/privacy_policy_view.dart';
+import 'package:dawrni/features/settings/view/connect_us.dart';
 import 'package:dawrni/features/settings/view/about_us_view.dart';
+import 'package:dawrni/features/settings/view/settings_view.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -22,10 +25,10 @@ class CustomDrawer extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              const Row(
                 children: [
                   Icon(Icons.add),
-                  const Spacer(),
+                  Spacer(),
                   Icon(Icons.add),
                 ],
               ),
@@ -75,14 +78,14 @@ class CustomDrawer extends StatelessWidget {
                     'assets/Group 34140.png',
                     fit: BoxFit.fill,
                   ),
-                  () => navigateTo(const MainView())),
+                  () => navigateTo(const PrivacyPolicyView())),
               customListTile(
                   'Contact us',
                   Image.asset(
                     'assets/iconoir_headset-help.png',
                     fit: BoxFit.fill,
                   ),
-                  () => navigateTo(const MainView())),
+                  () => navigateTo(const ConnectUsView())),
               customListTile(
                   'Settings',
                   Icon(
@@ -90,7 +93,7 @@ class CustomDrawer extends StatelessWidget {
                     color: AppColors.offWhite,
                     size: 30,
                   ),
-                  () => navigateTo(const MainView())),
+                  () => navigateTo(const SettingsView())),
               const Spacer(flex: 1),
               customListTile(
                   'Logout',
