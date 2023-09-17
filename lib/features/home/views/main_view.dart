@@ -55,7 +55,7 @@ class _MainViewState extends State<MainView> {
         appBar: customAppBar(_advancedDrawerController),
         body: screens[_index],
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(left: 6, right: 6, bottom: 20),
+          padding: const EdgeInsets.only(left: 8, right: 8, bottom: 20),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: CurvedNavigationBar(
@@ -91,6 +91,64 @@ class _MainViewState extends State<MainView> {
       ),
     );
   }
+
+void _handleMenuButtonPressed(advancedDrawerController) {
+  advancedDrawerController.showDrawer();
+  
+}
+
+AppBar customAppBar(advancedDrawerController) {
+  return AppBar(
+    leading: null,
+    automaticallyImplyLeading: false,
+    title: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          width: 40,
+          height: 40,
+          margin: const EdgeInsetsDirectional.only(start: 5),
+          decoration: BoxDecoration(
+              color: AppColors.secondColor,
+              borderRadius: BorderRadius.circular(15)),
+          padding: const EdgeInsetsDirectional.all(1),
+          child: IconButton(
+            onPressed: () => _handleMenuButtonPressed(advancedDrawerController),
+            icon: ValueListenableBuilder<AdvancedDrawerValue>(
+              valueListenable: advancedDrawerController,
+              builder: (_, value, __) {
+                return AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 250),
+                  child: value.visible
+                      ? Icon(
+                          Icons.clear,
+                          key: ValueKey<bool>(value.visible),
+                          size: 25,
+                        )
+                      : Image.asset('assets/Category.png'),
+                );
+              },
+            ),
+          ),
+        ),
+        Container(
+          width: 40,
+          height: 40,
+          margin: const EdgeInsetsDirectional.only(start: 5),
+          decoration: BoxDecoration(
+              color: AppColors.secondColor,
+              borderRadius: BorderRadius.circular(15)),
+          padding: const EdgeInsetsDirectional.all(1),
+          child: const Icon(
+            Icons.notifications,
+            size: 25,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    ),
+  );
+}
 
   AnimatedBottomNavigationBar customBottomBar() {
     return AnimatedBottomNavigationBar(

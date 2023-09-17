@@ -1,12 +1,8 @@
 import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/core/rescourcs/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_slide_button.dart';
-import 'package:dawrni/core/widgets/responsive_text.dart';
-import 'package:dawrni/features/auth/client/views/login_client_view.dart';
 import 'package:dawrni/features/onboarding/views/select_language_view.dart';
 import 'package:flutter/material.dart';
-
-import '../../../core/contants/painter.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -50,21 +46,19 @@ class _OnboardingViewState extends State<OnboardingView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          color: Colors.black.withOpacity(.4),
-          image: const DecorationImage(
-            image: AssetImage(
-                'assets/Vector.jpg'), // Replace with your image asset path
-            fit: BoxFit.cover,
-            alignment: Alignment
-                .bottomCenter, // How the image should be inscribed into the box
+        height: screenSize(context).height,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/Frame.png'),
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.center,
           ),
         ),
         child: Stack(
-          alignment: AlignmentDirectional.center,
+          alignment: AlignmentDirectional.topCenter,
           children: [
             Container(
-              color: Colors.black.withOpacity(.8),
+              color: Colors.black.withOpacity(.1),
             ),
             Column(
               children: [

@@ -38,10 +38,11 @@ class _LoginClientViewState extends State<LoginClientView> {
       body: SafeArea(
         child: Container(
           height: screenSize(context).height,
-          decoration:const  BoxDecoration(
-                 color: Color(0xff262626),
-            image:  DecorationImage(
-              alignment: Alignment.bottomRight,
+          width: screenSize(context).width,
+          decoration: BoxDecoration(
+            color: Colors.black.withOpacity(.1),
+            image: const DecorationImage(
+              alignment: Alignment.bottomCenter,
               image: AssetImage("assets/Asset 1 1.png"),
             ),
           ),
@@ -75,14 +76,12 @@ class _LoginClientViewState extends State<LoginClientView> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text(
-          'Didn’t have any account? ',
+          'Didn’t have any account?',
           style: TextStyle(
             color: Colors.white,
-            fontSize: 14,
+            fontSize: 13,
             fontFamily: 'Montserrat',
             fontWeight: FontWeight.w400,
-            height: 1.43,
-            letterSpacing: 0.20,
           ),
         ),
         TextButton(
@@ -91,7 +90,7 @@ class _LoginClientViewState extends State<LoginClientView> {
             'Sign Up here',
             style: TextStyle(
               color: Color(0xFFFF8700),
-              fontSize: 14,
+              fontSize: 13,
               fontFamily: 'Montserrat',
               fontWeight: FontWeight.w700,
               decoration: TextDecoration.underline,

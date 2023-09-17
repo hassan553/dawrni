@@ -33,9 +33,9 @@ class _OTPViewState extends State<OTPView> {
       body: SafeArea(
           child: Container(
         height: screenSize(context).height,
-        decoration:const  BoxDecoration(
-          color:        Color(0xff262626),
-          image:  DecorationImage(
+        decoration: const BoxDecoration(
+          color: Color(0xff262626),
+          image: DecorationImage(
             alignment: Alignment.bottomRight,
             image: AssetImage("assets/Asset 1 1.png"),
           ),
@@ -68,11 +68,12 @@ class _OTPViewState extends State<OTPView> {
                   appContext: context,
                   controller: codeController,
                   length: 4,
+                  textStyle: const TextStyle(color: Colors.white),
                   pinTheme: PinTheme(
                     shape: PinCodeFieldShape.box,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(20),
                     fieldHeight: 50,
-                    fieldWidth: 60,
+                    fieldWidth: 75,
                     activeFillColor: AppColors.secondColor,
                     inactiveColor: AppColors.secondColor,
                     selectedColor: AppColors.secondColor,
@@ -80,7 +81,7 @@ class _OTPViewState extends State<OTPView> {
                     selectedFillColor: AppColors.secondColor,
                     inactiveFillColor: AppColors.secondColor,
                   ),
-                  cursorColor: Colors.black,
+                  cursorColor: Colors.white,
                   animationDuration: const Duration(milliseconds: 300),
                   enableActiveFill: true,
                   keyboardType: TextInputType.number,

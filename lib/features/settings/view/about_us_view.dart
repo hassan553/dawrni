@@ -19,13 +19,17 @@ class AboutUsView extends StatelessWidget {
             const SizedBox(height: 50),
             emailInfo(context),
             const SizedBox(height: 70),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                customIcon('assets/Icon.png', 'Twitter'),
-                customIcon('assets/Icon2.png', 'Facebook'),
-                customIcon('assets/Group 215.png', 'LinkedIn'),
-              ],
+            FittedBox(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  customIcon('assets/Icon.png', 'Twitter'),
+                  const SizedBox(width: 15),
+                  customIcon('assets/Icon2.png', 'Facebook'),
+                  const SizedBox(width: 15),
+                  customIcon('assets/Group 215.png', 'LinkedIn'),
+                ],
+              ),
             ),
             const SizedBox(height: 50),
             Text(
@@ -49,7 +53,7 @@ class AboutUsView extends StatelessWidget {
     return Row(
       children: [
         Image.asset(image),
-        const SizedBox(width: 13),
+        const SizedBox(width: 5),
         Text(
           title,
           style: const TextStyle(

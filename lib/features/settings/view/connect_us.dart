@@ -100,7 +100,7 @@ class _ConnectUsViewState extends State<ConnectUsView> {
         SizedBox(height: 8),
         Text(
           'Any questions or remarks ?  Just write us a message',
-          textAlign: TextAlign.right,
+          textAlign: TextAlign.start,
           style: TextStyle(
             color: Color(0xFF7B7B7B),
             fontSize: 12,

@@ -3,6 +3,7 @@ import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/auth/client/views/login_client_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/functions/global_function.dart';
 
@@ -20,26 +21,29 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
     return Scaffold(
       body: Container(
         height: screenSize(context).height,
-        decoration: BoxDecoration(
-          color: Colors.black.withOpacity(.4),
-          image: const DecorationImage(
-            image: AssetImage('assets/Vector.jpg'),
-            fit: BoxFit.fill,
-            alignment: Alignment.bottomCenter,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/Frame.png'),
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.center,
           ),
         ),
         child: Stack(alignment: AlignmentDirectional.topCenter, children: [
           Container(
-            color: Colors.black.withOpacity(.8),
+            color: Colors.black.withOpacity(.1),
           ),
           Column(
             children: [
               const CustomSizedBox(value: .1),
+              // SvgPicture.asset('assets/Asset 12 1 (1).svg',
+              //     colorFilter: ColorFilter.mode(Colors.red, BlendMode.srcIn),
+              //     semanticsLabel: 'A red up arrow'),
               Image.asset(
                 'assets/Asset 12 1.png',
                 width: screenSize(context).width * .3,
                 fit: BoxFit.fill,
               ),
+
               const CustomSizedBox(value: .08),
               const ResponsiveText(
                 text: ' Please select your\npreferred language',

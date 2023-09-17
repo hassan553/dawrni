@@ -42,7 +42,7 @@ class HomeView extends StatelessWidget {
               suffixIcons: Image.asset('assets/Search.png'),
             ),
           ),
-          const CustomSizedBox(value: .02),
+          const CustomSizedBox(value: .03),
           SizedBox(
             height: 153,
             child: ListView.separated(

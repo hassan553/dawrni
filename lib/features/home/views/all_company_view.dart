@@ -29,7 +29,7 @@ class _AllCompanyViewState extends State<AllCompanyView> {
     return Scaffold(
       appBar: settingAppBar(),
       body: Padding(
-        padding: const EdgeInsetsDirectional.only(top: 30, end: 25, start: 25),
+        padding: const EdgeInsetsDirectional.all(27),
         child: ListView.separated(
           itemBuilder: (context, index) => const CompanyWidget(),
           separatorBuilder: (context, index) => const SizedBox(height: 15),
@@ -42,7 +42,7 @@ class _AllCompanyViewState extends State<AllCompanyView> {
   AppBar settingAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
-      title: InkWell(
+      leading: InkWell(
         onTap: () => pop(),
         child: Container(
           width: 40,
