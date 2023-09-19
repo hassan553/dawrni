@@ -35,7 +35,7 @@ class _SplashViewState extends State<SplashView> {
           height: 305,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/Asset 12 1.png"),
+              image: AssetImage("assets/asset-12-1-CWB.png"),
               fit: BoxFit.fill,
             ),
           ),

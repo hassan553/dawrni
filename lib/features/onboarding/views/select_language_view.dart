@@ -3,8 +3,6 @@ import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/auth/client/views/login_client_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../core/functions/global_function.dart';
 
 class SelectLanguageView extends StatefulWidget {
@@ -35,15 +33,11 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
           Column(
             children: [
               const CustomSizedBox(value: .1),
-              // SvgPicture.asset('assets/Asset 12 1 (1).svg',
-              //     colorFilter: ColorFilter.mode(Colors.red, BlendMode.srcIn),
-              //     semanticsLabel: 'A red up arrow'),
               Image.asset(
-                'assets/Asset 12 1.png',
+                'assets/asset-12-1-CWB.png',
                 width: screenSize(context).width * .3,
                 fit: BoxFit.fill,
               ),
-
               const CustomSizedBox(value: .08),
               const ResponsiveText(
                 text: ' Please select your\npreferred language',
@@ -61,7 +55,7 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
                       isArabic = 0;
                       Future.delayed(
                         const Duration(seconds: 1),
-                        () => navigateTo(LoginClientView()),
+                        () => navigateTo(const LoginClientView()),
                       );
                     }),
                     child: SizedBox(
@@ -97,8 +91,7 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
                             ),
                           ),
                           Positioned(
-                              top: -20,
-                              child: Image.asset('assets/english.png')),
+                              top: 0, child: Image.asset('assets/english.png')),
                         ],
                       ),
                     ),
@@ -145,8 +138,12 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
                             ),
                           ),
                           Positioned(
-                              top: -20,
-                              child: Image.asset('assets/arabic.png')),
+                            top: 0,
+                            child: Image.asset(
+                              'assets/arabic.png',
+                              // fit: BoxFit.fill,
+                            ),
+                          ),
                         ],
                       ),
                     ),

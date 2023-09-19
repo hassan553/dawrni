@@ -27,9 +27,9 @@ class _RegisterClientViewState extends State<RegisterClientView> {
       body: SafeArea(
           child: Container(
         height: screenSize(context).height,
-        decoration:const  BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xff262626),
-          image:  DecorationImage(
+          image: DecorationImage(
             alignment: Alignment.bottomRight,
             image: AssetImage("assets/Asset 1 1.png"),
           ),
@@ -244,7 +244,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
 
   Image topImage(BuildContext context) {
     return Image.asset(
-      'assets/Asset 12 1.png',
+      'assets/asset-12-1-CWB.png',
       width: screenSize(context).width * .3,
       fit: BoxFit.fill,
     );

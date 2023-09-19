@@ -83,16 +83,22 @@ class HomeView extends StatelessWidget {
               ),
             ],
           ),
-          const CustomSizedBox(value: .02),
+          const SizedBox(height: 30),
           Expanded(
-            child: ListView.separated(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) => const CompanyWidget(),
-              separatorBuilder: (context, index) => const SizedBox(height: 8),
-              itemCount: 100,
+              child: SingleChildScrollView(
+            child: Column(
+              children: List.generate(
+                10,
+                (index) => const CompanyWidget(),
+              ),
             ),
-          ),
+          )
+              // child: ListView.separated(
+              //   itemBuilder: (context, index) => const CompanyWidget(),
+              //   separatorBuilder: (context, index) => const SizedBox(height: 8),
+              //   itemCount: 5,
+              // ),
+              ),
         ],
       ),
     );

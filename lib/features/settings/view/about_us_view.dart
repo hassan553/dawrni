@@ -140,7 +140,7 @@ class AboutUsView extends StatelessWidget {
             height: 95,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/Asset 12 1.png"),
+                image: AssetImage("assets/asset-12-1-CWB.png"),
                 fit: BoxFit.fill,
               ),
             ),

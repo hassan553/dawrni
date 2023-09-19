@@ -177,7 +177,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
   Image topImage(BuildContext context) {
     return Image.asset(
-      'assets/Asset 12 1.png',
+      'assets/asset-12-1-CWB.png',
       width: screenSize(context).width * .3,
       fit: BoxFit.fill,
     );

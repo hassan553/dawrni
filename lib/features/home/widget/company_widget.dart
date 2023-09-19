@@ -17,6 +17,7 @@ class CompanyWidget extends StatelessWidget {
       child: Container(
         width: screenSize(context).width,
         height: 100,
+        margin: const EdgeInsetsDirectional.only(bottom: 10),
         decoration: ShapeDecoration(
           color: AppColors.secondColor,
           shape: RoundedRectangleBorder(

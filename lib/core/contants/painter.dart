@@ -1,74 +1,50 @@
+import 'package:dawrni/core/rescourcs/app_colors.dart';
 import 'package:flutter/material.dart';
-
-class RotatedTrapezoidalContainer extends StatelessWidget {
-  final double width;
-  final double height;
-  final Color color;
-  final double rotationAngle; // Rotation angle in degrees
-
-  const RotatedTrapezoidalContainer({
-    super.key,
-    required this.width,
-    required this.height,
-    required this.color,
-    required this.rotationAngle,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Transform.rotate(
-      angle:
-          rotationAngle * (3.14159265359 / 180.0), // Convert degrees to radians
-      child: TrapezoidalContainer(
-        width: width,
-        height: height,
-        color: color,
-      ),
-    );
-  }
-}
-
-class TrapezoidalContainer extends StatelessWidget {
-  final double width;
-  final double height;
-  final Color color;
-
-  TrapezoidalContainer({
-    required this.width,
-    required this.height,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomPaint(
-      size: Size(width, height),
-      painter: TrapezoidalPainter(color),
-    );
-  }
-}
-
-class TrapezoidalPainter extends CustomPainter {
-  final Color color;
-
-  TrapezoidalPainter(this.color);
-
+class RPSCustomPainter extends CustomPainter{
+  
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()..color = color;
+    
+  
+  Paint paint_fill_0 = Paint()
+      ..color = const Color.fromARGB(255, 255, 255, 255)
+      ..style = PaintingStyle.fill
+      ..strokeWidth = size.width
+      ..strokeCap = StrokeCap.butt
+      ..strokeJoin = StrokeJoin.miter;
+     
+         
+    Path path_0 = Path();
+    path_0.moveTo(size.width*0.1912500,size.height*0.2000000);
+    path_0.lineTo(size.width*0.4412500,size.height*0.1960000);
+    path_0.lineTo(size.width*0.4375000,size.height*0.5980000);
+    path_0.quadraticBezierTo(size.width*0.3490625,size.height*0.6620000,size.width*0.3125000,size.height*0.6480000);
+    path_0.quadraticBezierTo(size.width*0.2706250,size.height*0.6595000,size.width*0.1887500,size.height*0.5960000);
+    path_0.lineTo(size.width*0.1912500,size.height*0.2000000);
+    path_0.close();
 
-    final path = Path()
-      ..moveTo(0, size.height) // Bottom-left corner
-      ..lineTo(size.width * 0.15, 0) // Top-left corner
-      ..lineTo(size.width * 0.9, 0) // Top-right corner
-      ..lineTo(size.width, size.height) // Bottom-right corner
-      ..close();
+    canvas.drawPath(path_0, paint_fill_0);
+  
 
-    canvas.drawPath(path, paint);
+  // Layer 1
+  
+  Paint paint_stroke_0 = Paint()
+      ..color = const Color.fromARGB(255, 33, 150, 243)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = size.width
+      ..strokeCap = StrokeCap.butt
+      ..strokeJoin = StrokeJoin.miter;
+     
+         
+    
+    canvas.drawPath(path_0, paint_stroke_0);
+  
+    
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
+    return true;
   }
+  
 }

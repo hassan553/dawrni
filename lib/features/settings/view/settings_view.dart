@@ -34,7 +34,7 @@ class _SettingsViewState extends State<SettingsView> {
     );
   }
 
-  Row customSwatichButton(String title, bool value) {
+  Row customSwatichButton(String title, bool values) {
     return Row(
       children: [
         Text(
@@ -47,13 +47,13 @@ class _SettingsViewState extends State<SettingsView> {
           ),
         ),
         const Spacer(),
-        Switch.adaptive(
+        Switch(
           activeColor: AppColors.primaryColor,
           inactiveThumbColor: AppColors.offWhite,
-          value: value,
+          value: values,
           onChanged: (value) {
             setState(() {
-              value = value;
+              values = value;
             });
           },
         ),
