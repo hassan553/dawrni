@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/rescourcs/app_colors.dart';
+import '../../../core/widgets/custom_sized_box.dart';
+import '../../../core/widgets/custom_text_filed.dart';
 
 class ChatHomeScreen extends StatelessWidget {
   const ChatHomeScreen({super.key});
@@ -8,54 +10,111 @@ class ChatHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: chatData.length,
-        itemBuilder: (context, index) {
-          final chat = chatData[index];
-          return ListTile(
-            leading: CircleAvatar(
-              radius: 30,
-              backgroundImage: AssetImage(chat.imageUrl),
-            ),
-            title: Text(
-              chat.name,
-              style: const TextStyle(
-                color: AppColors.white,
-                fontSize: 14,
-                fontFamily: 'Montserrat',
-                fontWeight: FontWeight.w700,
+      body: Padding(
+        padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            const CustomSizedBox(value: .03),
+            SizedBox(
+              height: 40,
+              child: CustomTextFieldWidget(
+                controller: TextEditingController(),
+                hintText: 'Search your message ..',
+                suffixIcons: Image.asset('assets/Search.png'),
               ),
             ),
-            subtitle: Text(
-              chat.lastMessage,
-              style: TextStyle(
-                color: AppColors.offWhite,
-                fontSize: 10,
-                fontFamily: 'Montserrat',
-                fontWeight: FontWeight.w600,
+            const CustomSizedBox(value: .04),
+            Expanded(
+              child: ListView.builder(
+                itemCount: chatData.length,
+                itemBuilder: (context, index) {
+                  final chat = chatData[index];
+                  return customChatWidget(chat);
+                },
               ),
             ),
-            trailing: Text(
-              chat.time,
-              style: TextStyle(
-                color: AppColors.offWhite,
-                fontSize: 10,
-                fontFamily: 'Montserrat',
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            onTap: () {
-              // Navigate to the chat screen for this contact
-            },
-          );
-        },
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.red,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        backgroundColor: AppColors.primaryColor,
         onPressed: () {
           // Open contacts or create a new chat
         },
-        child: const Icon(Icons.message),
+        child: const Icon(Icons.edit_outlined),
+      ),
+    );
+  }
+
+  Padding customChatWidget(ChatContact chat) {
+    return Padding(
+      padding: const EdgeInsetsDirectional.symmetric(vertical: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundImage: AssetImage(chat.imageUrl),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  chat.name,
+                  style: const TextStyle(
+                    color: AppColors.white,
+                    fontSize: 14,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  chat.lastMessage,
+                  style: TextStyle(
+                    color: AppColors.offWhite,
+                    fontSize: 10,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Column(
+            children: [
+              Text(
+                chat.time,
+                style: TextStyle(
+                  color: AppColors.offWhite,
+                  fontSize: 10,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 4),
+              CircleAvatar(
+                radius: 10,
+                backgroundColor: AppColors.primaryColor,
+                child: Text(
+                  '3',
+                  style: TextStyle(
+                    color: AppColors.offWhite,
+                    fontSize: 10,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }
