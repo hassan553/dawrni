@@ -7,6 +7,7 @@ import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/auth/client/views/forget_password_view.dart';
 import 'package:dawrni/features/auth/client/views/register_client_view.dart';
 import 'package:flutter/material.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../../../home/views/main_view.dart';
 
@@ -117,7 +118,7 @@ class _LoginClientViewState extends State<LoginClientView> {
             ),
           )
         : CustomButton(
-            function: () => navigateTo(MainView()),
+            function: () => navigateTo(const MainView()),
             color: AppColors.primaryColor,
             textColor: AppColors.white,
             fontSize: .04,
@@ -142,49 +143,80 @@ class _LoginClientViewState extends State<LoginClientView> {
             hintText: isClient == false ? 'Full name' : 'Company',
           ),
           const CustomSizedBox(value: .02),
-          CustomTextFieldWidget(
-            icon: Icon(
-              Icons.lock_outline,
-              color: AppColors.offWhite,
-            ),
-            controller: password,
-            valid: (String? value) {
-              if (value == null) {
-                return 'Not Valid empty value';
-              } else if (value.length < 8) {
-                return 'short password';
-              }
-            },
-            hintText: 'Password',
-            onChange: (value) {
-              if (password.text.isEmpty || name.text.isEmpty) {
-                setState(() {
-                  isEmpty = true;
-                });
-              } else {
-                setState(() {
-                  isEmpty = false;
-                });
-              }
-            },
-          ),
-          Align(
-            alignment: AlignmentDirectional.topStart,
-            child: TextButton(
-              onPressed: () => navigateTo(const ForgetPassword()),
-              child: const Text(
-                'Forget Password ?',
-                style: TextStyle(
-                  color: AppColors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                  decoration: TextDecoration.underline,
-                  height: 1.43,
-                  letterSpacing: 0.20,
-                ),
+          SizedBox(
+            height: 70,
+            child: IntlPhoneField(
+              decoration: InputDecoration(
+                hintText: 'Phone Number',
+                hintStyle: TextStyle(color: AppColors.offWhite, fontSize: 14),
+                prefixStyle: TextStyle(color: AppColors.offWhite),
+                iconColor: AppColors.white,
+                fillColor: AppColors.secondColor,
+                filled: true,
+                focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: AppColors.secondColor),
+                    borderRadius: BorderRadius.circular(15)),
+                border: OutlineInputBorder(
+                    borderSide: const BorderSide(color: AppColors.secondColor),
+                    borderRadius: BorderRadius.circular(15)),
               ),
+              enabled: true,
+              style: TextStyle(color: AppColors.offWhite, fontSize: 16),
+              textAlignVertical: TextAlignVertical.center,
+              cursorColor: AppColors.primaryColor,
+              dropdownIcon: Icon(
+                Icons.arrow_drop_down,
+                color: AppColors.offWhite,
+              ),
+              dropdownTextStyle:
+                  TextStyle(color: AppColors.offWhite, fontSize: 16),
+              initialCountryCode: 'Ku',
+              onChanged: (phone) {},
             ),
           ),
+          // CustomTextFieldWidget(
+          //   icon: Icon(
+          //     Icons.lock_outline,
+          //     color: AppColors.offWhite,
+          //   ),
+          //   controller: password,
+          //   valid: (String? value) {
+          //     if (value == null) {
+          //       return 'Not Valid empty value';
+          //     } else if (value.length < 8) {
+          //       return 'short password';
+          //     }
+          //   },
+          //   hintText: 'Password',
+          //   onChange: (value) {
+          //     if (password.text.isEmpty || name.text.isEmpty) {
+          //       setState(() {
+          //         isEmpty = true;
+          //       });
+          //     } else {
+          //       setState(() {
+          //         isEmpty = false;
+          //       });
+          //     }
+          //   },
+          // ),
+          // Align(
+          //   alignment: AlignmentDirectional.topStart,
+          //   child: TextButton(
+          //     onPressed: () => navigateTo(const ForgetPassword()),
+          //     child: const Text(
+          //       'Forget Password ?',
+          //       style: TextStyle(
+          //         color: AppColors.white,
+          //         fontSize: 14,
+          //         fontWeight: FontWeight.w700,
+          //         decoration: TextDecoration.underline,
+          //         height: 1.43,
+          //         letterSpacing: 0.20,
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

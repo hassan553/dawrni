@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "310913711987",
+    "project_id": "dawrni-cdaed",
+    "storage_bucket": "dawrni-cdaed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310913711987:android:49ec6b267a7fa68fb18f06",
+        "android_client_info": {
+          "package_name": "com.example.dawrni"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBW0mrAU8O_9opUg9_AI7x1qLZxgkZMZYg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

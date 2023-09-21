@@ -1,4 +1,3 @@
-
 import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/features/appointments/view/appointments_view.dart';
 import 'package:dawrni/features/favourites/view/favourites_view.dart';
@@ -80,12 +79,12 @@ class _MainViewState extends State<MainView> {
         BottomNavigationBarItem(
           icon: _currentIndex == 0
               ? Image.asset(
-                  'assets/Group 34119.png',
+                  'assets/Group 34212.png',
                   height: 20,
                   fit: BoxFit.fitHeight,
                 )
               : Image.asset(
-                  'assets/Group 34212.png',
+                  'assets/Group 34119.png',
                   height: 20,
                   fit: BoxFit.fitHeight,
                 ),
@@ -99,12 +98,12 @@ class _MainViewState extends State<MainView> {
         BottomNavigationBarItem(
           icon: _currentIndex == 2
               ? Image.asset(
-                  'assets/Group 34119.png',
+                  'assets/Group 341242.png',
                   height: 20,
                   fit: BoxFit.fitHeight,
                 )
               : Image.asset(
-                  'assets/Group 341242.png',
+                  'assets/Group 34124.png',
                   height: 20,
                   fit: BoxFit.fitHeight,
                 ),

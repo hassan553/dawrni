@@ -4,9 +4,11 @@ import 'package:dawrni/core/widgets/custom_button.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/custom_text_filed.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
+import 'package:dawrni/features/auth/client/controller/client_auth_controller.dart';
 import 'package:dawrni/features/auth/client/views/login_client_view.dart';
 import 'package:dawrni/features/auth/client/views/otp_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 class RegisterClientView extends StatefulWidget {
@@ -17,6 +19,13 @@ class RegisterClientView extends StatefulWidget {
 }
 
 class _RegisterClientViewState extends State<RegisterClientView> {
+  final controller = Get.put(ClientAuthController());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   bool isCompany = false;
   final name = TextEditingController();
   final phoneNumber = TextEditingController();
