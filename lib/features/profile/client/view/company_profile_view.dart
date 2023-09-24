@@ -1,7 +1,7 @@
 import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/contants/painter.dart';
+import '../../../../core/contants/constants.dart';
 import '../../../../core/rescourcs/app_colors.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/responsive_text.dart';

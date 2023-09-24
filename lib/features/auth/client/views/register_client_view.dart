@@ -1,15 +1,24 @@
 import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/core/rescourcs/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_button.dart';
+import 'package:dawrni/core/widgets/custom_dailog.dart';
+import 'package:dawrni/core/widgets/custom_loading_widget.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/custom_text_filed.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/auth/client/controller/client_auth_controller.dart';
 import 'package:dawrni/features/auth/client/views/login_client_view.dart';
-import 'package:dawrni/features/auth/client/views/otp_view.dart';
+import 'package:dawrni/features/auth/client/views/otp_register_view.dart';
+import 'package:dawrni/features/auth/cubit/auth_cubit.dart';
+import 'package:dawrni/features/home/views/main_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+
+import '../../../../core/contants/constants.dart';
+import '../../../../main.dart';
+import '../cubit/phone_auth_cubit.dart';
 
 class RegisterClientView extends StatefulWidget {
   const RegisterClientView({super.key});
@@ -20,16 +29,30 @@ class RegisterClientView extends StatefulWidget {
 
 class _RegisterClientViewState extends State<RegisterClientView> {
   final controller = Get.put(ClientAuthController());
+  String selectedValue = 'Option 1';
+  List<String> dropdownItems = [
+    'Option 1',
+    'Option 2',
+    'Option 3',
+    'Option 4',
+  ];
+  bool isEmpty = true;
+  final name = TextEditingController();
+  final license = TextEditingController();
+  final companyService = TextEditingController();
+  final email = TextEditingController();
+  final password = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  void dispose() {
+    name.dispose();
+    email.dispose();
+    password.dispose();
+    license.dispose();
+    companyService.dispose();
+    super.dispose();
   }
 
-  bool isCompany = false;
-  final name = TextEditingController();
-  final phoneNumber = TextEditingController();
-  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +105,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
           ),
         ),
         TextButton(
-          onPressed: () => navigateTo(LoginClientView()),
+          onPressed: () => navigateTo(const LoginClientView()),
           child: const Text(
             'Sign In here',
             style: TextStyle(
@@ -99,14 +122,82 @@ class _RegisterClientViewState extends State<RegisterClientView> {
     );
   }
 
-  CustomButton registerButton() {
-    return CustomButton(
-      function: () => navigateTo(OTPView()),
-      color: AppColors.primaryColor,
-      textColor: AppColors.white,
-      fontSize: .04,
-      title: ' Sign Up',
-    );
+  Widget registerButton() {
+    return isEmpty == true
+        ? ColorFiltered(
+            colorFilter:
+                ColorFilter.mode(AppColors.offWhite, BlendMode.modulate),
+            child: CustomButton(
+              function: () {
+                if (formKey.currentState!.validate()) {
+                  setState(() {
+                    isEmpty = false;
+                  });
+                }
+              },
+              color: AppColors.primaryColor,
+              textColor: AppColors.white,
+              fontSize: .04,
+              title: ' Sign Up',
+            ),
+          )
+        : sharedPreferences.getBool(kIsCompany) == false
+            ? BlocConsumer<AuthCubit, AuthState>(
+                listener: (context, state) {
+                  if (state is ClientRegisterSuccessState) {
+                    navigateTo(const MainView());
+                  } else if (state is ClientRegisterErrorState) {
+                    showDailog(state.error);
+                  } else if (state is NoInternetConnection) {
+                    showDailog('No Internet connection');
+                  }
+                },
+                builder: (context, state) => state is ClientRegisterLoadingState
+                    ? const CustomLoadingWidget()
+                    : CustomButton(
+                        function: () {
+                          if (formKey.currentState!.validate()) {
+                            AuthCubit.get(context).userRegister(
+                                name.text, email.text, password.text);
+                          }
+                        },
+                        color: AppColors.primaryColor,
+                        textColor: AppColors.white,
+                        fontSize: .04,
+                        title: ' Sign Up',
+                      ),
+              )
+            : BlocConsumer<AuthCubit, AuthState>(
+                listener: (context, state) {
+                  if (state is CompanyRegisterSuccessState) {
+                    navigateTo(const MainView());
+                  } else if (state is CompanyRegisterErrorState) {
+                    showDailog(state.error);
+                  } else if (state is NoInternetConnection) {
+                    showDailog('No Internet connection');
+                  }
+                },
+                builder: (context, state) =>
+                    state is CompanyRegisterLoadingState
+                        ? const CustomLoadingWidget()
+                        : CustomButton(
+                            function: () {
+                              if (formKey.currentState!.validate()) {
+                                AuthCubit.get(context).companyRegister(
+                                  category: selectedValue,
+                                  email: email.text,
+                                  license: license.text,
+                                  name: name.text,
+                                  password: password.text,
+                                );
+                              }
+                            },
+                            color: AppColors.primaryColor,
+                            textColor: AppColors.white,
+                            fontSize: .04,
+                            title: ' Sign Up',
+                          ),
+              );
   }
 
   Form enterIfonBody() {
@@ -119,74 +210,168 @@ class _RegisterClientViewState extends State<RegisterClientView> {
             icon: Image.asset('assets/Group.png'),
             controller: name,
             valid: (String? value) {
-              if (value == null) {
+              if (value == null || value.isEmpty) {
                 return 'Not Valid empty value';
               }
             },
-            hintText: isCompany == false ? 'Full name' : 'Company',
+            hintText: sharedPreferences.getBool(kIsCompany) == true
+                ? 'Company'
+                : 'Full name',
           ),
           const CustomSizedBox(value: .02),
+
+          CustomTextFieldWidget(
+            icon: Icon(
+              Icons.email_outlined,
+              color: AppColors.offWhite,
+            ),
+            controller: email,
+            valid: (String? value) {
+              if (value == null || value.isEmpty) {
+                return 'Not Valid empty value';
+              } else if (!value.contains('@')) {
+                return 'not valid email';
+              }
+            },
+            hintText: 'Email Address',
+          ),
+          const CustomSizedBox(value: .02),
+
           Visibility(
-            visible: isCompany,
+            visible: sharedPreferences.getBool(kIsCompany) == true,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 CustomTextFieldWidget(
-                  suffixIcons: Image.asset('assets/Group 34146.png'),
-                  icon: Image.asset('assets/im.png'),
-                  controller: name,
+                  icon: Icon(
+                    Icons.check,
+                    color: AppColors.offWhite,
+                  ),
+                  controller: license,
                   valid: (String? value) {
-                    if (value == null) {
+                    if (value == null || value.isEmpty) {
                       return 'Not Valid empty value';
                     }
                   },
-                  hintText:
-                      isCompany == false ? 'Full name' : 'Service Company',
+                  hintText: 'Compnay License ID',
+                ),
+                const CustomSizedBox(value: .02),
+                Container(
+                  padding: const EdgeInsetsDirectional.symmetric(
+                      horizontal: 10, vertical: 1),
+                  decoration: BoxDecoration(
+                    color: AppColors.secondColor,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: DropdownButton<String>(
+                    isExpanded: true,
+                    underline: Container(),
+                    icon: Image.asset('assets/Group 34146.png'),
+                    value: PhoneAuthCubit.get(context).selectedValue,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        selectedValue = newValue!;
+                      });
+                    },
+                    items: PhoneAuthCubit.get(context)
+                        .dropdownItems
+                        .map((String item) {
+                      return DropdownMenuItem<String>(
+                        value: item,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.asset('assets/im.png'),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              item,
+                              style: TextStyle(color: AppColors.offWhite),
+                            ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                  ),
                 ),
                 const CustomSizedBox(value: .02),
               ],
             ),
           ),
-          SizedBox(
-            height: 70,
-            child: IntlPhoneField(
-              decoration: InputDecoration(
-                hintText: 'Phone Number',
-                hintStyle: TextStyle(color: AppColors.offWhite, fontSize: 14),
-                prefixStyle: TextStyle(color: AppColors.offWhite),
-                iconColor: AppColors.white,
-                fillColor: AppColors.secondColor,
-                filled: true,
-                focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: AppColors.secondColor),
-                    borderRadius: BorderRadius.circular(15)),
-                border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: AppColors.secondColor),
-                    borderRadius: BorderRadius.circular(15)),
-              ),
-              enabled: true,
-              style: TextStyle(color: AppColors.offWhite, fontSize: 16),
-              textAlignVertical: TextAlignVertical.center,
-              cursorColor: AppColors.primaryColor,
-              dropdownIcon: Icon(
-                Icons.arrow_drop_down,
-                color: AppColors.offWhite,
-              ),
-              dropdownTextStyle:
-                  TextStyle(color: AppColors.offWhite, fontSize: 16),
-              initialCountryCode: 'Ku',
-              onChanged: (phone) {},
+
+          CustomTextFieldWidget(
+            icon: Icon(
+              Icons.password,
+              color: AppColors.offWhite,
             ),
-          )
+            controller: password,
+            valid: (String? value) {
+              if (value == null || value.isEmpty) {
+                return 'Not Valid empty value';
+              } else if (value.length < 8) {
+                return 'Short Password';
+              }
+            },
+            hintText: 'Password',
+          ),
+          // SizedBox(
+          //   height: 70,
+          //   child: Row(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       Container(
+          //         width: 70,
+          //         height: 47,
+          //         alignment: Alignment.center,
+          //         decoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(15),
+          //           color: AppColors.secondColor,
+          //         ),
+          //         child: FittedBox(
+          //           child: Row(
+          //             mainAxisSize: MainAxisSize.min,
+          //             children: [
+          //               Text(generateCountryFlag(),
+          //                   style: const TextStyle(fontSize: 18)),
+          //               const SizedBox(width: 5),
+          //               Text('+965',
+          //                   style: TextStyle(
+          //                       color: AppColors.offWhite, fontSize: 13)),
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //       const SizedBox(width: 8),
+          //       Expanded(
+          //         child: CustomTextFieldWidget(
+          //           icon: Image.asset('assets/Group.png'),
+          //           keyboard: TextInputType.number,
+          //           controller: email,
+          //           valid: (String? value) {
+          //             if (value == null) {
+          //               return 'Not Valid empty value';
+          //             } else if (value.length < 11) {
+          //               return 'not valid phone number';
+          //             } else {
+          //               return null;
+          //             }
+          //           },
+          //           hintText: 'Phone Number',
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
   }
 
-  Container companyOrClientButton(BuildContext context) {
+  Widget companyOrClientButton(BuildContext context) {
     return Container(
       width: screenSize(context).width,
-      height: 60,
+      height: 50,
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
       decoration: ShapeDecoration(
         color: AppColors.secondColor,
@@ -199,14 +384,15 @@ class _RegisterClientViewState extends State<RegisterClientView> {
           Expanded(
             child: InkWell(
               onTap: () => setState(() {
-                isCompany = false;
+                sharedPreferences.setBool(kIsCompany, false);
+                print("value client ${sharedPreferences.getBool(kIsCompany)}");
               }),
               child: Container(
                 height: 50,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
                 decoration: ShapeDecoration(
-                  color: isCompany == false
+                  color: sharedPreferences.getBool(kIsCompany) == false
                       ? AppColors.primaryColor
                       : AppColors.secondColor,
                   shape: RoundedRectangleBorder(
@@ -224,14 +410,15 @@ class _RegisterClientViewState extends State<RegisterClientView> {
           Expanded(
             child: InkWell(
               onTap: () => setState(() {
-                isCompany = true;
+                sharedPreferences.setBool(kIsCompany, true);
+                print("value company ${sharedPreferences.getBool(kIsCompany)}");
               }),
               child: Container(
                 height: 50,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 5),
                 decoration: ShapeDecoration(
-                  color: isCompany == true
+                  color: sharedPreferences.getBool(kIsCompany) == true
                       ? AppColors.primaryColor
                       : AppColors.secondColor,
                   shape: RoundedRectangleBorder(

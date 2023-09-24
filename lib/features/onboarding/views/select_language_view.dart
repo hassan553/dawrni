@@ -1,7 +1,9 @@
+import 'package:dawrni/core/contants/constants.dart';
 import 'package:dawrni/core/rescourcs/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/auth/client/views/login_client_view.dart';
+import 'package:dawrni/main.dart';
 import 'package:flutter/material.dart';
 import '../../../core/functions/global_function.dart';
 
@@ -51,8 +53,9 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () => setState(() {
+                    onTap: () => setState(()  {
                       isArabic = 0;
+                       sharedPreferences.setBool(kIsArabic, false);
                       Future.delayed(
                         const Duration(seconds: 1),
                         () => navigateTo(const LoginClientView()),
@@ -98,7 +101,8 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
                   ),
                   const SizedBox(width: 25),
                   InkWell(
-                    onTap: () => setState(() {
+                    onTap: () => setState(()  {
+                       sharedPreferences.setBool(kIsArabic, true);
                       isArabic = 1;
                       Future.delayed(
                         const Duration(seconds: 1),

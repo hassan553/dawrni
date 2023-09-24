@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ClientAuthController extends GetxController {
-  String? _verificationId;
+  String? _verificationId='';
   var loading = false.obs;
   var success = false.obs;
   Future<void> submitPhoneNumber(String phoneNumber) async {
@@ -67,8 +67,9 @@ class ClientAuthController extends GetxController {
   }
 
   void codeAutoRetrievalTimeout(String verificationId) {}
-
+  var loadingOtp = false.obs;
   Future<void> submitOTP(String otpCode, String name, String phone) async {
+    loadingOtp.value = true;
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: _verificationId!, smsCode: otpCode);
 
@@ -83,6 +84,7 @@ class ClientAuthController extends GetxController {
         'image': 'https://cdn-icons-png.flaticon.com/512/3001/3001764.png',
       });
     });
+    loadingOtp.value = false;
   }
 
   Future<void> signIn(PhoneAuthCredential credential) async {

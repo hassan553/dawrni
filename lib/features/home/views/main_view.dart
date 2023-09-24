@@ -1,9 +1,12 @@
+
+import 'package:dawrni/core/contants/constants.dart';
 import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/features/appointments/view/appointments_view.dart';
 import 'package:dawrni/features/favourites/view/favourites_view.dart';
 import 'package:dawrni/features/home/views/home_view.dart';
 import 'package:dawrni/features/notifications/view/notifications_view.dart';
 import 'package:dawrni/features/profile/client/view/client_profile_view.dart';
+import 'package:dawrni/features/profile/client/view/company_profile_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
@@ -19,14 +22,14 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  int _currentIndex = 2;
+  int _currentIndex = 0;
 
-  List screens = const [
-    AppointmentsView(),
-    FavouriteView(),
-    HomeView(),
-    ChatHomeScreen(),
-    ClientProfileView(),
+  List screens = [
+    const HomeView(),
+    const AppointmentsView(),
+    const FavouriteView(),
+    const ChatHomeScreen(),
+    if (isCompany) const CompanyProfileView() else const ClientProfileView(),
   ];
 
   final _advancedDrawerController = AdvancedDrawerController();
@@ -79,6 +82,20 @@ class _MainViewState extends State<MainView> {
         BottomNavigationBarItem(
           icon: _currentIndex == 0
               ? Image.asset(
+                  'assets/Group 341242.png',
+                  height: 20,
+                  fit: BoxFit.fitHeight,
+                )
+              : Image.asset(
+                  'assets/Group 34124.png',
+                  height: 20,
+                  fit: BoxFit.fitHeight,
+                ),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: _currentIndex == 1
+              ? Image.asset(
                   'assets/Group 34212.png',
                   height: 20,
                   fit: BoxFit.fitHeight,
@@ -92,22 +109,8 @@ class _MainViewState extends State<MainView> {
         ),
         BottomNavigationBarItem(
           icon: Icon(
-              _currentIndex == 1 ? Icons.bookmark : CupertinoIcons.bookmark),
+              _currentIndex == 2 ? Icons.bookmark : CupertinoIcons.bookmark),
           label: 'Search',
-        ),
-        BottomNavigationBarItem(
-          icon: _currentIndex == 2
-              ? Image.asset(
-                  'assets/Group 341242.png',
-                  height: 20,
-                  fit: BoxFit.fitHeight,
-                )
-              : Image.asset(
-                  'assets/Group 34124.png',
-                  height: 20,
-                  fit: BoxFit.fitHeight,
-                ),
-          label: 'Home',
         ),
         const BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.chat_bubble_text),

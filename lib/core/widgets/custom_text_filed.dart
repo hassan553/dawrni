@@ -12,11 +12,13 @@ class CustomTextFieldWidget extends StatelessWidget {
   final dynamic focusNode;
   final void Function(String)? onChange;
   final int? maxLines;
+  final AutovalidateMode? autovalidateMode;
   const CustomTextFieldWidget({
     super.key,
     required this.controller,
     required this.hintText,
     this.obscure = false,
+    this.autovalidateMode,
     this.icon,
     this.focusNode,
     this.keyboard,
@@ -32,7 +34,7 @@ class CustomTextFieldWidget extends StatelessWidget {
       textInputAction: TextInputAction.done,
       validator: valid,
       onChanged: onChange,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: autovalidateMode ?? AutovalidateMode.onUserInteraction,
       focusNode: focusNode,
       controller: controller,
       maxLines: maxLines ?? 1,
@@ -42,7 +44,8 @@ class CustomTextFieldWidget extends StatelessWidget {
       obscureText: obscure,
       keyboardType: keyboard,
       decoration: InputDecoration(
-        contentPadding: const EdgeInsetsDirectional.only(top: 8, start: 20),
+        contentPadding:
+            const EdgeInsetsDirectional.only(top: 8, start: 20, end: 5),
         filled: true,
         hintText: hintText,
         fillColor: AppColors.secondColor,
