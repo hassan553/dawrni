@@ -26,6 +26,18 @@ class ClientProfileRepo {
       print(error.toString());
       return left(error.toString());
     }
-    
+  }
+
+  Future updateProfileName(String name) async {
+    try {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc('clientsUid')
+          .collection('clients')
+          .doc(_userUid)
+          .update({'name': name});
+    } catch (error) {
+      return error.toString();
+    }
   }
 }

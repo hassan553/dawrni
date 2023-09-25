@@ -158,7 +158,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                         function: () {
                           if (formKey.currentState!.validate()) {
                             AuthCubit.get(context).userRegister(
-                                name.text, email.text, password.text);
+                                name.text.trim(), email.text.trim(), password.text.trim());
                           }
                         },
                         color: AppColors.primaryColor,

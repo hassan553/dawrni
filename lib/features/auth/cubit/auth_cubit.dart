@@ -11,6 +11,11 @@ class AuthCubit extends Cubit<AuthState> {
   AuthRepo repo;
   AuthCubit(this.repo) : super(AuthInitial());
   static AuthCubit get(context) => BlocProvider.of(context);
+  bool obscure = true;
+  void changePasswordObscure() {
+    obscure = !obscure;
+    emit(ChangePasswordObscureState());
+  }
 
   Future userLogin(String email, String password) async {
     bool result = await InternetConnectionChecker().hasConnection;

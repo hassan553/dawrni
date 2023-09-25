@@ -152,7 +152,7 @@ class _LoginClientViewState extends State<LoginClientView> {
                     function: () {
                       if (formKey.currentState!.validate()) {
                         AuthCubit.get(context)
-                            .userLogin(name.text, password.text);
+                            .userLogin(name.text.trim(), password.text.trim());
                       }
                     },
                     color: AppColors.primaryColor,
@@ -177,7 +177,7 @@ class _LoginClientViewState extends State<LoginClientView> {
                 return 'Not Valid empty value';
               }
             },
-            hintText: isClient == false ? 'Full name' : 'Company',
+            hintText: isClient == false ? 'Email Address' : 'Company',
           ),
           const CustomSizedBox(value: .02),
           // SizedBox(
@@ -263,31 +263,45 @@ class _LoginClientViewState extends State<LoginClientView> {
           //     ],
           //   ),
           // ),
-          CustomTextFieldWidget(
-            icon: Icon(
-              Icons.lock_outline,
-              color: AppColors.offWhite,
+          BlocBuilder<AuthCubit, AuthState>(
+            builder: (context, state) => CustomTextFieldWidget(
+              icon: Icon(
+                Icons.lock_outline,
+                color: AppColors.offWhite,
+              ),
+              obscure: AuthCubit.get(context).obscure,
+              suffixIcons: IconButton(
+                onPressed: () {
+                  AuthCubit.get(context).changePasswordObscure();
+                },
+                icon: Icon(
+                  AuthCubit.get(context).obscure
+                      ? Icons.visibility_off
+                      : Icons.visibility,
+                  color: AppColors.offWhite,
+                ),
+              ),
+              controller: password,
+              valid: (String? value) {
+                if (value == null) {
+                  return 'Not Valid empty value';
+                } else if (value.length < 8) {
+                  return 'short password';
+                }
+              },
+              hintText: 'Password',
+              onChange: (value) {
+                if (password.text.isEmpty || name.text.isEmpty) {
+                  setState(() {
+                    isEmpty = true;
+                  });
+                } else {
+                  setState(() {
+                    isEmpty = false;
+                  });
+                }
+              },
             ),
-            controller: password,
-            valid: (String? value) {
-              if (value == null) {
-                return 'Not Valid empty value';
-              } else if (value.length < 8) {
-                return 'short password';
-              }
-            },
-            hintText: 'Password',
-            onChange: (value) {
-              if (password.text.isEmpty || name.text.isEmpty) {
-                setState(() {
-                  isEmpty = true;
-                });
-              } else {
-                setState(() {
-                  isEmpty = false;
-                });
-              }
-            },
           ),
           Align(
             alignment: AlignmentDirectional.topStart,
@@ -325,10 +339,11 @@ class _LoginClientViewState extends State<LoginClientView> {
           Expanded(
             child: InkWell(
               onTap: () => setState(() {
-                sharedPreferences.setBool(kIsCompany, false);
-                isClient = false;
                 name.clear();
                 phone.clear();
+                password.clear();
+                sharedPreferences.setBool(kIsCompany, false);
+                isClient = false;
               }),
               child: Container(
                 height: 50,
@@ -357,6 +372,7 @@ class _LoginClientViewState extends State<LoginClientView> {
                 isClient = true;
                 name.clear();
                 phone.clear();
+                password.clear();
               }),
               child: Container(
                 height: 50,

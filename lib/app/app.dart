@@ -8,8 +8,10 @@ import 'package:dawrni/features/auth/data/repository/auth_repo.dart';
 import 'package:dawrni/features/home/views/company_details_view.dart';
 import 'package:dawrni/features/home/views/main_view.dart';
 import 'package:dawrni/features/onboarding/views/select_language_view.dart';
-import 'package:dawrni/features/profile/client/cubit/client_profile_cubit.dart';
-import 'package:dawrni/features/profile/client/data/repository/profile_repo.dart';
+import 'package:dawrni/features/profile/client/cubit/client/client_profile_cubit.dart';
+import 'package:dawrni/features/profile/client/cubit/company/company_profile_cubit.dart';
+import 'package:dawrni/features/profile/client/data/repository/client_profile_repo.dart';
+import 'package:dawrni/features/profile/client/data/repository/company_profile_repo.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,12 @@ class Dawrni extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => PhoneAuthCubit()),
         BlocProvider(create: (context) => AuthCubit(AuthRepo())),
-        BlocProvider(create: (context) => ClientProfileCubit(ClientProfileRepo())..fetchClientProfile()),
+        BlocProvider(
+            create: (context) =>
+                ClientProfileCubit(ClientProfileRepo())..fetchClientProfile()),
+        BlocProvider(
+            create: (context) =>
+                CompanyProfileCubit(CompanyProfileRepo())..fetchCompanyProfile()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -38,7 +45,7 @@ class Dawrni extends StatelessWidget {
         title: 'Dawrni',
         theme: appTheme(),
         textDirection: TextDirection.ltr,
-        home:SplashView(),
+        home: SplashView(),
       ),
     );
   }

@@ -179,3 +179,81 @@ Future<void> sendOTP(String email) async {
   }
 }
 */
+///////display days //////
+/*
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Days of the Week with Dates'),
+        ),
+        body: DaysOfWeekList(),
+      ),
+    );
+  }
+}
+
+class DaysOfWeekList extends StatelessWidget {
+  final List<String> daysOfWeek = [
+    'السبت',
+    'الأحد',
+    'الاثنين',
+    'الثلاثاء',
+    'الأربعاء',
+    'الخميس',
+    'الجمعة',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: daysOfWeek.length,
+      itemBuilder: (BuildContext context, int index) {
+        // Calculate the date for each day of the week
+        final currentDate = DateTime.now();
+        final dayToAdd = index-1 ;
+        final dateForDay = currentDate.add(Duration(days: dayToAdd));
+
+        // Format the date to display in a friendly format
+        final formattedDate = DateFormat('dd').format(dateForDay);
+
+        return Container(
+          height: 80,
+          color: Colors.lightBlueAccent,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  daysOfWeek[index],
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  formattedDate,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+*/

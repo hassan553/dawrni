@@ -42,3 +42,5 @@ class CompanyRegisterErrorState extends AuthState {
   final String error;
   CompanyRegisterErrorState(this.error);
 }
+
+class ChangePasswordObscureState extends AuthState {}

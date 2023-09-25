@@ -9,10 +9,11 @@ class CustomTextFieldWidget extends StatelessWidget {
   final dynamic suffixIcons;
   final dynamic valid;
   final bool obscure;
-  final dynamic focusNode;
+
   final void Function(String)? onChange;
   final int? maxLines;
   final AutovalidateMode? autovalidateMode;
+
   const CustomTextFieldWidget({
     super.key,
     required this.controller,
@@ -20,7 +21,6 @@ class CustomTextFieldWidget extends StatelessWidget {
     this.obscure = false,
     this.autovalidateMode,
     this.icon,
-    this.focusNode,
     this.keyboard,
     this.suffixIcons,
     this.valid,
@@ -30,12 +30,13 @@ class CustomTextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return TextFormField(
       textInputAction: TextInputAction.done,
       validator: valid,
       onChanged: onChange,
       autovalidateMode: autovalidateMode ?? AutovalidateMode.onUserInteraction,
-      focusNode: focusNode,
+   
       controller: controller,
       maxLines: maxLines ?? 1,
       textAlignVertical: TextAlignVertical.center,
@@ -43,6 +44,9 @@ class CustomTextFieldWidget extends StatelessWidget {
       style: const TextStyle(color: AppColors.white),
       obscureText: obscure,
       keyboardType: keyboard,
+      onTapOutside: (event) {
+        FocusScope.of(context).unfocus();
+      },
       decoration: InputDecoration(
         contentPadding:
             const EdgeInsetsDirectional.only(top: 8, start: 20, end: 5),

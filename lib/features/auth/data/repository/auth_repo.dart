@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dawrni/features/profile/client/data/model/company_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepo {
@@ -104,16 +105,23 @@ class AuthRepo {
     required String license,
     required String category,
   }) async {
+    String userId = FirebaseAuth.instance.currentUser!.uid;
+
+    CompanyModel companyModel = CompanyModel(
+        name: name,
+        phone: '0000',
+        email: email,
+        image: 'https://cdn-icons-png.flaticon.com/512/2399/2399925.png',
+        description: ' ',
+        images: [],
+        workingDays: [],
+        workingHours: [],
+        rating: 0);
     FirebaseFirestore.instance
         .collection('users')
         .doc('companysUid')
         .collection('companys')
-        .add({
-      'name': name,
-      'phone': '0000',
-      'license': license,
-      'category': category,
-      'image': 'https://cdn-icons-png.flaticon.com/512/2399/2399925.png',
-    });
+        .doc(userId)
+        .set(companyModel.toMap());
   }
 }

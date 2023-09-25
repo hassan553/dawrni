@@ -1,10 +1,9 @@
 import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/core/widgets/custom_loading_widget.dart';
-import 'package:dawrni/features/profile/client/cubit/client_profile_cubit.dart';
+import 'package:dawrni/features/profile/client/cubit/client/client_profile_cubit.dart';
 import 'package:dawrni/features/profile/client/data/model/client_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/rescourcs/app_colors.dart';
 import '../../../../core/widgets/custom_button.dart';
 
@@ -16,12 +15,8 @@ class ClientProfileView extends StatefulWidget {
 }
 
 class _ClientProfileViewState extends State<ClientProfileView> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
+  var formKey = GlobalKey<FormState>();
+  String name = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,31 +50,47 @@ class _ClientProfileViewState extends State<ClientProfileView> {
                           child: Stack(
                             alignment: AlignmentDirectional.bottomEnd,
                             children: [
-                              const CircleAvatar(
-                                radius: 60,
-                                backgroundImage:
-                                    AssetImage('assets/Rectangle 18.png'),
-                              ),
+                              cubit.imageProfile == null
+                                  ? CircleAvatar(
+                                      radius: 60,
+                                      backgroundImage: NetworkImage(
+                                          cubit.clientModel!.image),
+                                    )
+                                  : CircleAvatar(
+                                      radius: 60,
+                                      backgroundImage:
+                                          FileImage(cubit.imageProfile!),
+                                    ),
                               Positioned(
                                 bottom: 2,
                                 right: 5,
-                                child: Container(
-                                  width: 40,
-                                  height: 40,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                      color: AppColors.white,
-                                      border: Border.all(
-                                          color: AppColors.primaryColor),
-                                      borderRadius: BorderRadius.circular(40)),
-                                  child: InkWell(
-                                    onTap: () {
-                                      print('inin');
-                                    },
-                                    child: const Icon(
-                                      Icons.border_color_outlined,
-                                      color: Colors.orange,
-                                      size: 20,
+                                child: BlocListener<ClientProfileCubit,
+                                    ClientProfileState>(
+                                  listener: (context, state) {
+                                    if (state
+                                        is UpdateClientProfileImageSuccessState) {
+                                    } else if (state
+                                        is UpdateClientProfileImageErrorState) {}
+                                  },
+                                  child: Container(
+                                    width: 40,
+                                    height: 40,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                        color: AppColors.white,
+                                        border: Border.all(
+                                            color: AppColors.primaryColor),
+                                        borderRadius:
+                                            BorderRadius.circular(40)),
+                                    child: InkWell(
+                                      onTap: () {
+                                        cubit.updateUserImage();
+                                      },
+                                      child: const Icon(
+                                        Icons.border_color_outlined,
+                                        color: Colors.orange,
+                                        size: 20,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -93,58 +104,63 @@ class _ClientProfileViewState extends State<ClientProfileView> {
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.all(27),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: AlignmentDirectional.center,
-                        child: Text(
-                          cubit.clientModel!.name,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w600,
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          alignment: AlignmentDirectional.center,
+                          child: Text(
+                            cubit.clientModel!.name,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 60,
-                      ),
-                      const Text(
-                        'Profile',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w700,
+                        const SizedBox(
+                          height: 60,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      profileData(
-                        cubit.clientModel!.name,
-                      ),
-                      const SizedBox(height: 15),
-                      profileData(
-                        cubit.clientModel!.phone,
-                      ),
-                      const SizedBox(height: 15),
-                      profileData('Password'),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      CustomButton(
-                        function: () {},
-                        color: AppColors.primaryColor,
-                        textColor: AppColors.white,
-                        fontSize: .04,
-                        title: ' Save Changes',
-                      )
-                    ],
+                        const Text(
+                          'Profile',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        profileData(
+                          cubit.clientModel!.name,
+                        ),
+                        const SizedBox(height: 15),
+                        profileData(
+                          cubit.clientModel!.phone,
+                        ),
+                        const SizedBox(height: 15),
+                        profileData('Password'),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        CustomButton(
+                          function: () {
+                            cubit.updateName(name);
+                          },
+                          color: AppColors.primaryColor,
+                          textColor: AppColors.white,
+                          fontSize: .04,
+                          title: ' Save Changes',
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -174,6 +190,11 @@ class _ClientProfileViewState extends State<ClientProfileView> {
           child: TextFormField(
             cursorColor: AppColors.white,
             style: const TextStyle(color: AppColors.white),
+            onChanged: (value) {
+              setState(() {
+                name = value;
+              });
+            },
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: title,
