@@ -72,7 +72,7 @@ class _OTPLoginViewState extends State<OTPLoginView> {
                     if (state is PhoneOTPVerified) {
                       navigateOff(const MainView());
                     } else if (state is ErrorOccurred) {
-                      showDailog(state.errorMsg);
+                      showCustomDailog(context, state.errorMsg);
                     }
                   },
                   builder: (context, state) => PinCodeTextField(

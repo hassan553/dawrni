@@ -9,14 +9,18 @@ import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/auth/client/controller/client_auth_controller.dart';
 import 'package:dawrni/features/auth/client/views/login_client_view.dart';
 import 'package:dawrni/features/auth/client/views/otp_register_view.dart';
+import 'package:dawrni/features/auth/client/views/verify_email.dart';
 import 'package:dawrni/features/auth/cubit/auth_cubit.dart';
 import 'package:dawrni/features/home/views/main_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../../../../core/contants/constants.dart';
+import '../../../../core/widgets/show_awesomeDialog.dart';
+import '../../../../core/widgets/snack_bar_widget.dart';
 import '../../../../main.dart';
 import '../cubit/phone_auth_cubit.dart';
 
@@ -29,12 +33,18 @@ class RegisterClientView extends StatefulWidget {
 
 class _RegisterClientViewState extends State<RegisterClientView> {
   final controller = Get.put(ClientAuthController());
-  String selectedValue = 'Option 1';
+  String selectedValue = 'Bokhour and Perfumes';
   List<String> dropdownItems = [
-    'Option 1',
-    'Option 2',
-    'Option 3',
-    'Option 4',
+    'Bokhour and Perfumes',
+    'Legal Service',
+    'Clinics Service',
+    'Pets Service',
+    'Video games',
+    'Food and Beverages',
+    'Salons Service',
+    'The Mall Service',
+    'Out  ors Service',
+    'Cars Service',
   ];
   bool isEmpty = true;
   final name = TextEditingController();
@@ -145,11 +155,24 @@ class _RegisterClientViewState extends State<RegisterClientView> {
             ? BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is ClientRegisterSuccessState) {
-                    navigateTo(const MainView());
+                    showSnackBarWidget(
+                        context: context,
+                        message: 'Successfuly Create User Account',
+                        requestStates: RequestStates.success);
+                    navigateTo(const VerifyEmail());
                   } else if (state is ClientRegisterErrorState) {
-                    showDailog(state.error);
+                    showAwesomeDialog(
+                      context: context,
+                      description: state.error,
+                      buttonText: 'Try Again',
+                    );
                   } else if (state is NoInternetConnection) {
-                    showDailog('No Internet connection');
+                    showAwesomeDialog(
+                      context: context,
+                      description: "No Internet Connection",
+                      buttonText: 'Check Connection',
+                      status: RequestStates.warrning,
+                    );
                   }
                 },
                 builder: (context, state) => state is ClientRegisterLoadingState
@@ -158,7 +181,9 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                         function: () {
                           if (formKey.currentState!.validate()) {
                             AuthCubit.get(context).userRegister(
-                                name.text.trim(), email.text.trim(), password.text.trim());
+                                name.text.trim(),
+                                email.text.trim(),
+                                password.text.trim());
                           }
                         },
                         color: AppColors.primaryColor,
@@ -170,11 +195,24 @@ class _RegisterClientViewState extends State<RegisterClientView> {
             : BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is CompanyRegisterSuccessState) {
-                    navigateTo(const MainView());
+                    showSnackBarWidget(
+                        context: context,
+                        message: 'Successfuly Create User Account',
+                        requestStates: RequestStates.success);
+                    navigateTo(const VerifyEmail());
                   } else if (state is CompanyRegisterErrorState) {
-                    showDailog(state.error);
+                    showAwesomeDialog(
+                      context: context,
+                      description: state.error,
+                      buttonText: 'Try Again',
+                    );
                   } else if (state is NoInternetConnection) {
-                    showDailog('No Internet connection');
+                    showAwesomeDialog(
+                      context: context,
+                      description: "No Internet Connection",
+                      buttonText: 'Check Connection',
+                      status: RequestStates.warrning,
+                    );
                   }
                 },
                 builder: (context, state) =>
@@ -243,10 +281,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 CustomTextFieldWidget(
-                  icon: Icon(
-                    Icons.check,
-                    color: AppColors.offWhite,
-                  ),
+                  icon: Image.asset('assets/Group 34220.png'),
                   controller: license,
                   valid: (String? value) {
                     if (value == null || value.isEmpty) {
@@ -266,16 +301,15 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                   child: DropdownButton<String>(
                     isExpanded: true,
                     underline: Container(),
+                    dropdownColor: AppColors.secondColor,
                     icon: Image.asset('assets/Group 34146.png'),
-                    value: PhoneAuthCubit.get(context).selectedValue,
+                    value: selectedValue,
                     onChanged: (String? newValue) {
                       setState(() {
                         selectedValue = newValue!;
                       });
                     },
-                    items: PhoneAuthCubit.get(context)
-                        .dropdownItems
-                        .map((String item) {
+                    items: dropdownItems.map((String item) {
                       return DropdownMenuItem<String>(
                         value: item,
                         child: Row(
@@ -287,7 +321,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                             ),
                             Text(
                               item,
-                              style: TextStyle(color: AppColors.offWhite),
+                              style: const TextStyle(color: AppColors.white),
                             ),
                           ],
                         ),
@@ -300,20 +334,34 @@ class _RegisterClientViewState extends State<RegisterClientView> {
             ),
           ),
 
-          CustomTextFieldWidget(
-            icon: Icon(
-              Icons.password,
-              color: AppColors.offWhite,
+          BlocBuilder<AuthCubit, AuthState>(
+            builder: (context, state) => CustomTextFieldWidget(
+              icon: Icon(
+                CupertinoIcons.lock,
+                color: AppColors.offWhite,
+              ),
+              obscure: AuthCubit.get(context).obscure,
+              suffixIcons: IconButton(
+                onPressed: () {
+                  AuthCubit.get(context).changePasswordObscure();
+                },
+                icon: Icon(
+                  AuthCubit.get(context).obscure
+                      ? Icons.visibility_off
+                      : Icons.visibility,
+                  color: AppColors.offWhite,
+                ),
+              ),
+              controller: password,
+              valid: (String? value) {
+                if (value == null || value.isEmpty) {
+                  return 'Not Valid empty value';
+                } else if (value.length < 8) {
+                  return 'Short Password';
+                }
+              },
+              hintText: 'Password',
             ),
-            controller: password,
-            valid: (String? value) {
-              if (value == null || value.isEmpty) {
-                return 'Not Valid empty value';
-              } else if (value.length < 8) {
-                return 'Short Password';
-              }
-            },
-            hintText: 'Password',
           ),
           // SizedBox(
           //   height: 70,

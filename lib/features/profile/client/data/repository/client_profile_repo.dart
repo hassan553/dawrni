@@ -40,4 +40,13 @@ class ClientProfileRepo {
       return error.toString();
     }
   }
+
+  Future<Either<String, String>> changePassword(String email) async {
+    try {
+      FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      return right('Send Password Email Change');
+    } on FirebaseAuthException catch (error) {
+      return left(error.message.toString());
+    }
+  }
 }

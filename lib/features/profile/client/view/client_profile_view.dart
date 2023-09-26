@@ -1,11 +1,17 @@
 import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/core/widgets/custom_loading_widget.dart';
+import 'package:dawrni/core/widgets/show_awesomeDialog.dart';
+import 'package:dawrni/core/widgets/snack_bar_widget.dart';
 import 'package:dawrni/features/profile/client/cubit/client/client_profile_cubit.dart';
 import 'package:dawrni/features/profile/client/data/model/client_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+import '../../../../core/contants/constants.dart';
 import '../../../../core/rescourcs/app_colors.dart';
 import '../../../../core/widgets/custom_button.dart';
+import '../../../../core/widgets/custom_text_filed.dart';
+import '../../widget/custom-loading_profile_widget.dart';
 
 class ClientProfileView extends StatefulWidget {
   const ClientProfileView({super.key});
@@ -16,15 +22,47 @@ class ClientProfileView extends StatefulWidget {
 
 class _ClientProfileViewState extends State<ClientProfileView> {
   var formKey = GlobalKey<FormState>();
+  var phone = TextEditingController();
   String name = '';
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    phone.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       extendBody: true,
       body: SingleChildScrollView(
-        child: BlocBuilder<ClientProfileCubit, ClientProfileState>(
-            builder: (context, state) {
+        child: BlocConsumer<ClientProfileCubit, ClientProfileState>(
+            listener: (context, state) {
+          if (state is NoInternetState) {
+            showAwesomeDialog(
+              context: context,
+              description: "No Internet Connection",
+              buttonText: 'Check Connection',
+              status: RequestStates.warrning,
+            );
+          }
+          if (state is ChangePasswordErrorState) {
+            showAwesomeDialog(
+              context: context,
+              description: 'An Error ,Please Try Again',
+              buttonText: 'Try Again',
+            );
+          }
+          if (state is ChangePasswordSuccessState) {
+            showAwesomeDialog(
+              context: context,
+              description: "We Send An Email To You ",
+              buttonText: 'OK',
+              status: RequestStates.success,
+            );
+          }
+        }, builder: (context, state) {
           var cubit = ClientProfileCubit.get(context);
           if (cubit.clientModel != null) {
             return Column(
@@ -69,8 +107,18 @@ class _ClientProfileViewState extends State<ClientProfileView> {
                                   listener: (context, state) {
                                     if (state
                                         is UpdateClientProfileImageSuccessState) {
+                                      showSnackBarWidget(
+                                          context: context,
+                                          message: 'Successfuly Change Image',
+                                          requestStates: RequestStates.success);
                                     } else if (state
-                                        is UpdateClientProfileImageErrorState) {}
+                                        is UpdateClientProfileImageErrorState) {
+                                      showAwesomeDialog(
+                                        context: context,
+                                        description: '',
+                                        buttonText: 'Try Again',
+                                      );
+                                    }
                                   },
                                   child: Container(
                                     width: 40,
@@ -138,15 +186,26 @@ class _ClientProfileViewState extends State<ClientProfileView> {
                         const SizedBox(
                           height: 30,
                         ),
-                        profileData(
-                          cubit.clientModel!.name,
+                        profileData(cubit.clientModel!.name, () {}, true),
+                        const SizedBox(height: 15),
+                        BlocBuilder<ClientProfileCubit, ClientProfileState>(
+                          builder: (context, state) {
+                            if (cubit.isTab == false) {
+                              return profileData(cubit.clientModel!.phone, () {
+                                cubit.changeIsTab();
+                              }, true);
+                            } else {
+                              return customPhoneWidget();
+                            }
+                          },
                         ),
                         const SizedBox(height: 15),
-                        profileData(
-                          cubit.clientModel!.phone,
+                        InkWell(
+                          onTap: () {
+                            cubit.changePassword(cubit.clientModel!.email);
+                          },
+                          child: profileData('Password', () {}, false),
                         ),
-                        const SizedBox(height: 15),
-                        profileData('Password'),
                         const SizedBox(
                           height: 40,
                         ),
@@ -166,14 +225,36 @@ class _ClientProfileViewState extends State<ClientProfileView> {
               ],
             );
           } else if (state is GetClientProfileLoadingState) {
-            return const Center(child: CustomLoadingWidget());
+            return const CustomLoadingProfile();
           } else if (state is GetClientProfileErrorState) {
-            return Text(
-              state.error,
-              style: TextStyle(color: Colors.amber),
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    state.error,
+                    style: const TextStyle(color: Colors.amber),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  SizedBox(
+                    width: 250,
+                    child: CustomButton(
+                      function: () {
+                        cubit.fetchClientProfile();
+                      },
+                      color: AppColors.primaryColor,
+                      textColor: AppColors.white,
+                      fontSize: .04,
+                      title: ' Try Again',
+                    ),
+                  )
+                ],
+              ),
             );
           }
-          return Text(
+          return const Text(
             'error',
             style: TextStyle(color: Colors.amber),
           );
@@ -182,18 +263,141 @@ class _ClientProfileViewState extends State<ClientProfileView> {
     );
   }
 
-  Row profileData(String title) {
+  Widget customPhoneWidget() {
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 70,
+              height: 47,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: AppColors.secondColor,
+              ),
+              child: FittedBox(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(generateCountryFlag(),
+                        style: const TextStyle(fontSize: 18)),
+                    const SizedBox(width: 5),
+                    Text('+965',
+                        style:
+                            TextStyle(color: AppColors.offWhite, fontSize: 13)),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: CustomTextFieldWidget(
+                icon: Image.asset('assets/Group.png'),
+                keyboard: TextInputType.number,
+                controller: phone,
+                valid: (String? value) {
+                  if (value == null) {
+                    return 'Not Valid empty value';
+                  } else if (value.length < 11) {
+                    return 'not valid phone number';
+                  } else {
+                    return null;
+                  }
+                },
+                hintText: 'Phone Number',
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        CustomTextFieldWidget(
+          icon: Image.asset('assets/Group.png'),
+          keyboard: TextInputType.number,
+          controller: phone,
+          valid: (String? value) {
+            if (value == null) {
+              return 'Not Valid empty value';
+            } else if (value.length < 11) {
+              return 'not valid phone number';
+            } else {
+              return null;
+            }
+          },
+          hintText: 'Phone Number',
+        ),
+        const SizedBox(height: 10),
+        BlocBuilder<ClientProfileCubit, ClientProfileState>(
+          builder: (context, state) => InkWell(
+            onTap: () {
+              ClientProfileCubit.get(context).changeIsTab();
+            },
+            child: Align(
+              alignment: AlignmentDirectional.bottomEnd,
+              child: Container(
+                width: 70,
+                height: 47,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: AppColors.secondColor,
+                ),
+                child: Text('Close',
+                    style: TextStyle(color: AppColors.offWhite, fontSize: 13)),
+              ),
+            ),
+          ),
+        ),
+        // PinCodeTextField(
+        //   appContext: context,
+        //   controller: TextEditingController(),
+        //   length: 6,
+        //   textStyle: const TextStyle(color: Colors.white),
+        //   pinTheme: PinTheme(
+        //     shape: PinCodeFieldShape.box,
+        //     borderRadius: BorderRadius.circular(10),
+        //     fieldHeight: 50,
+        //     fieldWidth: screenSize(context).width * .1,
+        //     activeFillColor: AppColors.secondColor,
+        //     inactiveColor: AppColors.secondColor,
+        //     selectedColor: AppColors.secondColor,
+        //     activeColor: AppColors.offWhite,
+        //     selectedFillColor: AppColors.secondColor,
+        //     inactiveFillColor: AppColors.secondColor,
+        //   ),
+        //   cursorColor: Colors.white,
+        //   animationDuration: const Duration(milliseconds: 300),
+        //   enableActiveFill: true,
+        //   keyboardType: TextInputType.number,
+        //   onChanged: (value) {},
+        //   onCompleted: (value) {
+        //     if (value.length == 6) {
+        //       //PhoneAuthCubit.get(context).submitOTPForLogin(value);
+        //     }
+        //   },
+        // ),
+      ],
+    );
+  }
+
+  Row profileData(String title, void Function()? ontap, bool? enable) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Expanded(
           child: TextFormField(
+            enabled: enable ?? true,
             cursorColor: AppColors.white,
             style: const TextStyle(color: AppColors.white),
             onChanged: (value) {
               setState(() {
                 name = value;
               });
+            },
+            onTap: ontap,
+            onTapOutside: (event) {
+              FocusScope.of(context).unfocus();
             },
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -214,24 +418,5 @@ class _ClientProfileViewState extends State<ClientProfileView> {
         ),
       ],
     );
-  }
-}
-
-class CustomClipPath extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    double w = size.width;
-    double h = size.height;
-    final path = Path();
-    path.lineTo(0, h);
-    path.quadraticBezierTo(w * .5, h + 100, w, h);
-    path.lineTo(w, 0);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return false;
   }
 }

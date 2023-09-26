@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/features/auth/data/repository/auth_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -11,10 +12,40 @@ class AuthCubit extends Cubit<AuthState> {
   AuthRepo repo;
   AuthCubit(this.repo) : super(AuthInitial());
   static AuthCubit get(context) => BlocProvider.of(context);
+
+  cancelState() {
+    emit(CancelState());
+  }
+
+  checkVerifictionEmail() {
+    bool? result = FirebaseAuth.instance.currentUser!.emailVerified;
+    if (result == false) {
+      FirebaseAuth.instance.currentUser?.sendEmailVerification();
+    }
+    return result;
+  }
+
   bool obscure = true;
+
   void changePasswordObscure() {
     obscure = !obscure;
     emit(ChangePasswordObscureState());
+  }
+
+  void changePassword(String email) async {
+    emit(ChangePasswordLoadingState());
+    bool _result = await InternetConnectionChecker().hasConnection;
+
+    if (_result == true) {
+      final result = await repo.changePassword(email);
+      result.fold((l) {
+        emit(ChangePasswordErrorState());
+      }, (r) {
+        emit(ChangePasswordSuccessState());
+      });
+    } else {
+      emit(NoInternetConnection());
+    }
   }
 
   Future userLogin(String email, String password) async {

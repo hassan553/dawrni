@@ -28,6 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  animated_snack_bar: ^0.3.1
+  awesome_dialog: ^3.1.0
   cloud_firestore: ^4.9.2
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
@@ -48,6 +50,7 @@ dependencies:
   intl_phone_field: ^3.2.0
   pin_code_fields: ^8.0.1
   shared_preferences: ^2.2.1
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

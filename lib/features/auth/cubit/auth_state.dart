@@ -44,3 +44,11 @@ class CompanyRegisterErrorState extends AuthState {
 }
 
 class ChangePasswordObscureState extends AuthState {}
+
+class ChangePasswordLoadingState extends AuthState {}
+
+class ChangePasswordSuccessState extends AuthState {}
+
+class ChangePasswordErrorState extends AuthState {}
+
+class CancelState extends AuthState {}

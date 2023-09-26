@@ -1,5 +1,6 @@
 import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/features/profile/client/cubit/company/company_profile_cubit.dart';
+import 'package:dawrni/features/profile/widget/custom-loading_profile_widget.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,7 @@ import '../../../../core/contants/constants.dart';
 import '../../../../core/rescourcs/app_colors.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/responsive_text.dart';
+import '../../../../core/widgets/show_awesomeDialog.dart';
 
 class CompanyProfileView extends StatefulWidget {
   const CompanyProfileView({super.key});
@@ -20,13 +22,39 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
   bool isTap = false;
   int currentIndex = 0;
   List<String> days = ['Sun', 'Mon', 'Thu', 'Wed', 'Fri', 'Sat'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: BlocBuilder<CompanyProfileCubit, CompanyProfileState>(
-          builder: (context, state) {
-            var cubit = CompanyProfileCubit.get(context);
+        child: BlocConsumer<CompanyProfileCubit, CompanyProfileState>(
+            listener: (context, state) {
+          if (state is NoInternetState) {
+            showAwesomeDialog(
+              context: context,
+              description: "No Internet Connection",
+              buttonText: 'Check Connection',
+              status: RequestStates.warrning,
+            );
+          }
+          if (state is ChangePasswordErrorState) {
+            showAwesomeDialog(
+              context: context,
+              description: 'An Error ,Please Try Again',
+              buttonText: 'Try Again',
+            );
+          }
+          if (state is ChangePasswordSuccessState) {
+            showAwesomeDialog(
+              context: context,
+              description: "We Send An Email To You ",
+              buttonText: 'OK',
+              status: RequestStates.success,
+            );
+          }
+        }, builder: (context, state) {
+          var cubit = CompanyProfileCubit.get(context);
+          if (cubit.companyModel != null) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -53,7 +81,9 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                               cubit.imageProfile == null
                                   ? CircleAvatar(
                                       radius: 60,
-                                      backgroundImage: NetworkImage(cubit.companyModel!.image),
+                                      backgroundImage: NetworkImage(cubit
+                                              .companyModel?.image ??
+                                          'https://cdn-icons-png.flaticon.com/512/2399/2399925.png'),
                                     )
                                   : CircleAvatar(
                                       radius: 60,
@@ -146,16 +176,19 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                                       Row(
                                         children: List.generate(
                                           5,
-                                          (index) => const Icon(
+                                          (index) => Icon(
                                             Icons.star,
-                                            color: Colors.amber,
+                                            color:
+                                                cubit.companyModel?.rating == 0
+                                                    ? AppColors.offWhite
+                                                    : Colors.amber,
                                             size: 18,
                                           ),
                                         ),
                                       ),
                                       const SizedBox(width: 5),
                                       ResponsiveText(
-                                        text: '(32)',
+                                        text: '(${cubit.companyModel?.rating})',
                                         scaleFactor: .04,
                                         fontWeight: FontWeight.w400,
                                         color: AppColors.offWhite,
@@ -237,17 +270,35 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                       const SizedBox(
                         height: 20,
                       ),
-                      profileData(cubit.companyModel?.name ?? ''),
+                      profileData(cubit.companyModel?.name ?? '', (value) {
+                        setState(() {
+                          cubit.name = value;
+                        });
+                      }, (value) {
+                        cubit.updateName(value);
+                      }, true),
                       const SizedBox(height: 15),
-                      profileData('Kuwait , Al Rahmen Street'),
+                      profileData('Kuwait , Al Rahmen Street', (value) {},
+                          (value) {}, true),
                       const SizedBox(height: 15),
                       profileData(
-                        cubit.companyModel?.description == ' '
-                            ? 'description'
-                            : cubit.companyModel!.description,
-                      ),
+                          cubit.companyModel?.description == ' '
+                              ? 'description'
+                              : cubit.companyModel?.description ??
+                                  'description', (value) {
+                        setState(() {
+                          cubit.description = value;
+                        });
+                      }, (value) {
+                        cubit.updateDescription(value);
+                      }, true),
                       const SizedBox(height: 15),
-                      profileData('Password'),
+                      InkWell(
+                        onTap: () {
+                          cubit.changePassword(cubit.companyModel!.email);
+                        },
+                        child: profileData('Password', (p0) {}, (v) {}, false),
+                      ),
                       const SizedBox(
                         height: 40,
                       ),
@@ -266,58 +317,64 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                       ),
                       Wrap(
                         children: [
-                          DottedBorder(
-                            color: AppColors.primaryColor,
-                            borderType: BorderType.RRect,
-                            radius: const Radius.circular(20),
-                            padding: const EdgeInsets.all(4),
-                            strokeWidth: 1,
-                            strokeCap: StrokeCap.butt,
-                            borderPadding:
-                                const EdgeInsets.only(top: 10, right: 5),
-                            child: const SizedBox(
-                              width: 80,
-                              height: 80,
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '+',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color(0xFFFF8700),
-                                        fontSize: 30,
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w400,
+                          InkWell(
+                            onTap: () {
+                              cubit.seletImages();
+                            },
+                            child: DottedBorder(
+                              color: AppColors.primaryColor,
+                              borderType: BorderType.RRect,
+                              radius: const Radius.circular(20),
+                              padding: const EdgeInsets.all(4),
+                              strokeWidth: 1,
+                              strokeCap: StrokeCap.butt,
+                              borderPadding:
+                                  const EdgeInsets.only(top: 10, right: 5),
+                              child: const SizedBox(
+                                width: 80,
+                                height: 80,
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        '+',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFFFF8700),
+                                          fontSize: 30,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      'Add Feed',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color(0xFFFF8700),
-                                        fontSize: 12,
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w400,
+                                      Text(
+                                        'Add Feed',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xFFFF8700),
+                                          fontSize: 12,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                       ),
-                                    ),
-                                  ]),
+                                    ]),
+                              ),
                             ),
                           ),
-                          if (cubit.companyModel!.images.isEmpty) ...[
+                          if (cubit.companyModel?.images.isEmpty ?? true) ...[
                             Container()
                           ] else ...[
                             ...List.generate(
-                              cubit.companyModel!.images.length,
+                              cubit.companyModel?.images.length ?? 0,
                               (index) => Container(
                                 width: 80,
                                 height: 80,
                                 margin: const EdgeInsetsDirectional.all(8),
                                 decoration: ShapeDecoration(
-                                  image: const DecorationImage(
-                                    image:
-                                        AssetImage("assets/Rectangle 43.png"),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                        cubit.companyModel?.images[index]),
                                     fit: BoxFit.fill,
                                   ),
                                   shape: RoundedRectangleBorder(
@@ -408,7 +465,8 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                   ),
-                                  child: profileData('00:00 AM'),
+                                  child: profileData(
+                                      '00:00 AM', (value) {}, (value) {}, true),
                                 ),
                               ],
                             ),
@@ -439,7 +497,8 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                   ),
-                                  child: profileData('00:00 PM'),
+                                  child: profileData(
+                                      '00:00 PM', (value) {}, (value) {}, true),
                                 ),
                               ],
                             ),
@@ -449,20 +508,53 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                       const SizedBox(
                         height: 40,
                       ),
-                      CustomButton(
-                        function: () {},
-                        color: AppColors.primaryColor,
-                        textColor: AppColors.white,
-                        fontSize: .04,
-                        title: ' Save Changes',
-                      )
+                      // CustomButton(
+                      //   function: () {},
+                      //   color: AppColors.primaryColor,
+                      //   textColor: AppColors.white,
+                      //   fontSize: .04,
+                      //   title: ' Save Changes',
+                      // )
                     ],
                   ),
                 ),
               ],
             );
-          },
-        ),
+          } else if (state is GetCompanyProfileLoadingState) {
+            return const CustomLoadingProfile();
+          } else if (state is GetCompanyProfileErrorState) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    state.error,
+                    style: const TextStyle(color: Colors.amber),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  SizedBox(
+                    width: 250,
+                    child: CustomButton(
+                      function: () {
+                        cubit.fetchCompanyProfile();
+                      },
+                      color: AppColors.primaryColor,
+                      textColor: AppColors.white,
+                      fontSize: .04,
+                      title: ' Try Again',
+                    ),
+                  )
+                ],
+              ),
+            );
+          }
+          return const Text(
+            'error',
+            style: TextStyle(color: Colors.amber),
+          );
+        }),
       ),
     );
   }
@@ -490,12 +582,16 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
     );
   }
 
-  Row profileData(String title) {
+  Row profileData(String title, void Function(String)? onchange,
+      void Function(String)? onsubmit, bool? enable) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Expanded(
           child: TextFormField(
+            onChanged: onchange,
+            enabled: enable ?? true,
+            onFieldSubmitted: onsubmit,
             cursorColor: AppColors.white,
             style: const TextStyle(color: AppColors.white),
             decoration: InputDecoration(

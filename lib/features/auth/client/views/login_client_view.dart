@@ -6,13 +6,17 @@ import 'package:dawrni/core/widgets/custom_loading_widget.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/custom_text_filed.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
+import 'package:dawrni/core/widgets/show_awesomeDialog.dart';
+import 'package:dawrni/core/widgets/snack_bar_widget.dart';
 import 'package:dawrni/features/auth/client/cubit/phone_auth_cubit.dart';
 import 'package:dawrni/features/auth/client/views/forget_password_view.dart';
 import 'package:dawrni/features/auth/client/views/otp_login_view.dart';
 import 'package:dawrni/features/auth/client/views/otp_register_view.dart';
 import 'package:dawrni/features/auth/client/views/register_client_view.dart';
+import 'package:dawrni/features/auth/client/views/verify_email.dart';
 import 'package:dawrni/features/auth/cubit/auth_cubit.dart';
 import 'package:dawrni/main.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -139,11 +143,28 @@ class _LoginClientViewState extends State<LoginClientView> {
         : BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               if (state is ClientLoginSuccessState) {
-                navigateTo(const MainView());
+                showSnackBarWidget(
+                    context: context,
+                    message: 'Successfuly Login',
+                    requestStates: RequestStates.success);
+                if (AuthCubit.get(context).checkVerifictionEmail()) {
+                  navigateOff(const MainView());
+                } else {
+                  navigateTo(const VerifyEmail());
+                }
               } else if (state is ClientLoginErrorState) {
-                showDailog(state.error);
+                showAwesomeDialog(
+                  context: context,
+                  description: state.error,
+                  buttonText: 'Try Again',
+                );
               } else if (state is NoInternetConnections) {
-                showDailog('No Internet connection');
+                showAwesomeDialog(
+                  context: context,
+                  description: "No Internet Connection",
+                  buttonText: 'Check Connection',
+                  status: RequestStates.warrning,
+                );
               }
             },
             builder: (context, state) => state is ClientLoginLoadingState
@@ -175,9 +196,11 @@ class _LoginClientViewState extends State<LoginClientView> {
             valid: (String? value) {
               if (value == null || value.isEmpty) {
                 return 'Not Valid empty value';
+              } else if (!value.contains('@')) {
+                return 'not valid email address';
               }
             },
-            hintText: isClient == false ? 'Email Address' : 'Company',
+            hintText: isClient == false ? 'Email Address' : 'Company Email',
           ),
           const CustomSizedBox(value: .02),
           // SizedBox(
@@ -266,7 +289,7 @@ class _LoginClientViewState extends State<LoginClientView> {
           BlocBuilder<AuthCubit, AuthState>(
             builder: (context, state) => CustomTextFieldWidget(
               icon: Icon(
-                Icons.lock_outline,
+                CupertinoIcons.lock,
                 color: AppColors.offWhite,
               ),
               obscure: AuthCubit.get(context).obscure,
@@ -344,6 +367,7 @@ class _LoginClientViewState extends State<LoginClientView> {
                 password.clear();
                 sharedPreferences.setBool(kIsCompany, false);
                 isClient = false;
+                AuthCubit.get(context).cancelState();
               }),
               child: Container(
                 height: 50,
@@ -373,6 +397,7 @@ class _LoginClientViewState extends State<LoginClientView> {
                 name.clear();
                 phone.clear();
                 password.clear();
+                AuthCubit.get(context).cancelState();
               }),
               child: Container(
                 height: 50,

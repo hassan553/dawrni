@@ -1,19 +1,23 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-showDailog(String message) {
-  Get.dialog(
-    AlertDialog(
-      title: const Text('Dialog Title'),
-      content: Text(message),
-      actions: [
-        TextButton(
-          onPressed: () {
-            Get.back();
-          },
-          child: const Text('Close'),
-        ),
-      ],
-    ),
+showCustomDailog(BuildContext context, String message) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Alert'),
+        content: Text('This is a simple AlertDialog.'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              // Close the AlertDialog
+              Navigator.of(context).pop();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      );
+    },
   );
 }

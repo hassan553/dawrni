@@ -17,7 +17,23 @@ class GetClientProfileErrorState extends ClientProfileState {
   final String error;
   const GetClientProfileErrorState(this.error);
 }
-class UpdateClientProfileImageErrorState extends ClientProfileState {}
+
+class UpdateClientProfileImageErrorState extends ClientProfileState {
+  final String error;
+  const UpdateClientProfileImageErrorState(this.error);
+}
 
 class UpdateClientProfileImageSuccessState extends ClientProfileState {}
+
 class UpdateClientProfileNameSuccessState extends ClientProfileState {}
+
+class PhoneIsTabState extends ClientProfileState {}
+
+class NoInternetState extends ClientProfileState {}
+
+
+class ChangePasswordLoadingState extends ClientProfileState {}
+
+class ChangePasswordSuccessState extends ClientProfileState {}
+
+class ChangePasswordErrorState extends ClientProfileState {}

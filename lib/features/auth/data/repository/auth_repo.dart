@@ -14,6 +14,9 @@ class AuthRepo {
       )
           .then((value) {
         _createClientProfile(name, email);
+        User? user = FirebaseAuth.instance.currentUser!;
+
+        user.sendEmailVerification();
       });
       return right('Success Create Account');
     } on FirebaseAuthException catch (e) {
@@ -43,8 +46,6 @@ class AuthRepo {
       } else {
         return left(e.message.toString());
       }
-    } catch (error) {
-      return left(error.toString());
     }
   }
 
@@ -84,6 +85,9 @@ class AuthRepo {
           license: license,
           category: category,
         );
+        User? user = FirebaseAuth.instance.currentUser!;
+
+        user.sendEmailVerification();
       });
       return right('Success Create Account');
     } on FirebaseAuthException catch (e) {
@@ -94,8 +98,6 @@ class AuthRepo {
       } else {
         return left(e.message.toString());
       }
-    } catch (e) {
-      return left(e.toString());
     }
   }
 
@@ -123,5 +125,14 @@ class AuthRepo {
         .collection('companys')
         .doc(userId)
         .set(companyModel.toMap());
+  }
+
+  Future<Either<String, String>> changePassword(String email) async {
+    try {
+      FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      return right('Send Password Email Change');
+    } on FirebaseAuthException catch (error) {
+      return left(error.message.toString());
+    }
   }
 }

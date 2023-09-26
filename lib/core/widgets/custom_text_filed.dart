@@ -30,13 +30,11 @@ class CustomTextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return TextFormField(
       textInputAction: TextInputAction.done,
       validator: valid,
       onChanged: onChange,
       autovalidateMode: autovalidateMode ?? AutovalidateMode.onUserInteraction,
-   
       controller: controller,
       maxLines: maxLines ?? 1,
       textAlignVertical: TextAlignVertical.center,
@@ -49,7 +47,7 @@ class CustomTextFieldWidget extends StatelessWidget {
       },
       decoration: InputDecoration(
         contentPadding:
-            const EdgeInsetsDirectional.only(top: 8, start: 20, end: 5),
+            const EdgeInsetsDirectional.only(top: 8, start: 20, end: 15),
         filled: true,
         hintText: hintText,
         fillColor: AppColors.secondColor,
