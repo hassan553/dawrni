@@ -22,12 +22,15 @@ class ClientProfileView extends StatefulWidget {
 
 class _ClientProfileViewState extends State<ClientProfileView> {
   var formKey = GlobalKey<FormState>();
-  var phone = TextEditingController();
-  String name = '';
+
+  var nameController = TextEditingController();
+  var phoneController = TextEditingController();
+
   @override
   void dispose() {
     // TODO: implement dispose
-    phone.dispose();
+    phoneController.dispose();
+    nameController.dispose();
     super.dispose();
   }
 
@@ -65,6 +68,8 @@ class _ClientProfileViewState extends State<ClientProfileView> {
         }, builder: (context, state) {
           var cubit = ClientProfileCubit.get(context);
           if (cubit.clientModel != null) {
+            nameController.text = cubit.clientModel?.name ?? 'Name';
+            phoneController.text = cubit.clientModel?.phone ?? 'Phone Number';
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -186,14 +191,12 @@ class _ClientProfileViewState extends State<ClientProfileView> {
                         const SizedBox(
                           height: 30,
                         ),
-                        profileData(cubit.clientModel!.name, () {}, true),
+                        profileData(nameController, true),
                         const SizedBox(height: 15),
                         BlocBuilder<ClientProfileCubit, ClientProfileState>(
                           builder: (context, state) {
-                            if (cubit.isTab == false) {
-                              return profileData(cubit.clientModel!.phone, () {
-                                cubit.changeIsTab();
-                              }, true);
+                            if (!cubit.isTab) {
+                              return profileData(phoneController, true);
                             } else {
                               return customPhoneWidget();
                             }
@@ -204,14 +207,16 @@ class _ClientProfileViewState extends State<ClientProfileView> {
                           onTap: () {
                             cubit.changePassword(cubit.clientModel!.email);
                           },
-                          child: profileData('Password', () {}, false),
+                          child: profileData(
+                              TextEditingController(text: 'Change Password'),
+                              false),
                         ),
                         const SizedBox(
                           height: 40,
                         ),
                         CustomButton(
                           function: () {
-                            cubit.updateName(name);
+                            cubit.updateName(nameController.text);
                           },
                           color: AppColors.primaryColor,
                           textColor: AppColors.white,
@@ -227,30 +232,34 @@ class _ClientProfileViewState extends State<ClientProfileView> {
           } else if (state is GetClientProfileLoadingState) {
             return const CustomLoadingProfile();
           } else if (state is GetClientProfileErrorState) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    state.error,
-                    style: const TextStyle(color: Colors.amber),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  SizedBox(
-                    width: 250,
-                    child: CustomButton(
-                      function: () {
-                        cubit.fetchClientProfile();
-                      },
-                      color: AppColors.primaryColor,
-                      textColor: AppColors.white,
-                      fontSize: .04,
-                      title: ' Try Again',
+            return Expanded(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 200),
+                    const Text(
+                      'An Error ,Try Again',
+                      style: TextStyle(color: Colors.amber),
                     ),
-                  )
-                ],
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    SizedBox(
+                      width: 250,
+                      child: CustomButton(
+                        function: () {
+                          cubit.fetchClientProfile();
+                        },
+                        color: AppColors.primaryColor,
+                        textColor: AppColors.white,
+                        fontSize: .04,
+                        title: ' Try Again',
+                      ),
+                    )
+                  ],
+                ),
               ),
             );
           }
@@ -296,7 +305,7 @@ class _ClientProfileViewState extends State<ClientProfileView> {
               child: CustomTextFieldWidget(
                 icon: Image.asset('assets/Group.png'),
                 keyboard: TextInputType.number,
-                controller: phone,
+                controller: phoneController,
                 valid: (String? value) {
                   if (value == null) {
                     return 'Not Valid empty value';
@@ -315,7 +324,7 @@ class _ClientProfileViewState extends State<ClientProfileView> {
         CustomTextFieldWidget(
           icon: Image.asset('assets/Group.png'),
           keyboard: TextInputType.number,
-          controller: phone,
+          controller: phoneController,
           valid: (String? value) {
             if (value == null) {
               return 'Not Valid empty value';
@@ -381,28 +390,31 @@ class _ClientProfileViewState extends State<ClientProfileView> {
     );
   }
 
-  Row profileData(String title, void Function()? ontap, bool? enable) {
+  Row profileData(TextEditingController controller, bool? enable) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Expanded(
           child: TextFormField(
             enabled: enable ?? true,
+            controller: controller,
             cursorColor: AppColors.white,
             style: const TextStyle(color: AppColors.white),
-            onChanged: (value) {
-              setState(() {
-                name = value;
-              });
+            validator: (String? value) {
+              if (value == null) {
+                return 'Not Valid Empty Value';
+              }
+              if (value.isEmpty) {
+                return 'Not Valid Empty Value';
+              }
             },
-            onTap: ontap,
             onTapOutside: (event) {
               FocusScope.of(context).unfocus();
             },
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: InputBorder.none,
-              hintText: title,
-              hintStyle: const TextStyle(
+              //hintText: controller.text,
+              hintStyle: TextStyle(
                 color: Colors.white,
                 fontSize: 15,
                 fontFamily: 'Montserrat',

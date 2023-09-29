@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dawrni/core/contants/constants.dart';
 import 'package:dawrni/features/profile/client/data/model/company_model.dart';
+import 'package:dawrni/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepo {
@@ -59,7 +61,7 @@ class AuthRepo {
         .set({
       'name': name,
       'email': email,
-      'phone': '00000',
+      'phone': '',
       'image': 'https://cdn-icons-png.flaticon.com/512/3001/3001764.png',
     });
   }
@@ -111,14 +113,20 @@ class AuthRepo {
 
     CompanyModel companyModel = CompanyModel(
         name: name,
-        phone: '0000',
+        phone: '',
         email: email,
         image: 'https://cdn-icons-png.flaticon.com/512/2399/2399925.png',
-        description: ' ',
+        description: '',
         images: [],
         workingDays: [],
         workingHours: [],
-        rating: 0);
+        rating: 0,
+        address: '',
+        latlong: [],
+        license: license,
+        category: category,
+        from: '00:00',
+        to: '00:00');
     FirebaseFirestore.instance
         .collection('users')
         .doc('companysUid')
@@ -133,6 +141,33 @@ class AuthRepo {
       return right('Send Password Email Change');
     } on FirebaseAuthException catch (error) {
       return left(error.message.toString());
+    }
+  }
+   Future<bool> doesCompanyEmailExist(String email) async {
+    try {
+      final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc('companysUid')
+          .collection('companys')
+          .where('email', isEqualTo: email)
+          .get();
+      return querySnapshot.docs.isEmpty;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  Future<bool> doesClientEmailExist(String email) async {
+    try {
+      final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc('clientsUid')
+          .collection('clients')
+          .where('email', isEqualTo: email)
+          .get();
+      return querySnapshot.docs.isEmpty;
+    } catch (error) {
+      return false;
     }
   }
 }

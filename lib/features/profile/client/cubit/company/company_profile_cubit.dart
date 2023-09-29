@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../../../../../core/contants/upload_image.dart';
@@ -27,7 +28,7 @@ class CompanyProfileCubit extends Cubit<CompanyProfileState> {
       emit(GetCompanyProfileErrorState(l));
     }, (r) {
       companyModel = r;
-      print('ddddddddd $r');
+      print('ddddddddd ${r.images}');
       emit(GetCompanyProfileSuccessState());
     });
   }
@@ -87,13 +88,20 @@ class CompanyProfileCubit extends Cubit<CompanyProfileState> {
     }
   }
 
+  var images = [];
   void seletImages() async {
+    emit(SelectImagesLoadingState());
     final result = await repo.uploadImages();
-    result.fold((l) {}, (r) {
-      fetchCompanyProfile();
+    result.fold((l) {
+      emit(SelectImagesErrorState());
+    }, (r) {
+      images = r;
+      print(images);
+      emit(SelectImagesSuccessState(images));
     });
   }
- void changePassword(String email) async {
+
+  void changePassword(String email) async {
     bool _result = await InternetConnectionChecker().hasConnection;
 
     if (_result == true) {
@@ -108,5 +116,51 @@ class CompanyProfileCubit extends Cubit<CompanyProfileState> {
       emit(NoInternetState());
     }
   }
-}
 
+  updateProfile({
+    required String name,
+    required String description,
+    required String address,
+    required List latlong,
+    required String from,
+    required String to,
+    required List workingDays,
+  }) async {
+    bool result = await InternetConnectionChecker().hasConnection;
+
+    if (result == true) {
+      emit(UpdateDataLoadingState());
+      final result = await repo.updateProfileData(
+        name: name,
+        description: description,
+        address: address,
+        latlong: latlong,
+        from: from,
+        to: to,
+        workingDays: workingDays,
+        images: images,
+      );
+      result.fold((l) => emit(UpdateDataErrorState()), (r) {
+        fetchCompanyProfile();
+        emit(UpdateDataSuccessState());
+      });
+    } else {
+      emit(NotValidEmptyValueState());
+    }
+  }
+
+  Future selectTime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+
+    if (picked != null) {
+      String timeAsString =
+          '${picked.hour}:${picked.minute.toString().padLeft(2, '0')}';
+      return timeAsString;
+    }
+
+    emit(SelectTimeState());
+  }
+}

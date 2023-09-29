@@ -9,8 +9,9 @@ class CustomTextFieldWidget extends StatelessWidget {
   final dynamic suffixIcons;
   final dynamic valid;
   final bool obscure;
-
+  final FocusNode? focusNode;
   final void Function(String)? onChange;
+  final void Function(String)? onfiledSumbitted;
   final int? maxLines;
   final AutovalidateMode? autovalidateMode;
 
@@ -26,6 +27,8 @@ class CustomTextFieldWidget extends StatelessWidget {
     this.valid,
     this.maxLines,
     this.onChange,
+    this.focusNode,
+    this.onfiledSumbitted,
   });
 
   @override
@@ -34,6 +37,7 @@ class CustomTextFieldWidget extends StatelessWidget {
       textInputAction: TextInputAction.done,
       validator: valid,
       onChanged: onChange,
+      onFieldSubmitted: onfiledSumbitted,
       autovalidateMode: autovalidateMode ?? AutovalidateMode.onUserInteraction,
       controller: controller,
       maxLines: maxLines ?? 1,
@@ -42,6 +46,7 @@ class CustomTextFieldWidget extends StatelessWidget {
       style: const TextStyle(color: AppColors.white),
       obscureText: obscure,
       keyboardType: keyboard,
+      focusNode: focusNode,
       onTapOutside: (event) {
         FocusScope.of(context).unfocus();
       },

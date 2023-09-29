@@ -52,3 +52,8 @@ class ChangePasswordSuccessState extends AuthState {}
 class ChangePasswordErrorState extends AuthState {}
 
 class CancelState extends AuthState {}
+
+class AccountExistState extends AuthState {
+  final String message;
+  AccountExistState(this.message);
+}

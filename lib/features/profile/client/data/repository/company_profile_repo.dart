@@ -9,20 +9,25 @@ import 'package:image_picker/image_picker.dart';
 
 class CompanyProfileRepo {
   final String _userUid = FirebaseAuth.instance.currentUser!.uid;
-  CompanyModel company = CompanyModel(
-      name: '',
-      phone: '',
-      email: '',
-      image: '',
-      description: '',
-      images: [],
-      workingDays: [],
-      workingHours: [],
-      rating: 0);
+  CompanyModel _company = const CompanyModel(
+    name: '',
+    phone: '',
+    email: '',
+    image: '',
+    description: '',
+    images: [],
+    workingDays: [],
+    workingHours: [],
+    rating: 0,
+    address: '',
+    category: '',
+    latlong: [],
+    license: '',
+    from: '00:00',
+    to: '00:00',
+  );
   Future<Either<String, CompanyModel>> getCompanyProfile() async {
-    print('uid $_userUid');
     try {
-      print('ereeeeeee');
       DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
           .collection('users')
           .doc('companysUid')
@@ -31,12 +36,11 @@ class CompanyProfileRepo {
           .get();
       Map<String, dynamic> data =
           documentSnapshot.data() as Map<String, dynamic>;
-      print('dddddasa $data');
-      company = CompanyModel.fromJson(data);
-      print('user $company');
-      return right(company);
+
+      _company = CompanyModel.fromJson(data);
+
+      return right(_company);
     } catch (error) {
-      print('erro in repo${error.toString()}');
       return left(error.toString());
     }
   }
@@ -88,29 +92,29 @@ class CompanyProfileRepo {
           });
         }
       }
-      company.images.forEach((element) {
+      _company.images.forEach((element) {
         images.add(element);
       });
 
-      await _updateCompanyImages(images);
+    
       return right(images);
     } catch (error) {
       return left('faild to upload images');
     }
   }
 
-  _updateCompanyImages(List<String> images) async {
-    try {
-      FirebaseFirestore.instance
-          .collection('users')
-          .doc('companysUid')
-          .collection('companys')
-          .doc(_userUid)
-          .update({'images': images});
-    } catch (error) {
-      return error.toString();
-    }
-  }
+  // _updateCompanyImages(List<String> images) async {
+  //   try {
+  //     FirebaseFirestore.instance
+  //         .collection('users')
+  //         .doc('companysUid')
+  //         .collection('companys')
+  //         .doc(_userUid)
+  //         .update({'images': images});
+  //   } catch (error) {
+  //     return error.toString();
+  //   }
+  //}
 
   Future<Either<String, String>> changePassword(String email) async {
     try {
@@ -120,5 +124,36 @@ class CompanyProfileRepo {
       return left(error.message.toString());
     }
   }
-}
 
+  Future<Either<String, String>> updateProfileData({
+    required String name,
+    required String description,
+    required String address,
+    required List latlong,
+    required List workingDays,
+    required String from,
+    required String to,
+    List images=const [],
+  }) async {
+    try {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc('companysUid')
+          .collection('companys')
+          .doc(_userUid)
+          .update({
+        'name': name,
+        'description': description,
+        'latlong': latlong,
+        'address': address,
+        'from': from,
+        'to': to,
+        'workingDays':workingDays,
+        'images':images,
+      });
+      return right('Success Update Data');
+    } catch (error) {
+      return left(error.toString());
+    }
+  }
+}

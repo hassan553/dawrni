@@ -6,6 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:meta/meta.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../../core/contants/constants.dart';
+import '../../../main.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -49,18 +52,37 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future userLogin(String email, String password) async {
+    bool isCompany = sharedPreferences.getBool(kIsCompany) ?? false;
     bool result = await InternetConnectionChecker().hasConnection;
     if (result == true) {
       emit(ClientLoginLoadingState());
-      var result = await repo.loginUser(email, password);
-      result.fold((l) {
-        emit(ClientLoginErrorState(l));
-      }, (r) {
-        emit(ClientLoginSuccessState(r));
-      });
+      if (isCompany) {
+        final response = await repo.doesClientEmailExist(email);
+        if (response) {
+          emit(AccountExistState("Company Email"));
+        } else {
+          loginMethod(email, password);
+        }
+      } else {
+        final result = await repo.doesCompanyEmailExist(email);
+        if (result) {
+          emit(AccountExistState("Client Email"));
+        } else {
+          loginMethod(email, password);
+        }
+      }
     } else {
       emit(NoInternetConnection());
     }
+  }
+
+  loginMethod(String email, String password) async {
+    var result = await repo.loginUser(email, password);
+    result.fold((l) {
+      emit(ClientLoginErrorState(l));
+    }, (r) {
+      emit(ClientLoginSuccessState(r));
+    });
   }
 
   Future userRegister(String name, String email, String password) async {

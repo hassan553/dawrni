@@ -1,6 +1,15 @@
 class CompanyModel {
-  final String name, email, phone, image, description;
-  final List images, workingDays;
+  final String name,
+      email,
+      phone,
+      image,
+      description,
+      address,
+      license,
+      category,
+      from,
+      to;
+  final List images, workingDays;final List latlong;
   final List workingHours;
   final int rating;
 
@@ -11,9 +20,15 @@ class CompanyModel {
     required this.image,
     required this.description,
     required this.images,
-    required this.workingDays, 
+    required this.workingDays,
     required this.workingHours,
     required this.rating,
+    required this.address,
+    required this.license,
+    required this.latlong,
+    required this.category,
+    required this.from,
+    required this.to,
   });
   factory CompanyModel.fromJson(Map<String, dynamic> json) {
     return CompanyModel(
@@ -26,6 +41,12 @@ class CompanyModel {
       workingDays: json['workingDays'],
       workingHours: json['workingHours'],
       rating: json['rating'],
+      latlong: json['latlong'],
+      address: json['address'],
+      license: json['license'],
+      category: json['category'],
+      from: json['from'],
+      to: json['to'],
     );
   }
   Map<String, dynamic> toMap() {
@@ -39,6 +60,12 @@ class CompanyModel {
       'workingDays': workingDays,
       'workingHours': workingHours,
       'rating': rating,
+      'category': category,
+      'latlong': latlong,
+      'address': address,
+      'license': license,
+      'from': from,
+      'to': to,
     };
   }
 }

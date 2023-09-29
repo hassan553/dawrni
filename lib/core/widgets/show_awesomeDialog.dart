@@ -9,9 +9,9 @@ enum RequestStates { success, error, warrning }
 String checkStatus(RequestStates states) {
   if (states == RequestStates.success) {
     return 'assets/Tick.png';
-  }else if(states == RequestStates.error){
+  } else if (states == RequestStates.error) {
     return 'assets/404 Error.png';
-  }else{
+  } else {
     return 'assets/Alert.png';
   }
 }
@@ -32,7 +32,7 @@ showAwesomeDialog({
           btnOkText: buttonText ?? 'cancel',
           btnOkColor: AppColors.primaryColor,
           dialogBackgroundColor: const Color(0xff262626),
-          barrierColor: const Color(0xff262626).withOpacity(.7),
-          customHeader: Image.asset(checkStatus(status??RequestStates.error)))
+          barrierColor: const Color(0xff3B3B3B).withOpacity(.85),
+          customHeader: Image.asset(checkStatus(status ?? RequestStates.error)))
       .show();
 }

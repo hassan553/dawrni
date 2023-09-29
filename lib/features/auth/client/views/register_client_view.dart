@@ -53,6 +53,10 @@ class _RegisterClientViewState extends State<RegisterClientView> {
   final email = TextEditingController();
   final password = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  final passwordFocusNode = FocusNode();
+  final emailFocusNode = FocusNode();
+  final nameFocusNode = FocusNode();
+  final licenseFocusNode = FocusNode();
   @override
   void dispose() {
     name.dispose();
@@ -60,6 +64,10 @@ class _RegisterClientViewState extends State<RegisterClientView> {
     password.dispose();
     license.dispose();
     companyService.dispose();
+    licenseFocusNode.dispose();
+    nameFocusNode.dispose();
+    passwordFocusNode.dispose();
+    emailFocusNode.dispose();
     super.dispose();
   }
 
@@ -245,6 +253,10 @@ class _RegisterClientViewState extends State<RegisterClientView> {
         mainAxisSize: MainAxisSize.min,
         children: [
           CustomTextFieldWidget(
+            onfiledSumbitted: (p0) {
+              FocusScope.of(context).requestFocus(emailFocusNode);
+            },
+            focusNode: nameFocusNode,
             icon: Image.asset('assets/Group.png'),
             controller: name,
             valid: (String? value) {
@@ -259,6 +271,10 @@ class _RegisterClientViewState extends State<RegisterClientView> {
           const CustomSizedBox(value: .02),
 
           CustomTextFieldWidget(
+            focusNode: emailFocusNode,
+            onfiledSumbitted: (p0) {
+              FocusScope.of(context).requestFocus(passwordFocusNode);
+            },
             icon: Icon(
               Icons.email_outlined,
               color: AppColors.offWhite,
@@ -352,6 +368,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                   color: AppColors.offWhite,
                 ),
               ),
+              focusNode: passwordFocusNode,
               controller: password,
               valid: (String? value) {
                 if (value == null || value.isEmpty) {

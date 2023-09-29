@@ -40,10 +40,17 @@ class VerifyEmail extends StatelessWidget {
               const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
+                  FirebaseAuth.instance.currentUser?.reload();
                   bool? result =
                       FirebaseAuth.instance.currentUser?.emailVerified;
+                  FirebaseAuth.instance.currentUser?.reload();
                   if (result == true) {
                     navigateOff(const MainView());
+                  } else {
+                    showSnackBarWidget(
+                        context: context,
+                        message: 'Email Not Verify',
+                        requestStates: RequestStates.error);
                   }
                 },
                 style: ButtonStyle(

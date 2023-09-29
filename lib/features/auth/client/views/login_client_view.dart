@@ -40,13 +40,15 @@ class _LoginClientViewState extends State<LoginClientView> {
   final password = TextEditingController();
   final phone = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  final passwordFocusNode = FocusNode();
+  final emailFocusNode = FocusNode();
   @override
   void dispose() {
-    name.clear();
-    phone.clear();
     name.dispose();
     password.dispose();
     phone.dispose();
+    passwordFocusNode.dispose();
+    emailFocusNode.dispose();
     super.dispose();
   }
 
@@ -147,11 +149,7 @@ class _LoginClientViewState extends State<LoginClientView> {
                     context: context,
                     message: 'Successfuly Login',
                     requestStates: RequestStates.success);
-                if (AuthCubit.get(context).checkVerifictionEmail()) {
-                  navigateOff(const MainView());
-                } else {
-                  navigateTo(const VerifyEmail());
-                }
+                navigateOff(const MainView());
               } else if (state is ClientLoginErrorState) {
                 showAwesomeDialog(
                   context: context,
@@ -164,6 +162,13 @@ class _LoginClientViewState extends State<LoginClientView> {
                   description: "No Internet Connection",
                   buttonText: 'Check Connection',
                   status: RequestStates.warrning,
+                );
+              } else if (state is AccountExistState) {
+                showAwesomeDialog(
+                  context: context,
+                  description: "This Account Exist As ${state.message}",
+                  buttonText: 'Try Again',
+                  status: RequestStates.error,
                 );
               }
             },
@@ -191,6 +196,10 @@ class _LoginClientViewState extends State<LoginClientView> {
         mainAxisSize: MainAxisSize.min,
         children: [
           CustomTextFieldWidget(
+            focusNode: emailFocusNode,
+            onfiledSumbitted: (p0) {
+              FocusScope.of(context).requestFocus(passwordFocusNode);
+            },
             icon: Image.asset('assets/Group.png'),
             controller: name,
             valid: (String? value) {
@@ -312,6 +321,7 @@ class _LoginClientViewState extends State<LoginClientView> {
                   return 'short password';
                 }
               },
+              focusNode: passwordFocusNode,
               hintText: 'Password',
               onChange: (value) {
                 if (password.text.isEmpty || name.text.isEmpty) {
