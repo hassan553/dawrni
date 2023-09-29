@@ -165,7 +165,7 @@ class AuthRepo {
           .collection('clients')
           .where('email', isEqualTo: email)
           .get();
-      return querySnapshot.docs.isEmpty;
+      return querySnapshot.docs.isNotEmpty;
     } catch (error) {
       return false;
     }

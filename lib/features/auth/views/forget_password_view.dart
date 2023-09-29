@@ -4,14 +4,14 @@ import 'package:dawrni/core/widgets/custom_button.dart';
 import 'package:dawrni/core/widgets/custom_loading_widget.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
-import 'package:dawrni/features/auth/client/views/login_client_view.dart';
+import 'package:dawrni/features/auth/views/login_client_view.dart';
 import 'package:dawrni/features/auth/cubit/auth_cubit.dart';
 import 'package:dawrni/features/home/views/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/widgets/custom_text_filed.dart';
-import '../../../../core/widgets/show_awesomeDialog.dart';
-import '../../../../core/widgets/snack_bar_widget.dart';
+import '../../../core/widgets/custom_text_filed.dart';
+import '../../../core/widgets/show_awesomeDialog.dart';
+import '../../../core/widgets/snack_bar_widget.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});

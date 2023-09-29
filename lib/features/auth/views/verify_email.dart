@@ -5,7 +5,7 @@ import 'package:dawrni/features/home/views/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../../core/widgets/show_awesomeDialog.dart';
+import '../../../core/widgets/show_awesomeDialog.dart';
 
 class VerifyEmail extends StatelessWidget {
   const VerifyEmail({super.key});

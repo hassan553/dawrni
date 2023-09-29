@@ -8,8 +8,8 @@ class CustomLoadingProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Shimmer.fromColors(
-          baseColor: Colors.grey.shade300,
-          highlightColor: Colors.grey.shade100,
+          baseColor: Color(0xff262626),
+          highlightColor:Color(0xff3B3B3B),
           enabled: true,
           child:const  SingleChildScrollView(
             physics: NeverScrollableScrollPhysics(),

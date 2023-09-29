@@ -2,7 +2,7 @@ import 'package:dawrni/core/contants/constants.dart';
 import 'package:dawrni/core/rescourcs/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
-import 'package:dawrni/features/auth/client/views/login_client_view.dart';
+import 'package:dawrni/features/auth/views/login_client_view.dart';
 import 'package:dawrni/main.dart';
 import 'package:flutter/material.dart';
 import '../../../core/functions/global_function.dart';

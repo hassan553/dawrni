@@ -52,7 +52,6 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getMyCurrentLocation();
   }

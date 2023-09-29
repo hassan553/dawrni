@@ -8,22 +8,15 @@ import 'package:dawrni/core/widgets/custom_text_filed.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/core/widgets/show_awesomeDialog.dart';
 import 'package:dawrni/core/widgets/snack_bar_widget.dart';
-import 'package:dawrni/features/auth/client/cubit/phone_auth_cubit.dart';
-import 'package:dawrni/features/auth/client/views/forget_password_view.dart';
-import 'package:dawrni/features/auth/client/views/otp_login_view.dart';
-import 'package:dawrni/features/auth/client/views/otp_register_view.dart';
-import 'package:dawrni/features/auth/client/views/register_client_view.dart';
-import 'package:dawrni/features/auth/client/views/verify_email.dart';
+import 'package:dawrni/features/auth/views/forget_password_view.dart';
+import 'package:dawrni/features/auth/views/register_client_view.dart';
 import 'package:dawrni/features/auth/cubit/auth_cubit.dart';
 import 'package:dawrni/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/widgets/custom_dailog.dart';
-import '../../../home/views/main_view.dart';
-import '../controller/client_auth_controller.dart';
+import '../../home/views/main_view.dart';
 
 class LoginClientView extends StatefulWidget {
   const LoginClientView({super.key});
@@ -33,7 +26,6 @@ class LoginClientView extends StatefulWidget {
 }
 
 class _LoginClientViewState extends State<LoginClientView> {
-  final loginController = Get.put(ClientAuthController());
   bool isClient = false;
   bool isEmpty = true;
   final name = TextEditingController();
@@ -156,7 +148,7 @@ class _LoginClientViewState extends State<LoginClientView> {
                   description: state.error,
                   buttonText: 'Try Again',
                 );
-              } else if (state is NoInternetConnections) {
+              } else if (state is NoInternetConnection) {
                 showAwesomeDialog(
                   context: context,
                   description: "No Internet Connection",

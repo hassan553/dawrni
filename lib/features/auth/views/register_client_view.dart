@@ -1,28 +1,24 @@
 import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/core/rescourcs/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_button.dart';
-import 'package:dawrni/core/widgets/custom_dailog.dart';
+
 import 'package:dawrni/core/widgets/custom_loading_widget.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/custom_text_filed.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
-import 'package:dawrni/features/auth/client/controller/client_auth_controller.dart';
-import 'package:dawrni/features/auth/client/views/login_client_view.dart';
-import 'package:dawrni/features/auth/client/views/otp_register_view.dart';
-import 'package:dawrni/features/auth/client/views/verify_email.dart';
+import 'package:dawrni/features/auth/views/login_client_view.dart';
+import 'package:dawrni/features/auth/views/verify_email.dart';
 import 'package:dawrni/features/auth/cubit/auth_cubit.dart';
-import 'package:dawrni/features/home/views/main_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 
-import '../../../../core/contants/constants.dart';
-import '../../../../core/widgets/show_awesomeDialog.dart';
-import '../../../../core/widgets/snack_bar_widget.dart';
-import '../../../../main.dart';
-import '../cubit/phone_auth_cubit.dart';
+import '../../../core/contants/constants.dart';
+import '../../../core/widgets/show_awesomeDialog.dart';
+import '../../../core/widgets/snack_bar_widget.dart';
+import '../../../main.dart';
+
 
 class RegisterClientView extends StatefulWidget {
   const RegisterClientView({super.key});
@@ -32,7 +28,7 @@ class RegisterClientView extends StatefulWidget {
 }
 
 class _RegisterClientViewState extends State<RegisterClientView> {
-  final controller = Get.put(ClientAuthController());
+
   String selectedValue = 'Bokhour and Perfumes';
   List<String> dropdownItems = [
     'Bokhour and Perfumes',
