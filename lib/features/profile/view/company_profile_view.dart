@@ -2,7 +2,7 @@ import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/core/helper/location_helper.dart';
 import 'package:dawrni/core/widgets/custom_loading_widget.dart';
 import 'package:dawrni/core/widgets/snack_bar_widget.dart';
-import 'package:dawrni/features/profile/client/cubit/company/company_profile_cubit.dart';
+import 'package:dawrni/features/profile/cubit/company/company_profile_cubit.dart';
 import 'package:dawrni/features/profile/widget/custom-loading_profile_widget.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -111,18 +111,18 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
         }, builder: (context, state) {
           var cubit = CompanyProfileCubit.get(context);
           if (cubit.companyModel != null) {
-            cubit.images = cubit.companyModel?.images?? [];
+            cubit.images = cubit.companyModel?.images ?? [];
             from.text = cubit.companyModel!.from;
             to.text = cubit.companyModel!.to;
             name.text = cubit.companyModel?.name ?? 'name';
             description.text = cubit.companyModel?.description == ''
-                ? 'description'
+                ? ''
                 : cubit.companyModel!.description;
             phone.text = cubit.companyModel?.phone == ''
-                ? 'Phone'
+                ? ''
                 : cubit.companyModel!.phone;
             address.text = cubit.companyModel?.address == ''
-                ? 'Address'
+                ? ''
                 : cubit.companyModel!.address;
             return Form(
               key: formKey,
@@ -165,17 +165,18 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                         const SizedBox(
                           height: 20,
                         ),
-                        profileData(name, true),
+                        profileData('Name', name, true),
                         const SizedBox(height: 15),
-                        profileData(address, true),
+                        profileData('Address', address, true),
                         const SizedBox(height: 15),
-                        profileData(description, true),
+                        profileData('Description', description, true),
                         const SizedBox(height: 15),
                         InkWell(
                           onTap: () {
                             cubit.changePassword(cubit.companyModel!.email);
                           },
                           child: profileData(
+                            '',
                             TextEditingController(text: 'Change Password'),
                             false,
                           ),
@@ -393,7 +394,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                       from.text = await CompanyProfileCubit.get(context)
                           .selectTime(context);
                     },
-                    child: profileData(from, false)),
+                    child: profileData('From', from, false)),
               ),
             ],
           ),
@@ -427,7 +428,7 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
                       to.text = await CompanyProfileCubit.get(context)
                           .selectTime(context);
                     },
-                    child: profileData(to, false)),
+                    child: profileData('To', to, false)),
               ),
             ],
           ),
@@ -692,7 +693,8 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
     );
   }
 
-  Row profileData(TextEditingController controller, bool? enable) {
+  Row profileData(
+      String label, TextEditingController controller, bool? enable) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -709,9 +711,10 @@ class _CompanyProfileViewState extends State<CompanyProfileView> {
             enabled: enable ?? true,
             cursorColor: AppColors.white,
             style: const TextStyle(color: AppColors.white),
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: InputBorder.none,
-              hintStyle: TextStyle(
+              labelText: label,
+              labelStyle: const TextStyle(
                 color: Colors.white,
                 fontSize: 15,
                 fontFamily: 'Montserrat',

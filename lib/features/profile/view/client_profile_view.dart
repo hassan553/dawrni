@@ -1,17 +1,15 @@
 import 'package:dawrni/core/functions/global_function.dart';
-import 'package:dawrni/core/widgets/custom_loading_widget.dart';
 import 'package:dawrni/core/widgets/show_awesomeDialog.dart';
 import 'package:dawrni/core/widgets/snack_bar_widget.dart';
-import 'package:dawrni/features/profile/client/cubit/client/client_profile_cubit.dart';
-import 'package:dawrni/features/profile/client/data/model/client_model.dart';
+import 'package:dawrni/features/profile/cubit/client/client_profile_cubit.dart';
+import 'package:dawrni/features/profile/widget/custom-loading_profile_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../core/contants/constants.dart';
 import '../../../../core/rescourcs/app_colors.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_filed.dart';
-import '../../widget/custom-loading_profile_widget.dart';
 
 class ClientProfileView extends StatefulWidget {
   const ClientProfileView({super.key});
@@ -68,8 +66,8 @@ class _ClientProfileViewState extends State<ClientProfileView> {
         }, builder: (context, state) {
           var cubit = ClientProfileCubit.get(context);
           if (cubit.clientModel != null) {
-            nameController.text = cubit.clientModel?.name ?? 'Name';
-            phoneController.text = cubit.clientModel?.phone ?? 'Phone Number';
+            nameController.text = cubit.clientModel?.name ?? '';
+            phoneController.text = cubit.clientModel?.phone ?? '';
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -191,12 +189,13 @@ class _ClientProfileViewState extends State<ClientProfileView> {
                         const SizedBox(
                           height: 30,
                         ),
-                        profileData(nameController, true),
+                        profileData('Name', nameController, true),
                         const SizedBox(height: 15),
                         BlocBuilder<ClientProfileCubit, ClientProfileState>(
                           builder: (context, state) {
                             if (!cubit.isTab) {
-                              return profileData(phoneController, true);
+                              return profileData(
+                                  'Phone Number', phoneController, true);
                             } else {
                               return customPhoneWidget();
                             }
@@ -208,6 +207,7 @@ class _ClientProfileViewState extends State<ClientProfileView> {
                             cubit.changePassword(cubit.clientModel!.email);
                           },
                           child: profileData(
+                              '',
                               TextEditingController(text: 'Change Password'),
                               false),
                         ),
@@ -390,7 +390,8 @@ class _ClientProfileViewState extends State<ClientProfileView> {
     );
   }
 
-  Row profileData(TextEditingController controller, bool? enable) {
+  Row profileData(
+      String label, TextEditingController controller, bool? enable) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -407,14 +408,16 @@ class _ClientProfileViewState extends State<ClientProfileView> {
               if (value.isEmpty) {
                 return 'Not Valid Empty Value';
               }
+              return null;
             },
             onTapOutside: (event) {
               FocusScope.of(context).unfocus();
             },
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: InputBorder.none,
               //hintText: controller.text,
-              hintStyle: TextStyle(
+              labelText: label,
+              labelStyle: const TextStyle(
                 color: Colors.white,
                 fontSize: 15,
                 fontFamily: 'Montserrat',

@@ -4,6 +4,9 @@ import 'package:dawrni/core/widgets/custom_slide_button.dart';
 import 'package:dawrni/features/onboarding/views/select_language_view.dart';
 import 'package:flutter/material.dart';
 
+import '../data/model/onboarding_model.dart';
+import '../widget/onboarding_widget.dart';
+
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
 
@@ -13,28 +16,7 @@ class OnboardingView extends StatefulWidget {
 
 class _OnboardingViewState extends State<OnboardingView> {
   final PageController _pageController = PageController(initialPage: 0);
-  int _currentPage = 0;
-
-  final List<OnboardingModel> onboardingData = [
-    OnboardingModel(
-      image: 'assets/Group 34209.png',
-      image2: 'assets/Group 79.png', // Replace with your image path
-      title: 'Discover, Book, and Enjoy a World of   ',
-      title2: 'Services',
-    ),
-    OnboardingModel(
-      image: 'assets/Group 34208.png',
-      image2: 'assets/Group 80.png', // Replace with your image path
-      title: 'Welcome to MyApp',
-      title2: 'This is the first onboarding screen.',
-    ),
-    OnboardingModel(
-      image: 'assets/Group 34210.png',
-      image2: 'assets/Group 81.png', // Replace with your image path
-      title: 'Getting Started',
-      title2: 'Swipe to the right to see the second screen.',
-    ),
-  ];
+  int currentPage = 0;
 
   @override
   void dispose() {
@@ -69,7 +51,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     itemCount: onboardingData.length,
                     onPageChanged: (int page) {
                       setState(() {
-                        _currentPage = page;
+                        currentPage = page;
                       });
                     },
                     itemBuilder: (context, index) {
@@ -95,12 +77,12 @@ class _OnboardingViewState extends State<OnboardingView> {
                     title: 'Next',
                     image: 'assets/Group 340921.png',
                     function: () {
-                      if (_currentPage == onboardingData.length - 1) {
+                      if (currentPage == onboardingData.length - 1) {
                         navigateOff(const SelectLanguageView());
                       } else {
                         _pageController.nextPage(
                             duration: const Duration(milliseconds: 500),
-                            curve: Curves.bounceInOut);
+                            curve: Curves.fastLinearToSlowEaseIn);
                       }
                     },
                   ),
@@ -113,7 +95,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     alignment: AlignmentDirectional.centerEnd,
                     child: TextButton(
                       onPressed: () {
-                        if (_currentPage == onboardingData.length - 1) {
+                        if (currentPage == onboardingData.length - 1) {
                           navigateOff(const SelectLanguageView());
                         } else {
                           _pageController.nextPage(
@@ -146,7 +128,7 @@ class _OnboardingViewState extends State<OnboardingView> {
     List<Widget> indicators = [];
     for (int i = 0; i < onboardingData.length; i++) {
       indicators.add(
-        i == _currentPage ? _buildIndicator(true) : _buildIndicator(false),
+        i == currentPage ? _buildIndicator(true) : _buildIndicator(false),
       );
     }
     return indicators;
@@ -160,52 +142,6 @@ class _OnboardingViewState extends State<OnboardingView> {
       decoration: BoxDecoration(
         color: isActive ? AppColors.primaryColor : Colors.grey,
         borderRadius: BorderRadius.circular(4.0),
-      ),
-    );
-  }
-}
-
-class OnboardingModel {
-  final String image;
-  final String image2;
-  final String title;
-  final String title2;
-
-  OnboardingModel({
-    required this.image,
-    required this.image2,
-    required this.title,
-    required this.title2,
-  });
-}
-
-class OnboardingPage extends StatelessWidget {
-  final OnboardingModel data;
-
-  const OnboardingPage({required this.data});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.all(25.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const SizedBox(height: 40.0),
-          Image.asset(
-            data.image,
-            fit: BoxFit.fill,
-            width: screenSize(context).width,
-            height: screenSize(context).height * .4,
-          ),
-          const SizedBox(height: 20),
-          Image.asset(
-            data.image2,
-            fit: BoxFit.fill,
-            height: 120,
-          ),
-        ],
       ),
     );
   }

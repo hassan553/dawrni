@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:dawrni/core/contants/constants.dart';
-import 'package:dawrni/features/profile/client/data/model/company_model.dart';
-import 'package:dawrni/main.dart';
+import 'package:dawrni/features/profile/data/model/company_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepo {
@@ -151,7 +149,7 @@ class AuthRepo {
           .collection('companys')
           .where('email', isEqualTo: email)
           .get();
-      return querySnapshot.docs.isEmpty;
+      return querySnapshot.docs.isNotEmpty;
     } catch (error) {
       return false;
     }

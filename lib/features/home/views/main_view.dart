@@ -5,14 +5,14 @@ import 'package:dawrni/features/appointments/view/appointments_view.dart';
 import 'package:dawrni/features/favourites/view/favourites_view.dart';
 import 'package:dawrni/features/home/views/home_view.dart';
 import 'package:dawrni/features/notifications/view/notifications_view.dart';
-import 'package:dawrni/features/profile/client/view/client_profile_view.dart';
-import 'package:dawrni/features/profile/client/view/company_profile_view.dart';
+import 'package:dawrni/features/profile/view/client_profile_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import '../../../core/rescourcs/app_colors.dart';
 import '../../../core/widgets/custom_drawer.dart';
 import '../../chats/view/chats_view.dart';
+import '../../profile/view/company_profile_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});

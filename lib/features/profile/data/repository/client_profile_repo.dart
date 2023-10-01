@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:dawrni/features/profile/client/data/model/client_model.dart';
+import 'package:dawrni/features/profile/data/model/client_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ClientProfileRepo {
@@ -37,6 +37,7 @@ class ClientProfileRepo {
           .doc(_userUid)
           .update({'name': name});
     } catch (error) {
+      print(error.toString());
       return error.toString();
     }
   }

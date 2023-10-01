@@ -1,12 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dawrni/core/functions/global_function.dart';
 import 'package:dawrni/features/auth/data/repository/auth_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:meta/meta.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../../core/contants/constants.dart';
 import '../../../main.dart';
 part 'auth_state.dart';

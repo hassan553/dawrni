@@ -53,12 +53,12 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () => setState(()  {
+                    onTap: () => setState(() {
                       isArabic = 0;
-                       sharedPreferences.setBool(kIsArabic, false);
+                      sharedPreferences.setBool(kIsArabic, false);
                       Future.delayed(
-                        const Duration(seconds: 1),
-                        () => navigateTo(const LoginClientView()),
+                        const Duration(milliseconds: 500),
+                        () => navigateOff(const LoginClientView()),
                       );
                     }),
                     child: SizedBox(
@@ -101,12 +101,12 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
                   ),
                   const SizedBox(width: 25),
                   InkWell(
-                    onTap: () => setState(()  {
-                       sharedPreferences.setBool(kIsArabic, true);
+                    onTap: () => setState(() {
+                      sharedPreferences.setBool(kIsArabic, true);
                       isArabic = 1;
                       Future.delayed(
-                        const Duration(seconds: 1),
-                        () => navigateTo(LoginClientView()),
+                        const Duration(milliseconds: 500),
+                        () => navigateOff(const LoginClientView()),
                       );
                     }),
                     child: SizedBox(
