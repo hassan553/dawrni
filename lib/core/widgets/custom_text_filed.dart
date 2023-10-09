@@ -1,4 +1,4 @@
-import 'package:dawrni/core/rescourcs/app_colors.dart';
+import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFieldWidget extends StatelessWidget {
