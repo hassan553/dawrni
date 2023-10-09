@@ -6,6 +6,7 @@ import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/themes/app_theme.dart';
 import 'package:dawrni/core/translations/app_local.dart';
 import 'package:dawrni/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:dawrni/features/profile/data/repository/client_profile_repo.dart';
 import 'package:dawrni/features/profile/data/repository/company_profile_repo.dart';
 import 'package:dawrni/features/profile/presentation/cubit/client/client_profile_cubit.dart';
@@ -50,29 +51,37 @@ class Dawrni extends StatelessWidget {
           BlocProvider(
               create: (context) => CompanyProfileCubit(CompanyProfileRepo())
                 ..fetchCompanyProfile()),
+          BlocProvider(create: (_) => sl<AppConfigBloc>()),
         ],
         child: AdaptiveTheme(
             light: AppTheme().lightTheme,
             dark: AppTheme().darkTheme,
             initial: AdaptiveThemeMode.light,
-            builder: (theme, darkTheme) =>  MaterialApp.router(
-              debugShowCheckedModeBanner: false,
-              // useInheritedMediaQuery: true,
-              // locale: DevicePreview.locale(context),
-              // builder: DevicePreview.appBuilder,
-              title: 'Dawrni',
-              theme: theme,
-              darkTheme: darkTheme,
-              routerConfig: AppRoutes.router,
-              locale: AppLocale().currentLanguage().locale,
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: S.delegate.supportedLocales,
-            )
+            builder: (theme, darkTheme) {
+              return BlocBuilder<AppConfigBloc,AppConfigState>(
+                bloc: sl(),
+                builder: (context, state) {
+                  return MaterialApp.router(
+                    debugShowCheckedModeBanner: false,
+                    // useInheritedMediaQuery: true,
+                    // locale: DevicePreview.locale(context),
+                    // builder: DevicePreview.appBuilder,
+                    title: 'Dawrni',
+                    theme: theme,
+                    darkTheme: darkTheme,
+                    routerConfig: AppRoutes.router,
+                    locale: AppLocale().currentLanguage().locale,
+                    localizationsDelegates: const [
+                      S.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                    ],
+                    supportedLocales: S.delegate.supportedLocales,
+                  );
+                },
+              );
+            }
         ),
       );
     });
