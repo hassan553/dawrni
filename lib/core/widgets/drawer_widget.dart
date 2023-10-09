@@ -1,8 +1,7 @@
+import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
-
-import '../rescourcs/app_colors.dart';
 
 AdvancedDrawer drawerWidget(Widget screen) {
     final advancedDrawerController = AdvancedDrawerController();

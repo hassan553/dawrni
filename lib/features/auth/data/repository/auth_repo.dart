@@ -4,6 +4,24 @@ import 'package:dawrni/features/profile/data/model/company_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepo {
+
+  Future<Either<String, String>> loginUser(
+      String email, String password) async {
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      return right('Successfully Login');
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        return left('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        return left('Wrong password provided for that user.');
+      } else {
+        return left(e.message.toString());
+      }
+    }
+  }
+
   Future<Either<String, String>> registerClient(
       String name, String email, String password) async {
     try {
@@ -29,23 +47,6 @@ class AuthRepo {
       }
     } catch (e) {
       return left(e.toString());
-    }
-  }
-
-  Future<Either<String, String>> loginUser(
-      String email, String password) async {
-    try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
-      return right('Successfully Login');
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        return left('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        return left('Wrong password provided for that user.');
-      } else {
-        return left(e.message.toString());
-      }
     }
   }
 

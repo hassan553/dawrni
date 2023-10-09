@@ -1,8 +1,8 @@
-import 'package:dawrni/core/functions/global_function.dart';
-import 'package:dawrni/core/rescourcs/app_colors.dart';
+import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class BookBotton extends StatelessWidget {
   final void Function()? function;
@@ -20,7 +20,7 @@ class BookBotton extends StatelessWidget {
     return InkWell(
       onTap: function,
       child: Container(
-          width: screenSize(context).width,
+          width: 100.w,
           height: 50,
           padding: const EdgeInsetsDirectional.only(start: 20, end: 20),
           decoration: ShapeDecoration(

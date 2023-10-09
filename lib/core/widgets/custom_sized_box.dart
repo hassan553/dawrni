@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../functions/global_function.dart';
 
 class CustomSizedBox extends StatelessWidget {
   final double value;
@@ -9,7 +9,7 @@ class CustomSizedBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: screenSize(context).height * value,
+      height: value.h,
     );
   }
 }
