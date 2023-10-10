@@ -13,7 +13,7 @@
   "sign_in": "Sign In",
   "sign_up_here": "Sign Up here",
   "try_again": "Try again",
-  "this_account_exit": "This account doesn\'t exit! ",
+ "this_account_exit": "This account doesn't exit! ",
   "wrong_password": "Wrong password! please try again",
   "company_name": "Company Name",
   "confirm": "Confirm",
@@ -21,7 +21,7 @@
   "sign_in_here": "Sign In here",
   "company_license_id": "Company License ID",
   "service_category": "Service Category",
-  "let_find_what_you_need !": "Let’s Find What\nYou Need !",
+  "let_find_what_you_need": "Let’s Find What\nYou Need !",
   "search_your_service": "Search your service ..",
   "our_best_services": "Our Best Services",
   "viewAll": "View All >>",
@@ -50,18 +50,18 @@
   "myAppointments": "My appointments",
   "todayAppointments": "Today’s Appointments",
   "appointments": "Appointments",
-  "YouDonHaveAnyAppointmentsYet": "You don’t have any appointments yet ..",
+  "you_don_have_any_appointments_yet": "You don't have any appointments yet ..",
   "getAnAppointment": "Get an appointment",
-  "YouDonHaveAnyMessagesYet": "You don’t have any messages yet ..",
+  "youDonHaveAnyMessagesYet": "You don’t have any messages yet ..",
   "searchYourMessage": "Search your message ..",
-  "thisScreenIsStillLoading ":
+  "thisScreenIsStillLoading":
       "This screen is still loading ..\nThank you for your patience",
   "opps": "Opps !",
   "somethingWrongWithYourConnection":
       "Something wrong with your\nconnection, Please try again ..",
   "restoreTheInternet": "Restore the internet",
-  "weCan’tSeemToFindThePage":
-      "We can’t seem to find the page\nthat you are looking for ..",
+  "weCantSeemToFindThePage":
+      "We can't seem to find the page\nthat you are looking for ..",
   "backToHome": "Back to home",
   "noResults": "No Results !",
   "sorryThereAreNoResultsForThisSearch":
