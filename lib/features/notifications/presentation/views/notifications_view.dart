@@ -1,5 +1,6 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});
@@ -12,7 +13,7 @@ class _NotificationsViewState extends State<NotificationsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: settingAppBar(),
+      appBar: settingAppBar(context),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -134,12 +135,12 @@ class _NotificationsViewState extends State<NotificationsView> {
     );
   }
 
-  AppBar settingAppBar() {
+  AppBar settingAppBar(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
       leading: InkWell(
-        // onTap: () => pop(),
-        ///TODO: fix navigation
+         onTap: () =>context.pop(),
+        
         child: Container(
           width: 40,
           height: 40,

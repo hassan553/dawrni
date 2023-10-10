@@ -1,5 +1,6 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -97,8 +98,7 @@ class _SettingsViewState extends State<SettingsView> {
     return AppBar(
       automaticallyImplyLeading: false,
       leading: InkWell(
-        ///TODO: fix navigation
-        // onTap: () => pop(),
+         onTap: () => context.pop(),
         child: Container(
           width: 40,
           height: 40,

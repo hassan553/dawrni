@@ -2,7 +2,10 @@ import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../../../auth/presentation/routes/login_client_route.dart';
 
 class SelectLanguageView extends StatefulWidget {
   const SelectLanguageView({super.key});
@@ -52,12 +55,12 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
                   InkWell(
                     onTap: () => setState(() {
                       isArabic = 0;
+
                       ///TODO: CHECK THIS
                       // sharedPreferences.setBool(kIsArabic, false);
                       Future.delayed(
                         const Duration(milliseconds: 500),
-                        ///TODO: fix navigation
-                        // () => navigateOff(const LoginClientView()),
+                        () => context.pushReplacement(LoginClientRoute.name),
                       );
                     }),
                     child: SizedBox(
@@ -104,10 +107,10 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
                       ///TODO: check this
                       // sharedPreferences.setBool(kIsArabic, true);
                       isArabic = 1;
+
                       Future.delayed(
                         const Duration(milliseconds: 500),
-                        ///TODO: fix navigation
-                        // () => navigateOff(const LoginClientView()),
+                        () => context.pushReplacement(LoginClientRoute.name),
                       );
                     }),
                     child: SizedBox(

@@ -1,8 +1,10 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_slide_button.dart';
 import 'package:dawrni/features/onboarding/data/model/onboarding_model.dart';
+import 'package:dawrni/features/onboarding/presentation/routes/select_language_route.dart';
 import 'package:dawrni/features/onboarding/presentation/widgets/onboarding_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -76,8 +78,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     image: 'assets/Group 340921.png',
                     function: () {
                       if (currentPage == onboardingData.length - 1) {
-                        // navigateOff(const SelectLanguageView());
-                        ///TODO: fix navigation
+                        context.pushReplacement(SelectLanguageRoute.name);
                       } else {
                         _pageController.nextPage(
                             duration: const Duration(milliseconds: 500),
@@ -95,12 +96,11 @@ class _OnboardingViewState extends State<OnboardingView> {
                     child: TextButton(
                       onPressed: () {
                         if (currentPage == onboardingData.length - 1) {
-                          // navigateOff(const SelectLanguageView());
-                          ///TODO: fix navigation
+                          context.pushReplacement(SelectLanguageRoute.name);
                         } else {
                           _pageController.nextPage(
                               duration: const Duration(milliseconds: 500),
-                              curve: Curves.bounceInOut);
+                              curve: Curves.linear);
                         }
                       },
                       child: const Text(

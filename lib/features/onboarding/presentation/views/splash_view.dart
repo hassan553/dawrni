@@ -1,4 +1,6 @@
+import 'package:dawrni/features/onboarding/presentation/routes/onboarding_route.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -12,9 +14,8 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // Future.delayed(
-      ///TODO: fix navigation
-      //   const Duration(seconds: 2), () => navigateOff(const OnboardingView()));
+    Future.delayed(
+        const Duration(seconds: 1), () => context.pushReplacement(OnboardingRoute.name));
   }
 
   @override

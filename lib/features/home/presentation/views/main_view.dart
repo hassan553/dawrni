@@ -5,11 +5,13 @@ import 'package:dawrni/features/appointments/presentation/views/appointments_vie
 import 'package:dawrni/features/chats/presentation/views/chats_view.dart';
 import 'package:dawrni/features/favourites/presentation/views/favourites_view.dart';
 import 'package:dawrni/features/home/presentation/views/home_view.dart';
+import 'package:dawrni/features/notifications/presentation/routes/notifications_route.dart';
 import 'package:dawrni/features/profile/presentation/views/client_profile_view.dart';
 import 'package:dawrni/features/profile/presentation/views/company_profile_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:go_router/go_router.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -168,8 +170,8 @@ class _MainViewState extends State<MainView> {
             ),
           ),
           InkWell(
-            // onTap: () => navigateTo(const NotificationsView()),
-            ///TODO: fix navigation
+            onTap: () => context.push(NotificationsRoute.name),
+            
             child: Container(
               width: 40,
               height: 40,

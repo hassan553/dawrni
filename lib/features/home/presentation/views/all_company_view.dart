@@ -2,6 +2,7 @@ import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/features/home/presentation/widgets/company_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:go_router/go_router.dart';
 
 class AllCompanyView extends StatefulWidget {
   const AllCompanyView({super.key});
@@ -14,9 +15,9 @@ class _AllCompanyViewState extends State<AllCompanyView> {
   final _advancedDrawerController = AdvancedDrawerController();
   @override
   void dispose() {
+    _advancedDrawerController.dispose();
     // TODO: implement dispose
     super.dispose();
-    _advancedDrawerController.dispose();
   }
 
   @override
@@ -38,8 +39,8 @@ class _AllCompanyViewState extends State<AllCompanyView> {
     return AppBar(
       automaticallyImplyLeading: false,
       leading: InkWell(
-        // onTap: () => pop(),
-        ///TODO: fix navigation
+        onTap: () => context.pop(),
+        
         child: Container(
           width: 40,
           height: 40,

@@ -1,5 +1,7 @@
 import 'package:dawrni/core/constants/app_colors.dart';
+import 'package:dawrni/features/home/presentation/routes/main_route.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AboutUsView extends StatelessWidget {
@@ -8,7 +10,7 @@ class AboutUsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: settingAppBar(),
+      appBar: settingAppBar(context),
       body: Padding(
         padding: const EdgeInsetsDirectional.all(27.0),
         child: Column(
@@ -67,12 +69,11 @@ class AboutUsView extends StatelessWidget {
     );
   }
 
-  AppBar settingAppBar() {
+  AppBar settingAppBar(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
       leading: InkWell(
-        ///TODO: fix navigation
-        // onTap: () => pop(),
+        onTap: () => context.pop(),
         child: Container(
           width: 40,
           height: 40,

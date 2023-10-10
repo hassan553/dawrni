@@ -2,6 +2,7 @@ import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_button.dart';
 import 'package:dawrni/core/widgets/custom_text_filed.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ConnectUsView extends StatefulWidget {
   const ConnectUsView({super.key});
@@ -16,11 +17,11 @@ class _ConnectUsViewState extends State<ConnectUsView> {
   final description = TextEditingController();
   @override
   void dispose() {
-    // TODO: implement dispose
-    super.dispose();
     name.dispose();
     email.dispose();
     description.dispose();
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -115,8 +116,7 @@ class _ConnectUsViewState extends State<ConnectUsView> {
     return AppBar(
       automaticallyImplyLeading: false,
       leading: InkWell(
-        ///TODO: fix navigation
-        // onTap: () => pop(),
+        onTap: () => context.pop(),
         child: Container(
           width: 40,
           height: 40,

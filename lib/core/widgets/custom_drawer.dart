@@ -1,6 +1,11 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
+import 'package:dawrni/features/home/presentation/routes/main_route.dart';
+import 'package:dawrni/features/settings/presentation/routes/about_us_route.dart';
+import 'package:dawrni/features/settings/presentation/routes/connect_us_route.dart';
+import 'package:dawrni/features/settings/presentation/routes/privacy_policy_route.dart';
+import 'package:dawrni/features/settings/presentation/routes/setting_route.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -59,32 +64,28 @@ class CustomDrawer extends StatelessWidget {
                   color: AppColors.offWhite,
                   size: 30,
                 ),
-                // () => context.push(const MainView())),
-                    () => context.push("/mainview")),
+                () => context.go(MainRoute.name)),
             customListTile(
                 'About us',
                 Image.asset(
                   'assets/clarity_info-standard-line.png',
                   fit: BoxFit.fill,
                 ),
-                // () => context.push(const AboutUsView())),
-                    () => context.push("/aboutus")),
+                () => context.push(AboutUsRoute.name)),
             customListTile(
                 'Privacy Policy',
                 Image.asset(
                   'assets/Group 34140.png',
                   fit: BoxFit.fill,
                 ),
-                // () => context.push(const PrivacyPolicyView())),
-                    () => context.push("/privacypolicyview")),
+               () => context.push(PrivacyPolicyRoute.name)),
             customListTile(
                 'Contact us',
                 Image.asset(
                   'assets/iconoir_headset-help.png',
                   fit: BoxFit.fill,
                 ),
-                // () => context.push(const ConnectUsView())),
-                    () => context.push("/connectus")),
+             () => context.push(ConnectUsRoute.name)),
             customListTile(
                 'Settings',
                 Icon(
@@ -92,8 +93,7 @@ class CustomDrawer extends StatelessWidget {
                   color: AppColors.offWhite,
                   size: 30,
                 ),
-                // () => context.push(const SettingsView())),
-                () => context.push("/settings")),
+               () => context.push(SettingsRoute.name)),
             const Spacer(flex: 1),
             customListTile(
                 'Logout',
@@ -113,7 +113,6 @@ class CustomDrawer extends StatelessWidget {
   ListTile customListTile(String title, Widget icon, Function function) {
     return ListTile(
       onTap: () {
-        
         function();
       },
       leading: icon,

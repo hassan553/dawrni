@@ -2,8 +2,10 @@ import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/custom_text_filed.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
+import 'package:dawrni/features/home/presentation/routes/all_company_route.dart';
 import 'package:dawrni/features/home/presentation/widgets/company_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeView extends StatelessWidget {
@@ -71,8 +73,8 @@ class HomeView extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
               InkWell(
-                // onTap: () => navigateTo(const AllCompanyView()),
-                ///TODO: fix navigation
+                 onTap: () => context.push(AllCompanyRoute.name),
+           
                 child: ResponsiveText(
                   text: 'View All >>',
                   color: AppColors.offWhite,

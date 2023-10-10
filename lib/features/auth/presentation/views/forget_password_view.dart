@@ -145,7 +145,6 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
           ),
         ),
         TextButton(
-          // onPressed: () => navigateTo(const LoginClientView()),
           onPressed: () => context.push(LoginClientRoute.name),
           child: const Text(
             'Sign In here',

@@ -148,11 +148,7 @@ class _LoginClientViewState extends State<LoginClientView> {
               } else if (state is ClientLoginErrorState) {
                 print("errrorrrrrrrrrr ${state.error}");
                 return;
-                showAwesomeDialog(
-                  context: context,
-                  description: state.error,
-                  buttonText: 'Try Again',
-                );
+               
               } else if (state is NoInternetConnection) {
                 showAwesomeDialog(
                   context: context,

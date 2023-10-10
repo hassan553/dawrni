@@ -127,7 +127,7 @@ class AppointmentsView extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 8),
+         SizedBox(height: 8),
         Text(
           '2 Pending Appointments',
           textAlign: TextAlign.right,

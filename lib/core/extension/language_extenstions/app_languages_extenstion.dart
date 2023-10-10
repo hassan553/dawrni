@@ -25,6 +25,4 @@ extension AppLanguagesExtenstions on AppLanguages {
         throw "No Such Language";
     }
   }
-
-
-  }
+}

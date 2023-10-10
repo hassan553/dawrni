@@ -1,5 +1,6 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class PrivacyPolicyView extends StatelessWidget {
   const PrivacyPolicyView({super.key});
@@ -7,7 +8,7 @@ class PrivacyPolicyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: settingAppBar(),
+      appBar: settingAppBar(context),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsetsDirectional.all(27),
@@ -68,12 +69,11 @@ class PrivacyPolicyView extends StatelessWidget {
     );
   }
 
-  AppBar settingAppBar() {
+  AppBar settingAppBar(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
       leading: InkWell(
-        ///TODO: fix navigation
-        // onTap: () => pop(),
+        onTap: () => context.pop(),
         child: Container(
           width: 40,
           height: 40,

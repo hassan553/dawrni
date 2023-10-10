@@ -2,6 +2,7 @@ import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_slide_button.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class BookingView extends StatefulWidget {
@@ -38,8 +39,8 @@ class _BookingViewState extends State<BookingView> {
                   top: 40,
                   left: 30,
                   child: InkWell(
-                    // onTap: () => pop(),
-                    ///TODO: fix navigation
+                     onTap: () => context.pop(),
+                  
                     child: Container(
                       width: 50,
                       height: 40,
