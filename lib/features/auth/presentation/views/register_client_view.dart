@@ -1,5 +1,6 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/enums/user_type.dart';
+import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/core/widgets/custom_button.dart';
 
@@ -17,8 +18,7 @@ import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../core/widgets/show_awesomeDialog.dart';
-import '../../../../core/widgets/snack_bar_widget.dart';
-
+import '../../../../generated/l10n.dart';
 
 class RegisterClientView extends StatefulWidget {
   const RegisterClientView({super.key});
@@ -28,7 +28,6 @@ class RegisterClientView extends StatefulWidget {
 }
 
 class _RegisterClientViewState extends State<RegisterClientView> {
-
   String selectedValue = 'Bokhour and Perfumes';
   List<String> dropdownItems = [
     'Bokhour and Perfumes',
@@ -74,10 +73,10 @@ class _RegisterClientViewState extends State<RegisterClientView> {
           child: Container(
         height: 100.h,
         decoration: const BoxDecoration(
-          color: Color(0xff262626),
+          color: AppColors.offBlack,
           image: DecorationImage(
             alignment: Alignment.bottomRight,
-            image: AssetImage("assets/Asset 1 1.png"),
+            image: AssetImage(ImagesPaths.splashBackgroundPng),
           ),
         ),
         child: SingleChildScrollView(
@@ -86,15 +85,15 @@ class _RegisterClientViewState extends State<RegisterClientView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const CustomSizedBox(value: .04),
+                SizedBox(height: 10.h),
                 topImage(context),
-                const CustomSizedBox(value: .1),
+                SizedBox(height: 5.h),
                 companyOrClientButton(context),
-                const CustomSizedBox(value: .08),
+                SizedBox(height: 5.h),
                 enterIfonBody(),
-                const CustomSizedBox(value: .03),
+                SizedBox(height: 3.h),
                 registerButton(),
-                const CustomSizedBox(value: .03),
+                SizedBox(height: 2.h),
                 signUpButton()
               ],
             ),
@@ -108,9 +107,9 @@ class _RegisterClientViewState extends State<RegisterClientView> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
-          'If you have an account? ',
-          style: TextStyle(
+        Text(
+          S.of(context).if_you_have_account,
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 14,
             fontWeight: FontWeight.w400,
@@ -120,10 +119,10 @@ class _RegisterClientViewState extends State<RegisterClientView> {
         ),
         TextButton(
           onPressed: () => context.push(LoginClientRoute.name),
-          child: const Text(
-            'Sign In here',
-            style: TextStyle(
-              color: Color(0xFFFF8700),
+          child: Text(
+            S.of(context).sign_in_here,
+            style: const TextStyle(
+              color: AppColors.primaryColor,
               fontSize: 14,
               fontWeight: FontWeight.w700,
               decoration: TextDecoration.underline,
@@ -152,7 +151,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
               color: AppColors.primaryColor,
               textColor: AppColors.white,
               fontSize: .04,
-              title: ' Sign Up',
+              title: S.of(context).signUp,
             ),
           )
         : CacheStorageServices().isClient
@@ -198,7 +197,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                         color: AppColors.primaryColor,
                         textColor: AppColors.white,
                         fontSize: .04,
-                        title: ' Sign Up',
+                        title: S.of(context).signUp,
                       ),
               )
             : BlocConsumer<AuthCubit, AuthState>(
@@ -243,7 +242,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                             color: AppColors.primaryColor,
                             textColor: AppColors.white,
                             fontSize: .04,
-                            title: ' Sign Up',
+                            title: S.of(context).signUp,
                           ),
               );
   }
@@ -267,11 +266,10 @@ class _RegisterClientViewState extends State<RegisterClientView> {
               }
             },
             hintText: CacheStorageServices().isCompany
-                ? 'Company'
-                : 'Full name',
+                ? S.of(context).company_name
+                : S.of(context).full_name,
           ),
-          const CustomSizedBox(value: .02),
-
+          SizedBox(height: 2.h),
           CustomTextFieldWidget(
             focusNode: emailFocusNode,
             onfiledSumbitted: (p0) {
@@ -289,10 +287,9 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                 return 'not valid email';
               }
             },
-            hintText: 'Email Address',
+            hintText: S.of(context).email,
           ),
-          const CustomSizedBox(value: .02),
-
+          SizedBox(height: 2.h),
           Visibility(
             visible: CacheStorageServices().isCompany,
             child: Column(
@@ -308,7 +305,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                   },
                   hintText: 'Compnay License ID',
                 ),
-                const CustomSizedBox(value: .02),
+                SizedBox(height: 2.h),
                 Container(
                   padding: const EdgeInsetsDirectional.symmetric(
                       horizontal: 10, vertical: 1),
@@ -347,7 +344,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                     }).toList(),
                   ),
                 ),
-                const CustomSizedBox(value: .02),
+                SizedBox(height: 2.h),
               ],
             ),
           ),
@@ -379,7 +376,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                   return 'Short Password';
                 }
               },
-              hintText: 'Password',
+              hintText: S.of(context).password,
             ),
           ),
           // SizedBox(
@@ -452,7 +449,6 @@ class _RegisterClientViewState extends State<RegisterClientView> {
             child: InkWell(
               onTap: () => setState(() {
                 CacheStorageServices().setUserType(UserType.client);
-                print("value client ${CacheStorageServices().getUserType()}");
               }),
               child: Container(
                 height: 50,
@@ -466,8 +462,8 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: const ResponsiveText(
-                  text: 'Client',
+                child: ResponsiveText(
+                  text: S.of(context).client,
                   scaleFactor: .04,
                   color: AppColors.white,
                 ),
@@ -478,7 +474,6 @@ class _RegisterClientViewState extends State<RegisterClientView> {
             child: InkWell(
               onTap: () => setState(() {
                 CacheStorageServices().setUserType(UserType.company);
-                print("value company ${CacheStorageServices().getUserType()}");
               }),
               child: Container(
                 height: 50,
@@ -492,8 +487,8 @@ class _RegisterClientViewState extends State<RegisterClientView> {
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: const ResponsiveText(
-                  text: 'Company',
+                child: ResponsiveText(
+                  text: S.of(context).company,
                   scaleFactor: .04,
                   color: AppColors.white,
                 ),
@@ -507,7 +502,7 @@ class _RegisterClientViewState extends State<RegisterClientView> {
 
   Image topImage(BuildContext context) {
     return Image.asset(
-      'assets/asset-12-1-CWB.png',
+      ImagesPaths.logPng,
       width: 30.w,
       fit: BoxFit.fill,
     );

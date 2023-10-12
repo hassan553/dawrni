@@ -1,5 +1,6 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/enums/app_languages.dart';
+import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../../auth/presentation/routes/login_client_route.dart';
 import '../../../home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 
@@ -26,157 +28,158 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
         height: 100.h,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/Frame.png'),
+            image: AssetImage(ImagesPaths.framPng),
             fit: BoxFit.fitWidth,
             alignment: Alignment.center,
           ),
         ),
-        child: Stack(alignment: AlignmentDirectional.topCenter, children: [
-          Container(
-            color: Colors.black.withOpacity(.1),
-          ),
-          Column(
-            children: [
-              const CustomSizedBox(value: .1),
-              Image.asset(
-                'assets/asset-12-1-CWB.png',
-                width: 30.w,
-                fit: BoxFit.fill,
-              ),
-              const CustomSizedBox(value: .08),
-              const ResponsiveText(
-                text: ' Please select your\npreferred language',
-                scaleFactor: .08,
-                fontWeight: FontWeight.w500,
-                color: AppColors.white,
-                textAlign: TextAlign.center,
-              ),
-              const CustomSizedBox(value: .07),
-              BlocBuilder<AppConfigBloc, AppConfigState>(
-                builder: (context, state) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        onTap: () => setState(() {
-                          isArabic = 0;
-////flutter gen-l10n
-                          ///TODO: CHECK THIS
-                          // sharedPreferences.setBool(kIsArabic, false);
-                          Future.delayed(
-                            const Duration(milliseconds: 500),
-                            () =>
-                                context.pushReplacement(LoginClientRoute.name),
-                          );
-                          BlocProvider.of<AppConfigBloc>(context).add(
-                             const  ChangeLanguageEvent(
-                                  language: AppLanguages.english));
-                        }),
-                        child: SizedBox(
-                          height: 160,
-                          width: 35.w,
-                          child: Stack(
-                            alignment: AlignmentDirectional.bottomCenter,
-                            children: [
-                              Container(
-                                height: 130,
-                                padding: const EdgeInsetsDirectional.only(
-                                    bottom: 30),
-                                decoration: BoxDecoration(
-                                    color: isArabic == 0
-                                        ? const Color(0x19FF8700)
-                                        : AppColors.offWhite.withOpacity(.1),
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(
+        child: Center(
+          child: Stack(alignment: AlignmentDirectional.topCenter, children: [
+            Container(
+              color: AppColors.blackWithOpacity1,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(height: 8.h),
+                Image.asset(
+                  ImagesPaths.logPng,
+                  width: 30.w,
+                  fit: BoxFit.fill,
+                ),
+                SizedBox(height: 5.h),
+                ResponsiveText(
+                  text: S.of(context).selectLanguage,
+                  scaleFactor: .08,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.white,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 5.h),
+                BlocBuilder<AppConfigBloc, AppConfigState>(
+                  builder: (context, state) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () => setState(() {
+                            isArabic = 0;
+                            BlocProvider.of<AppConfigBloc>(context).add(
+                                const ChangeLanguageEvent(
+                                    language: AppLanguages.english));
+                            Future.delayed(
+                              const Duration(milliseconds: 500),
+                              () => context
+                                  .pushReplacement(LoginClientRoute.name),
+                            );
+                          }),
+                          child: SizedBox(
+                            height: 160,
+                            width: 35.w,
+                            child: Stack(
+                              alignment: AlignmentDirectional.bottomCenter,
+                              children: [
+                                Container(
+                                  height: 130,
+                                  padding: const EdgeInsetsDirectional.only(
+                                      bottom: 30),
+                                  decoration: BoxDecoration(
+                                      color: isArabic == 0
+                                          ? AppColors.offBrown
+                                          : AppColors.offWhite.withOpacity(.1),
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(
+                                        color: isArabic == 0
+                                            ? AppColors.primaryColor
+                                            : AppColors.offWhite
+                                                .withOpacity(.1),
+                                      )),
+                                  child: Align(
+                                    alignment:
+                                        AlignmentDirectional.bottomCenter,
+                                    child: ResponsiveText(
+                                      text: S.of(context).english,
+                                      scaleFactor: .06,
+                                      fontWeight: FontWeight.w400,
                                       color: isArabic == 0
                                           ? AppColors.primaryColor
-                                          : AppColors.offWhite.withOpacity(.1),
-                                    )),
-                                child: Align(
-                                  alignment: AlignmentDirectional.bottomCenter,
-                                  child: ResponsiveText(
-                                    text: 'English',
-                                    scaleFactor: .06,
-                                    fontWeight: FontWeight.w400,
-                                    color: isArabic == 0
-                                        ? AppColors.primaryColor
-                                        : AppColors.offWhite,
+                                          : AppColors.offWhite,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                  top: 0,
-                                  child: Image.asset('assets/english.png')),
-                            ],
+                                Positioned(
+                                    top: 10,
+                                    child: Image.asset(ImagesPaths.englishPng)),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 25),
-                      InkWell(
-                        onTap: () => setState(() {
-                          ///TODO: check this
-                          // sharedPreferences.setBool(kIsArabic, true);
-                          isArabic = 1;
-
-                          Future.delayed(
-                            const Duration(milliseconds: 500),
-                            () =>
-                                context.pushReplacement(LoginClientRoute.name),
-                          );
-                          BlocProvider.of<AppConfigBloc>(context).add(
-                             const  ChangeLanguageEvent(
-                                  language: AppLanguages.english));
-                        }),
-                        child: SizedBox(
-                          height: 160,
-                          width: 35.w,
-                          child: Stack(
-                            alignment: AlignmentDirectional.bottomCenter,
-                            children: [
-                              Container(
-                                height: 130,
-                                padding: const EdgeInsetsDirectional.only(
-                                    bottom: 30),
-                                decoration: BoxDecoration(
-                                    color: isArabic == 1
-                                        ? const Color(0x19FF8700)
-                                        : AppColors.offWhite.withOpacity(.1),
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(
+                        const SizedBox(width: 25),
+                        InkWell(
+                          onTap: () => setState(() {
+                            isArabic = 1;
+                            BlocProvider.of<AppConfigBloc>(context).add(
+                                const ChangeLanguageEvent(
+                                    language: AppLanguages.arabic));
+                            Future.delayed(
+                              const Duration(milliseconds: 500),
+                              () => context
+                                  .pushReplacement(LoginClientRoute.name),
+                            );
+                          }),
+                          child: SizedBox(
+                            height: 160,
+                            width: 35.w,
+                            child: Stack(
+                              alignment: AlignmentDirectional.bottomCenter,
+                              children: [
+                                Container(
+                                  height: 130,
+                                  padding: const EdgeInsetsDirectional.only(
+                                      bottom: 30),
+                                  decoration: BoxDecoration(
+                                      color: isArabic == 1
+                                          ? AppColors.offBrown
+                                          : AppColors.offWhite.withOpacity(.1),
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(
+                                        color: isArabic == 1
+                                            ? AppColors.primaryColor
+                                            : AppColors.offWhite
+                                                .withOpacity(.1),
+                                      )),
+                                  child: Align(
+                                    alignment:
+                                        AlignmentDirectional.bottomCenter,
+                                    child: ResponsiveText(
+                                      text: S.of(context).arabic,
+                                      scaleFactor: .06,
+                                      fontWeight: FontWeight.w400,
                                       color: isArabic == 1
                                           ? AppColors.primaryColor
-                                          : AppColors.offWhite.withOpacity(.1),
-                                    )),
-                                child: Align(
-                                  alignment: AlignmentDirectional.bottomCenter,
-                                  child: ResponsiveText(
-                                    text: 'Arabic',
-                                    scaleFactor: .06,
-                                    fontWeight: FontWeight.w400,
-                                    color: isArabic == 1
-                                        ? AppColors.primaryColor
-                                        : AppColors.offWhite,
+                                          : AppColors.offWhite,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                top: 0,
-                                child: Image.asset(
-                                  'assets/arabic.png',
-                                  // fit: BoxFit.fill,
+                                Positioned(
+                                  top: 10,
+                                  child: Image.asset(
+                                    ImagesPaths.arabicPng,
+                                    // fit: BoxFit.fill,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ],
-          )
-        ]),
+                      ],
+                    );
+                  },
+                ),
+              ],
+            )
+          ]),
+        ),
       ),
     );
   }

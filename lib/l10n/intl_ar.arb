@@ -38,8 +38,7 @@
   "apartmentRepair": "إصلاح الشقق",
   "certified": "معتمد",
   "about": "عن الشركة",
-  "company_description":
-      "من الإصلاحات البسيطة إلى التركيبات الكبيرة، نتعامل مع كل مشروع بدقة وعناية، مما يضمن أن أنظمة السباكة لديك في حالة مثالية.",
+  "company_description": "من الإصلاحات البسيطة إلى التركيبات الكبيرة، نتعامل مع كل مشروع بدقة وعناية، مما يضمن أن أنظمة السباكة لديك في حالة مثالية.",
   "bookNow": "احجز الآن",
   "confirm_date_and_time": "تأكيد التاريخ والوقت",
   "please_add_your_location": "يرجى إضافة موقعك أولاً لتأكيد الموعد",
@@ -93,5 +92,13 @@
   "doYouWantToCancelTheAppointment": "هل ترغب في إلغاء الموعد؟",
   "yes": "نعم",
   "no": "لا",
-  "theAppointmentHaveBeenCancelledSuccessfully": "تم إلغاء الموعد بنجاح"
+  "theAppointmentHaveBeenCancelledSuccessfully": "تم إلغاء الموعد بنجاح",
+  "verifyYourEmailAddress": "تحقق من عنوان بريدك الإلكتروني",
+  "resendVerificationEmail": "إعادة ارسال بريد التحقق",
+  "checkVerificationEmail": "تحقق من البريد الإلكتروني للتحقق",
+  "aVerificationLinkHasBeenSentToYourEmailAddress": "تم إرسال رابط التحقق إلى عنوان بريدك الإلكتروني. يرجى التحقق من صندوق الوارد الخاص بك والنقر على الرابط للتحقق من بريدك الإلكتروني",
+  "signUp": " تسجيل الدخول",
+  "passwordConfirmation": "تأكيد كلمة المرور",
+  "yourPasswordWillBeYourKeyToSecureAccessIn": "ستكون كلمة المرور الخاصة بك هي مفتاحك للوصول الآمن في المستقبل",
+  "sendEmail": "ارسل بريد الكتروني"
 }

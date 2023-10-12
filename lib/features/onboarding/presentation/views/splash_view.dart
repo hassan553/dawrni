@@ -1,3 +1,5 @@
+import 'package:dawrni/core/constants/app_colors.dart';
+import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/features/onboarding/presentation/routes/onboarding_route.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -12,7 +14,6 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Future.delayed(
         const Duration(seconds: 1), () => context.pushReplacement(OnboardingRoute.name));
@@ -24,10 +25,10 @@ class _SplashViewState extends State<SplashView> {
       body: Container(
         alignment: AlignmentDirectional.center,
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(.4),
+          color: AppColors.blackWithOpacity4,
           image: const DecorationImage(
             alignment: Alignment.bottomRight,
-            image: AssetImage("assets/Asset 1 1.png"),
+            image: AssetImage(ImagesPaths.splashBackgroundPng),
           ),
         ),
         child: Container(
@@ -35,7 +36,7 @@ class _SplashViewState extends State<SplashView> {
           height: 305,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/asset-12-1-CWB.png"),
+              image: AssetImage(ImagesPaths.logPng),
               fit: BoxFit.fill,
             ),
           ),

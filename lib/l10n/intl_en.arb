@@ -13,7 +13,7 @@
   "sign_in": "Sign In",
   "sign_up_here": "Sign Up here",
   "try_again": "Try again",
- "this_account_exit": "This account doesn't exit! ",
+  "this_account_exit": "This account doesn't exit! ",
   "wrong_password": "Wrong password! please try again",
   "company_name": "Company Name",
   "confirm": "Confirm",
@@ -38,15 +38,12 @@
   "apartmentRepair": "Apartment repair",
   "certified": "Certified",
   "about": "About",
-  "company_description":
-      "From minor repairs to major installations, we tackle each project with precision and care, ensuring that your plumbing systems are in optimal condition.",
+  "company_description": "From minor repairs to major installations, we tackle each project with precision and care, ensuring that your plumbing systems are in optimal condition.",
   "bookNow": "Book Now",
   "confirm_date_and_time": "Confirm date and time",
-  "please_add_your_location":
-      "Please add your location first to confirm the appointment",
+  "please_add_your_location": "Please add your location first to confirm the appointment",
   "add_your_location": "Add your location",
-  "yourAppointmentHasBeenConfirmedSuccessfully":
-      "Your Appointment has been confirmed successfully",
+  "yourAppointmentHasBeenConfirmedSuccessfully": "Your Appointment has been confirmed successfully",
   "myAppointments": "My appointments",
   "todayAppointments": "Today’s Appointments",
   "appointments": "Appointments",
@@ -54,18 +51,14 @@
   "getAnAppointment": "Get an appointment",
   "youDonHaveAnyMessagesYet": "You don’t have any messages yet ..",
   "searchYourMessage": "Search your message ..",
-  "thisScreenIsStillLoading":
-      "This screen is still loading ..\nThank you for your patience",
+  "thisScreenIsStillLoading": "This screen is still loading ..\nThank you for your patience",
   "opps": "Opps !",
-  "somethingWrongWithYourConnection":
-      "Something wrong with your\nconnection, Please try again ..",
+  "somethingWrongWithYourConnection": "Something wrong with your\nconnection, Please try again ..",
   "restoreTheInternet": "Restore the internet",
-  "weCantSeemToFindThePage":
-      "We can't seem to find the page\nthat you are looking for ..",
+  "weCantSeemToFindThePage": "We can't seem to find the page\nthat you are looking for ..",
   "backToHome": "Back to home",
   "noResults": "No Results !",
-  "sorryThereAreNoResultsForThisSearch":
-      "Sorry, there are no results for this\nsearch. Please try another name ..",
+  "sorryThereAreNoResultsForThisSearch": "Sorry, there are no results for this\nsearch. Please try another name ..",
   "sorryThereIsNoNotifications": "Sorry, there is no notifications ..",
   "checkTheSettings": "Check the settings",
   "internetIsRestored": "Internet is restored !",
@@ -77,8 +70,7 @@
   "facebook": "Facebook",
   "linkedin": "LinkedIn",
   "twitter": "Twitter",
-  "anyQuestionsOrRemarksJustWriteUsMessage":
-      "Any questions or remarks ? Just write us a message",
+  "anyQuestionsOrRemarksJustWriteUsMessage": "Any questions or remarks ? Just write us a message",
   "sendMessage": "Send Message",
   "message": "Message",
   "typesDataWeCollect": "1. Types data we collect",
@@ -100,6 +92,13 @@
   "doYouWantToCancelTheAppointment": "Do you want to cancel the appointment ?",
   "yes": "Yes",
   "no": "No",
-  "theAppointmentHaveBeenCancelledSuccessfully":
-      "The appointment have been\ncancelled successfully"
+  "theAppointmentHaveBeenCancelledSuccessfully": "The appointment have been\ncancelled successfully",
+  "verifyYourEmailAddress": "Verify your email address",
+  "resendVerificationEmail": "Resend Verification Email",
+  "checkVerificationEmail": "Check Verification Email",
+  "aVerificationLinkHasBeenSentToYourEmailAddress": "A verification link has been sent to your email address. Please check your inbox and click on the link to verify your email.",
+  "signUp": " Sign Up",
+  "passwordConfirmation": "Password Confirmation",
+  "yourPasswordWillBeYourKeyToSecureAccessIn": "Your password will be your key to secure access in the future",
+  "sendEmail": "Send Email"
 }

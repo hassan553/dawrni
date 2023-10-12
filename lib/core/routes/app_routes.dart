@@ -9,7 +9,6 @@ import 'package:dawrni/features/home/presentation/routes/home_route.dart';
 import 'package:dawrni/features/home/presentation/routes/main_route.dart';
 import 'package:dawrni/features/onboarding/presentation/routes/onboarding_route.dart';
 import 'package:dawrni/features/profile/presentation/routes/client_profile_route.dart';
-import 'package:dawrni/features/profile/presentation/views/client_profile_view.dart';
 import 'package:dawrni/features/settings/presentation/routes/about_us_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/connect_us_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/privacy_policy_route.dart';
@@ -26,7 +25,7 @@ import '../../features/profile/presentation/routes/company_profile_route.dart';
 
 class AppRoutes {
   static final router = GoRouter(
-    initialLocation: MainRoute.name,
+    initialLocation: ForgetPasswordRoute.name,
 
     // TODO: add pages route here
     routes: [

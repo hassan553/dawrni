@@ -22,7 +22,157 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "aVerificationLinkHasBeenSentToYourEmailAddress":
+            MessageLookupByLibrary.simpleMessage(
+                "تم إرسال رابط التحقق إلى عنوان بريدك الإلكتروني. يرجى التحقق من صندوق الوارد الخاص بك والنقر على الرابط للتحقق من بريدك الإلكتروني"),
+        "about": MessageLookupByLibrary.simpleMessage("عن الشركة"),
+        "aboutUs": MessageLookupByLibrary.simpleMessage("من نحن"),
+        "add_your_location": MessageLookupByLibrary.simpleMessage("أضف موقعك"),
+        "anyQuestionsOrRemarksJustWriteUsMessage":
+            MessageLookupByLibrary.simpleMessage(
+                "أي أسئلة أو ملاحظات؟ فقط اكتب لنا رسالة"),
+        "apartmentRepair": MessageLookupByLibrary.simpleMessage("إصلاح الشقق"),
+        "appUpdates": MessageLookupByLibrary.simpleMessage("تحديثات التطبيق"),
+        "appointments": MessageLookupByLibrary.simpleMessage("المواعيد"),
+        "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
+        "backToHome":
+            MessageLookupByLibrary.simpleMessage("العودة إلى الصفحة الرئيسية"),
+        "bodyTitle1": MessageLookupByLibrary.simpleMessage("بخور وعطور"),
+        "bodyTitle2": MessageLookupByLibrary.simpleMessage(
+            "احصل على حل لمشكلتك مع خدمتنا السريعة"),
+        "bookNow": MessageLookupByLibrary.simpleMessage("احجز الآن"),
+        "certified": MessageLookupByLibrary.simpleMessage("معتمد"),
+        "checkTheSettings":
+            MessageLookupByLibrary.simpleMessage("تحقق من الإعدادات"),
+        "checkVerificationEmail": MessageLookupByLibrary.simpleMessage(
+            "تحقق من البريد الإلكتروني للتحقق"),
+        "client": MessageLookupByLibrary.simpleMessage("عميل"),
+        "company": MessageLookupByLibrary.simpleMessage("شركة"),
+        "company_description": MessageLookupByLibrary.simpleMessage(
+            "من الإصلاحات البسيطة إلى التركيبات الكبيرة، نتعامل مع كل مشروع بدقة وعناية، مما يضمن أن أنظمة السباكة لديك في حالة مثالية."),
+        "company_license_id":
+            MessageLookupByLibrary.simpleMessage("رقم ترخيص الشركة"),
+        "company_name": MessageLookupByLibrary.simpleMessage("اسم الشركة"),
+        "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
+        "confirm_date_and_time":
+            MessageLookupByLibrary.simpleMessage("تأكيد التاريخ والوقت"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "didntHaveAnyAccount":
-            MessageLookupByLibrary.simpleMessage("لا تملك حساباً؟")
+            MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+        "disclosureOfYourPersonalData":
+            MessageLookupByLibrary.simpleMessage("3. كشف بياناتك الشخصية"),
+        "doYouWantToCancelTheAppointment":
+            MessageLookupByLibrary.simpleMessage("هل ترغب في إلغاء الموعد؟"),
+        "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+        "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
+        "facebook": MessageLookupByLibrary.simpleMessage("فيسبوك"),
+        "forget_password":
+            MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+        "from": MessageLookupByLibrary.simpleMessage("من"),
+        "full_name": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
+        "generalNotification":
+            MessageLookupByLibrary.simpleMessage("الإشعارات العامة"),
+        "generalSettings":
+            MessageLookupByLibrary.simpleMessage("الإعدادات العامة"),
+        "getAnAppointment":
+            MessageLookupByLibrary.simpleMessage("احصل على موعد"),
+        "getToKnowMoreAboutOurServices":
+            MessageLookupByLibrary.simpleMessage("تعرف على المزيد عن خدماتنا"),
+        "hey": MessageLookupByLibrary.simpleMessage("مرحبًا"),
+        "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+        "if_you_have_account":
+            MessageLookupByLibrary.simpleMessage("إذا كان لديك حساب؟"),
+        "internetIsRestored": MessageLookupByLibrary.simpleMessage(
+            "تم استعادة الاتصال بالإنترنت!"),
+        "let_find_what_you_need":
+            MessageLookupByLibrary.simpleMessage("لنجد ما تحتاجه!"),
+        "linkedin": MessageLookupByLibrary.simpleMessage("لينكد إن"),
+        "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "message": MessageLookupByLibrary.simpleMessage("الرسالة"),
+        "myAppointments": MessageLookupByLibrary.simpleMessage("مواعيدي"),
+        "next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "no": MessageLookupByLibrary.simpleMessage("لا"),
+        "noInternetConnection":
+            MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت!"),
+        "noResults": MessageLookupByLibrary.simpleMessage("لا توجد نتائج!"),
+        "opps": MessageLookupByLibrary.simpleMessage("عذراً!"),
+        "our_best_services":
+            MessageLookupByLibrary.simpleMessage("أفضل خدماتنا"),
+        "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "passwordConfirmation":
+            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
+        "personalizeYourExperience":
+            MessageLookupByLibrary.simpleMessage("تخصيص تجربتك"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+        "please_add_your_location": MessageLookupByLibrary.simpleMessage(
+            "يرجى إضافة موقعك أولاً لتأكيد الموعد"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+        "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+        "promotions": MessageLookupByLibrary.simpleMessage("العروض والتخفيضات"),
+        "resendVerificationEmail":
+            MessageLookupByLibrary.simpleMessage("إعادة ارسال بريد التحقق"),
+        "restoreTheInternet":
+            MessageLookupByLibrary.simpleMessage("استعادة الاتصال بالإنترنت"),
+        "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
+        "searchYourMessage":
+            MessageLookupByLibrary.simpleMessage("ابحث عن رسالتك .."),
+        "search_your_service":
+            MessageLookupByLibrary.simpleMessage("ابحث عن خدمتك .."),
+        "selectLanguage": MessageLookupByLibrary.simpleMessage(
+            "الرجاء اختيار اللغة المفضلة لديك"),
+        "sendEmail": MessageLookupByLibrary.simpleMessage("ارسل بريد الكتروني"),
+        "sendMessage": MessageLookupByLibrary.simpleMessage("إرسال رسالة"),
+        "service_category": MessageLookupByLibrary.simpleMessage("فئة الخدمة"),
+        "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+        "signUp": MessageLookupByLibrary.simpleMessage(" تسجيل الدخول"),
+        "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "sign_in_here":
+            MessageLookupByLibrary.simpleMessage("تسجيل الدخول هنا"),
+        "sign_up_here": MessageLookupByLibrary.simpleMessage("سجل هنا"),
+        "skip": MessageLookupByLibrary.simpleMessage("تخطى"),
+        "somethingWrongWithYourConnection":
+            MessageLookupByLibrary.simpleMessage(
+                "هناك خلل في اتصالك، الرجاء المحاولة مرة أخرى .."),
+        "sorryThereAreNoResultsForThisSearch":
+            MessageLookupByLibrary.simpleMessage(
+                "عذرًا، لا توجد نتائج لهذا البحث. الرجاء محاولة اسم آخر .."),
+        "sorryThereIsNoNotifications":
+            MessageLookupByLibrary.simpleMessage("عذرًا، لا توجد إشعارات .."),
+        "theAppointmentHaveBeenCancelledSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم إلغاء الموعد بنجاح"),
+        "thisScreenIsStillLoading": MessageLookupByLibrary.simpleMessage(
+            "هذا الشاشة لا تزال قيد التحميل .. شكراً لصبرك"),
+        "thisWeek": MessageLookupByLibrary.simpleMessage("هذا الأسبوع"),
+        "this_account_exit":
+            MessageLookupByLibrary.simpleMessage("هذا الحساب غير موجود!"),
+        "to": MessageLookupByLibrary.simpleMessage("إلى"),
+        "today": MessageLookupByLibrary.simpleMessage("اليوم"),
+        "todayAppointments":
+            MessageLookupByLibrary.simpleMessage("مواعيد اليوم"),
+        "try_again": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
+        "twitter": MessageLookupByLibrary.simpleMessage("تويتر"),
+        "typesDataWeCollect": MessageLookupByLibrary.simpleMessage(
+            "1. أنواع البيانات التي نجمعها"),
+        "useOfYourPersonalData":
+            MessageLookupByLibrary.simpleMessage("2. استخدام بياناتك الشخصية"),
+        "verifyYourEmailAddress": MessageLookupByLibrary.simpleMessage(
+            "تحقق من عنوان بريدك الإلكتروني"),
+        "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل >>"),
+        "website": MessageLookupByLibrary.simpleMessage("الموقع الإلكتروني"),
+        "workingDaysAndHours":
+            MessageLookupByLibrary.simpleMessage("أيام العمل والأوقات"),
+        "writeYourMessage":
+            MessageLookupByLibrary.simpleMessage("اكتب رسالتك .."),
+        "wrong_password": MessageLookupByLibrary.simpleMessage(
+            "كلمة المرور غير صحيحة! الرجاء المحاولة مرة أخرى"),
+        "yes": MessageLookupByLibrary.simpleMessage("نعم"),
+        "youDonHaveAnyMessagesYet":
+            MessageLookupByLibrary.simpleMessage("ليس لديك أي رسائل بعد .."),
+        "yourAppointmentHasBeenConfirmedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم تأكيد موعدك بنجاح"),
+        "yourFavorites": MessageLookupByLibrary.simpleMessage("المفضلة لديك"),
+        "yourPasswordWillBeYourKeyToSecureAccessIn":
+            MessageLookupByLibrary.simpleMessage(
+                "ستكون كلمة المرور الخاصة بك هي مفتاحك للوصول الآمن في المستقبل")
       };
 }

@@ -11,6 +11,16 @@
 
 // TODO: add images assest pathes here
 class ImagesPaths {
-  static const String _baseSvgsPath = 'assets/images';
-  static const String image = '$_baseSvgsPath/image.pngs';
+  static const String _baseImagesPath = 'assets/';
+  static const String logPng = '${_baseImagesPath}asset-12-1-CWB.png';
+  static const String splashBackgroundPng = '${_baseImagesPath}Asset 1 1.png';
+  static const String framPng = '${_baseImagesPath}Frame.png';
+  static const String englishPng = '${_baseImagesPath}english.png';
+  static const String arabicPng = '${_baseImagesPath}arabic.png';
+  static const String onboardingArrowsPng = '${_baseImagesPath}Group 340921.png';
+  static const String onboarding1Png = '${_baseImagesPath}Group 34209.png';
+  static const String onboarding2Png = '${_baseImagesPath}Group 34208.png';
+  static const String onboarding3Png = '${_baseImagesPath}Group 34210.png';
+
+
 }

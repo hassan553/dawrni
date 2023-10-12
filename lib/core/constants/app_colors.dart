@@ -27,20 +27,19 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const primaryColor = Color(0xffFF8700);
   static const black = Colors.black;
+  static const offBlack = Color(0xff262626);
   static const secondColor = Color(0xff3B3B3B);
   static const white = Colors.white;
   static Color offWhite = Colors.white.withOpacity(.6);
-
-  // TODO: customize your Colors
+  static Color blackWithOpacity4 = Colors.black.withOpacity(.4);
+  static Color blackWithOpacity1 = Colors.black.withOpacity(.1);
   static const Color green = Color(0xFF4CAF50);
   static const Color darkGrey = Color(0xFFB1B1B1);
   static const Color greyAccent = Color(0xFFF5F5F5);
   static const Color grey = Color(0xFFC7C7C7);
-  // static const Color black = Color(0xFF333333);
   static const Color blue = Color(0xFF0978F2);
   static const Color red = Color(0xFFFF5757);
-  // static const Color white = Color(0xFFFFFFFF);
-
+  static const Color offBrown =Color(0x19FF8700);
   static const MaterialColor materialColor = MaterialColor(
     0X00000000,
     <int, Color>{

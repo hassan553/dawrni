@@ -5,6 +5,6 @@ class NotificationsRoute {
   static const String name = '/notifications';
   static GoRoute route = GoRoute(
     path: name,
-    builder: (context, state) => NotificationsView(),
+    builder: (context, state) =>  const NotificationsView(),
   );
 }

@@ -1,9 +1,9 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/enums/user_type.dart';
+import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/core/widgets/custom_button.dart';
 import 'package:dawrni/core/widgets/custom_loading_widget.dart';
-import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/custom_text_filed.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/core/widgets/show_awesomeDialog.dart';
@@ -47,35 +47,33 @@ class _LoginClientViewState extends State<LoginClientView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          height: 100.h,
-          width: 100.w,
-          decoration: BoxDecoration(
-            color: Colors.black.withOpacity(.1),
-            image: const DecorationImage(
-              alignment: Alignment.bottomCenter,
-              image: AssetImage("assets/Asset 1 1.png"),
-            ),
+      body: Container(
+        height: 100.h,
+        width: 100.w,
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(.1),
+          image: const DecorationImage(
+            alignment: Alignment.bottomCenter,
+            image: AssetImage(ImagesPaths.splashBackgroundPng),
           ),
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const CustomSizedBox(value: .04),
-                  topImage(context),
-                  const CustomSizedBox(value: .08),
-                  companyOrClientButton(context),
-                  const CustomSizedBox(value: .08),
-                  enterIfonBody(),
-                  const CustomSizedBox(value: .03),
-                  loginButton(),
-                  const CustomSizedBox(value: .03),
-                  signUpButton()
-                ],
-              ),
+        ),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 10.h),
+                topImage(context),
+                SizedBox(height: 5.h),
+                companyOrClientButton(context),
+                SizedBox(height: 5.h),
+                enterIfonBody(),
+                SizedBox(height: 3.h),
+                loginButton(),
+                SizedBox(height: 2.h),
+                signUpButton()
+              ],
             ),
           ),
         ),
@@ -98,9 +96,9 @@ class _LoginClientViewState extends State<LoginClientView> {
         ),
         TextButton(
           onPressed: () => context.pushReplacement(RegisterClientRoute.name),
-          child: const Text(
-            'Sign Up here',
-            style: TextStyle(
+          child: Text(
+            S.of(context).sign_in_here,
+            style: const TextStyle(
               color: Color(0xFFFF8700),
               fontSize: 13,
               fontFamily: 'Montserrat',
@@ -131,7 +129,7 @@ class _LoginClientViewState extends State<LoginClientView> {
               color: AppColors.primaryColor,
               textColor: AppColors.white,
               fontSize: .04,
-              title: ' Sign In',
+              title: S.of(context).sign_in,
             ),
           )
         : BlocConsumer<AuthCubit, AuthState>(
@@ -148,7 +146,6 @@ class _LoginClientViewState extends State<LoginClientView> {
               } else if (state is ClientLoginErrorState) {
                 print("errrorrrrrrrrrr ${state.error}");
                 return;
-               
               } else if (state is NoInternetConnection) {
                 showAwesomeDialog(
                   context: context,
@@ -177,7 +174,7 @@ class _LoginClientViewState extends State<LoginClientView> {
                     color: AppColors.primaryColor,
                     textColor: AppColors.white,
                     fontSize: .04,
-                    title: ' Sign In',
+                    title: S.of(context).sign_in,
                   ),
           );
   }
@@ -202,9 +199,10 @@ class _LoginClientViewState extends State<LoginClientView> {
                 return 'not valid email address';
               }
             },
-            hintText: isClient == false ? 'Email Address' : 'Company Email',
+            hintText:
+                isClient == false ? S.of(context).email : S.of(context).company,
           ),
-          const CustomSizedBox(value: .02),
+          SizedBox(height: 2.h),
           // SizedBox(
           //   height: 70,
           //   child: Row(
@@ -315,7 +313,7 @@ class _LoginClientViewState extends State<LoginClientView> {
                 }
               },
               focusNode: passwordFocusNode,
-              hintText: 'Password',
+              hintText: S.of(context).password,
               onChange: (value) {
                 if (password.text.isEmpty || name.text.isEmpty) {
                   setState(() {
@@ -334,7 +332,7 @@ class _LoginClientViewState extends State<LoginClientView> {
             child: TextButton(
               onPressed: () => context.push(ForgetPasswordRoute.name),
               child: Text(
-                'Forget Password ?',
+                S.of(context).forget_password,
                 style: TextStyle(
                   color: AppColors.offWhite,
                   fontSize: 13,
@@ -384,8 +382,8 @@ class _LoginClientViewState extends State<LoginClientView> {
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: const ResponsiveText(
-                  text: 'Client',
+                child: ResponsiveText(
+                  text: S.of(context).client,
                   scaleFactor: .04,
                   color: AppColors.white,
                 ),
@@ -414,8 +412,8 @@ class _LoginClientViewState extends State<LoginClientView> {
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: const ResponsiveText(
-                  text: 'Company',
+                child: ResponsiveText(
+                  text: S.of(context).company,
                   scaleFactor: .04,
                   color: AppColors.white,
                 ),
@@ -429,7 +427,7 @@ class _LoginClientViewState extends State<LoginClientView> {
 
   Image topImage(BuildContext context) {
     return Image.asset(
-      'assets/asset-12-1-CWB.png',
+      ImagesPaths.logPng,
       width: 30.w,
       fit: BoxFit.fill,
     );

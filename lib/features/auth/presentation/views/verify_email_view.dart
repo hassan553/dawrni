@@ -1,12 +1,11 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/widgets/snack_bar_widget.dart';
 import 'package:dawrni/features/home/presentation/routes/main_route.dart';
-import 'package:dawrni/features/home/presentation/views/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/widgets/show_awesomeDialog.dart';
+import 'package:dawrni/generated/l10n.dart';
 
 class VerifyEmailView extends StatelessWidget {
   const VerifyEmailView({super.key});
@@ -26,18 +25,19 @@ class VerifyEmailView extends StatelessWidget {
                 color: Theme.of(context).primaryColor,
               ),
               const SizedBox(height: 20.0),
-              const Text(
-                'Verify your email address',
-                style: TextStyle(
+               Text(
+                
+                S.of(context).verifyYourEmailAddress,
+                style:const  TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                     color: AppColors.white),
               ),
               const SizedBox(height: 20.0),
-              const Text(
-                  'A verification link has been sent to your email address. Please check your inbox and click on the link to verify your email.',
+               Text(
+                  S.of(context).aVerificationLinkHasBeenSentToYourEmailAddress,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18.0, color: AppColors.white)),
+                  style:const  TextStyle(fontSize: 18.0, color: AppColors.white)),
               const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
@@ -57,7 +57,7 @@ class VerifyEmailView extends StatelessWidget {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.orange),
                 ),
-                child: const Text('Check Verification Email'),
+                child:  Text(S.of(context).checkVerificationEmail),
               ),
               const SizedBox(height: 20.0),
               ElevatedButton(
@@ -71,7 +71,7 @@ class VerifyEmailView extends StatelessWidget {
                       message: 'Verification email resent.',
                       requestStates: RequestStates.success);
                 },
-                child: const Text('Resend Verification Email'),
+                child:  Text(S.of(context).resendVerificationEmail),
               ),
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:dawrni/core/constants/app_colors.dart';
+import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/core/widgets/custom_slide_button.dart';
 import 'package:dawrni/features/onboarding/data/model/onboarding_model.dart';
 import 'package:dawrni/features/onboarding/presentation/routes/select_language_route.dart';
@@ -6,6 +7,8 @@ import 'package:dawrni/features/onboarding/presentation/widgets/onboarding_widge
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../../../../generated/l10n.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -31,7 +34,7 @@ class _OnboardingViewState extends State<OnboardingView> {
         height: 100.h,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/Frame.png'),
+            image: AssetImage(ImagesPaths.framPng),
             fit: BoxFit.fitWidth,
             alignment: Alignment.center,
           ),
@@ -40,7 +43,7 @@ class _OnboardingViewState extends State<OnboardingView> {
           alignment: AlignmentDirectional.topCenter,
           children: [
             Container(
-              color: Colors.black.withOpacity(.1),
+              color: AppColors.blackWithOpacity1,
             ),
             Column(
               children: [
@@ -74,8 +77,8 @@ class _OnboardingViewState extends State<OnboardingView> {
                   padding:
                       const EdgeInsetsDirectional.symmetric(horizontal: 25),
                   child: BookBotton(
-                    title: 'Next',
-                    image: 'assets/Group 340921.png',
+                    title: S.of(context).next,
+                    image: ImagesPaths.onboardingArrowsPng,
                     function: () {
                       if (currentPage == onboardingData.length - 1) {
                         context.pushReplacement(SelectLanguageRoute.name);
@@ -103,9 +106,9 @@ class _OnboardingViewState extends State<OnboardingView> {
                               curve: Curves.linear);
                         }
                       },
-                      child: const Text(
-                        'Skip >',
-                        style: TextStyle(
+                      child: Text(
+                        S.of(context).skip,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                           fontFamily: 'Montserrat',

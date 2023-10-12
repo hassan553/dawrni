@@ -9,9 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../../../../core/paths/images_paths.dart';
 import '../../../../core/widgets/custom_text_filed.dart';
 import '../../../../core/widgets/show_awesomeDialog.dart';
 import '../../../../core/widgets/snack_bar_widget.dart';
+import '../../../../generated/l10n.dart';
 
 class ForgetPasswordView extends StatefulWidget {
   const ForgetPasswordView({super.key});
@@ -37,10 +39,10 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
           child: Container(
         height: 100.h,
         decoration: const BoxDecoration(
-          color: Color(0xff262626),
+          color: AppColors.offBlack,
           image: DecorationImage(
             alignment: Alignment.bottomRight,
-            image: AssetImage("assets/Asset 1 1.png"),
+            image: AssetImage(ImagesPaths.splashBackgroundPng),
           ),
         ),
         child: SingleChildScrollView(
@@ -49,26 +51,25 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const CustomSizedBox(value: .04),
+                SizedBox(height: 10.h),
                 topImage(context),
-                const CustomSizedBox(value: .1),
-                const ResponsiveText(
-                  text: 'Password Confirmation',
+                SizedBox(height: 5.h),
+                ResponsiveText(
+                  text: S.of(context).passwordConfirmation,
                   scaleFactor: .06,
                   fontWeight: FontWeight.bold,
                 ),
-                const CustomSizedBox(value: .02),
+                SizedBox(height: 5.h),
                 ResponsiveText(
-                  text:
-                      'Your password will be your key to secure access in the future',
+                  text: S.of(context).yourPasswordWillBeYourKeyToSecureAccessIn,
                   scaleFactor: .04,
                   color: AppColors.offWhite,
                 ),
-                const CustomSizedBox(value: .07),
+                SizedBox(height: 5.h),
                 enterIinfo(),
-                const CustomSizedBox(value: .02),
+                SizedBox(height: 3.h),
                 forgetPasswordButton(),
-                const CustomSizedBox(value: .03),
+                SizedBox(height: 2.h),
                 signUpButton()
               ],
             ),
@@ -97,7 +98,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                   return 'Not Valid Email Address';
                 }
               },
-              hintText: 'Email Address'),
+              hintText: S.of(context).email),
           // const CustomSizedBox(value: .02),
           // CustomTextFieldWidget(
           //     icon: Icon(
@@ -134,9 +135,9 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
-          'If you have an account? ',
-          style: TextStyle(
+        Text(
+          S.of(context).if_you_have_account,
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 14,
             fontWeight: FontWeight.w400,
@@ -146,10 +147,10 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
         ),
         TextButton(
           onPressed: () => context.push(LoginClientRoute.name),
-          child: const Text(
-            'Sign In here',
-            style: TextStyle(
-              color: Color(0xFFFF8700),
+          child: Text(
+            S.of(context).sign_in_here,
+            style: const TextStyle(
+              color: AppColors.primaryColor,
               fontSize: 14,
               fontWeight: FontWeight.w700,
               decoration: TextDecoration.underline,
@@ -178,7 +179,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
               color: AppColors.primaryColor,
               textColor: AppColors.white,
               fontSize: .04,
-              title: 'Send Email',
+              title: S.of(context).sendEmail,
             ),
           )
         : BlocConsumer<AuthCubit, AuthState>(
@@ -211,14 +212,14 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                     color: AppColors.primaryColor,
                     textColor: AppColors.white,
                     fontSize: .04,
-                    title: 'Send Email',
+                    title: S.of(context).sendEmail,
                   ),
           );
   }
 
   Image topImage(BuildContext context) {
     return Image.asset(
-      'assets/asset-12-1-CWB.png',
+      ImagesPaths.logPng,
       width: 30.w,
       fit: BoxFit.fill,
     );
