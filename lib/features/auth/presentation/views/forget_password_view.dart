@@ -3,7 +3,6 @@ import 'package:dawrni/core/widgets/custom_button.dart';
 import 'package:dawrni/core/widgets/custom_loading_widget.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
-import 'package:dawrni/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:dawrni/features/auth/presentation/routes/login_client_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -164,57 +163,58 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   }
 
   Widget forgetPasswordButton() {
-    return isEmpty == true
-        ? ColorFiltered(
-            colorFilter:
-                ColorFilter.mode(AppColors.offWhite, BlendMode.modulate),
-            child: CustomButton(
-              function: () {
-                if (formKey.currentState!.validate()) {
-                  setState(() {
-                    isEmpty = false;
-                  });
-                }
-              },
-              color: AppColors.primaryColor,
-              textColor: AppColors.white,
-              fontSize: .04,
-              title: S.of(context).sendEmail,
-            ),
-          )
-        : BlocConsumer<AuthCubit, AuthState>(
-            listener: (context, state) {
-              if (state is ChangePasswordSuccessState) {
-                showSnackBarWidget(
-                    context: context,
-                    message: ' Password Reset Email Send To You ',
-                    requestStates: RequestStates.success);
-                context.go(LoginClientRoute.name);
-              } else if (state is ChangePasswordErrorState) {
-                showAwesomeDialog(
-                  context: context,
-                  description: 'An Error Occure ,Try Again',
-                  buttonText: 'Try Again',
-                );
-              }
-            },
-            builder: (context, state) => state is ChangePasswordLoadingState
-                ? const Center(
-                    child: CustomLoadingWidget(),
-                  )
-                : CustomButton(
-                    function: () {
-                      if (formKey.currentState!.validate()) {
-                        AuthCubit.get(context)
-                            .changePassword(email.text.trim());
-                      }
-                    },
-                    color: AppColors.primaryColor,
-                    textColor: AppColors.white,
-                    fontSize: .04,
-                    title: S.of(context).sendEmail,
-                  ),
-          );
+    return SizedBox();
+    // return isEmpty == true
+    //     ? ColorFiltered(
+    //         colorFilter:
+    //             ColorFilter.mode(AppColors.offWhite, BlendMode.modulate),
+    //         child: CustomButton(
+    //           function: () {
+    //             if (formKey.currentState!.validate()) {
+    //               setState(() {
+    //                 isEmpty = false;
+    //               });
+    //             }
+    //           },
+    //           color: AppColors.primaryColor,
+    //           textColor: AppColors.white,
+    //           fontSize: .04,
+    //           title: S.of(context).sendEmail,
+    //         ),
+    //       )
+    //     : BlocConsumer<AuthCubit, AuthState>(
+    //         listener: (context, state) {
+    //           if (state is ChangePasswordSuccessState) {
+    //             showSnackBarWidget(
+    //                 context: context,
+    //                 message: ' Password Reset Email Send To You ',
+    //                 requestStates: RequestStates.success);
+    //             context.go(LoginClientRoute.name);
+    //           } else if (state is ChangePasswordErrorState) {
+    //             showAwesomeDialog(
+    //               context: context,
+    //               description: 'An Error Occure ,Try Again',
+    //               buttonText: 'Try Again',
+    //             );
+    //           }
+    //         },
+    //         builder: (context, state) => state is ChangePasswordLoadingState
+    //             ? const Center(
+    //                 child: CustomLoadingWidget(),
+    //               )
+    //             : CustomButton(
+    //                 function: () {
+    //                   if (formKey.currentState!.validate()) {
+    //                     AuthCubit.get(context)
+    //                         .changePassword(email.text.trim());
+    //                   }
+    //                 },
+    //                 color: AppColors.primaryColor,
+    //                 textColor: AppColors.white,
+    //                 fontSize: .04,
+    //                 title: S.of(context).sendEmail,
+    //               ),
+    //       );
   }
 
   Image topImage(BuildContext context) {

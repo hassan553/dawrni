@@ -1,25 +1,13 @@
-import 'package:equatable/equatable.dart';
+import 'package:dawrni/core/entities/base_entity.dart';
+import 'package:dawrni/core/enums/user_type.dart';
 
-class UserEntity extends Equatable {
-  final String id;
-  final String name;
-  final String? email;
-  final bool isAdmin;
+class UserEntity extends BaseEntity {
+  UserEntity({required this.username, required this.email, required this.type});
 
-  const UserEntity({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.isAdmin,
-  });
+  String username;
+  String email;
+  UserType type;
 
   @override
-  List<Object?> get props {
-    return [
-      id,
-      name,
-      email,
-      isAdmin,
-    ];
-  }
+  List<Object?> get props => [username, email, type];
 }

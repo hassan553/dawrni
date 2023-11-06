@@ -6,7 +6,7 @@
 
 class ApisUrls {
   /// [_baseUrl] base server url
-  static const String _baseUrl = 'http://139.99.68.128:6400';
+  static const String _baseUrl = 'https://dawrniapp.azurewebsites.net';
 
   /// [_baseApiUrl] base API url
   static const String _baseApiUrl = '$_baseUrl/api';
@@ -17,7 +17,7 @@ class ApisUrls {
 
   /// Auth Feature APIs
   static const String login = '$_baseApiUrl/auth/login';
-  static const String register = '$_baseApiUrl/auth/signUp';
+  static const String register = '$_baseApiUrl/auth/register';
 
   /// Category Feature APIs
   static String getCategories(String id) =>

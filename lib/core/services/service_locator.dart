@@ -3,7 +3,6 @@ import 'package:dawrni/features/auth/data/data_source/auth_data_source.dart';
 import 'package:dawrni/features/auth/data/data_source/auth_remote_data_source_imp.dart';
 import 'package:dawrni/features/auth/data/repository/auth_repository_imp.dart';
 import 'package:dawrni/features/auth/domain/repository/auth_repository.dart';
-import 'package:dawrni/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
@@ -40,9 +39,6 @@ class ServicesLocator {
     // sl.registerFactory(() => HomeBloc(sl()));
 
     sl.registerLazySingleton(() => AppConfigBloc());
-
-    //// Cubits
-    sl.registerLazySingleton<AuthCubit>(() => AuthCubit(sl()));
 
     //// REPOSITORIES
     sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImp(sl()));
