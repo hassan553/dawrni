@@ -28,4 +28,12 @@ class AuthRemoteDataSourceImp extends AuthDataSource {
     );
     return UserModel.fromJson(response.data);
   }
+   @override
+  Future<UserModel> login(LoginUserParameters parameters) async {
+    AppResponse response = await ApiServices().post(
+      ApisUrls.login,
+      data: parameters.toJson(),
+    );
+    return UserModel.fromJson(response.data);
+  }
 }

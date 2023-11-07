@@ -32,4 +32,16 @@ class AuthRepositoryImp extends AuthRepository {
       return Left(ErrorsHandler.failureThrower(e));
     }
   }
+  
+  @override
+  Future<Either<Failure, UserEntity>> login(LoginUserParameters parameters)async {
+  try {
+      final UserModel res = await authDataSource.login(parameters);
+      final user = res.toEntity();
+      await CacheStorageServices().setToken(res.token!);
+      return Right(user);
+    } catch (e) {
+      return Left(ErrorsHandler.failureThrower(e));
+    }
+  }
 }
