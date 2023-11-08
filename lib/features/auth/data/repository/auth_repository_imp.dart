@@ -9,6 +9,7 @@ import 'package:dawrni/features/auth/domain/parameters/login_user_parameters.dar
 import 'package:dawrni/features/auth/domain/parameters/register_company_parameters.dart';
 import 'package:dawrni/features/auth/domain/parameters/register_parameters.dart';
 import 'package:dawrni/features/auth/domain/parameters/register_user_parameters.dart';
+import 'package:dawrni/features/auth/domain/parameters/verify_email_code_parameters.dart';
 
 import '../../../../core/errors/errors_handler.dart';
 import '../../../../core/errors/failure.dart';
@@ -32,14 +33,26 @@ class AuthRepositoryImp extends AuthRepository {
       return Left(ErrorsHandler.failureThrower(e));
     }
   }
-  
+
   @override
-  Future<Either<Failure, UserEntity>> login(LoginUserParameters parameters)async {
-  try {
+  Future<Either<Failure, UserEntity>> login(
+      LoginUserParameters parameters) async {
+    try {
       final UserModel res = await authDataSource.login(parameters);
       final user = res.toEntity();
       await CacheStorageServices().setToken(res.token!);
       return Right(user);
+    } catch (e) {
+      return Left(ErrorsHandler.failureThrower(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> verifyEmailCode(
+      VerifyEmailCodeParameters parameters) async {
+    try {
+      final response = await authDataSource.verifyEmailCode(parameters);
+      return Right(response);
     } catch (e) {
       return Left(ErrorsHandler.failureThrower(e));
     }

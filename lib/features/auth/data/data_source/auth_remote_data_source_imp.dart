@@ -9,6 +9,7 @@ import 'package:dawrni/features/auth/domain/parameters/login_user_parameters.dar
 import 'package:dawrni/features/auth/domain/parameters/register_company_parameters.dart';
 import 'package:dawrni/features/auth/domain/parameters/register_parameters.dart';
 import 'package:dawrni/features/auth/domain/parameters/register_user_parameters.dart';
+import 'package:dawrni/features/auth/domain/parameters/verify_email_code_parameters.dart';
 import 'package:dawrni/features/profile/data/model/company_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/user_model.dart';
@@ -35,5 +36,14 @@ class AuthRemoteDataSourceImp extends AuthDataSource {
       data: parameters.toJson(),
     );
     return UserModel.fromJson(response.data);
+  }
+
+  @override
+  Future<String> verifyEmailCode(VerifyEmailCodeParameters parameters)async {
+  AppResponse response = await ApiServices().post(
+      ApisUrls.verifyEmailCode,
+      data: parameters.toJson(),
+    );
+    return response.data['message'];
   }
 }
