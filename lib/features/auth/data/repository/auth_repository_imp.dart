@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/features/auth/data/models/user_model.dart';
+import 'package:dawrni/features/auth/data/models/verify_email_code_model.dart';
 import 'package:dawrni/features/auth/domain/entities/user_entity.dart';
+import 'package:dawrni/features/auth/domain/entities/verify_email_code_entity.dart';
 import 'package:dawrni/features/auth/domain/parameters/change_password_parameters.dart';
 import 'package:dawrni/features/auth/domain/parameters/does_client_email_exist_parameters.dart';
 import 'package:dawrni/features/auth/domain/parameters/does_company_email_exist_parameters.dart';
@@ -48,11 +50,11 @@ class AuthRepositoryImp extends AuthRepository {
   }
 
   @override
-  Future<Either<Failure, String>> verifyEmailCode(
+  Future<Either<Failure, VerifyEmailCodeEntity>> verifyEmailCode(
       VerifyEmailCodeParameters parameters) async {
     try {
-      final response = await authDataSource.verifyEmailCode(parameters);
-      return Right(response);
+      final VerifyEmailCodeModel response = await authDataSource.verifyEmailCode(parameters);
+      return Right(response.toEntity());
     } catch (e) {
       return Left(ErrorsHandler.failureThrower(e));
     }

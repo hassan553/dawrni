@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dawrni/core/constants/apis_urls.dart';
 import 'package:dawrni/core/services/api_services.dart';
 import 'package:dawrni/core/utils/app_response.dart';
+import 'package:dawrni/features/auth/data/models/verify_email_code_model.dart';
 import 'package:dawrni/features/auth/domain/parameters/change_password_parameters.dart';
 import 'package:dawrni/features/auth/domain/parameters/does_client_email_exist_parameters.dart';
 import 'package:dawrni/features/auth/domain/parameters/does_company_email_exist_parameters.dart';
@@ -39,11 +40,11 @@ class AuthRemoteDataSourceImp extends AuthDataSource {
   }
 
   @override
-  Future<String> verifyEmailCode(VerifyEmailCodeParameters parameters)async {
+  Future<VerifyEmailCodeModel> verifyEmailCode(VerifyEmailCodeParameters parameters)async {
   AppResponse response = await ApiServices().post(
       ApisUrls.verifyEmailCode,
       data: parameters.toJson(),
     );
-    return response.data['message'];
+    return VerifyEmailCodeModel.fromJson(response.data);
   }
 }

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:dawrni/core/utils/base_state.dart';
-import 'package:dawrni/features/auth/domain/entities/user_entity.dart';
-import 'package:dawrni/features/auth/domain/parameters/login_user_parameters.dart';
+import 'package:dawrni/features/auth/domain/entities/verify_email_code_entity.dart';
 import 'package:dawrni/features/auth/domain/parameters/verify_email_code_parameters.dart';
 import 'package:dawrni/features/auth/domain/repository/auth_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +8,7 @@ import 'package:equatable/equatable.dart';
 
 part 'verify_email_event.dart';
 
-class VerifyEmailBloc extends Bloc<VerifyEmailEvent, BaseState> {
+class VerifyEmailBloc extends Bloc<VerifyEmailEvent, BaseState<VerifyEmailCodeEntity>> {
   final AuthRepository authRepository;
 
   VerifyEmailBloc(this.authRepository) : super(const BaseState()) {
