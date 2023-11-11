@@ -20,7 +20,6 @@ class RegisterBloc extends Bloc<RegisterEvent, BaseState<UserEntity>> {
     emit(state.loading());
     final result = await authRepository.register(
       RegisterParameters(
-          username: event.username,
           email: event.email,
           password: event.password,
           type: event.type),

@@ -24,9 +24,9 @@ extension Parameter on UserType {
   String toParameter() {
     switch (this) {
       case UserType.company:
-        return "True";
+        return "company";
       default:
-        return "False";
+        return "client";
     }
   }
 }
