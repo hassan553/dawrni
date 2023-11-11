@@ -1,7 +1,7 @@
 
 import 'package:dawrni/features/onboarding/data/model/onboarding_model.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnboardingPage extends StatelessWidget {
   final OnboardingModel data;

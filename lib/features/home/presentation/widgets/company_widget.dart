@@ -1,7 +1,7 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CompanyWidget extends StatelessWidget {
   const CompanyWidget({

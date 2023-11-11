@@ -1,5 +1,7 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/enums/user_type.dart';
+import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
+import 'package:dawrni/core/extension/ui_extensions/container_decoration.dart';
 import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/core/widgets/custom_button.dart';
@@ -14,7 +16,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/widgets/show_awesomeDialog.dart';
 import '../../../../generated/l10n.dart';
@@ -70,14 +72,8 @@ class _RegisterViewState extends State<RegisterView> {
     return Scaffold(
       body: SafeArea(
           child: Container(
-        height: 100.h,
-        decoration: const BoxDecoration(
-          color: AppColors.offBlack,
-          image: DecorationImage(
-            alignment: Alignment.bottomRight,
-            image: AssetImage(ImagesPaths.splashBackgroundPng),
-          ),
-        ),
+        // height: 100.h,
+        decoration: Theme.of(context).authDecoration,
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),

@@ -3,7 +3,7 @@ import 'package:dawrni/core/widgets/custom_slide_button.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BookingView extends StatefulWidget {
   const BookingView({super.key});

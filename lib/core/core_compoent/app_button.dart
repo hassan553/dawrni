@@ -1,6 +1,6 @@
 // import 'package:dawrni/core/extensions/ui_extensions/app_button_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({

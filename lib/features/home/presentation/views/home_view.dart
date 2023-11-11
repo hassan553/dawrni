@@ -6,7 +6,7 @@ import 'package:dawrni/features/home/presentation/routes/all_company_route.dart'
 import 'package:dawrni/features/home/presentation/widgets/company_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

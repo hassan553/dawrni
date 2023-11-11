@@ -6,7 +6,7 @@ import 'package:dawrni/features/onboarding/presentation/routes/select_language_r
 import 'package:dawrni/features/onboarding/presentation/widgets/onboarding_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../generated/l10n.dart';
 

@@ -4,7 +4,7 @@ import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/home/presentation/routes/booking_route.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CompanyDetailsView extends StatelessWidget {
   const CompanyDetailsView({Key? key}) : super(key: key); // Fix the constructor
