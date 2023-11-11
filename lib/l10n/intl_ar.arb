@@ -100,5 +100,12 @@
   "signUp": " تسجيل الدخول",
   "passwordConfirmation": "تأكيد كلمة المرور",
   "yourPasswordWillBeYourKeyToSecureAccessIn": "ستكون كلمة المرور الخاصة بك هي مفتاحك للوصول الآمن في المستقبل",
-  "sendEmail": "ارسل بريد الكتروني"
+  "sendEmail": "ارسل بريد الكتروني",
+  "emailHint": "abdullah@gmail.com",
+  "passwordHint": "123456qwe!Q",
+  "emailIsNotValid": "Email is not valid",
+  "requiredField": "Required Field",
+  "mustBeAtLeastMinlength": "must be at least {minLength}",
+  "mobileIsNotValid": "Mobile is not valid",
+  "signedUpSuccessfully": "Signed Up Successfully"
 }

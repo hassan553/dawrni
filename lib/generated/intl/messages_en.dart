@@ -20,6 +20,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(minLength) => "must be at least ${minLength}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "aVerificationLinkHasBeenSentToYourEmailAddress":
@@ -66,6 +68,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "doYouWantToCancelTheAppointment": MessageLookupByLibrary.simpleMessage(
             "Do you want to cancel the appointment ?"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "emailHint": MessageLookupByLibrary.simpleMessage("abdullah@gmail.com"),
+        "emailIsNotValid":
+            MessageLookupByLibrary.simpleMessage("Email is not valid"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "facebook": MessageLookupByLibrary.simpleMessage("Facebook"),
         "forget_password":
@@ -83,7 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hey": MessageLookupByLibrary.simpleMessage("Hey"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "if_you_have_account":
-            MessageLookupByLibrary.simpleMessage("If you have an account? "),
+            MessageLookupByLibrary.simpleMessage("If you have an account?"),
         "internetIsRestored":
             MessageLookupByLibrary.simpleMessage("Internet is restored !"),
         "let_find_what_you_need":
@@ -91,6 +96,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "linkedin": MessageLookupByLibrary.simpleMessage("LinkedIn"),
         "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "message": MessageLookupByLibrary.simpleMessage("Message"),
+        "mobileIsNotValid":
+            MessageLookupByLibrary.simpleMessage("Mobile is not valid"),
+        "mustBeAtLeastMinlength": m0,
         "myAppointments":
             MessageLookupByLibrary.simpleMessage("My appointments"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
@@ -104,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordConfirmation":
             MessageLookupByLibrary.simpleMessage("Password Confirmation"),
+        "passwordHint": MessageLookupByLibrary.simpleMessage("123456qwe!Q"),
         "personalizeYourExperience":
             MessageLookupByLibrary.simpleMessage("Personalize your experience"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
@@ -112,6 +121,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "promotions": MessageLookupByLibrary.simpleMessage("Promotions"),
+        "requiredField": MessageLookupByLibrary.simpleMessage("Required Field"),
         "resendVerificationEmail":
             MessageLookupByLibrary.simpleMessage("Resend Verification Email"),
         "restoreTheInternet":
@@ -132,6 +142,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),
         "sign_in_here": MessageLookupByLibrary.simpleMessage("Sign In here"),
         "sign_up_here": MessageLookupByLibrary.simpleMessage("Sign Up here"),
+        "signedUpSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Signed Up Successfully"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "somethingWrongWithYourConnection":
             MessageLookupByLibrary.simpleMessage(

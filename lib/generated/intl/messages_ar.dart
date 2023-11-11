@@ -20,6 +20,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
+  static String m0(minLength) => "must be at least ${minLength}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "aVerificationLinkHasBeenSentToYourEmailAddress":
@@ -64,6 +66,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "doYouWantToCancelTheAppointment":
             MessageLookupByLibrary.simpleMessage("هل ترغب في إلغاء الموعد؟"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+        "emailHint": MessageLookupByLibrary.simpleMessage("abdullah@gmail.com"),
+        "emailIsNotValid":
+            MessageLookupByLibrary.simpleMessage("Email is not valid"),
         "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
         "facebook": MessageLookupByLibrary.simpleMessage("فيسبوك"),
         "forget_password":
@@ -89,6 +94,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "linkedin": MessageLookupByLibrary.simpleMessage("لينكد إن"),
         "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "message": MessageLookupByLibrary.simpleMessage("الرسالة"),
+        "mobileIsNotValid":
+            MessageLookupByLibrary.simpleMessage("Mobile is not valid"),
+        "mustBeAtLeastMinlength": m0,
         "myAppointments": MessageLookupByLibrary.simpleMessage("مواعيدي"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
@@ -101,6 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordConfirmation":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
+        "passwordHint": MessageLookupByLibrary.simpleMessage("123456qwe!Q"),
         "personalizeYourExperience":
             MessageLookupByLibrary.simpleMessage("تخصيص تجربتك"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
@@ -109,6 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "promotions": MessageLookupByLibrary.simpleMessage("العروض والتخفيضات"),
+        "requiredField": MessageLookupByLibrary.simpleMessage("Required Field"),
         "resendVerificationEmail":
             MessageLookupByLibrary.simpleMessage("إعادة ارسال بريد التحقق"),
         "restoreTheInternet":
@@ -129,6 +139,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_in_here":
             MessageLookupByLibrary.simpleMessage("تسجيل الدخول هنا"),
         "sign_up_here": MessageLookupByLibrary.simpleMessage("سجل هنا"),
+        "signedUpSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Signed Up Successfully"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطى"),
         "somethingWrongWithYourConnection":
             MessageLookupByLibrary.simpleMessage(

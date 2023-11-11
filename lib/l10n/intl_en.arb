@@ -17,7 +17,7 @@
   "wrong_password": "Wrong password! please try again",
   "company_name": "Company Name",
   "confirm": "Confirm",
-  "if_you_have_account": "If you have an account? ",
+  "if_you_have_account": "If you have an account?",
   "sign_in_here": "Sign In here",
   "company_license_id": "Company License ID",
   "service_category": "Service Category",
@@ -100,5 +100,12 @@
   "signUp": " Sign Up",
   "passwordConfirmation": "Password Confirmation",
   "yourPasswordWillBeYourKeyToSecureAccessIn": "Your password will be your key to secure access in the future",
-  "sendEmail": "Send Email"
+  "sendEmail": "Send Email",
+  "emailHint": "abdullah@gmail.com",
+  "passwordHint": "123456qwe!Q",
+  "emailIsNotValid": "Email is not valid",
+  "requiredField": "Required Field",
+  "mustBeAtLeastMinlength": "must be at least {minLength}",
+  "mobileIsNotValid": "Mobile is not valid",
+  "signedUpSuccessfully": "Signed Up Successfully"
 }

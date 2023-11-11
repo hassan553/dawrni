@@ -8,15 +8,18 @@ import 'package:dawrni/core/services/cache_storage_services.dart';
 
 class AppHeaders {
   static AppHeaders? _instance;
+
   AppHeaders._();
+
   factory AppHeaders() => _instance ??= AppHeaders._();
 
 // TODO : customize your Header
   Map<String, String> get baseHeaders => {
         // if (CacheStorageServices().hasToken)
         //   "Authorization": "Bearer ${CacheStorageServices().token}",
-        "Content-Type": "application/json",
-        "language": "en",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Content-Type": "multipart/form-data",
+        "Accept-Language": "en",
         "app": "android",
         "version": "1.2.0",
       };

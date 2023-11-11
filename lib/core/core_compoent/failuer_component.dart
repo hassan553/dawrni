@@ -1,9 +1,14 @@
 /// This file contains a set of components for displaying different types of failures in a Flutter application.
 /// Each failure type has its own corresponding component that handles the visual representation of the failure.
 
+import 'package:dawrni/core/core_compoent/show_toast.dart';
 import 'package:dawrni/core/errors/failure.dart';
 import 'package:dawrni/core/services/service_locator.dart';
+import 'package:dawrni/features/auth/presentation/routes/login_client_route.dart';
+import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 /// The [FailureComponent] class is a generic component that takes a [Failure] object and dynamically selects the appropriate
 /// sub-component based on the runtime type of the failure. It uses a switch statement to determine the failure type and
@@ -16,6 +21,18 @@ class FailureComponent extends StatelessWidget {
   const FailureComponent({super.key, required this.failure});
 
   final Failure failure;
+
+  static handleFailure({required BuildContext context, required Failure failure}) {
+    showToast(message: failure.message);
+    if(failure is SessionExpiredFailure) {
+      WidgetsBinding.instance.addPostFrameCallback(
+            (timeStamp) {
+          // context.read<AppConfigBloc>().add(const LogOutEvent());
+          context.go(LoginClientRoute.name);
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

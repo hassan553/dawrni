@@ -230,10 +230,10 @@ class S {
     );
   }
 
-  /// `If you have an account? `
+  /// `If you have an account?`
   String get if_you_have_account {
     return Intl.message(
-      'If you have an account? ',
+      'If you have an account?',
       name: 'if_you_have_account',
       desc: '',
       args: [],
@@ -1065,6 +1065,76 @@ class S {
     return Intl.message(
       'Send Email',
       name: 'sendEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `abdullah@gmail.com`
+  String get emailHint {
+    return Intl.message(
+      'abdullah@gmail.com',
+      name: 'emailHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `123456qwe!Q`
+  String get passwordHint {
+    return Intl.message(
+      '123456qwe!Q',
+      name: 'passwordHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is not valid`
+  String get emailIsNotValid {
+    return Intl.message(
+      'Email is not valid',
+      name: 'emailIsNotValid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Required Field`
+  String get requiredField {
+    return Intl.message(
+      'Required Field',
+      name: 'requiredField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `must be at least {minLength}`
+  String mustBeAtLeastMinlength(Object minLength) {
+    return Intl.message(
+      'must be at least $minLength',
+      name: 'mustBeAtLeastMinlength',
+      desc: '',
+      args: [minLength],
+    );
+  }
+
+  /// `Mobile is not valid`
+  String get mobileIsNotValid {
+    return Intl.message(
+      'Mobile is not valid',
+      name: 'mobileIsNotValid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Signed Up Successfully`
+  String get signedUpSuccessfully {
+    return Intl.message(
+      'Signed Up Successfully',
+      name: 'signedUpSuccessfully',
       desc: '',
       args: [],
     );

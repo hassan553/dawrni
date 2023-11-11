@@ -4,42 +4,42 @@ import 'package:dawrni/features/auth/domain/entities/user_entity.dart';
 
 class UserModel extends BaseModel<UserEntity> {
   UserModel({
-    this.userInfo,
-    this.token,
-    this.isCompany,
-  });
+      this.userInfo, 
+      this.token,});
 
   UserModel.fromJson(dynamic json) {
-    userInfo =
-        json['user_info'] != null ? UserInfo.fromJson(json['user_info']) : null;
+    userInfo = json['user_info'] != null ? UserInfo.fromJson(json['user_info']) : null;
     token = json['token'];
-    isCompany = json['is_company'];
   }
-
   UserInfo? userInfo;
   String? token;
-  String? isCompany;
 
   @override
   UserEntity toEntity() {
     return UserEntity(
-        username: userInfo!.username!,
         email: userInfo!.email!,
-        type: isCompany!.toUserType()!);
+        type: userInfo!.userType!.toUserType()!);
   }
+
 }
 
 class UserInfo {
   UserInfo({
-    this.username,
-    this.email,
-  });
+      this.email, 
+      this.userType,});
 
   UserInfo.fromJson(dynamic json) {
-    username = json['username'];
     email = json['email'];
+    userType = json['user_type'];
+  }
+  String? email;
+  String? userType;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['email'] = email;
+    map['user_type'] = userType;
+    return map;
   }
 
-  String? username;
-  String? email;
 }

@@ -23,6 +23,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 late SharedPreferences sharedPreferences;
 void main() async {
+  // dynamic s = {
+  //   "email": [
+  //     "A user with that Email already exists."
+  //   ]
+  // };
+  // var ss = s['message'] ?? (s as Map).entries.first.value;
   WidgetsFlutterBinding.ensureInitialized();
   await CacheStorageServices.init();
   await Firebase.initializeApp();

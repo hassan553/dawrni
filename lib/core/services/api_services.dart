@@ -31,7 +31,7 @@ class ApiServices {
     return ErrorsHandler.exceptionThrower(
       () => Dio().post(
         url,
-        data: data,
+        data: data == null ? null : FormData.fromMap(data as Map<String, dynamic>),
         options: Options(headers: headers ?? AppHeaders().baseHeaders),
       ),
     );
@@ -45,7 +45,7 @@ class ApiServices {
     return ErrorsHandler.exceptionThrower(
       () => Dio().put(
         url,
-        data: data,
+        data: data == null ? null : FormData.fromMap(data as Map<String, dynamic>),
         options: Options(headers: headers ?? AppHeaders().baseHeaders),
       ),
     );
@@ -59,7 +59,7 @@ class ApiServices {
     return ErrorsHandler.exceptionThrower(
       () => Dio().delete(
         url,
-        data: data,
+        data: data == null ? null : FormData.fromMap(data as Map<String, dynamic>),
         options: Options(headers: headers ?? AppHeaders().baseHeaders),
       ),
     );
@@ -74,7 +74,7 @@ class ApiServices {
       () => Dio().get(
         url,
         options: Options(headers: headers ?? AppHeaders().baseHeaders),
-        data: data,
+        data: data == null ? null : FormData.fromMap(data as Map<String, dynamic>),
       ),
     );
   }
