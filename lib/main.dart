@@ -5,7 +5,6 @@ import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/themes/app_theme.dart';
 import 'package:dawrni/core/translations/app_local.dart';
-import 'package:dawrni/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:dawrni/features/profile/data/repository/client_profile_repo.dart';
 import 'package:dawrni/features/profile/data/repository/company_profile_repo.dart';
@@ -45,7 +44,6 @@ class Dawrni extends StatelessWidget {
     return ResponsiveSizer(builder: (context, orientation, deviceType) {
       return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => sl<AuthCubit>()),
           BlocProvider(
               create: (context) =>
               ClientProfileCubit(ClientProfileRepo())..fetchClientProfile()),

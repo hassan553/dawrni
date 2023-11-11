@@ -1,3 +1,5 @@
+import 'package:dawrni/core/entities/base_entity.dart';
+import 'package:dawrni/core/models/base_model.dart';
 import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -57,50 +59,48 @@ class ErrorsHandler {
   }
 
   // this function check possible exceptions and return either (left as Failure , right as Type you generic send)
-  static Future<Either<Failure, T>> handleEither<T>(
-    FutureFunction<T> future,
-  ) async {
+  static Future<Either<Failure, T>>
+  handleEither<T extends BaseEntity, M extends BaseModel>(
+      FutureFunction<M> future,
+      ) async {
     try {
       /// first call your [FutureFunction] function
       final result = await future();
-      return Right(result);
+      return Right(result.toEntity() as T);
     } catch (e) {
       /// then catch any errors + check types then return [Left] appropriate [Failure]
-      // logger.d(
-      //     "================== in handleEither Exception ====================== \n ${e.runtimeType} \n ${e.toString()}");
 
-      if (e is ServerException) {
-        return Left(
-          ServerFailure(
-            e.errorMessageModel.statusMessage,
-            statusCode: e.errorMessageModel.statusCode,
-          ),
-        );
-      }
-      if (e is NoInternetException) {
-        return Left(NoInternetFailure());
-      }
-      if (e is UnknownException) {
-        return Left(UnknownFailure());
-      }
-      if (e is ForceUpdateException) {
-        return Left(ForceUpdateFailure());
-      }
-      if (e is AppUnderMaintenanceException) {
-        return Left(AppUnderMaintenanceFailure());
-      }
-      if (e is SessionExpiredException) {
-        return Left(SessionExpiredFailure());
-      }
-      if (e is ParsingException || e is TypeError) {
-        return Left(
-          ParsingFailure(
-            parsingMessage:
-                e is ParsingException ? e.parsingMessage : e.toString(),
-          ),
-        );
-      }
-      return Left(Failure(e.toString()));
+      return Left(failureThrower(e));
     }
+  }
+
+  static Failure failureThrower(Object e) {
+    if (e is ServerException) {
+      return ServerFailure(
+        e.errorMessageModel.statusMessage,
+        statusCode: e.errorMessageModel.statusCode,
+      );
+    }
+    if (e is NoInternetException) {
+      return NoInternetFailure();
+    }
+    if (e is UnknownException) {
+      return UnknownFailure();
+    }
+    if (e is ForceUpdateException) {
+      return ForceUpdateFailure();
+    }
+    if (e is AppUnderMaintenanceException) {
+      return AppUnderMaintenanceFailure();
+    }
+    if (e is SessionExpiredException) {
+      return SessionExpiredFailure();
+    }
+    if (e is ParsingException || e is TypeError) {
+      return ParsingFailure(
+        parsingMessage: e is ParsingException ? e.parsingMessage : e.toString(),
+      );
+    }
+    return Failure(e.toString());
   }
 }

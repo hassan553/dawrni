@@ -11,7 +11,7 @@ import '../enums/app_languages.dart';
 class AppLocale {
   static AppLocale? _instance;
   AppLocale._();
-  final String defaultLocale = 'ar';
+  final String defaultLocale = 'en';
 
   factory AppLocale() => _instance ??= AppLocale._();
 

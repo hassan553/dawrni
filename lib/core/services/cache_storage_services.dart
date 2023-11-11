@@ -47,9 +47,19 @@ class CacheStorageServices {
 
   bool get isCompany => _preferences?.getString(_Keys.userType)?.toUserType() == UserType.company;
 
+  ///
+  Future<void> setToken(String token) async => await _preferences?.setString(_Keys.token, token);
+
+  Future<void> removeToken() async => await _preferences?.remove(_Keys.token);
+
+  bool get hasToken => _preferences?.containsKey(_Keys.token) ?? false;
+
+  String get token => _preferences?.getString(_Keys.token) ?? 'no token';
+
 }
 
 class _Keys {
+  static const String token = 'token';
   static const String userType = 'userType';
   static const String locale = 'locale';
 }
