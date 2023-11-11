@@ -55,7 +55,7 @@ class Dawrni extends StatelessWidget {
         child: AdaptiveTheme(
             light: AppTheme().lightTheme,
             dark: AppTheme().darkTheme,
-            initial: AdaptiveThemeMode.light,
+            initial: AdaptiveThemeMode.dark,
             builder: (theme, darkTheme) {
               return BlocBuilder<AppConfigBloc,AppConfigState>(
                 bloc: sl(),
