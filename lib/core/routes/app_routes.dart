@@ -25,7 +25,7 @@ import '../../features/profile/presentation/routes/company_profile_route.dart';
 
 class AppRoutes {
   static final router = GoRouter(
-    initialLocation: RegisterRoute.name,
+    initialLocation: LoginRoute.name,
 
     // TODO: add pages route here
     routes: [
@@ -33,7 +33,7 @@ class AppRoutes {
       RegisterRoute.route,
       OnboardingRoute.route,
       SelectLanguageRoute.route,
-      LoginClientRoute.route,
+      LoginRoute.route,
       ForgetPasswordRoute.route,
       // OtpLoginRoute.route,
       // OtpRegisterRoute.route,

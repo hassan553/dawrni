@@ -21,6 +21,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'features/auth/presentation/blocs/login/login_bloc.dart';
+
 late SharedPreferences sharedPreferences;
 void main() async {
   // dynamic s = {
@@ -33,7 +35,6 @@ void main() async {
   await CacheStorageServices.init();
   await Firebase.initializeApp();
   ServicesLocator().init();
-  // sharedPreferences = await SharedPreferences.getInstance();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
@@ -57,6 +58,7 @@ class Dawrni extends StatelessWidget {
             create: (context) => CompanyProfileCubit(CompanyProfileRepo())
               ..fetchCompanyProfile()),
         BlocProvider(create: (_) => sl<AppConfigBloc>()),
+
       ],
       child: ScreenUtilInit(
         designSize: const Size(428, 926),

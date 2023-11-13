@@ -41,11 +41,11 @@ class BookBotton extends StatelessWidget {
             children: [
               ResponsiveText(
                 text: title ?? " ",
-                scaleFactor: .05,
                 color: AppColors.white,
+                
               ),
               const Spacer(),
-              Image.asset(image??'assets/Group 34092.png'),
+              Image.asset(image ?? 'assets/Group 34092.png'),
               const SizedBox(width: 10),
             ],
           )),

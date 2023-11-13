@@ -139,6 +139,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_in_here":
             MessageLookupByLibrary.simpleMessage("تسجيل الدخول هنا"),
         "sign_up_here": MessageLookupByLibrary.simpleMessage("سجل هنا"),
+        "signedInSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم تسجبل الدخوال بنجاح"),
         "signedUpSuccessfully":
             MessageLookupByLibrary.simpleMessage("Signed Up Successfully"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطى"),

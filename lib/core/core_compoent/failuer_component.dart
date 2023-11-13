@@ -22,13 +22,14 @@ class FailureComponent extends StatelessWidget {
 
   final Failure failure;
 
-  static handleFailure({required BuildContext context, required Failure failure}) {
+  static handleFailure(
+      {required BuildContext context, required Failure failure}) {
     showToast(message: failure.message);
-    if(failure is SessionExpiredFailure) {
+    if (failure is SessionExpiredFailure) {
       WidgetsBinding.instance.addPostFrameCallback(
-            (timeStamp) {
+        (timeStamp) {
           // context.read<AppConfigBloc>().add(const LogOutEvent());
-          context.go(LoginClientRoute.name);
+          context.go(LoginRoute.name);
         },
       );
     }

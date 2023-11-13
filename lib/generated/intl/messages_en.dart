@@ -142,6 +142,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),
         "sign_in_here": MessageLookupByLibrary.simpleMessage("Sign In here"),
         "sign_up_here": MessageLookupByLibrary.simpleMessage("Sign Up here"),
+        "signedInSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Signed In Successfully"),
         "signedUpSuccessfully":
             MessageLookupByLibrary.simpleMessage("Signed Up Successfully"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),

@@ -69,8 +69,7 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
                                     language: AppLanguages.english));
                             Future.delayed(
                               const Duration(milliseconds: 500),
-                              () => context
-                                  .pushReplacement(LoginClientRoute.name),
+                              () => context.pushReplacement(LoginRoute.name),
                             );
                           }),
                           child: SizedBox(
@@ -123,8 +122,7 @@ class _SelectLanguageViewState extends State<SelectLanguageView> {
                                     language: AppLanguages.arabic));
                             Future.delayed(
                               const Duration(milliseconds: 500),
-                              () => context
-                                  .pushReplacement(LoginClientRoute.name),
+                              () => context.pushReplacement(LoginRoute.name),
                             );
                           }),
                           child: SizedBox(

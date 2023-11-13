@@ -7,27 +7,17 @@ import 'package:dawrni/core/enums/user_type.dart';
 import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
 import 'package:dawrni/core/extension/ui_extensions/container_decoration.dart';
 import 'package:dawrni/core/paths/images_paths.dart';
-import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/core/utils/app_validator.dart';
 import 'package:dawrni/core/utils/base_state.dart';
-import 'package:dawrni/core/widgets/custom_button.dart';
 
-import 'package:dawrni/core/widgets/custom_loading_widget.dart';
-import 'package:dawrni/core/widgets/custom_sized_box.dart';
-import 'package:dawrni/core/widgets/custom_text_filed.dart';
-import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/auth/domain/entities/user_entity.dart';
 import 'package:dawrni/features/auth/presentation/blocs/register/register_bloc.dart';
 import 'package:dawrni/features/auth/presentation/routes/login_client_route.dart';
 import 'package:dawrni/features/auth/presentation/routes/verify_email_route.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/widgets/show_awesomeDialog.dart';
 import '../../../../generated/l10n.dart';
 
 class RegisterView extends StatefulWidget {
@@ -115,7 +105,7 @@ class _RegisterViewState extends State<RegisterView> {
           style: context.f14400,
         ),
         TextButton(
-          onPressed: () => context.push(LoginClientRoute.name),
+          onPressed: () => context.push(LoginRoute.name),
           child: Text(
             S.of(context).sign_in_here,
             style: context.f14700?.copyWith(

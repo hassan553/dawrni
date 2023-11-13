@@ -107,5 +107,6 @@
   "requiredField": "Required Field",
   "mustBeAtLeastMinlength": "must be at least {minLength}",
   "mobileIsNotValid": "Mobile is not valid",
-  "signedUpSuccessfully": "Signed Up Successfully"
+  "signedUpSuccessfully": "Signed Up Successfully",
+  "signedInSuccessfully": "Signed In Successfully"
 }

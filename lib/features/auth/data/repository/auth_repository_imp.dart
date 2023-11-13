@@ -42,7 +42,7 @@ class AuthRepositoryImp extends AuthRepository {
     try {
       final UserModel res = await authDataSource.login(parameters);
       final user = res.toEntity();
-      await CacheStorageServices().setToken(res.token!);
+      // await CacheStorageServices().setToken(res.token??'');
       return Right(user);
     } catch (e) {
       return Left(ErrorsHandler.failureThrower(e));
@@ -53,7 +53,8 @@ class AuthRepositoryImp extends AuthRepository {
   Future<Either<Failure, VerifyEmailCodeEntity>> verifyEmailCode(
       VerifyEmailCodeParameters parameters) async {
     try {
-      final VerifyEmailCodeModel response = await authDataSource.verifyEmailCode(parameters);
+      final VerifyEmailCodeModel response =
+          await authDataSource.verifyEmailCode(parameters);
       return Right(response.toEntity());
     } catch (e) {
       return Left(ErrorsHandler.failureThrower(e));

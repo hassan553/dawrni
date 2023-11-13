@@ -1,7 +1,7 @@
-import 'package:dawrni/features/auth/presentation/views/login_client_view.dart';
+import 'package:dawrni/features/auth/presentation/views/login_view.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginClientRoute {
+class LoginRoute {
   static const String name = '/login_client';
 
   static GoRoute route = GoRoute(

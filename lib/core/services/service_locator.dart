@@ -8,6 +8,8 @@ import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_conf
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../features/auth/presentation/blocs/login/login_bloc.dart';
+
 final sl = GetIt.instance;
 
 /// This class [ServicesLocator] is define to inject values and variables (Objects) into memory when the application is opened,
@@ -35,7 +37,7 @@ class ServicesLocator {
 
   void init() {
     //// BLOCS
-    // sl.registerFactory(() => LoginBloc(sl()));
+    sl.registerFactory(() => LoginBloc(sl()));
     sl.registerFactory(() => RegisterBloc(sl()));
     // sl.registerFactory(() => HomeBloc(sl()));
 
