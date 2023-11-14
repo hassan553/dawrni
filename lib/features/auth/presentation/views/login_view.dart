@@ -7,6 +7,7 @@ import 'package:dawrni/core/utils/base_state.dart';
 import 'package:dawrni/features/auth/domain/entities/user_entity.dart';
 import 'package:dawrni/features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:dawrni/features/auth/presentation/widgets/top_logo.dart';
+import 'package:dawrni/features/home/presentation/routes/main_route.dart';
 import 'package:dawrni/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,8 +21,6 @@ import '../../../../core/core_compoent/show_toast.dart';
 import '../../../../core/utils/app_validator.dart';
 import '../../../../core/widgets/custom_loading_widget.dart';
 import '../../../../core/widgets/responsive_text.dart';
-import '../../../home/presentation/routes/home_route.dart';
-import '../routes/forget_password_route.dart';
 import '../routes/register_route.dart';
 
 class LoginView extends StatefulWidget {
@@ -53,7 +52,7 @@ class _LoginViewState extends State<LoginView> {
           listener: (context, state) {
             if (state.isSuccess) {
               showToast(message: S.of(context).signedInSuccessfully);
-              context.go(HomeRoute.name);
+              context.go(MainRoute.name);
             } else if (state.isError) {
               FailureComponent.handleFailure(
                   context: context, failure: state.failure);

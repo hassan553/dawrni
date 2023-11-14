@@ -4,19 +4,13 @@ import 'package:dawrni/core/core_compoent/failuer_component.dart';
 import 'package:dawrni/core/core_compoent/show_toast.dart';
 import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
 import 'package:dawrni/core/extension/ui_extensions/container_decoration.dart';
-import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/core/utils/app_validator.dart';
 import 'package:dawrni/core/utils/base_state.dart';
-import 'package:dawrni/core/widgets/custom_button.dart';
-import 'package:dawrni/core/widgets/custom_dailog.dart';
-import 'package:dawrni/core/widgets/custom_sized_box.dart';
-import 'package:dawrni/core/widgets/responsive_text.dart';
-import 'package:dawrni/features/auth/domain/entities/user_entity.dart';
 import 'package:dawrni/features/auth/domain/entities/verify_email_code_entity.dart';
-import 'package:dawrni/features/auth/presentation/blocs/register/register_bloc.dart';
 import 'package:dawrni/features/auth/presentation/blocs/verify_email/verify_email_bloc.dart';
 import 'package:dawrni/features/auth/presentation/widgets/top_logo.dart';
 import 'package:dawrni/features/home/presentation/routes/home_route.dart';
+import 'package:dawrni/features/home/presentation/routes/main_route.dart';
 import 'package:dawrni/generated/l10n.dart';
 
 import 'package:flutter/material.dart';
@@ -50,7 +44,7 @@ class _OtpVerifyViewState extends State<OtpVerifyView> {
             listener: (context, state) {
               if (state.isSuccess) {
                 showToast(message: S.of(context).verifiedSuccessfully);
-                context.go(HomeRoute.name);
+                context.go(MainRoute.name);
               } else if (state.isError) {
                 FailureComponent.handleFailure(
                     context: context, failure: state.failure);
