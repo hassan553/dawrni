@@ -20,7 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(minLength) => "must be at least ${minLength}";
+  static String m0(number) => "Enter the OTP code sent to ${number}";
+
+  static String m1(minLength) => "must be at least ${minLength}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -72,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailIsNotValid":
             MessageLookupByLibrary.simpleMessage("Email is not valid"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
+        "enterTheOtpCodeSentToNumber": m0,
         "facebook": MessageLookupByLibrary.simpleMessage("Facebook"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("Forget Password?"),
@@ -98,7 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "message": MessageLookupByLibrary.simpleMessage("Message"),
         "mobileIsNotValid":
             MessageLookupByLibrary.simpleMessage("Mobile is not valid"),
-        "mustBeAtLeastMinlength": m0,
+        "mustBeAtLeastMinlength": m1,
         "myAppointments":
             MessageLookupByLibrary.simpleMessage("My appointments"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
@@ -107,6 +110,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No internet connection !"),
         "noResults": MessageLookupByLibrary.simpleMessage("No Results !"),
         "opps": MessageLookupByLibrary.simpleMessage("Opps !"),
+        "otpVerification":
+            MessageLookupByLibrary.simpleMessage("OTP Verification"),
         "our_best_services":
             MessageLookupByLibrary.simpleMessage("Our Best Services"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -172,6 +177,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("1. Types data we collect"),
         "useOfYourPersonalData": MessageLookupByLibrary.simpleMessage(
             "2. Use of your personal data"),
+        "verificationCodeHasBeenSentToYourEmail":
+            MessageLookupByLibrary.simpleMessage(
+                "Verification code has been sent to your email"),
+        "verifiedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Verified Successfully"),
         "verifyYourEmailAddress":
             MessageLookupByLibrary.simpleMessage("Verify your email address"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All >>"),

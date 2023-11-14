@@ -1,7 +1,7 @@
 import 'package:dawrni/features/auth/presentation/routes/forget_password_route.dart';
-import 'package:dawrni/features/auth/presentation/routes/login_client_route.dart';
+import 'package:dawrni/features/auth/presentation/routes/login_route.dart';
+import 'package:dawrni/features/auth/presentation/routes/otp_verify_route.dart';
 import 'package:dawrni/features/auth/presentation/routes/register_route.dart';
-import 'package:dawrni/features/auth/presentation/routes/verify_email_route.dart';
 import 'package:dawrni/features/home/presentation/routes/all_company_route.dart';
 import 'package:dawrni/features/home/presentation/routes/booking_route.dart';
 import 'package:dawrni/features/home/presentation/routes/company_details_route.dart';
@@ -35,9 +35,7 @@ class AppRoutes {
       SelectLanguageRoute.route,
       LoginRoute.route,
       ForgetPasswordRoute.route,
-      // OtpLoginRoute.route,
-      // OtpRegisterRoute.route,
-      VerifyEmailRoute.route,
+      OtpVerifyRoute.route,
       HomeRoute.route,
       CompanyDetailsRoute.route,
       BookingRoute.route,

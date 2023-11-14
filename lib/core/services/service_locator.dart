@@ -4,6 +4,7 @@ import 'package:dawrni/features/auth/data/data_source/auth_remote_data_source_im
 import 'package:dawrni/features/auth/data/repository/auth_repository_imp.dart';
 import 'package:dawrni/features/auth/domain/repository/auth_repository.dart';
 import 'package:dawrni/features/auth/presentation/blocs/register/register_bloc.dart';
+import 'package:dawrni/features/auth/presentation/blocs/verify_email/verify_email_bloc.dart';
 import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
@@ -39,7 +40,7 @@ class ServicesLocator {
     //// BLOCS
     sl.registerFactory(() => LoginBloc(sl()));
     sl.registerFactory(() => RegisterBloc(sl()));
-    // sl.registerFactory(() => HomeBloc(sl()));
+    sl.registerFactory(() => VerifyEmailBloc(sl()));
 
     sl.registerLazySingleton(() => AppConfigBloc());
 

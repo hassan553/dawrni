@@ -4,7 +4,7 @@
 import 'package:dawrni/core/core_compoent/show_toast.dart';
 import 'package:dawrni/core/errors/failure.dart';
 import 'package:dawrni/core/services/service_locator.dart';
-import 'package:dawrni/features/auth/presentation/routes/login_client_route.dart';
+import 'package:dawrni/features/auth/presentation/routes/login_route.dart';
 import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -21,6 +21,7 @@ class ImagesPaths {
   static const String onboarding1Png = '${_baseImagesPath}Group 34209.png';
   static const String onboarding2Png = '${_baseImagesPath}Group 34208.png';
   static const String onboarding3Png = '${_baseImagesPath}Group 34210.png';
+  static const String personPng = '${_baseImagesPath}Group.png';
 
 
 }

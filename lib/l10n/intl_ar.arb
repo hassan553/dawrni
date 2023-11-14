@@ -108,5 +108,9 @@
   "mustBeAtLeastMinlength": "must be at least {minLength}",
   "mobileIsNotValid": "Mobile is not valid",
   "signedUpSuccessfully": "Signed Up Successfully",
-  "signedInSuccessfully": "تم تسجبل الدخوال بنجاح"
+  "signedInSuccessfully": "تم تسجبل الدخوال بنجاح",
+  "otpVerification": "OTP Verification",
+  "enterTheOtpCodeSentToNumber": "Enter the OTP code sent to {number}",
+  "verifiedSuccessfully": "Verified Successfully",
+  "verificationCodeHasBeenSentToYourEmail": "Verification code has been sent to your email"
 }

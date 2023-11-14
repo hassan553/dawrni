@@ -20,7 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(minLength) => "must be at least ${minLength}";
+  static String m0(number) => "Enter the OTP code sent to ${number}";
+
+  static String m1(minLength) => "must be at least ${minLength}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -70,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailIsNotValid":
             MessageLookupByLibrary.simpleMessage("Email is not valid"),
         "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
+        "enterTheOtpCodeSentToNumber": m0,
         "facebook": MessageLookupByLibrary.simpleMessage("فيسبوك"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
@@ -96,7 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "message": MessageLookupByLibrary.simpleMessage("الرسالة"),
         "mobileIsNotValid":
             MessageLookupByLibrary.simpleMessage("Mobile is not valid"),
-        "mustBeAtLeastMinlength": m0,
+        "mustBeAtLeastMinlength": m1,
         "myAppointments": MessageLookupByLibrary.simpleMessage("مواعيدي"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
@@ -104,6 +107,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت!"),
         "noResults": MessageLookupByLibrary.simpleMessage("لا توجد نتائج!"),
         "opps": MessageLookupByLibrary.simpleMessage("عذراً!"),
+        "otpVerification":
+            MessageLookupByLibrary.simpleMessage("OTP Verification"),
         "our_best_services":
             MessageLookupByLibrary.simpleMessage("أفضل خدماتنا"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
@@ -169,6 +174,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "1. أنواع البيانات التي نجمعها"),
         "useOfYourPersonalData":
             MessageLookupByLibrary.simpleMessage("2. استخدام بياناتك الشخصية"),
+        "verificationCodeHasBeenSentToYourEmail":
+            MessageLookupByLibrary.simpleMessage(
+                "Verification code has been sent to your email"),
+        "verifiedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Verified Successfully"),
         "verifyYourEmailAddress": MessageLookupByLibrary.simpleMessage(
             "تحقق من عنوان بريدك الإلكتروني"),
         "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل >>"),

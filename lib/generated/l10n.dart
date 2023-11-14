@@ -1149,6 +1149,46 @@ class S {
       args: [],
     );
   }
+
+  /// `OTP Verification`
+  String get otpVerification {
+    return Intl.message(
+      'OTP Verification',
+      name: 'otpVerification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the OTP code sent to {number}`
+  String enterTheOtpCodeSentToNumber(Object number) {
+    return Intl.message(
+      'Enter the OTP code sent to $number',
+      name: 'enterTheOtpCodeSentToNumber',
+      desc: '',
+      args: [number],
+    );
+  }
+
+  /// `Verified Successfully`
+  String get verifiedSuccessfully {
+    return Intl.message(
+      'Verified Successfully',
+      name: 'verifiedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification code has been sent to your email`
+  String get verificationCodeHasBeenSentToYourEmail {
+    return Intl.message(
+      'Verification code has been sent to your email',
+      name: 'verificationCodeHasBeenSentToYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
