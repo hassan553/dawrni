@@ -40,7 +40,7 @@ class AppColors {
   static const Color lightGrey = Color(0xFFBABABA);
   static const Color blue = Color(0xFF0978F2);
   static const Color red = Color(0xFFFF5757);
-  static const Color offBrown =Color(0x19FF8700);
+  static const Color offBrown = Color(0x19FF8700);
   static const MaterialColor materialColor = MaterialColor(
     0X00000000,
     <int, Color>{

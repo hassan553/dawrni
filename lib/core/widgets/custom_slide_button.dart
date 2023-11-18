@@ -20,7 +20,7 @@ class BookBotton extends StatelessWidget {
     return InkWell(
       onTap: function,
       child: Container(
-          width: 100.w,
+          width: ScreenUtil().screenWidth,
           height: 50,
           padding: const EdgeInsetsDirectional.only(start: 20, end: 20),
           decoration: ShapeDecoration(
@@ -42,7 +42,6 @@ class BookBotton extends StatelessWidget {
               ResponsiveText(
                 text: title ?? " ",
                 color: AppColors.white,
-                
               ),
               const Spacer(),
               Image.asset(image ?? 'assets/Group 34092.png'),

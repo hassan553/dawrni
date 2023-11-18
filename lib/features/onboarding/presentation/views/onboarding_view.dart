@@ -29,97 +29,95 @@ class _OnboardingViewState extends State<OnboardingView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        //height: 100.h,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(ImagesPaths.framPng),
             fit: BoxFit.fitWidth,
-            alignment: Alignment.center,
+            alignment: Alignment.bottomCenter,
           ),
         ),
         child: Stack(
           alignment: AlignmentDirectional.topCenter,
           children: [
             Container(
-              color: AppColors.blackWithOpacity1,
+              color: AppColors.offBlack.withOpacity(.2),
             ),
-            Expanded(
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 13,
-                    child: PageView.builder(
-                      controller: _pageController,
-                      itemCount: onboardingData.length,
-                      onPageChanged: (int page) {
-                        setState(() {
-                          currentPage = page;
-                        });
-                      },
-                      itemBuilder: (context, index) {
-                        return OnboardingPage(
-                          data: onboardingData[index],
-                        );
-                      },
-                    ),
+            Column(
+              children: [
+                const SizedBox(height: 20),
+                Expanded(
+                  flex: 13,
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: onboardingData.length,
+                    onPageChanged: (int page) {
+                      setState(() {
+                        currentPage = page;
+                      });
+                    },
+                    itemBuilder: (context, index) {
+                      return OnboardingPage(
+                        data: onboardingData[index],
+                      );
+                    },
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.symmetric(horizontal: 25),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: _buildPageIndicator(),
-                    ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(horizontal: 25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: _buildPageIndicator(),
                   ),
-                  const Spacer(),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.symmetric(horizontal: 25),
-                    child: BookBotton(
-                      title: S.of(context).next,
-                      image: ImagesPaths.onboardingArrowsPng,
-                      function: () {
+                ),
+                const Spacer(flex: 1),
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(horizontal: 25),
+                  child: BookBotton(
+                    title: S.of(context).next,
+                    image: ImagesPaths.onboardingArrowsPng,
+                    function: () {
+                      if (currentPage == onboardingData.length - 1) {
+                        context.pushReplacement(SelectLanguageRoute.name);
+                      } else {
+                        _pageController.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.fastLinearToSlowEaseIn);
+                      }
+                    },
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(horizontal: 25),
+                  child: Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: TextButton(
+                      onPressed: () {
                         if (currentPage == onboardingData.length - 1) {
                           context.pushReplacement(SelectLanguageRoute.name);
                         } else {
                           _pageController.nextPage(
                               duration: const Duration(milliseconds: 500),
-                              curve: Curves.fastLinearToSlowEaseIn);
+                              curve: Curves.linear);
                         }
                       },
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.symmetric(horizontal: 25),
-                    child: Align(
-                      alignment: AlignmentDirectional.centerEnd,
-                      child: TextButton(
-                        onPressed: () {
-                          if (currentPage == onboardingData.length - 1) {
-                            context.pushReplacement(SelectLanguageRoute.name);
-                          } else {
-                            _pageController.nextPage(
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.linear);
-                          }
-                        },
-                        child: Text(
-                          S.of(context).skip,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w400,
-                          ),
+                      child: Text(
+                        S.of(context).skip,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),
                   ),
-                  const Spacer(),
-                ],
-              ),
+                ),
+                const Spacer(flex: 1),
+              ],
             ),
           ],
         ),

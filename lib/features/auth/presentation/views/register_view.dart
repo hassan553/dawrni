@@ -9,7 +9,6 @@ import 'package:dawrni/core/extension/ui_extensions/container_decoration.dart';
 import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/core/utils/app_validator.dart';
 import 'package:dawrni/core/utils/base_state.dart';
-
 import 'package:dawrni/features/auth/domain/entities/user_entity.dart';
 import 'package:dawrni/features/auth/presentation/blocs/register/register_bloc.dart';
 import 'package:dawrni/features/auth/presentation/routes/login_client_route.dart';

@@ -4,6 +4,8 @@ import 'package:dawrni/features/onboarding/presentation/routes/onboarding_route.
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../routes/select_language_route.dart';
+
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -12,11 +14,15 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+  _navigationToOnBoardingView(){
+    Future.delayed(
+        const Duration(seconds: 1), 
+        () => context.pushReplacement(OnboardingRoute.name),);
+  }
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-        const Duration(seconds: 1), () => context.pushReplacement(OnboardingRoute.name));
+    _navigationToOnBoardingView();
   }
 
   @override

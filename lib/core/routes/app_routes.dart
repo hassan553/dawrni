@@ -14,7 +14,6 @@ import 'package:dawrni/features/settings/presentation/routes/connect_us_route.da
 import 'package:dawrni/features/settings/presentation/routes/privacy_policy_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/setting_route.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../features/appointments/presentation/routes/appointments_route.dart';
 import '../../features/chats/presentation/routs/chats_route.dart';
 import '../../features/favourites/presentation/routes/favorite_route.dart';
@@ -25,7 +24,7 @@ import '../../features/profile/presentation/routes/company_profile_route.dart';
 
 class AppRoutes {
   static final router = GoRouter(
-    initialLocation: LoginRoute.name,
+    initialLocation: SplashRoute.name,
 
     // TODO: add pages route here
     routes: [
