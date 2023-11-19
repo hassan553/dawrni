@@ -45,6 +45,41 @@ class MessageLookup extends MessageLookupByLibrary {
         "bodyTitle2": MessageLookupByLibrary.simpleMessage(
             "احصل على حل لمشكلتك مع خدمتنا السريعة"),
         "bookNow": MessageLookupByLibrary.simpleMessage("احجز الآن"),
+        "category10Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category10Name":
+            MessageLookupByLibrary.simpleMessage("Bokhour and Perfumes"),
+        "category1Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category1Name": MessageLookupByLibrary.simpleMessage("Cars Service"),
+        "category2Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category2Name":
+            MessageLookupByLibrary.simpleMessage("Outdoors Service"),
+        "category3Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category3Name":
+            MessageLookupByLibrary.simpleMessage("The Mall Service"),
+        "category4Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category4Name": MessageLookupByLibrary.simpleMessage("Salons Service"),
+        "category5Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category5Name":
+            MessageLookupByLibrary.simpleMessage("Food and Beverages"),
+        "category6Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category6Name": MessageLookupByLibrary.simpleMessage("Video Games"),
+        "category7Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category7Name": MessageLookupByLibrary.simpleMessage("Pets Service"),
+        "category8Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category8Name":
+            MessageLookupByLibrary.simpleMessage("Clinics Service"),
+        "category9Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category9Name": MessageLookupByLibrary.simpleMessage("Legal Service"),
         "certified": MessageLookupByLibrary.simpleMessage("معتمد"),
         "checkTheSettings":
             MessageLookupByLibrary.simpleMessage("تحقق من الإعدادات"),
@@ -88,6 +123,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تعرف على المزيد عن خدماتنا"),
         "hey": MessageLookupByLibrary.simpleMessage("مرحبًا"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+        "homeMessage":
+            MessageLookupByLibrary.simpleMessage("Let’s Find What You Need !"),
         "if_you_have_account":
             MessageLookupByLibrary.simpleMessage("إذا كان لديك حساب؟"),
         "internetIsRestored": MessageLookupByLibrary.simpleMessage(
@@ -109,6 +146,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "opps": MessageLookupByLibrary.simpleMessage("عذراً!"),
         "otpVerification":
             MessageLookupByLibrary.simpleMessage("OTP Verification"),
+        "ourBestServices":
+            MessageLookupByLibrary.simpleMessage("Our Best Services"),
         "our_best_services":
             MessageLookupByLibrary.simpleMessage("أفضل خدماتنا"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
@@ -129,6 +168,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "restoreTheInternet":
             MessageLookupByLibrary.simpleMessage("استعادة الاتصال بالإنترنت"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
+        "searchServiceHint":
+            MessageLookupByLibrary.simpleMessage("Search your service .."),
         "searchYourMessage":
             MessageLookupByLibrary.simpleMessage("ابحث عن رسالتك .."),
         "search_your_service":
@@ -168,6 +209,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "today": MessageLookupByLibrary.simpleMessage("اليوم"),
         "todayAppointments":
             MessageLookupByLibrary.simpleMessage("مواعيد اليوم"),
+        "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
         "try_again": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
         "twitter": MessageLookupByLibrary.simpleMessage("تويتر"),
         "typesDataWeCollect": MessageLookupByLibrary.simpleMessage(

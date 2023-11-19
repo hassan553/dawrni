@@ -16,7 +16,7 @@ class AppTheme {
   static const String _fontFamily = 'Montserrat';
 
   final lightTheme = ThemeData.light().copyWith(
-    scaffoldBackgroundColor: const Color(0xff262626),
+    scaffoldBackgroundColor: AppColors.offBlack,
     // fontFamily:'Montserrat',
     primaryColor: AppColors.primaryColor,
     appBarTheme:
@@ -118,7 +118,7 @@ class AppTheme {
       bodyMedium: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: AppColors.white, fontFamily: _fontFamily),
       bodySmall: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400, color: AppColors.white, fontFamily: _fontFamily),
     ),
-    scaffoldBackgroundColor: AppColors.black,
+    scaffoldBackgroundColor: AppColors.offBlack,
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.black,
       elevation: 0,

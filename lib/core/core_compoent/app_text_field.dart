@@ -125,6 +125,7 @@ class _AppTextFieldState extends State<AppTextField> {
               errorStyle: context.f14400?.copyWith(color: Colors.redAccent),
               fillColor: widget.fillColor ?? Colors.white.withOpacity(0.1),
               filled: true,
+              // suffix: widget.suffixIcon,
               suffixIcon: widget.password? IconButton(
                 icon: Icon(password ? Icons.visibility : Icons.visibility_off,color: AppColors.primaryColor,),
                 onPressed: () {
@@ -132,7 +133,7 @@ class _AppTextFieldState extends State<AppTextField> {
                     password = !password;
                   });
                 },
-              ) : widget.suffixIcon,
+              ) :  widget.suffixIcon,
               isDense: false,
               counter: const SizedBox(),
               // labelText: widget.labelText,
