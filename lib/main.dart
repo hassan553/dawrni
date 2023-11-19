@@ -38,10 +38,10 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  //runApp(Dawrni());
-  runApp(DevicePreview(
-    builder: (context) => Dawrni(),
-  ));
+  runApp(Dawrni());
+  // runApp(DevicePreview(
+  //   builder: (context) => Dawrni(),
+  // ));
 }
 
 class Dawrni extends StatelessWidget {
@@ -73,9 +73,9 @@ class Dawrni extends StatelessWidget {
                   builder: (context, state) {
                     return MaterialApp.router(
                       debugShowCheckedModeBanner: false,
-                      useInheritedMediaQuery: true,
+                      //useInheritedMediaQuery: true,
                       // locale: DevicePreview.locale(context),
-                      builder: DevicePreview.appBuilder,
+                      //builder: DevicePreview.appBuilder,
                       title: 'Dawrni',
                       theme: theme,
                       darkTheme: darkTheme,

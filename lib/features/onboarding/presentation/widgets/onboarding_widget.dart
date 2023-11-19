@@ -1,4 +1,3 @@
-
 import 'package:dawrni/features/onboarding/data/model/onboarding_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,14 +19,14 @@ class OnboardingPage extends StatelessWidget {
           Image.asset(
             data.image,
             fit: BoxFit.fill,
-            width: 100.w,
-            height: 40.h,
+            width: ScreenUtil().screenWidth,
+            height: ScreenUtil().screenHeight / 3,
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           Image.asset(
             data.image2,
             fit: BoxFit.fill,
-            height: 120,
+            height: 130,
           ),
         ],
       ),
