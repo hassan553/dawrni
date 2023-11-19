@@ -6,6 +6,8 @@ import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/utils/base_state.dart';
 import 'package:dawrni/features/auth/domain/entities/user_entity.dart';
 import 'package:dawrni/features/auth/presentation/blocs/login/login_bloc.dart';
+import 'package:dawrni/features/auth/presentation/widgets/top_logo.dart';
+import 'package:dawrni/features/home/presentation/routes/main_route.dart';
 import 'package:dawrni/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,32 +21,25 @@ import '../../../../core/core_compoent/show_toast.dart';
 import '../../../../core/utils/app_validator.dart';
 import '../../../../core/widgets/custom_loading_widget.dart';
 import '../../../../core/widgets/responsive_text.dart';
-import '../../../home/presentation/routes/home_route.dart';
-import '../routes/forget_password_route.dart';
 import '../routes/register_route.dart';
 
-class LoginClientView extends StatefulWidget {
-  const LoginClientView({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<LoginClientView> createState() => _LoginClientViewState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginClientViewState extends State<LoginClientView> {
+class _LoginViewState extends State<LoginView> {
   bool isEmpty = true;
-  final nameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final phoneController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  final passwordFocusNode = FocusNode();
-  final emailFocusNode = FocusNode();
+
   @override
   void dispose() {
-    nameController.dispose();
+    emailController.dispose();
     passwordController.dispose();
-    phoneController.dispose();
-    passwordFocusNode.dispose();
-    emailFocusNode.dispose();
     super.dispose();
   }
 
@@ -57,7 +52,7 @@ class _LoginClientViewState extends State<LoginClientView> {
           listener: (context, state) {
             if (state.isSuccess) {
               showToast(message: S.of(context).signedInSuccessfully);
-              context.go(HomeRoute.name);
+              context.go(MainRoute.name);
             } else if (state.isError) {
               FailureComponent.handleFailure(
                   context: context, failure: state.failure);
@@ -74,7 +69,7 @@ class _LoginClientViewState extends State<LoginClientView> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(height: 80),
-                    topImage(context),
+                    const TopLogo(),
                     const SizedBox(height: 50),
                     buildForm(),
                     SizedBox(height: 3.h),
@@ -130,7 +125,7 @@ class _LoginClientViewState extends State<LoginClientView> {
   void _loginTapped(BuildContext context) {
     if (formKey.currentState?.validate() ?? false) {
       context.read<LoginBloc>().add(LoginButtonTappedEvent(
-            email: nameController.text,
+            email: emailController.text,
             password: passwordController.text,
           ));
     }
@@ -144,16 +139,13 @@ class _LoginClientViewState extends State<LoginClientView> {
         children: [
           AppTextField(
             labelText: S.of(context).email,
-            controller: nameController,
+            controller: emailController,
             hintText: S.of(context).emailHint,
             validator: AppValidator(validators: [
               InputValidator.requiredField,
               InputValidator.email
             ]).validate,
-            onSaved: (value) =>
-                FocusScope.of(context).requestFocus(passwordFocusNode),
-            focusNode: emailFocusNode,
-            prefixIcon: Image.asset('assets/Group.png'),
+            prefixIcon: Image.asset(ImagesPaths.personPng),
           ),
           const SizedBox(height: 10),
           AppTextField(
@@ -169,7 +161,10 @@ class _LoginClientViewState extends State<LoginClientView> {
           Align(
             alignment: AlignmentDirectional.topStart,
             child: TextButton(
-              onPressed: () => context.go(ForgetPasswordRoute.name),
+              onPressed: () {
+                ///todo: implement this
+                // context.push(ForgetPasswordRoute.name);
+              },
               child: Text(
                 S.of(context).forget_password,
                 style: context.f14700?.copyWith(
@@ -243,14 +238,6 @@ class _LoginClientViewState extends State<LoginClientView> {
           ),
         ],
       ),
-    );
-  }
-
-  Image topImage(BuildContext context) {
-    return Image.asset(
-      ImagesPaths.logPng,
-      width: 150.w,
-      fit: BoxFit.fill,
     );
   }
 }

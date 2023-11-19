@@ -20,7 +20,7 @@ class ApisUrls {
   static const String register = '$_baseApiUrl/register/';
   static const String verifyEmailCode= '$_baseApiUrl/verify/';
 
-  /// Category Feature APIs
-  static String getCategories(String id) =>
-      '$_baseApiUrl/categories/section/$id?lang=en';
+  /// Companies Feature APIs
+  static const String getCompanies = '$_baseApiUrl/companies/';
+
 }
