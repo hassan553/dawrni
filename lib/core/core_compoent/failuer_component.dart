@@ -1,9 +1,17 @@
 /// This file contains a set of components for displaying different types of failures in a Flutter application.
 /// Each failure type has its own corresponding component that handles the visual representation of the failure.
 
+import 'package:dawrni/core/core_compoent/app_button.dart';
+import 'package:dawrni/core/core_compoent/show_toast.dart';
 import 'package:dawrni/core/errors/failure.dart';
 import 'package:dawrni/core/services/service_locator.dart';
+import 'package:dawrni/features/auth/presentation/routes/login_route.dart';
+import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
+import 'package:dawrni/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 /// The [FailureComponent] class is a generic component that takes a [Failure] object and dynamically selects the appropriate
 /// sub-component based on the runtime type of the failure. It uses a switch statement to determine the failure type and
@@ -13,14 +21,57 @@ import 'package:flutter/material.dart';
 // TODO: customize failure Components view
 
 class FailureComponent extends StatelessWidget {
-  const FailureComponent({super.key, required this.failure});
+  const FailureComponent({super.key, required this.failure, this.retry});
 
   final Failure failure;
+  final VoidCallback? retry;
+
+  static void handleFailure({required BuildContext context,required Failure failure}) {
+    switch (failure.runtimeType) {
+      case SessionExpiredFailure:
+        _logout(context);
+      case NoInternetFailure:
+      case ServerFailure:
+      case UnknownFailure:
+      case ForceUpdateFailure:
+      case AppUnderMaintenanceFailure:
+      case ParsingFailure:
+        showToast(message: failure.message);
+        break;
+      default:
+        showToast(message: failure.message);
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     // logger.d(
     //     "============== build failure ================= \n ${failure.runtimeType.toString()}");
+
+    if(failure is SessionExpiredFailure) {
+      _logout(context);
+
+      return const SizedBox();
+    }
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.error_outline, size: 150.w),
+          const SizedBox(height: 20),
+          Text(
+            failure.message,
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          const SizedBox(height: 20),
+          if(retry != null)
+            AppButton(onPressed: retry!, text: S.of(context).tryAgain)
+        ],
+      ),
+    );
 
     switch (failure.runtimeType) {
       /// NoInternetFailureComponent handles the case when there is no internet connectivity.
@@ -59,6 +110,14 @@ class FailureComponent extends StatelessWidget {
       default:
         return const Placeholder();
     }
+  }
+  static void _logout(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback(
+          (timeStamp) {
+        // context.read<AppConfigBloc>().add(const LogOutEvent());
+        context.go(LoginRoute.name);
+      },
+    );
   }
 }
 

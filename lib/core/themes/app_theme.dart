@@ -1,6 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../constants/app_colors.dart';
 
@@ -13,8 +13,10 @@ class AppTheme {
   AppTheme._();
   factory AppTheme() => _instance ??= AppTheme._();
 
+  static const String _fontFamily = 'Montserrat';
+
   final lightTheme = ThemeData.light().copyWith(
-    scaffoldBackgroundColor: const Color(0xff262626),
+    scaffoldBackgroundColor: AppColors.offBlack,
     // fontFamily:'Montserrat',
     primaryColor: AppColors.primaryColor,
     appBarTheme:
@@ -103,18 +105,20 @@ class AppTheme {
     useMaterial3: true,
     primaryColor: AppColors.green,
     textTheme: TextTheme(
-      displayLarge: TextStyle(
-        fontSize: 15.sp,
-        color: AppColors.white,
-        fontWeight: FontWeight.w600,
-      ),
-      bodySmall: TextStyle(fontSize: 12.5.sp, color: AppColors.white),
-      displayMedium: TextStyle(fontSize: 12.5.sp, color: AppColors.white),
-      displaySmall: TextStyle(fontSize: 12.5.sp, color: AppColors.green),
-      bodyLarge: TextStyle(fontSize: 11.sp, color: AppColors.white),
-      bodyMedium: TextStyle(fontSize: 11.sp, color: AppColors.black),
+      displayLarge: TextStyle(fontSize: 34.sp, fontWeight: FontWeight.w600, color: AppColors.white, fontFamily: _fontFamily),
+      displayMedium: TextStyle(fontSize: 30.sp, fontWeight: FontWeight.w600, color: AppColors.white, fontFamily: _fontFamily),
+      displaySmall: TextStyle(fontSize: 28.sp, fontWeight: FontWeight.w800, color: AppColors.white, fontFamily: _fontFamily),
+      labelLarge: TextStyle(fontSize: 26.sp, fontWeight: FontWeight.w500, color: AppColors.white, fontFamily: _fontFamily),
+      labelMedium: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.w700, color: AppColors.white, fontFamily: _fontFamily),
+      labelSmall: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w500, color: AppColors.white, fontFamily: _fontFamily),
+      titleLarge: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w700, color: AppColors.white, fontFamily: _fontFamily),
+      titleMedium: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600, color: AppColors.white, fontFamily: _fontFamily),
+      titleSmall: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700, color: AppColors.white, fontFamily: _fontFamily),
+      bodyLarge: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w400, color: AppColors.white, fontFamily: _fontFamily),
+      bodyMedium: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: AppColors.white, fontFamily: _fontFamily),
+      bodySmall: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400, color: AppColors.white, fontFamily: _fontFamily),
     ),
-    scaffoldBackgroundColor: AppColors.black,
+    scaffoldBackgroundColor: AppColors.offBlack,
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.black,
       elevation: 0,

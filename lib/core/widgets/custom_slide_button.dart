@@ -2,7 +2,7 @@ import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BookBotton extends StatelessWidget {
   final void Function()? function;
@@ -41,11 +41,11 @@ class BookBotton extends StatelessWidget {
             children: [
               ResponsiveText(
                 text: title ?? " ",
-                scaleFactor: .05,
                 color: AppColors.white,
+                
               ),
               const Spacer(),
-              Image.asset(image??'assets/Group 34092.png'),
+              Image.asset(image ?? 'assets/Group 34092.png'),
               const SizedBox(width: 10),
             ],
           )),

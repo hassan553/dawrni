@@ -19,7 +19,7 @@ class ErrorMessageModel extends Equatable {
   factory ErrorMessageModel.fromJson(Response response) {
     return ErrorMessageModel(
       statusMessage:
-          response.data['message'] ?? response.data['error']['message'],
+          response.data['message'] ?? (response.data as Map).entries.first.value.first.toString(),
       statusCode: response.statusCode,
     );
   }

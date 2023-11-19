@@ -16,17 +16,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'features/auth/presentation/blocs/login/login_bloc.dart';
+
 late SharedPreferences sharedPreferences;
 void main() async {
+  // dynamic s = {
+  //   "email": [
+  //     "A user with that Email already exists."
+  //   ]
+  // };
+  // var ss = s['message'] ?? (s as Map).entries.first.value;
   WidgetsFlutterBinding.ensureInitialized();
   await CacheStorageServices.init();
   await Firebase.initializeApp();
   ServicesLocator().init();
-  // sharedPreferences = await SharedPreferences.getInstance();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
@@ -41,48 +49,52 @@ class Dawrni extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveSizer(builder: (context, orientation, deviceType) {
-      return MultiBlocProvider(
-        providers: [
-          BlocProvider(
-              create: (context) =>
-              ClientProfileCubit(ClientProfileRepo())..fetchClientProfile()),
-          BlocProvider(
-              create: (context) => CompanyProfileCubit(CompanyProfileRepo())
-                ..fetchCompanyProfile()),
-          BlocProvider(create: (_) => sl<AppConfigBloc>()),
-        ],
-        child: AdaptiveTheme(
-            light: AppTheme().lightTheme,
-            dark: AppTheme().darkTheme,
-            initial: AdaptiveThemeMode.light,
-            builder: (theme, darkTheme) {
-              return BlocBuilder<AppConfigBloc,AppConfigState>(
-                bloc: sl(),
-                builder: (context, state) {
-                  return MaterialApp.router(
-                    debugShowCheckedModeBanner: false,
-                    useInheritedMediaQuery: true,
-                   // locale: DevicePreview.locale(context),
-                    builder: DevicePreview.appBuilder,
-                    title: 'Dawrni',
-                    theme: theme,
-                    darkTheme: darkTheme,
-                    routerConfig: AppRoutes.router,
-                    locale: AppLocale().currentLanguage().locale,
-                    localizationsDelegates: const [
-                      S.delegate,
-                      GlobalWidgetsLocalizations.delegate,
-                      GlobalMaterialLocalizations.delegate,
-                      GlobalCupertinoLocalizations.delegate,
-                    ],
-                    supportedLocales: S.delegate.supportedLocales,
-                  );
-                },
-              );
-            }
-        ),
-      );
-    });
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (context) =>
+            ClientProfileCubit(ClientProfileRepo())..fetchClientProfile()),
+        BlocProvider(
+            create: (context) => CompanyProfileCubit(CompanyProfileRepo())
+              ..fetchCompanyProfile()),
+        BlocProvider(create: (_) => sl<AppConfigBloc>()),
+
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(428, 926),
+        builder: (_, child) {
+          return AdaptiveTheme(
+              light: AppTheme().darkTheme,
+              dark: AppTheme().darkTheme,
+              initial: AdaptiveThemeMode.dark,
+              builder: (theme, darkTheme) {
+                return BlocBuilder<AppConfigBloc,AppConfigState>(
+                  bloc: sl(),
+                  builder: (context, state) {
+                    return MaterialApp.router(
+                      debugShowCheckedModeBanner: false,
+                      useInheritedMediaQuery: true,
+                      // locale: DevicePreview.locale(context),
+                      builder: DevicePreview.appBuilder,
+                      title: 'Dawrni',
+                      theme: theme,
+                      darkTheme: darkTheme,
+                      routerConfig: AppRoutes.router,
+                      locale: AppLocale().currentLanguage().locale,
+                      localizationsDelegates: const [
+                        S.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                      ],
+                      supportedLocales: S.delegate.supportedLocales,
+                    );
+                  },
+                );
+              }
+          );
+        },
+      ),
+    );
   }
 }

@@ -230,10 +230,10 @@ class S {
     );
   }
 
-  /// `If you have an account? `
+  /// `If you have an account?`
   String get if_you_have_account {
     return Intl.message(
-      'If you have an account? ',
+      'If you have an account?',
       name: 'if_you_have_account',
       desc: '',
       args: [],
@@ -1065,6 +1065,366 @@ class S {
     return Intl.message(
       'Send Email',
       name: 'sendEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `abdullah@gmail.com`
+  String get emailHint {
+    return Intl.message(
+      'abdullah@gmail.com',
+      name: 'emailHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `123456qwe!Q`
+  String get passwordHint {
+    return Intl.message(
+      '123456qwe!Q',
+      name: 'passwordHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is not valid`
+  String get emailIsNotValid {
+    return Intl.message(
+      'Email is not valid',
+      name: 'emailIsNotValid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Required Field`
+  String get requiredField {
+    return Intl.message(
+      'Required Field',
+      name: 'requiredField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `must be at least {minLength}`
+  String mustBeAtLeastMinlength(Object minLength) {
+    return Intl.message(
+      'must be at least $minLength',
+      name: 'mustBeAtLeastMinlength',
+      desc: '',
+      args: [minLength],
+    );
+  }
+
+  /// `Mobile is not valid`
+  String get mobileIsNotValid {
+    return Intl.message(
+      'Mobile is not valid',
+      name: 'mobileIsNotValid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Signed Up Successfully`
+  String get signedUpSuccessfully {
+    return Intl.message(
+      'Signed Up Successfully',
+      name: 'signedUpSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Signed In Successfully`
+  String get signedInSuccessfully {
+    return Intl.message(
+      'Signed In Successfully',
+      name: 'signedInSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OTP Verification`
+  String get otpVerification {
+    return Intl.message(
+      'OTP Verification',
+      name: 'otpVerification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the OTP code sent to {number}`
+  String enterTheOtpCodeSentToNumber(Object number) {
+    return Intl.message(
+      'Enter the OTP code sent to $number',
+      name: 'enterTheOtpCodeSentToNumber',
+      desc: '',
+      args: [number],
+    );
+  }
+
+  /// `Verified Successfully`
+  String get verifiedSuccessfully {
+    return Intl.message(
+      'Verified Successfully',
+      name: 'verifiedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification code has been sent to your email`
+  String get verificationCodeHasBeenSentToYourEmail {
+    return Intl.message(
+      'Verification code has been sent to your email',
+      name: 'verificationCodeHasBeenSentToYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let’s Find What You Need !`
+  String get homeMessage {
+    return Intl.message(
+      'Let’s Find What You Need !',
+      name: 'homeMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search your service ..`
+  String get searchServiceHint {
+    return Intl.message(
+      'Search your service ..',
+      name: 'searchServiceHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cars Service`
+  String get category1Name {
+    return Intl.message(
+      'Cars Service',
+      name: 'category1Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Outdoors Service`
+  String get category2Name {
+    return Intl.message(
+      'Outdoors Service',
+      name: 'category2Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The Mall Service`
+  String get category3Name {
+    return Intl.message(
+      'The Mall Service',
+      name: 'category3Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get your problem fixed with our fast service`
+  String get category1Description {
+    return Intl.message(
+      'Get your problem fixed with our fast service',
+      name: 'category1Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get your problem fixed with our fast service`
+  String get category2Description {
+    return Intl.message(
+      'Get your problem fixed with our fast service',
+      name: 'category2Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get your problem fixed with our fast service`
+  String get category3Description {
+    return Intl.message(
+      'Get your problem fixed with our fast service',
+      name: 'category3Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get your problem fixed with our fast service`
+  String get category4Description {
+    return Intl.message(
+      'Get your problem fixed with our fast service',
+      name: 'category4Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get your problem fixed with our fast service`
+  String get category5Description {
+    return Intl.message(
+      'Get your problem fixed with our fast service',
+      name: 'category5Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get your problem fixed with our fast service`
+  String get category6Description {
+    return Intl.message(
+      'Get your problem fixed with our fast service',
+      name: 'category6Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get your problem fixed with our fast service`
+  String get category7Description {
+    return Intl.message(
+      'Get your problem fixed with our fast service',
+      name: 'category7Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get your problem fixed with our fast service`
+  String get category8Description {
+    return Intl.message(
+      'Get your problem fixed with our fast service',
+      name: 'category8Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get your problem fixed with our fast service`
+  String get category9Description {
+    return Intl.message(
+      'Get your problem fixed with our fast service',
+      name: 'category9Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get your problem fixed with our fast service`
+  String get category10Description {
+    return Intl.message(
+      'Get your problem fixed with our fast service',
+      name: 'category10Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our Best Services`
+  String get ourBestServices {
+    return Intl.message(
+      'Our Best Services',
+      name: 'ourBestServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Salons Service`
+  String get category4Name {
+    return Intl.message(
+      'Salons Service',
+      name: 'category4Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Food and Beverages`
+  String get category5Name {
+    return Intl.message(
+      'Food and Beverages',
+      name: 'category5Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Video Games`
+  String get category6Name {
+    return Intl.message(
+      'Video Games',
+      name: 'category6Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pets Service`
+  String get category7Name {
+    return Intl.message(
+      'Pets Service',
+      name: 'category7Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clinics Service`
+  String get category8Name {
+    return Intl.message(
+      'Clinics Service',
+      name: 'category8Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Legal Service`
+  String get category9Name {
+    return Intl.message(
+      'Legal Service',
+      name: 'category9Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bokhour and Perfumes`
+  String get category10Name {
+    return Intl.message(
+      'Bokhour and Perfumes',
+      name: 'category10Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get tryAgain {
+    return Intl.message(
+      'Try Again',
+      name: 'tryAgain',
       desc: '',
       args: [],
     );

@@ -3,6 +3,9 @@ enum UserType {
   company('company');
   const UserType(this.type);
   final String type;
+
+  bool get isClient => this == UserType.client;
+  bool get isCompany => this == UserType.company;
 }
 
 extension ConvertMessage on String{
@@ -12,6 +15,7 @@ extension ConvertMessage on String{
       case 'True':
         return UserType.company;
       case 'client':
+      case 'user':
       case 'False':
         return UserType.client;
       default:
@@ -24,9 +28,9 @@ extension Parameter on UserType {
   String toParameter() {
     switch (this) {
       case UserType.company:
-        return "True";
+        return "company";
       default:
-        return "False";
+        return "user";
     }
   }
 }

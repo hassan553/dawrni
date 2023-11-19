@@ -2,7 +2,7 @@ import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/features/home/presentation/routes/main_route.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AboutUsView extends StatelessWidget {
   const AboutUsView({super.key});
