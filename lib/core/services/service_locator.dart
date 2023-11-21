@@ -9,6 +9,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/auth/presentation/blocs/login/login_bloc.dart';
+import '../../features/chats/data/data_source/chat_data_source.dart';
+import '../../features/chats/data/data_source/chat_remote_data_source.dart';
+import '../../features/chats/data/repository/chat_repository_imp.dart';
+import '../../features/chats/domain/repository/chat_repository.dart';
 
 final sl = GetIt.instance;
 
@@ -45,10 +49,12 @@ class ServicesLocator {
 
     //// REPOSITORIES
     sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImp(sl()));
+    sl.registerLazySingleton<ChatRepository>(() => ChatRepositoryImp(sl()));
     // sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImp(sl()));
 
     //// DATA SOURCES
     sl.registerLazySingleton<AuthDataSource>(() => AuthRemoteDataSourceImp(auth: sl(), store: sl()));
+    sl.registerLazySingleton<ChatDataSource>(() => ChatRemoteDataSourceImp());
 
     final auth = FirebaseAuth.instance;
 

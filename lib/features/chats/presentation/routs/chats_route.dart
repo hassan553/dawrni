@@ -6,6 +6,6 @@ class ChatsRoute {
   static const String name = '/chats';
   static GoRoute route = GoRoute(
     path: name,
-    builder: (context, state) => ChatHomeScreen(),
+    builder: (context, state) => const ChatHomeScreen(),
   );
 }

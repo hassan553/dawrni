@@ -5,6 +5,7 @@ import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/themes/app_theme.dart';
 import 'package:dawrni/core/translations/app_local.dart';
+import 'package:dawrni/features/chats/presentation/bloc/chat_bloc.dart';
 import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:dawrni/features/profile/data/repository/client_profile_repo.dart';
 import 'package:dawrni/features/profile/data/repository/company_profile_repo.dart';
@@ -22,6 +23,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'features/auth/presentation/blocs/login/login_bloc.dart';
+import 'features/chats/domain/repository/chat_repository.dart';
 
 late SharedPreferences sharedPreferences;
 void main() async {
@@ -58,7 +60,7 @@ class Dawrni extends StatelessWidget {
             create: (context) => CompanyProfileCubit(CompanyProfileRepo())
               ..fetchCompanyProfile()),
         BlocProvider(create: (_) => sl<AppConfigBloc>()),
-
+        BlocProvider(create:(context)=>ChatBlocBloc(sl<ChatRepository>())),
       ],
       child: ScreenUtilInit(
         designSize: const Size(428, 926),
