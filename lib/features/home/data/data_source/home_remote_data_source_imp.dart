@@ -5,6 +5,7 @@ import 'package:dawrni/core/utils/app_response.dart';
 import 'package:dawrni/features/home/data/data_source/home_data_source.dart';
 import 'package:dawrni/features/home/data/models/companies_model.dart';
 import 'package:dawrni/features/home/domain/parameters/get_companies_parameters.dart';
+import 'package:dawrni/features/home/domain/parameters/get_company_details_parameters.dart';
 
 class HomeRemoteDataSourceImp extends HomeDataSource {
   @override
@@ -20,5 +21,14 @@ class HomeRemoteDataSourceImp extends HomeDataSource {
         CompanyModel(id: 4, aboutAr: '', aboutEn: '', addressAr: '', addressEn: '', category: Category(id: 4, name: 'ad'), isCertified: true, nameAr: 'Al Husein repairing', nameEn: 'Al Husein repairing', user: 1),
         CompanyModel(id: 5, aboutAr: '', aboutEn: '', addressAr: '', addressEn: '', category: Category(id: 5, name: 'ad'), isCertified: true, nameAr: 'Al Husein repairing', nameEn: 'Al Husein repairing', user: 1),]
     );
+  }
+
+  @override
+  Future<CompanyModel> getCompanyDetails(GetCompanyDetailsParameters parameters) async {
+    await Future.delayed(const Duration(seconds: 2));
+    return CompanyModel(id: 2, aboutAr: '', aboutEn: '', addressAr: '', addressEn: '', category: Category(id: 2, name: 'ad'), isCertified: true, nameAr: 'Al Husein repairing', nameEn: 'Al Husein repairing', user: 1);
+    AppResponse response = await ApiServices()
+        .get(ApisUrls.getCompanyDetails(parameters.id));
+    return CompanyModel.fromJson(response.data);
   }
 }

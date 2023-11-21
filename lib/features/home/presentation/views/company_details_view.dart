@@ -1,225 +1,145 @@
 import 'package:dawrni/core/constants/app_colors.dart';
-import 'package:dawrni/core/widgets/custom_slide_button.dart';
-import 'package:dawrni/core/widgets/responsive_text.dart';
-import 'package:dawrni/features/home/presentation/routes/booking_route.dart';
+import 'package:dawrni/core/core_compoent/app_button.dart';
+import 'package:dawrni/core/core_compoent/app_network_image.dart';
+import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
+import 'package:dawrni/core/paths/images_paths.dart';
+import 'package:dawrni/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:galleryimage/galleryimage.dart';
 
 class CompanyDetailsView extends StatelessWidget {
-  const CompanyDetailsView({Key? key}) : super(key: key); // Fix the constructor
+  final String id;
+
+  CompanyDetailsView({Key? key, required this.id})
+      : super(key: key); // Fix the constructor
+  List<String> listOfUrls = [
+    "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg",
+    "https://scx2.b-cdn.net/gfx/news/hires/2019/2-nature.jpg",
+    "https://isha.sadhguru.org/blog/wp-content/uploads/2016/05/natures-temples.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/7/77/Big_Nature_%28155420955%29.jpeg",
+    "https://s23574.pcdn.co/wp-content/uploads/Singular-1140x703.jpg",
+    "https://www.expatica.com/app/uploads/sites/9/2017/06/Lake-Oeschinen-1200x675.jpg",
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        height: 100.h,
-        child: Stack(
-          children: [
-            Stack(
-              children: [
-                Image.asset(
-                  'assets/is.png',
-                  fit: BoxFit.fill,
-                  width: 100.w,
-                ),
-                Positioned(
-                  top: 40,
-                  left: 30,
-                  child: InkWell(
-                    onTap: () => context.pop(),
-                    child: Container(
-                      width: 50,
-                      height: 40,
-                      alignment: Alignment.center,
-                      // padding: const EdgeInsetsDirectional.all(5),
-                      decoration: ShapeDecoration(
-                        color: Colors.white.withOpacity(0.10000000149011612),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      child: const Align(
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.arrow_back_ios_new,
-                          color: AppColors.white,
-                          size: 30,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Positioned(
-              top: 75,
-              child: Stack(
-                alignment: AlignmentDirectional.center,
-                children: [
-                  Container(
-                    width: 100.w,
-                    margin: const EdgeInsets.only(top: 70),
-                    height: 100.h - 130,
-                    padding: const EdgeInsetsDirectional.only(top: 70),
-                    decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(30),
-                          topLeft: Radius.circular(30),
-                        ),
-                        color: Theme.of(context).scaffoldBackgroundColor),
-                    child: ListView(shrinkWrap: true, children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.symmetric(
-                            horizontal: 21),
-                        child: topPart(),
-                      ),
-                      const SizedBox(height: 40),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.symmetric(
-                            horizontal: 21),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ResponsiveText(
-                              text: 'About',
-                              scaleFactor: .06,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.offWhite,
-                            ),
-                            const SizedBox(height: 18),
-                            ResponsiveText(
-                              text:
-                                  'From minor repairs to major installations, we tackle each project with precision and care, ensuring that your plumbing systems are in optimal condition.',
-                              scaleFactor: .04,
-                              fontWeight: FontWeight.w300,
-                              color: AppColors.offWhite,
-                              textAlign: TextAlign.start,
-                            ),
-                            const SizedBox(height: 30),
-                            Wrap(
-                              children: List.generate(
-                                5,
-                                (index) => Container(
-                                  width: 90,
-                                  height: 90,
-                                  margin: const EdgeInsetsDirectional.all(8),
-                                  decoration: ShapeDecoration(
-                                    image: const DecorationImage(
-                                      image:
-                                          AssetImage("assets/Rectangle 43.png"),
-                                      fit: BoxFit.fill,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 30),
-                            Container(
-                              width: 100.w,
-                              height: 108,
-                              margin: const EdgeInsetsDirectional.all(8),
-                              decoration: ShapeDecoration(
-                                image: const DecorationImage(
-                                  image: AssetImage("assets/imageimage.png"),
-                                  fit: BoxFit.cover,
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                              ),
-                            ),
-                            BookBotton(
-                              function: () {
-                                context.push(BookingRoute.name);
-                              },
-                              title: 'Book now',
-                            ),
-                            const SizedBox(height: 80),
-                          ],
-                        ),
-                      ),
-                    ]),
-                  ),
-                  Positioned(
-                    top: 1,
-                    child: CircleAvatar(
-                      radius: 80,
-                      backgroundColor:
-                          Theme.of(context).scaffoldBackgroundColor,
-                      child: const CircleAvatar(
-                        radius: 65,
-                        backgroundImage: AssetImage('assets/Rectangle 43.png'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          buildTopImage(),
+          Stack(
+            children: [
+              buildProfileData(context),
+              buildProfileImage(),
+            ],
+          )
+        ],
       ),
     );
   }
 
-  Row topPart() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Expanded(
-          child: Column(
+  Widget buildProfileData(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 200),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      decoration: const BoxDecoration(
+        color: AppColors.offBlack,
+        borderRadius: BorderRadius.only(
+            topRight: Radius.circular(40), topLeft: Radius.circular(40)),
+      ),
+      child: ListView(
+        children: [
+          const SizedBox(height: 90),
+          Row(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const ResponsiveText(
-                text: 'Al Husein repairing',
-                scaleFactor: .07,
-                fontWeight: FontWeight.bold,
-                color: AppColors.white,
-              ),
-              const SizedBox(height: 18),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset('assets/im.png', width: 16, fit: BoxFit.fill),
-                  const SizedBox(width: 8),
-                  ResponsiveText(
-                    text: 'Apartment repair',
-                    scaleFactor: .04,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.offWhite,
-                  ),
+                  Text("Al Husein Repairing", style: context.f25700),
+                  const SizedBox(height: 20),
+                  Text("Apartment repair", style: context.f20400),
                 ],
               ),
-              const SizedBox(height: 18),
-              Row(
+              Column(
                 children: [
-                  Row(
-                    children: List.generate(
-                      5,
-                      (index) => const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                        size: 18,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  ResponsiveText(
-                    text: '(32)',
-                    scaleFactor: .04,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.offWhite,
-                  ),
+                  Image.asset(ImagesPaths.certifiedPng, height: 40, width: 40),
+                  const SizedBox(height: 7),
+                  Text(S.of(context).certified, style: context.f15600)
                 ],
               ),
             ],
           ),
+          const SizedBox(height: 20),
+          Text(S.of(context).about, style: context.f20700),
+          const SizedBox(height: 20),
+          Text(
+              "From minor repairs to major installations, we tackle each project with precision and care, ensuring that your plumbing systems are in optimal condition.",
+              style: context.f15300),
+          const SizedBox(height: 20),
+          GalleryImage(
+            imageUrls: listOfUrls,
+            numOfShowImages: 6,
+            titleGallery: "Title",
+          ),
+          const SizedBox(height: 30),
+          Row(
+            children: [
+              Expanded(
+                child: AppButton(
+                    onPressed: () {},
+                    type: AppButtonType.gradientPrimary,
+                    text: S.of(context).bookNow),
+              ),
+              const SizedBox(width: 20),
+              Container(
+                width: 40,
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    color: AppColors.primaryColor,
+                    borderRadius: BorderRadius.circular(16)),
+                child: Image.asset(ImagesPaths.chatPng),
+              )
+            ],
+          ),
+          const SizedBox(height: 40),
+        ],
+      ),
+    );
+  }
+
+  Widget buildProfileImage() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 120),
+          decoration: const BoxDecoration(
+              color: AppColors.offBlack, shape: BoxShape.circle),
+          height: 160,
+          width: 160,
+          child: AppNetworkImage(
+            url:
+                "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg",
+            borderRadius: BorderRadius.circular(50),
+          ),
         ),
-        Image.asset('assets/imm.png'),
+      ],
+    );
+  }
+
+  Widget buildTopImage() {
+    return Column(
+      children: [
+        SizedBox(
+            height: 200,
+            width: double.infinity,
+            child: Image.asset(
+              ImagesPaths.backgroundImagePng,
+              fit: BoxFit.cover,
+            )),
       ],
     );
   }

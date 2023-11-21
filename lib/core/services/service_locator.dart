@@ -11,6 +11,7 @@ import 'package:dawrni/features/home/data/repository/home_repository_imp.dart';
 import 'package:dawrni/features/home/domain/repository/home_repository.dart';
 import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:dawrni/features/home/presentation/blocs/companies_bloc/companies_bloc.dart';
+import 'package:dawrni/features/home/presentation/blocs/company_details_bloc/company_details_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
@@ -47,6 +48,7 @@ class ServicesLocator {
     sl.registerFactory(() => RegisterBloc(sl()));
     sl.registerFactory(() => VerifyEmailBloc(sl()));
     sl.registerFactory(() => CompaniesBloc(sl()));
+    sl.registerFactory(() => CompanyDetailsBloc(sl()));
 
     sl.registerLazySingleton(() => AppConfigBloc());
 

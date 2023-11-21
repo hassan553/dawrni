@@ -22,5 +22,7 @@ class ApisUrls {
 
   /// Companies Feature APIs
   static const String getCompanies = '$_baseApiUrl/companies/';
+  static String getCompanyDetails(String id) =>
+      '$_baseApiUrl/companies/$id';
 
 }

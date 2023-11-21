@@ -33,6 +33,9 @@ class ImagesPaths {
   static const String category8Png = '${_baseImagesPath}category8.png';
   static const String category9Png = '${_baseImagesPath}category9.png';
   static const String category10Png = '${_baseImagesPath}category10.png';
+  static const String certifiedPng = '${_baseImagesPath}certified.png';
+  static const String backgroundImagePng = '${_baseImagesPath}background_image.png';
+  static const String chatPng = '${_baseImagesPath}chat.png';
 
 
 }
