@@ -5,6 +5,7 @@ class CompanyProfileRoute {
   static const String name = '/company_profile';
   static GoRoute route = GoRoute(
     path: name,
-    builder: (context, state) => CompanyDetailsView(),
+    ///todo: fix this id
+    builder: (context, state) => CompanyDetailsView(id: ''),
   );
 }
