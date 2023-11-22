@@ -4,11 +4,8 @@ import 'package:dawrni/core/core_compoent/app_text_field.dart';
 import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
 import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/core/utils/app_validator.dart';
-import 'package:dawrni/core/widgets/custom_button.dart';
-import 'package:dawrni/core/widgets/custom_text_filed.dart';
 import 'package:dawrni/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class ContactUsView extends StatefulWidget {
   const ContactUsView({super.key});
