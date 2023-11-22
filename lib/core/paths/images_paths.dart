@@ -23,4 +23,5 @@ class ImagesPaths {
   static const String onboarding3Png = '${_baseImagesPath}Group 34210.png';
   static const String emptyChatPng = '${_baseImagesPath}3_Relax V1.png';
   static const String loadingChatPng = '${_baseImagesPath}Group 34242.png';
+  static const String searchIconPng = '${_baseImagesPath}Search.png';
 }

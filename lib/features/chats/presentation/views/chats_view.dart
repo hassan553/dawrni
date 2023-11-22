@@ -1,14 +1,11 @@
 import 'package:dawrni/core/constants/app_colors.dart';
-import 'package:dawrni/core/widgets/custom_sized_box.dart';
+import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
+import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/core/widgets/custom_text_filed.dart';
-import 'package:dawrni/features/chats/domain/parameters/message_parameters.dart';
-import 'package:dawrni/features/chats/domain/repository/chat_repository.dart';
 import 'package:dawrni/features/chats/presentation/views/chats_details_view.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../core/services/service_locator.dart';
-import '../routs/chats_details_route.dart';
+import '../../../../generated/l10n.dart';
 
 class ChatHomeScreen extends StatefulWidget {
   const ChatHomeScreen({super.key});
@@ -36,8 +33,8 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                 height: 40,
                 child: CustomTextFieldWidget(
                   controller: TextEditingController(),
-                  hintText: 'Search your message ..',
-                  suffixIcons: Image.asset('assets/Search.png'),
+                  hintText: S.of(context).searchYourMessage,
+                  suffixIcons: Image.asset(ImagesPaths.searchIconPng),
                 ),
               ),
               const SizedBox(height: 20),
@@ -95,52 +92,20 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  chat.name,
-                  style: const TextStyle(
-                    color: AppColors.white,
-                    fontSize: 14,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+                Text(chat.name, style: context.f14700),
                 const SizedBox(height: 3),
-                Text(
-                  chat.lastMessage,
-                  style: TextStyle(
-                    color: AppColors.offWhite,
-                    fontSize: 10,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                Text(chat.lastMessage, style: context.f10600),
               ],
             ),
           ),
           Column(
             children: [
-              Text(
-                chat.time,
-                style: TextStyle(
-                  color: AppColors.offWhite,
-                  fontSize: 10,
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              Text(chat.time, style: context.f10600),
               const SizedBox(height: 4),
               CircleAvatar(
                 radius: 10,
                 backgroundColor: AppColors.primaryColor,
-                child: Text(
-                  '3',
-                  style: TextStyle(
-                    color: AppColors.offWhite,
-                    fontSize: 10,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                child: Text('3', style: context.f10600),
               )
             ],
           ),
