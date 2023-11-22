@@ -1,6 +1,7 @@
 import 'package:dawrni/core/constants/app_colors.dart';
+import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
+import 'package:dawrni/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -10,116 +11,58 @@ class SettingsView extends StatefulWidget {
 }
 
 class _SettingsViewState extends State<SettingsView> {
-  bool notification = true;
-  bool update = false;
-  bool promotions = true;
+  var notification = BooleanWrapper(true);
+  var update = BooleanWrapper(false);
+  var promotions = BooleanWrapper(true);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: settingAppBar(),
+      appBar: AppBar(title: Text(S.of(context).settings)),
       body: Padding(
         padding: const EdgeInsetsDirectional.all(27.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           const SizedBox(height: 20),
-          topPartText(),
+          Text(S.of(context).generalSettings, style: context.f18600),
+          const SizedBox(height: 10),
+          Text(S.of(context).personalizeYourExperience,
+              style: context.f12400?.copyWith(color: AppColors.lighterGrey)),
           const SizedBox(height: 60),
-          customSwatichButton('General Notification', notification),
+          customSwitchButton(S.of(context).generalNotification, notification),
           const SizedBox(height: 20),
-          customSwatichButton('App Updates', update),
+          customSwitchButton(S.of(context).appUpdates, update),
           const SizedBox(height: 20),
-          customSwatichButton('Promotions', promotions),
+          customSwitchButton(S.of(context).promotions, promotions),
         ]),
       ),
     );
   }
 
-  Row customSwatichButton(String title, bool values) {
+  Row customSwitchButton(String title, BooleanWrapper values) {
     return Row(
       children: [
         Text(
           title,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontFamily: 'Montserrat',
-            fontWeight: FontWeight.w400,
-          ),
+          style: context.f15400,
         ),
         const Spacer(),
         Switch(
           activeColor: AppColors.primaryColor,
           inactiveThumbColor: AppColors.offWhite,
-          value: values,
+          value: values.value,
           onChanged: (value) {
             setState(() {
-              values = value;
+              values.value = value;
             });
           },
         ),
       ],
     );
   }
+}
 
-  Column topPartText() {
-    return const Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'General Setting',
-          textAlign: TextAlign.right,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontFamily: 'Montserrat',
-            fontWeight: FontWeight.w600,
-            height: 0,
-            letterSpacing: -0.09,
-          ),
-        ),
-        SizedBox(height: 8),
-        Text(
-          'Personalize your experience',
-          textAlign: TextAlign.right,
-          style: TextStyle(
-            color: Color(0xFF7B7B7B),
-            fontSize: 12,
-            fontFamily: 'Montserrat',
-            fontWeight: FontWeight.w400,
-            height: 0,
-            letterSpacing: -0.06,
-          ),
-        ),
-      ],
-    );
-  }
+class BooleanWrapper {
+  bool value;
 
-  AppBar settingAppBar() {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      leading: InkWell(
-         onTap: () => context.pop(),
-        child: Container(
-          width: 40,
-          height: 40,
-          alignment: Alignment.center,
-          margin: const EdgeInsetsDirectional.only(start: 10),
-          decoration: ShapeDecoration(
-            color: Colors.white.withOpacity(0.10000000149011612),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-          ),
-          child: const Align(
-            alignment: Alignment.center,
-            child: Icon(
-              Icons.arrow_back_ios_new,
-              color: AppColors.white,
-              size: 30,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  BooleanWrapper(this.value);
 }
