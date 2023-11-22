@@ -4,14 +4,14 @@ import 'package:dawrni/core/widgets/custom_text_filed.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class ConnectUsView extends StatefulWidget {
-  const ConnectUsView({super.key});
+class ContactUsView extends StatefulWidget {
+  const ContactUsView({super.key});
 
   @override
-  State<ConnectUsView> createState() => _ConnectUsViewState();
+  State<ContactUsView> createState() => _ContactUsViewState();
 }
 
-class _ConnectUsViewState extends State<ConnectUsView> {
+class _ContactUsViewState extends State<ContactUsView> {
   final name = TextEditingController();
   final email = TextEditingController();
   final description = TextEditingController();

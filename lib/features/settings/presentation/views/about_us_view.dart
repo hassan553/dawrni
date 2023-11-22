@@ -1,9 +1,7 @@
-import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
 import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AboutUsView extends StatelessWidget {
