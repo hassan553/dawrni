@@ -36,6 +36,9 @@ class ImagesPaths {
   static const String certifiedPng = '${_baseImagesPath}certified.png';
   static const String backgroundImagePng = '${_baseImagesPath}background_image.png';
   static const String chatPng = '${_baseImagesPath}chat.png';
+  static const String twitterPng = '${_baseImagesPath}Icon.png';
+  static const String facebookPng = '${_baseImagesPath}Icon2.png';
+  static const String linkedInPng = '${_baseImagesPath}Group 215.png';
 
 
 }

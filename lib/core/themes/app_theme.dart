@@ -120,9 +120,10 @@ class AppTheme {
     ),
     scaffoldBackgroundColor: AppColors.offBlack,
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.black,
+      backgroundColor: AppColors.offBlack,
       elevation: 0,
       iconTheme: const IconThemeData(color: Colors.white),
+      titleTextStyle: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
       toolbarTextStyle: TextStyle(
         color: AppColors.white,
         fontSize: 14.sp,
