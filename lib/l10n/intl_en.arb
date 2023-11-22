@@ -108,5 +108,9 @@
   "mustBeAtLeastMinlength": "must be at least {minLength}",
   "mobileIsNotValid": "Mobile is not valid",
   "signedUpSuccessfully": "Signed Up Successfully",
-  "signedInSuccessfully": "Signed In Successfully"
+  "signedInSuccessfully": "Signed In Successfully",
+  "youDontHaveAnyMessagesYet": "You don’t have any messages yet ..",
+  "thisScreenIsStillLoadingN": "This screen is still loading ..\n",
+  "thankYou": "Thank you",
+  "forYourPatience": " for your patience"
 }

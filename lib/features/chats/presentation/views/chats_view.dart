@@ -6,6 +6,7 @@ import 'package:dawrni/features/chats/presentation/views/chats_details_view.dart
 import 'package:flutter/material.dart';
 
 import '../../../../generated/l10n.dart';
+import '../bloc/chat_get_messages.dart';
 
 class ChatHomeScreen extends StatefulWidget {
   const ChatHomeScreen({super.key});
@@ -20,6 +21,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
     {'receiverId': 'hassan', 'senderId': 'hashem'}
   ];
   List ids = ['hassan', 'hashem'];
+  final searchFocuseNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +34,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
               SizedBox(
                 height: 40,
                 child: CustomTextFieldWidget(
+                  focusNode: searchFocuseNode,
                   controller: TextEditingController(),
                   hintText: S.of(context).searchYourMessage,
                   suffixIcons: Image.asset(ImagesPaths.searchIconPng),
@@ -68,9 +71,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
           borderRadius: BorderRadius.circular(20),
         ),
         backgroundColor: AppColors.primaryColor,
-        onPressed: () {
-          // Open contacts or create a new chat
-        },
+        onPressed: () => FocusScope.of(context).requestFocus(searchFocuseNode),
         child: const Icon(Icons.edit_outlined),
       ),
     );

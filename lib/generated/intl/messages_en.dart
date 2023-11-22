@@ -73,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Email is not valid"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "facebook": MessageLookupByLibrary.simpleMessage("Facebook"),
+        "forYourPatience":
+            MessageLookupByLibrary.simpleMessage(" for your patience"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("Forget Password?"),
         "from": MessageLookupByLibrary.simpleMessage("Form"),
@@ -154,11 +156,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sorry, there are no results for this\nsearch. Please try another name .."),
         "sorryThereIsNoNotifications": MessageLookupByLibrary.simpleMessage(
             "Sorry, there is no notifications .."),
+        "thankYou": MessageLookupByLibrary.simpleMessage("Thank you"),
         "theAppointmentHaveBeenCancelledSuccessfully":
             MessageLookupByLibrary.simpleMessage(
                 "The appointment have been\ncancelled successfully"),
         "thisScreenIsStillLoading": MessageLookupByLibrary.simpleMessage(
             "This screen is still loading ..\nThank you for your patience"),
+        "thisScreenIsStillLoadingN": MessageLookupByLibrary.simpleMessage(
+            "This screen is still loading ..\n"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("This week"),
         "this_account_exit": MessageLookupByLibrary.simpleMessage(
             "This account doesn\'t exit! "),
@@ -186,6 +191,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Wrong password! please try again"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "youDonHaveAnyMessagesYet": MessageLookupByLibrary.simpleMessage(
+            "You don’t have any messages yet .."),
+        "youDontHaveAnyMessagesYet": MessageLookupByLibrary.simpleMessage(
             "You don’t have any messages yet .."),
         "you_don_have_any_appointments_yet":
             MessageLookupByLibrary.simpleMessage(

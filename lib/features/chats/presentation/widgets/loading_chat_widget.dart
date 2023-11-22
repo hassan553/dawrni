@@ -3,6 +3,8 @@ import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart
 import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../generated/l10n.dart';
+
 class LoadingChatWidget extends StatelessWidget {
   const LoadingChatWidget({super.key});
 
@@ -23,13 +25,13 @@ class LoadingChatWidget extends StatelessWidget {
             text: TextSpan(
               style: context.f16400,
               children: [
-                const TextSpan(text: 'This screen is still loading .. \n'),
+                TextSpan(text: S.of(context).thisScreenIsStillLoadingN),
                 TextSpan(
-                  text: 'Thank you',
+                  text: S.of(context).thankYou,
                   style:
                       context.f16400?.copyWith(color: AppColors.primaryColor),
                 ),
-                const TextSpan(text: ' for your patience'),
+                 TextSpan(text: S.of(context).forYourPatience),
               ],
             ),
           ),

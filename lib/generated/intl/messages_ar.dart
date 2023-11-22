@@ -71,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Email is not valid"),
         "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
         "facebook": MessageLookupByLibrary.simpleMessage("فيسبوك"),
+        "forYourPatience": MessageLookupByLibrary.simpleMessage(" من أجل صبرك"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "from": MessageLookupByLibrary.simpleMessage("من"),
@@ -95,7 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "message": MessageLookupByLibrary.simpleMessage("الرسالة"),
         "mobileIsNotValid":
-            MessageLookupByLibrary.simpleMessage("Mobile is not valid"),
+            MessageLookupByLibrary.simpleMessage("الجوال غير صالح"),
         "mustBeAtLeastMinlength": m0,
         "myAppointments": MessageLookupByLibrary.simpleMessage("مواعيدي"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
@@ -142,7 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signedInSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تسجبل الدخوال بنجاح"),
         "signedUpSuccessfully":
-            MessageLookupByLibrary.simpleMessage("Signed Up Successfully"),
+            MessageLookupByLibrary.simpleMessage("تم التسجيل بنجاح"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطى"),
         "somethingWrongWithYourConnection":
             MessageLookupByLibrary.simpleMessage(
@@ -152,10 +153,13 @@ class MessageLookup extends MessageLookupByLibrary {
                 "عذرًا، لا توجد نتائج لهذا البحث. الرجاء محاولة اسم آخر .."),
         "sorryThereIsNoNotifications":
             MessageLookupByLibrary.simpleMessage("عذرًا، لا توجد إشعارات .."),
+        "thankYou": MessageLookupByLibrary.simpleMessage("شكرًا لك"),
         "theAppointmentHaveBeenCancelledSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم إلغاء الموعد بنجاح"),
         "thisScreenIsStillLoading": MessageLookupByLibrary.simpleMessage(
             "هذا الشاشة لا تزال قيد التحميل .. شكراً لصبرك"),
+        "thisScreenIsStillLoadingN": MessageLookupByLibrary.simpleMessage(
+            "هذه الشاشة لا تزال قيد التحميل ..\n"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("هذا الأسبوع"),
         "this_account_exit":
             MessageLookupByLibrary.simpleMessage("هذا الحساب غير موجود!"),
@@ -182,6 +186,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yes": MessageLookupByLibrary.simpleMessage("نعم"),
         "youDonHaveAnyMessagesYet":
             MessageLookupByLibrary.simpleMessage("ليس لديك أي رسائل بعد .."),
+        "youDontHaveAnyMessagesYet":
+            MessageLookupByLibrary.simpleMessage("ليس لديك أية رسائل بعد.."),
         "yourAppointmentHasBeenConfirmedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تأكيد موعدك بنجاح"),
         "yourFavorites": MessageLookupByLibrary.simpleMessage("المفضلة لديك"),

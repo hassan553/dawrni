@@ -106,7 +106,11 @@
   "emailIsNotValid": "Email is not valid",
   "requiredField": "Required Field",
   "mustBeAtLeastMinlength": "must be at least {minLength}",
-  "mobileIsNotValid": "Mobile is not valid",
-  "signedUpSuccessfully": "Signed Up Successfully",
-  "signedInSuccessfully": "تم تسجبل الدخوال بنجاح"
+  "mobileIsNotValid": "الجوال غير صالح",
+  "signedUpSuccessfully": "تم التسجيل بنجاح",
+  "signedInSuccessfully": "تم تسجبل الدخوال بنجاح",
+  "youDontHaveAnyMessagesYet": "ليس لديك أية رسائل بعد..",
+  "thisScreenIsStillLoadingN": "هذه الشاشة لا تزال قيد التحميل ..\n",
+  "thankYou": "شكرًا لك",
+  "forYourPatience": " من أجل صبرك"
 }

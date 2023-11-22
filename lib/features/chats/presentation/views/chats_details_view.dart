@@ -6,7 +6,10 @@ import 'package:dawrni/features/chats/presentation/widgets/loading_chat_widget.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/core_compoent/show_toast.dart';
+import '../../../../generated/l10n.dart';
+import '../../domain/entities/message_entity.dart';
 import '../../domain/parameters/message_parameters.dart';
+import '../bloc/chat_get_messages.dart';
 import '../widgets/empty_chat_widget.dart';
 
 class ChatDetailsView extends StatefulWidget {
@@ -20,27 +23,18 @@ class ChatDetailsView extends StatefulWidget {
 
 class _ChatDetailsViewState extends State<ChatDetailsView> {
   TextEditingController messageController = TextEditingController();
-  final ScrollController _scrollController = ScrollController();
-  // void scrollToLastMessage() {
-  //   _scrollController.animateTo(
-  //     _scrollController.position.maxScrollExtent,
-  //     duration: const Duration(milliseconds: 300),
-  //     curve: Curves.easeOut,
-  //   );
-  // }
+  final GetMessagesBloc _messagesBloc = GetMessagesBloc();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    context.read<ChatBlocBloc>().add(GetMessagesEvent(widget.data['senderId']));
+    _messagesBloc.getMessages(widget.id);
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    _messagesBloc.dispose();
     messageController.dispose();
-    _scrollController.dispose();
     super.dispose();
   }
 
@@ -55,78 +49,79 @@ class _ChatDetailsViewState extends State<ChatDetailsView> {
           if (state is ChatSendMessageError) {
             showToast(message: state.error.message);
           }
-          if (state is ChatGetMessagesError) {
-            showToast(message: state.error.message);
-          }
         },
         builder: (context, state) {
           return Column(
             children: [
               Expanded(
-                child: Builder(builder: (context) {
-                  if (state is ChatGetMessagesLoading) {
-                    return const LoadingChatWidget();
-                  } else if (context.read<ChatBlocBloc>().messages.isEmpty) {
-                    return const EmptyChatWidget();
-                  } else {
-                    final messages = context.read<ChatBlocBloc>().messages;
-                    return Column(
-                      children: [
-                        Expanded(
-                          child: ListView.builder(
-                            controller: _scrollController,
-                            itemCount: messages.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsetsDirectional.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                child: Align(
-                                  alignment:
-                                      messages[index].senderId == widget.id
-                                          ? Alignment.centerRight
-                                          : Alignment.centerLeft,
-                                  child: Container(
-                                    padding:
-                                        const EdgeInsetsDirectional.all(10.0),
-                                    decoration: BoxDecoration(
-                                      color:
-                                          messages[index].senderId == widget.id
-                                              ? AppColors.primaryColor
-                                              : Colors.grey.shade500,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    child: Text(
-                                      messages[index].message,
-                                      style: context.f16500,
-                                    ),
+                child: StreamBuilder<List<MessageEntity>>(
+                  stream: _messagesBloc.messagesStream,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      final messages = snapshot.data!;
+                      if (messages.isEmpty) {
+                        return const EmptyChatWidget();
+                      }
+                      return Scrollbar(
+                        child: ListView.builder(
+                          reverse: true,
+                          itemCount: messages.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsetsDirectional.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              child: Align(
+                                alignment: messages[index].senderId == widget.id
+                                    ? Alignment.centerRight
+                                    : Alignment.centerLeft,
+                                child: Container(
+                                  padding:
+                                      const EdgeInsetsDirectional.all(10.0),
+                                  decoration: BoxDecoration(
+                                    color: messages[index].senderId == widget.id
+                                        ? AppColors.primaryColor
+                                        : Colors.grey.shade500,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  child: Text(
+                                    messages[index].message,
+                                    style: context.f16500,
                                   ),
                                 ),
-                              );
-                            },
-                          ),
+                              ),
+                            );
+                          },
                         ),
-                        const SizedBox(height: 20),
-                      ],
-                    );
-                  }
-                }),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      return const LoadingChatWidget();
+                    }
+                  },
+                ),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.symmetric(
                     horizontal: 20, vertical: 30),
                 child: CustomTextFieldWidget(
+                    onfiledSumbitted: (p0) {
+                      if (messageController.text.isNotEmpty) {
+                        _sendMessage(context);
+                        messageController.clear();
+                      }
+                    },
                     suffixIcons: InkWell(
                         onTap: () {
                           if (messageController.text.isNotEmpty) {
                             _sendMessage(context);
-                            // scrollToLastMessage();
                             messageController.clear();
                           }
                         },
                         child: const Icon(Icons.send,
                             color: AppColors.primaryColor)),
                     controller: messageController,
-                    hintText: 'write your message ...'),
+                    hintText: S.of(context).writeYourMessage),
               ),
             ],
           );
@@ -141,7 +136,5 @@ class _ChatDetailsViewState extends State<ChatDetailsView> {
         senderId: widget.id,
         dateTime: DateTime.now().toString(),
         message: messageController.text)));
-        
-    context.read<ChatBlocBloc>().add(GetMessagesEvent(widget.id));
   }
 }

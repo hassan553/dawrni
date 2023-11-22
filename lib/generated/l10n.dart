@@ -1149,6 +1149,46 @@ class S {
       args: [],
     );
   }
+
+  /// `You don’t have any messages yet ..`
+  String get youDontHaveAnyMessagesYet {
+    return Intl.message(
+      'You don’t have any messages yet ..',
+      name: 'youDontHaveAnyMessagesYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This screen is still loading ..\n`
+  String get thisScreenIsStillLoadingN {
+    return Intl.message(
+      'This screen is still loading ..\n',
+      name: 'thisScreenIsStillLoadingN',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thank you`
+  String get thankYou {
+    return Intl.message(
+      'Thank you',
+      name: 'thankYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` for your patience`
+  String get forYourPatience {
+    return Intl.message(
+      ' for your patience',
+      name: 'forYourPatience',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -2,6 +2,8 @@ import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart
 import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../generated/l10n.dart';
+
 class EmptyChatWidget extends StatelessWidget {
   const EmptyChatWidget({super.key});
 
@@ -17,7 +19,7 @@ class EmptyChatWidget extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            'You don’t have any messages yet ..',
+            S.of(context).youDontHaveAnyMessagesYet,
             style: context.f16400,
           ),
         ],
