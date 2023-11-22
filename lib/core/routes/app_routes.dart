@@ -10,7 +10,7 @@ import 'package:dawrni/features/home/presentation/routes/main_route.dart';
 import 'package:dawrni/features/onboarding/presentation/routes/onboarding_route.dart';
 import 'package:dawrni/features/profile/presentation/routes/client_profile_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/about_us_route.dart';
-import 'package:dawrni/features/settings/presentation/routes/connect_us_route.dart';
+import 'package:dawrni/features/settings/presentation/routes/contact_us_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/privacy_policy_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/setting_route.dart';
 import 'package:go_router/go_router.dart';
@@ -47,7 +47,7 @@ class AppRoutes {
       FavoritesRoute.route,
       AppointmentsRoute.route,
       AboutUsRoute.route,
-      ConnectUsRoute.route,
+      ContactUsRoute.route,
       PrivacyPolicyRoute.route,
       SettingsRoute.route
     ],

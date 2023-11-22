@@ -136,5 +136,7 @@
   "category8Name": "Clinics Service",
   "category9Name": "Legal Service",
   "category10Name": "Bokhour and Perfumes",
-  "tryAgain": "Try Again"
+  "tryAgain": "Try Again",
+  "anyQuestionsOrRemarksJustWriteUsAMessage": "Any questions or remarks ?  Just write us a message",
+  "nameHint": "Abdullah Otaibi"
 }

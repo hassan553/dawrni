@@ -32,6 +32,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("عن الشركة"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("من نحن"),
         "add_your_location": MessageLookupByLibrary.simpleMessage("أضف موقعك"),
+        "anyQuestionsOrRemarksJustWriteUsAMessage":
+            MessageLookupByLibrary.simpleMessage(
+                "Any questions or remarks ?  Just write us a message"),
         "anyQuestionsOrRemarksJustWriteUsMessage":
             MessageLookupByLibrary.simpleMessage(
                 "أي أسئلة أو ملاحظات؟ فقط اكتب لنا رسالة"),
@@ -138,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mobile is not valid"),
         "mustBeAtLeastMinlength": m1,
         "myAppointments": MessageLookupByLibrary.simpleMessage("مواعيدي"),
+        "nameHint": MessageLookupByLibrary.simpleMessage("Abdullah Otaibi"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "noInternetConnection":

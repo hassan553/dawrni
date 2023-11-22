@@ -1429,6 +1429,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Any questions or remarks ?  Just write us a message`
+  String get anyQuestionsOrRemarksJustWriteUsAMessage {
+    return Intl.message(
+      'Any questions or remarks ?  Just write us a message',
+      name: 'anyQuestionsOrRemarksJustWriteUsAMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Abdullah Otaibi`
+  String get nameHint {
+    return Intl.message(
+      'Abdullah Otaibi',
+      name: 'nameHint',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
