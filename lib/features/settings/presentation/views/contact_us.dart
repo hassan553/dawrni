@@ -1,6 +1,12 @@
 import 'package:dawrni/core/constants/app_colors.dart';
+import 'package:dawrni/core/core_compoent/app_button.dart';
+import 'package:dawrni/core/core_compoent/app_text_field.dart';
+import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
+import 'package:dawrni/core/paths/images_paths.dart';
+import 'package:dawrni/core/utils/app_validator.dart';
 import 'package:dawrni/core/widgets/custom_button.dart';
 import 'package:dawrni/core/widgets/custom_text_filed.dart';
+import 'package:dawrni/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,6 +21,7 @@ class _ContactUsViewState extends State<ContactUsView> {
   final name = TextEditingController();
   final email = TextEditingController();
   final description = TextEditingController();
+
   @override
   void dispose() {
     name.dispose();
@@ -27,115 +34,54 @@ class _ContactUsViewState extends State<ContactUsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: settingAppBar(),
+      appBar: AppBar(
+        title: Text(S.of(context).contactUs),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsetsDirectional.all(27),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             const SizedBox(height: 20),
-            topPartText(),
+            Text(S.of(context).contactUs, style: context.f18600),
+            const SizedBox(height: 10),
+            Text(S.of(context).anyQuestionsOrRemarksJustWriteUsAMessage, style: context.f12400?.copyWith(color: AppColors.lighterGrey)),
             const SizedBox(height: 50),
-            CustomTextFieldWidget(
-              icon: Image.asset('assets/Group.png'),
-              controller: name,
-              valid: (String? value) {
-                if (value == null) {
-                  return 'Not Valid empty value';
-                }
-              },
-              hintText: 'Full name',
-            ),
+                AppTextField(
+                  labelText: S.of(context).full_name,
+                  controller: name,
+                  hintText: S.of(context).nameHint,
+                  validator: AppValidator(validators: [
+                    InputValidator.requiredField,
+                  ]).validate,
+                  prefixIcon: Image.asset(ImagesPaths.personPng),
+                ),
             const SizedBox(height: 20),
-            CustomTextFieldWidget(
-              icon: Image.asset('assets/Group.png'),
-              controller: email,
-              valid: (String? value) {
-                if (value == null) {
-                  return 'Not Valid empty value';
-                }
-              },
-              hintText: 'Email',
-            ),
+                AppTextField(
+                  labelText: S.of(context).email,
+                  controller: email,
+                  hintText: S.of(context).emailHint,
+                  validator: AppValidator(validators: [
+                    InputValidator.requiredField,
+                    InputValidator.email
+                  ]).validate,
+                  prefixIcon: const Icon(Icons.email_outlined, color: AppColors.lighterGrey),
+                ),
             const SizedBox(height: 20),
-            CustomTextFieldWidget(
-              maxLines: 8,
-              controller: description,
-              valid: (String? value) {
-                if (value == null) {
-                  return 'Not Valid empty value';
-                }
-              },
-              hintText: 'message',
-            ),
+                AppTextField(
+                  labelText: S.of(context).message,
+                  controller: description,
+                  hintText: S.of(context).message,
+                  validator: AppValidator(validators: [
+                    InputValidator.requiredField
+                  ]).validate,
+                  maxLines: 8,
+                ),
             const SizedBox(height: 40),
-            CustomButton(
-              function: () {},
-              color: AppColors.primaryColor,
-              textColor: AppColors.white,
-              fontSize: .04,
-              title: ' Send Message',
-            ),
+            AppButton(
+              text: S.of(context).sendMessage,
+                onPressed: () {}),
           ]),
-        ),
-      ),
-    );
-  }
-
-  Column topPartText() {
-    return const Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Connect Us',
-          textAlign: TextAlign.right,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontFamily: 'Montserrat',
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        SizedBox(height: 8),
-        Text(
-          'Any questions or remarks ?  Just write us a message',
-          textAlign: TextAlign.start,
-          style: TextStyle(
-            color: Color(0xFF7B7B7B),
-            fontSize: 12,
-            fontFamily: 'Montserrat',
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-      ],
-    );
-  }
-
-  AppBar settingAppBar() {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      leading: InkWell(
-        onTap: () => context.pop(),
-        child: Container(
-          width: 40,
-          height: 40,
-          alignment: Alignment.center,
-          margin: const EdgeInsetsDirectional.only(start: 10),
-          decoration: ShapeDecoration(
-            color: Colors.white.withOpacity(0.10000000149011612),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-          ),
-          child: const Align(
-            alignment: Alignment.center,
-            child: Icon(
-              Icons.arrow_back_ios_new,
-              color: AppColors.white,
-              size: 30,
-            ),
-          ),
         ),
       ),
     );

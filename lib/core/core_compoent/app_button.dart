@@ -38,7 +38,7 @@ class AppButton extends StatelessWidget {
     };
 
     gradient = switch (type) {
-    AppButtonType.gradientPrimary => AppGradients.primaryGradient,
+      AppButtonType.gradientPrimary => AppGradients.primaryGradient,
       _ => null
     };
 
@@ -58,7 +58,6 @@ class AppButton extends StatelessWidget {
         EdgeInsets.symmetric(horizontal: 20.w, vertical: 0.w),
       _ => EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.w)
     };
-
   }
 
   @override
@@ -68,10 +67,10 @@ class AppButton extends StatelessWidget {
       _ => context.f16700
     };
 
-    child ??= Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: switch (type) {
-        AppButtonType.gradientPrimary => Row(
+    child ??= switch (type) {
+      AppButtonType.gradientPrimary => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
             children: [
               Text(
                 text ?? '',
@@ -79,17 +78,20 @@ class AppButton extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const Spacer(),
-              Icon(Icons.arrow_forward_ios_sharp, color: AppColors.white.withOpacity(0.3), size: 20),
-              Icon(Icons.arrow_forward_ios_sharp, color: AppColors.white.withOpacity(0.6), size: 20),
-              Icon(Icons.arrow_forward_ios_sharp, color: AppColors.white.withOpacity(1.0), size: 20)
+              Icon(Icons.arrow_forward_ios_sharp,
+                  color: AppColors.white.withOpacity(0.3), size: 20),
+              Icon(Icons.arrow_forward_ios_sharp,
+                  color: AppColors.white.withOpacity(0.6), size: 20),
+              Icon(Icons.arrow_forward_ios_sharp,
+                  color: AppColors.white.withOpacity(1.0), size: 20)
             ],
           ),
-        _ => null
-      },
-    );
+        ),
+      _ => null
+    };
 
     return Container(
-    width: width,
+      width: width,
       decoration: BoxDecoration(
         color: color,
         gradient: gradient,
@@ -123,4 +125,4 @@ class AppButton extends StatelessWidget {
   }
 }
 
-enum AppButtonType {solidPrimary, gradientPrimary}
+enum AppButtonType { solidPrimary, gradientPrimary }

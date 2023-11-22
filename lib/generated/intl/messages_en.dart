@@ -33,6 +33,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
         "add_your_location":
             MessageLookupByLibrary.simpleMessage("Add your location"),
+        "anyQuestionsOrRemarksJustWriteUsAMessage":
+            MessageLookupByLibrary.simpleMessage(
+                "Any questions or remarks ?  Just write us a message"),
         "anyQuestionsOrRemarksJustWriteUsMessage":
             MessageLookupByLibrary.simpleMessage(
                 "Any questions or remarks ? Just write us a message"),
@@ -141,6 +144,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mustBeAtLeastMinlength": m1,
         "myAppointments":
             MessageLookupByLibrary.simpleMessage("My appointments"),
+        "nameHint": MessageLookupByLibrary.simpleMessage("Abdullah Otaibi"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noInternetConnection":
