@@ -1,4 +1,5 @@
 import 'package:dawrni/core/constants/app_colors.dart';
+import 'package:dawrni/core/constants/app_gradient.dart';
 import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,12 +8,12 @@ class AppButton extends StatelessWidget {
   final double? width;
   final double? height;
   final VoidCallback? onPressed;
-  final Widget? child;
   final String? text;
   final double? fontSize;
   final AppButtonType type;
   final bool loading;
 
+  Widget? child;
   late final Color? color;
   late final Gradient? gradient;
   late final BorderRadiusGeometry borderRadius;
@@ -37,11 +38,13 @@ class AppButton extends StatelessWidget {
     };
 
     gradient = switch (type) {
+      AppButtonType.gradientPrimary => AppGradients.primaryGradient,
       _ => null
     };
 
     borderRadius = switch (type) {
       AppButtonType.solidPrimary => BorderRadius.circular(16),
+      AppButtonType.gradientPrimary => BorderRadius.circular(90),
       _ => BorderRadius.circular(16)
     };
 
@@ -64,8 +67,31 @@ class AppButton extends StatelessWidget {
       _ => context.f16700
     };
 
+    child ??= switch (type) {
+      AppButtonType.gradientPrimary => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            children: [
+              Text(
+                text ?? '',
+                style: textStyle,
+                textAlign: TextAlign.center,
+              ),
+              const Spacer(),
+              Icon(Icons.arrow_forward_ios_sharp,
+                  color: AppColors.white.withOpacity(0.3), size: 20),
+              Icon(Icons.arrow_forward_ios_sharp,
+                  color: AppColors.white.withOpacity(0.6), size: 20),
+              Icon(Icons.arrow_forward_ios_sharp,
+                  color: AppColors.white.withOpacity(1.0), size: 20)
+            ],
+          ),
+        ),
+      _ => null
+    };
+
     return Container(
-    width: width,
+      width: width,
       decoration: BoxDecoration(
         color: color,
         gradient: gradient,
@@ -99,4 +125,4 @@ class AppButton extends StatelessWidget {
   }
 }
 
-enum AppButtonType {solidPrimary}
+enum AppButtonType { solidPrimary, gradientPrimary }

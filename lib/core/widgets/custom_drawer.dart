@@ -3,7 +3,7 @@ import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/home/presentation/routes/main_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/about_us_route.dart';
-import 'package:dawrni/features/settings/presentation/routes/connect_us_route.dart';
+import 'package:dawrni/features/settings/presentation/routes/contact_us_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/privacy_policy_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/setting_route.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +85,7 @@ class CustomDrawer extends StatelessWidget {
                   'assets/iconoir_headset-help.png',
                   fit: BoxFit.fill,
                 ),
-             () => context.push(ConnectUsRoute.name)),
+             () => context.push(ContactUsRoute.name)),
             customListTile(
                 'Settings',
                 Icon(

@@ -11,8 +11,9 @@ import 'package:dawrni/core/utils/app_validator.dart';
 import 'package:dawrni/core/utils/base_state.dart';
 import 'package:dawrni/features/auth/domain/entities/user_entity.dart';
 import 'package:dawrni/features/auth/presentation/blocs/register/register_bloc.dart';
-import 'package:dawrni/features/auth/presentation/routes/login_client_route.dart';
-import 'package:dawrni/features/auth/presentation/routes/verify_email_route.dart';
+import 'package:dawrni/features/auth/presentation/routes/login_route.dart';
+import 'package:dawrni/features/auth/presentation/routes/otp_verify_route.dart';
+import 'package:dawrni/features/auth/presentation/widgets/top_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -48,8 +49,8 @@ class _RegisterViewState extends State<RegisterView> {
           child: BlocListener<RegisterBloc, BaseState<UserEntity>>(
         listener: (context, state) {
           if (state.isSuccess) {
-            showToast(message: S.of(context).signedUpSuccessfully);
-            context.go(VerifyEmailRoute.name);
+            showToast(message: S.of(context).verificationCodeHasBeenSentToYourEmail);
+            context.go(OtpVerifyRoute.name, extra: emailController.text);
           } else if (state.isError) {
             FailureComponent.handleFailure(
                 context: context, failure: state.failure);
@@ -66,7 +67,7 @@ class _RegisterViewState extends State<RegisterView> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 50),
-                  topImage(context),
+                  const TopLogo(),
                   const SizedBox(height: 30),
                   companyOrClientButton(context),
                   const SizedBox(height: 50),
@@ -139,6 +140,7 @@ class _RegisterViewState extends State<RegisterView> {
               InputValidator.requiredField,
               InputValidator.email
             ]).validate,
+            prefixIcon: Image.asset(ImagesPaths.personPng),
           ),
           AppTextField(
             labelText: S.of(context).password,
@@ -221,13 +223,6 @@ class _RegisterViewState extends State<RegisterView> {
           ),
         ],
       ),
-    );
-  }
-
-  Image topImage(BuildContext context) {
-    return Image.asset(
-      ImagesPaths.logPng,
-      width: 150.w,
     );
   }
 }

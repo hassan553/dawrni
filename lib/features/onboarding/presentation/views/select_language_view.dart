@@ -3,13 +3,13 @@ import 'package:dawrni/core/enums/app_languages.dart';
 import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
+import 'package:dawrni/features/auth/presentation/routes/login_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../generated/l10n.dart';
-import '../../../auth/presentation/routes/login_client_route.dart';
 import '../../../home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 
 class SelectLanguageView extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:dawrni/core/widgets/custom_button.dart';
 import 'package:dawrni/core/widgets/custom_loading_widget.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
-import 'package:dawrni/features/auth/presentation/routes/login_client_route.dart';
+import 'package:dawrni/features/auth/presentation/routes/login_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
