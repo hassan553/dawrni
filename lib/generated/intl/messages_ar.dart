@@ -20,7 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(minLength) => "must be at least ${minLength}";
+  static String m0(number) => "Enter the OTP code sent to ${number}";
+
+  static String m1(minLength) => "must be at least ${minLength}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -30,6 +32,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("عن الشركة"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("من نحن"),
         "add_your_location": MessageLookupByLibrary.simpleMessage("أضف موقعك"),
+        "anyQuestionsOrRemarksJustWriteUsAMessage":
+            MessageLookupByLibrary.simpleMessage(
+                "Any questions or remarks ?  Just write us a message"),
         "anyQuestionsOrRemarksJustWriteUsMessage":
             MessageLookupByLibrary.simpleMessage(
                 "أي أسئلة أو ملاحظات؟ فقط اكتب لنا رسالة"),
@@ -43,6 +48,41 @@ class MessageLookup extends MessageLookupByLibrary {
         "bodyTitle2": MessageLookupByLibrary.simpleMessage(
             "احصل على حل لمشكلتك مع خدمتنا السريعة"),
         "bookNow": MessageLookupByLibrary.simpleMessage("احجز الآن"),
+        "category10Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category10Name":
+            MessageLookupByLibrary.simpleMessage("Bokhour and Perfumes"),
+        "category1Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category1Name": MessageLookupByLibrary.simpleMessage("Cars Service"),
+        "category2Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category2Name":
+            MessageLookupByLibrary.simpleMessage("Outdoors Service"),
+        "category3Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category3Name":
+            MessageLookupByLibrary.simpleMessage("The Mall Service"),
+        "category4Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category4Name": MessageLookupByLibrary.simpleMessage("Salons Service"),
+        "category5Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category5Name":
+            MessageLookupByLibrary.simpleMessage("Food and Beverages"),
+        "category6Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category6Name": MessageLookupByLibrary.simpleMessage("Video Games"),
+        "category7Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category7Name": MessageLookupByLibrary.simpleMessage("Pets Service"),
+        "category8Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category8Name":
+            MessageLookupByLibrary.simpleMessage("Clinics Service"),
+        "category9Description": MessageLookupByLibrary.simpleMessage(
+            "Get your problem fixed with our fast service"),
+        "category9Name": MessageLookupByLibrary.simpleMessage("Legal Service"),
         "certified": MessageLookupByLibrary.simpleMessage("معتمد"),
         "checkTheSettings":
             MessageLookupByLibrary.simpleMessage("تحقق من الإعدادات"),
@@ -70,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailIsNotValid":
             MessageLookupByLibrary.simpleMessage("Email is not valid"),
         "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
+        "enterTheOtpCodeSentToNumber": m0,
         "facebook": MessageLookupByLibrary.simpleMessage("فيسبوك"),
         "forYourPatience": MessageLookupByLibrary.simpleMessage(" من أجل صبرك"),
         "forget_password":
@@ -86,6 +127,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تعرف على المزيد عن خدماتنا"),
         "hey": MessageLookupByLibrary.simpleMessage("مرحبًا"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+        "homeMessage":
+            MessageLookupByLibrary.simpleMessage("Let’s Find What You Need !"),
         "if_you_have_account":
             MessageLookupByLibrary.simpleMessage("إذا كان لديك حساب؟"),
         "internetIsRestored": MessageLookupByLibrary.simpleMessage(
@@ -96,15 +139,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "message": MessageLookupByLibrary.simpleMessage("الرسالة"),
         "mobileIsNotValid":
-            MessageLookupByLibrary.simpleMessage("الجوال غير صالح"),
-        "mustBeAtLeastMinlength": m0,
+            MessageLookupByLibrary.simpleMessage("Mobile is not valid"),
+        "mustBeAtLeastMinlength": m1,
         "myAppointments": MessageLookupByLibrary.simpleMessage("مواعيدي"),
+        "nameHint": MessageLookupByLibrary.simpleMessage("Abdullah Otaibi"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "noInternetConnection":
             MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت!"),
         "noResults": MessageLookupByLibrary.simpleMessage("لا توجد نتائج!"),
         "opps": MessageLookupByLibrary.simpleMessage("عذراً!"),
+        "otpVerification":
+            MessageLookupByLibrary.simpleMessage("OTP Verification"),
+        "ourBestServices":
+            MessageLookupByLibrary.simpleMessage("Our Best Services"),
         "our_best_services":
             MessageLookupByLibrary.simpleMessage("أفضل خدماتنا"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
@@ -125,6 +173,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "restoreTheInternet":
             MessageLookupByLibrary.simpleMessage("استعادة الاتصال بالإنترنت"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
+        "searchServiceHint":
+            MessageLookupByLibrary.simpleMessage("Search your service .."),
         "searchYourMessage":
             MessageLookupByLibrary.simpleMessage("ابحث عن رسالتك .."),
         "search_your_service":
@@ -143,7 +193,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signedInSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تسجبل الدخوال بنجاح"),
         "signedUpSuccessfully":
-            MessageLookupByLibrary.simpleMessage("تم التسجيل بنجاح"),
+            MessageLookupByLibrary.simpleMessage("Signed Up Successfully"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطى"),
         "somethingWrongWithYourConnection":
             MessageLookupByLibrary.simpleMessage(
@@ -167,12 +217,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "today": MessageLookupByLibrary.simpleMessage("اليوم"),
         "todayAppointments":
             MessageLookupByLibrary.simpleMessage("مواعيد اليوم"),
+        "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
         "try_again": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
         "twitter": MessageLookupByLibrary.simpleMessage("تويتر"),
         "typesDataWeCollect": MessageLookupByLibrary.simpleMessage(
             "1. أنواع البيانات التي نجمعها"),
         "useOfYourPersonalData":
             MessageLookupByLibrary.simpleMessage("2. استخدام بياناتك الشخصية"),
+        "verificationCodeHasBeenSentToYourEmail":
+            MessageLookupByLibrary.simpleMessage(
+                "Verification code has been sent to your email"),
+        "verifiedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Verified Successfully"),
         "verifyYourEmailAddress": MessageLookupByLibrary.simpleMessage(
             "تحقق من عنوان بريدك الإلكتروني"),
         "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل >>"),
