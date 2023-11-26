@@ -24,5 +24,6 @@ class ApisUrls {
   static const String getCompanies = '$_baseApiUrl/companies/';
   static String getCompanyDetails(String id) =>
       '$_baseApiUrl/companies/$id';
+  static String bookAppointment = '$_baseApiUrl/book/';
 
 }

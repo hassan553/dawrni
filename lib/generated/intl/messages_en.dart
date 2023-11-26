@@ -50,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "bodyTitle2": MessageLookupByLibrary.simpleMessage(
             "Get your problem fixed with our fast service"),
         "bookNow": MessageLookupByLibrary.simpleMessage("Book Now"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "category10Description": MessageLookupByLibrary.simpleMessage(
             "Get your problem fixed with our fast service"),
         "category10Name":
@@ -181,8 +182,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Search your message .."),
         "search_your_service":
             MessageLookupByLibrary.simpleMessage("Search your service .."),
+        "selectDate": MessageLookupByLibrary.simpleMessage("Select Date"),
         "selectLanguage": MessageLookupByLibrary.simpleMessage(
             "Please select your preferred language"),
+        "selectTime": MessageLookupByLibrary.simpleMessage("Select time"),
         "sendEmail": MessageLookupByLibrary.simpleMessage("Send Email"),
         "sendMessage": MessageLookupByLibrary.simpleMessage("Send Message"),
         "service_category":
@@ -204,6 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sorry, there are no results for this\nsearch. Please try another name .."),
         "sorryThereIsNoNotifications": MessageLookupByLibrary.simpleMessage(
             "Sorry, there is no notifications .."),
+        "success": MessageLookupByLibrary.simpleMessage("Success"),
         "theAppointmentHaveBeenCancelledSuccessfully":
             MessageLookupByLibrary.simpleMessage(
                 "The appointment have been\ncancelled successfully"),

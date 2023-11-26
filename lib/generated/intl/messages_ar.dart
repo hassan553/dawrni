@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "bodyTitle2": MessageLookupByLibrary.simpleMessage(
             "احصل على حل لمشكلتك مع خدمتنا السريعة"),
         "bookNow": MessageLookupByLibrary.simpleMessage("احجز الآن"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "category10Description": MessageLookupByLibrary.simpleMessage(
             "Get your problem fixed with our fast service"),
         "category10Name":
@@ -178,8 +179,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ابحث عن رسالتك .."),
         "search_your_service":
             MessageLookupByLibrary.simpleMessage("ابحث عن خدمتك .."),
+        "selectDate": MessageLookupByLibrary.simpleMessage("Select Date"),
         "selectLanguage": MessageLookupByLibrary.simpleMessage(
             "الرجاء اختيار اللغة المفضلة لديك"),
+        "selectTime": MessageLookupByLibrary.simpleMessage("Select time"),
         "sendEmail": MessageLookupByLibrary.simpleMessage("ارسل بريد الكتروني"),
         "sendMessage": MessageLookupByLibrary.simpleMessage("إرسال رسالة"),
         "service_category": MessageLookupByLibrary.simpleMessage("فئة الخدمة"),
@@ -202,6 +205,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "عذرًا، لا توجد نتائج لهذا البحث. الرجاء محاولة اسم آخر .."),
         "sorryThereIsNoNotifications":
             MessageLookupByLibrary.simpleMessage("عذرًا، لا توجد إشعارات .."),
+        "success": MessageLookupByLibrary.simpleMessage("Success"),
         "theAppointmentHaveBeenCancelledSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم إلغاء الموعد بنجاح"),
         "thisScreenIsStillLoading": MessageLookupByLibrary.simpleMessage(

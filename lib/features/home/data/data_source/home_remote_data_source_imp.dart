@@ -1,9 +1,9 @@
 import 'package:dawrni/core/constants/apis_urls.dart';
-import 'package:dawrni/core/constants/app_constants.dart';
 import 'package:dawrni/core/services/api_services.dart';
 import 'package:dawrni/core/utils/app_response.dart';
 import 'package:dawrni/features/home/data/data_source/home_data_source.dart';
 import 'package:dawrni/features/home/data/models/companies_model.dart';
+import 'package:dawrni/features/home/domain/parameters/book_parameters.dart';
 import 'package:dawrni/features/home/domain/parameters/get_companies_parameters.dart';
 import 'package:dawrni/features/home/domain/parameters/get_company_details_parameters.dart';
 
@@ -30,5 +30,10 @@ class HomeRemoteDataSourceImp extends HomeDataSource {
     AppResponse response = await ApiServices()
         .get(ApisUrls.getCompanyDetails(parameters.id));
     return CompanyModel.fromJson(response.data);
+  }
+
+  @override
+  Future<void> bookAppointment(BookParameters parameters) async {
+    await ApiServices().get(ApisUrls.bookAppointment);
   }
 }
