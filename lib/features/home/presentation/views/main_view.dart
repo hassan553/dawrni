@@ -8,8 +8,7 @@ import 'package:dawrni/features/favourites/presentation/views/favourites_view.da
 import 'package:dawrni/features/home/presentation/blocs/companies_bloc/companies_bloc.dart';
 import 'package:dawrni/features/home/presentation/views/home_view.dart';
 import 'package:dawrni/features/notifications/presentation/routes/notifications_route.dart';
-import 'package:dawrni/features/profile/presentation/views/client_profile_view.dart';
-import 'package:dawrni/features/profile/presentation/views/company_profile_view.dart';
+import 'package:dawrni/features/profile/presentation/views/user_profile_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
@@ -33,8 +32,8 @@ class _MainViewState extends State<MainView> {
     const AppointmentsView(),
     const FavouriteView(),
     const ChatHomeScreen(),
-    if (CacheStorageServices().isCompany) const CompanyProfileView() else const ClientProfileView(),
-  ];
+ //if (CacheStorageServices().isCompany) const CompanyProfileView() else const ClientProfileView(),
+    const UserProfileView(),  ];
 
   final _advancedDrawerController = AdvancedDrawerController();
 

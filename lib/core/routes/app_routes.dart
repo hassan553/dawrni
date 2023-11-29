@@ -41,7 +41,7 @@ class AppRoutes {
       AllCompanyRoute.route,
       NotificationsRoute.route,
       CompanyProfileRoute.route,
-      ClientProfileRoute.route,
+      UserProfileRoute.route,
       MainRoute.route,
       ChatsRoute.route,
       FavoritesRoute.route,

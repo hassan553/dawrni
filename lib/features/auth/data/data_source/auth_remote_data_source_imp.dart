@@ -11,7 +11,6 @@ import 'package:dawrni/features/auth/domain/parameters/register_company_paramete
 import 'package:dawrni/features/auth/domain/parameters/register_parameters.dart';
 import 'package:dawrni/features/auth/domain/parameters/register_user_parameters.dart';
 import 'package:dawrni/features/auth/domain/parameters/verify_email_code_parameters.dart';
-import 'package:dawrni/features/profile/data/model/company_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/user_model.dart';
 import 'auth_data_source.dart';

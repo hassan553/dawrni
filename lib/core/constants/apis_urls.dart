@@ -24,5 +24,10 @@ class ApisUrls {
   static const String getCompanies = '$_baseApiUrl/companies/';
   static String getCompanyDetails(String id) =>
       '$_baseApiUrl/companies/$id';
+        /// user Profiel
+  static const String getUserProfiel =
+      'https://test-b16ab-default-rtdb.firebaseio.com/profile.json';
+  static const String postUserProfielInfo =
+      'https://test-b16ab-default-rtdb.firebaseio.com/profile.json';
 
 }
