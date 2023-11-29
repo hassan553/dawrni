@@ -138,5 +138,12 @@
   "category10Name": "Bokhour and Perfumes",
   "tryAgain": "Try Again",
   "anyQuestionsOrRemarksJustWriteUsAMessage": "Any questions or remarks ?  Just write us a message",
-  "nameHint": "Abdullah Otaibi"
+  "nameHint": "Abdullah Otaibi",
+  "cancel": "Cancel",
+  "success": "Success",
+  "selectDate": "Select Date",
+  "selectTime": "Select time",
+  "clientAppointmentsMessage": "Your Appointments",
+  "cancelAppointmentConfirmation": "Do you want to cancel the appointment?",
+  "pleaseWait": "Please Wait"
 }

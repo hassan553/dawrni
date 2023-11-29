@@ -39,7 +39,8 @@ class ImagesPaths {
   static const String twitterPng = '${_baseImagesPath}Icon.png';
   static const String facebookPng = '${_baseImagesPath}Icon2.png';
   static const String linkedInPng = '${_baseImagesPath}Group 215.png';
-   static const String rectangleProfile =
+  static const String alertPng = '${_baseImagesPath}Alert.png';
+  static const String rectangleProfile =
       '${_baseImagesPath}rectangleProfile.png';
   static const String ellipse = '${_baseImagesPath}ellipse-56-bg.png';
   static const String imageEdit = '${_baseImagesPath}editImage.svg';
@@ -48,6 +49,7 @@ class ImagesPaths {
   static const String profDone = '${_baseImagesPath}Group 34232.svg';
   static const String locationIcon = '${_baseImagesPath}Location Pin.svg';
   static const String lockIcon = '${_baseImagesPath}lock.svg';
+
 
 
 }
