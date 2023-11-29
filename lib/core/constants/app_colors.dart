@@ -28,8 +28,10 @@ class AppColors {
   static const primaryColor = Color(0xffFF8700);
   static const black = Colors.black;
   static const offBlack = Color(0xff262626);
+    static Color textFieldColor = Color.fromRGBO(255, 255, 255, 0.1);
   static const secondColor = Color(0xff3B3B3B);
   static const white = Colors.white;
+  static const white2 = Color(0xFFDFDFDF);
   static Color offWhite = Colors.white.withOpacity(.6);
   static Color blackWithOpacity4 = Colors.black.withOpacity(.4);
   static Color blackWithOpacity1 = Colors.black.withOpacity(.1);

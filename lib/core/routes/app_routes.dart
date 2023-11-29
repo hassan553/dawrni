@@ -14,7 +14,7 @@ import 'package:dawrni/features/settings/presentation/routes/contact_us_route.da
 import 'package:dawrni/features/settings/presentation/routes/privacy_policy_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/setting_route.dart';
 import 'package:go_router/go_router.dart';
-import '../../features/appointments/presentation/routes/appointments_route.dart';
+import '../../features/appointments/presentation/routes/client_appointments_route.dart';
 import '../../features/chats/presentation/routs/chats_details_route.dart';
 import '../../features/chats/presentation/routs/chats_route.dart';
 import '../../features/favourites/presentation/routes/favorite_route.dart';
@@ -42,12 +42,12 @@ class AppRoutes {
       AllCompanyRoute.route,
       NotificationsRoute.route,
       CompanyProfileRoute.route,
-      ClientProfileRoute.route,
+      UserProfileRoute.route,
       MainRoute.route,
       ChatsRoute.route,
       ChatsDetailsRoute.route,
       FavoritesRoute.route,
-      AppointmentsRoute.route,
+      ClientAppointmentsRoute.route,
       AboutUsRoute.route,
       ContactUsRoute.route,
       PrivacyPolicyRoute.route,

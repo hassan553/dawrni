@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:dawrni/features/profile/data/model/company_model.dart';
+import 'package:dawrni/features/profile/data/models/company_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -96,7 +96,6 @@ class CompanyProfileRepo {
         images.add(element);
       });
 
-    
       return right(images);
     } catch (error) {
       return left('faild to upload images');
@@ -133,7 +132,7 @@ class CompanyProfileRepo {
     required List workingDays,
     required String from,
     required String to,
-    List images=const [],
+    List images = const [],
   }) async {
     try {
       FirebaseFirestore.instance
@@ -148,8 +147,8 @@ class CompanyProfileRepo {
         'address': address,
         'from': from,
         'to': to,
-        'workingDays':workingDays,
-        'images':images,
+        'workingDays': workingDays,
+        'images': images,
       });
       return right('Success Update Data');
     } catch (error) {

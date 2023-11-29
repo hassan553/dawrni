@@ -5,24 +5,26 @@ import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/themes/app_theme.dart';
 import 'package:dawrni/core/translations/app_local.dart';
-import 'package:dawrni/features/chats/presentation/bloc/chat_bloc.dart';
 import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
-import 'package:dawrni/features/profile/data/repository/client_profile_repo.dart';
+
 import 'package:dawrni/features/profile/data/repository/company_profile_repo.dart';
-import 'package:dawrni/features/profile/presentation/cubit/client/client_profile_cubit.dart';
-import 'package:dawrni/features/profile/presentation/cubit/company/company_profile_cubit.dart';
+
+
 import 'package:dawrni/generated/l10n.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'features/chats/domain/repository/chat_repository.dart';
+import 'features/auth/presentation/blocs/login/login_bloc.dart';
 
 late SharedPreferences sharedPreferences;
+
 void main() async {
   // dynamic s = {
   //   "email": [
@@ -48,17 +50,8 @@ class Dawrni extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-            create: (context) =>
-            ClientProfileCubit(ClientProfileRepo())..fetchClientProfile()),
-        BlocProvider(
-            create: (context) => CompanyProfileCubit(CompanyProfileRepo())
-              ..fetchCompanyProfile()),
-        BlocProvider(create: (_) => sl<AppConfigBloc>()),
-        BlocProvider(create:(context)=>ChatBlocBloc(sl<ChatRepository>())),
-      ],
+    return BlocProvider(
+      create: (_) => sl<AppConfigBloc>(),
       child: ScreenUtilInit(
         designSize: const Size(428, 926),
         builder: (_, child) {
@@ -67,7 +60,7 @@ class Dawrni extends StatelessWidget {
               dark: AppTheme().darkTheme,
               initial: AdaptiveThemeMode.dark,
               builder: (theme, darkTheme) {
-                return BlocBuilder<AppConfigBloc,AppConfigState>(
+                return BlocBuilder<AppConfigBloc, AppConfigState>(
                   bloc: sl(),
                   builder: (context, state) {
                     return MaterialApp.router(
@@ -79,7 +72,9 @@ class Dawrni extends StatelessWidget {
                       theme: theme,
                       darkTheme: darkTheme,
                       routerConfig: AppRoutes.router,
-                      locale: AppLocale().currentLanguage().locale,
+                      locale: AppLocale()
+                          .currentLanguage()
+                          .locale,
                       localizationsDelegates: const [
                         S.delegate,
                         GlobalWidgetsLocalizations.delegate,
@@ -90,8 +85,7 @@ class Dawrni extends StatelessWidget {
                     );
                   },
                 );
-              }
-          );
+              });
         },
       ),
     );
