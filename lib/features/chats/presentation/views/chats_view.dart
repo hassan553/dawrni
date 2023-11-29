@@ -1,38 +1,69 @@
 import 'package:dawrni/core/constants/app_colors.dart';
-import 'package:dawrni/core/widgets/custom_sized_box.dart';
+import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
+import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/core/widgets/custom_text_filed.dart';
+import 'package:dawrni/features/chats/presentation/views/chats_details_view.dart';
 import 'package:flutter/material.dart';
 
-class ChatHomeScreen extends StatelessWidget {
+import '../../../../generated/l10n.dart';
+import '../bloc/chat_get_messages.dart';
+
+class ChatHomeScreen extends StatefulWidget {
   const ChatHomeScreen({super.key});
 
   @override
+  State<ChatHomeScreen> createState() => _ChatHomeScreenState();
+}
+
+class _ChatHomeScreenState extends State<ChatHomeScreen> {
+  List data = [
+    {'receiverId': 'hashem', 'senderId': 'hassan'},
+    {'receiverId': 'hassan', 'senderId': 'hashem'}
+  ];
+  List ids = ['hassan', 'hashem'];
+  final searchFocuseNode = FocusNode();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            const CustomSizedBox(value: .03),
-            SizedBox(
-              height: 40,
-              child: CustomTextFieldWidget(
-                controller: TextEditingController(),
-                hintText: 'Search your message ..',
-                suffixIcons: Image.asset('assets/Search.png'),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              SizedBox(
+                height: 40,
+                child: CustomTextFieldWidget(
+                  focusNode: searchFocuseNode,
+                  controller: TextEditingController(),
+                  hintText: S.of(context).searchYourMessage,
+                  suffixIcons: Image.asset(ImagesPaths.searchIconPng),
+                ),
               ),
-            ),
-            const CustomSizedBox(value: .04),
-            Expanded(
-              child: ListView.builder(
-                itemCount: chatData.length,
-                itemBuilder: (context, index) {
-                  final chat = chatData[index];
-                  return customChatWidget(chat);
-                },
+              const SizedBox(height: 20),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: chatData.length,
+                  itemBuilder: (context, index) {
+                    final chat = chatData[index];
+                    return InkWell(
+                        onTap: () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (_) {
+                            return ChatDetailsView(
+                                data: data[index], id: ids[index]);
+                          }));
+                          // context.go(Uri(
+                          //     path: ChatsDetailsRoute.name,
+                          //     queryParameters: {'id': 'id'}).toString());
+                          // // context.push(ChatsDetailsRoute.name);
+                        },
+                        child: customChatWidget(chat));
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -40,9 +71,7 @@ class ChatHomeScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         backgroundColor: AppColors.primaryColor,
-        onPressed: () {
-          // Open contacts or create a new chat
-        },
+        onPressed: () => FocusScope.of(context).requestFocus(searchFocuseNode),
         child: const Icon(Icons.edit_outlined),
       ),
     );
@@ -64,52 +93,20 @@ class ChatHomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  chat.name,
-                  style: const TextStyle(
-                    color: AppColors.white,
-                    fontSize: 14,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+                Text(chat.name, style: context.f14700),
                 const SizedBox(height: 3),
-                Text(
-                  chat.lastMessage,
-                  style: TextStyle(
-                    color: AppColors.offWhite,
-                    fontSize: 10,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                Text(chat.lastMessage, style: context.f10600),
               ],
             ),
           ),
           Column(
             children: [
-              Text(
-                chat.time,
-                style: TextStyle(
-                  color: AppColors.offWhite,
-                  fontSize: 10,
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              Text(chat.time, style: context.f10600),
               const SizedBox(height: 4),
               CircleAvatar(
                 radius: 10,
                 backgroundColor: AppColors.primaryColor,
-                child: Text(
-                  '3',
-                  style: TextStyle(
-                    color: AppColors.offWhite,
-                    fontSize: 10,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                child: Text('3', style: context.f10600),
               )
             ],
           ),
@@ -124,135 +121,30 @@ class ChatContact {
   final String imageUrl;
   final String lastMessage;
   final String time;
+  final String id;
 
   ChatContact({
     required this.name,
     required this.imageUrl,
     required this.lastMessage,
     required this.time,
+    required this.id,
   });
 }
 
 final List<ChatContact> chatData = [
   ChatContact(
-    name: 'Ahmed',
-    imageUrl: 'assets/Rectangle 43.png',
-    lastMessage: 'Hello there!',
-    time: '10:30 AM',
-  ),
-  ChatContact(
-    name: 'Mohamed',
-    imageUrl: 'assets/Rectangle 43.png',
-    lastMessage: 'Hello there!',
-    time: '10:30 AM',
-  ),
-  ChatContact(
     name: 'Hassan',
     imageUrl: 'assets/Rectangle 43.png',
     lastMessage: 'Hello there!',
     time: '10:30 AM',
+    id: 'senderId',
   ),
   ChatContact(
     name: 'Hashem',
     imageUrl: 'assets/Rectangle 43.png',
     lastMessage: 'Hello there!',
     time: '10:30 AM',
+    id: 'receiverId',
   ),
 ];
-/*
-
-import 'package:flutter/material.dart';
-
-void main() {
-  runApp(ChatApp());
-}
-
-class ChatApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ChatMessageScreen(),
-    );
-  }
-}
-
-class ChatMessageScreen extends StatefulWidget {
-  @override
-  _ChatMessageScreenState createState() => _ChatMessageScreenState();
-}
-
-class _ChatMessageScreenState extends State<ChatMessageScreen> {
-  final List<Message> messages = [
-    Message(text: 'Hi there!', isMe: false),
-    Message(text: 'Hello!', isMe: true),
-    // Add more messages here
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Chat with John Doe'),
-      ),
-      body: ListView.builder(
-        itemCount: messages.length,
-        itemBuilder: (context, index) {
-          final message = messages[index];
-          return Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Align(
-              alignment: message.isMe ? Alignment.centerRight : Alignment.centerLeft,
-              child: Container(
-                padding: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  color: message.isMe ? Colors.blue : Colors.grey,
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Text(
-                  message.text,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.0,
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Type a message...',
-                    border: OutlineInputBorder(),
-                  ),
-                  // Handle sending messages
-                ),
-              ),
-              IconButton(
-                icon: Icon(Icons.send),
-                onPressed: () {
-                  // Send the message
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Message {
-  final String text;
-  final bool isMe;
-
-  Message({required this.text, required this.isMe});
-}
-*/

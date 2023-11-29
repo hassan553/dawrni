@@ -117,6 +117,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
         "enterTheOtpCodeSentToNumber": m0,
         "facebook": MessageLookupByLibrary.simpleMessage("فيسبوك"),
+        "forYourPatience": MessageLookupByLibrary.simpleMessage(" من أجل صبرك"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "from": MessageLookupByLibrary.simpleMessage("من"),
@@ -211,10 +212,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "sorryThereIsNoNotifications":
             MessageLookupByLibrary.simpleMessage("عذرًا، لا توجد إشعارات .."),
         "success": MessageLookupByLibrary.simpleMessage("Success"),
+        "thankYou": MessageLookupByLibrary.simpleMessage("شكرًا لك"),
         "theAppointmentHaveBeenCancelledSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم إلغاء الموعد بنجاح"),
         "thisScreenIsStillLoading": MessageLookupByLibrary.simpleMessage(
             "هذا الشاشة لا تزال قيد التحميل .. شكراً لصبرك"),
+        "thisScreenIsStillLoadingN": MessageLookupByLibrary.simpleMessage(
+            "هذه الشاشة لا تزال قيد التحميل ..\n"),
         "thisWeek": MessageLookupByLibrary.simpleMessage("هذا الأسبوع"),
         "this_account_exit":
             MessageLookupByLibrary.simpleMessage("هذا الحساب غير موجود!"),
@@ -247,6 +251,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yes": MessageLookupByLibrary.simpleMessage("نعم"),
         "youDonHaveAnyMessagesYet":
             MessageLookupByLibrary.simpleMessage("ليس لديك أي رسائل بعد .."),
+        "youDontHaveAnyMessagesYet":
+            MessageLookupByLibrary.simpleMessage("ليس لديك أية رسائل بعد.."),
         "yourAppointmentHasBeenConfirmedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تأكيد موعدك بنجاح"),
         "yourFavorites": MessageLookupByLibrary.simpleMessage("المفضلة لديك"),
