@@ -30,4 +30,10 @@ class ApisUrls {
   static String getClientAppointments(String parameters) => '$_baseApiUrl/client_appointments/$parameters';
   static String deleteClientAppointment(String parameters) => '$_baseApiUrl/delete_appointment/$parameters';
 
+  /// user Profile
+  static const String getUserProfiel =
+      'https://test-b16ab-default-rtdb.firebaseio.com/profile.json';
+  static const String postUserProfielInfo =
+      'https://test-b16ab-default-rtdb.firebaseio.com/profile.json';
+
 }

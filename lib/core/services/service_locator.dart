@@ -19,6 +19,11 @@ import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_conf
 import 'package:dawrni/features/home/presentation/blocs/book_bloc/book_bloc.dart';
 import 'package:dawrni/features/home/presentation/blocs/companies_bloc/companies_bloc.dart';
 import 'package:dawrni/features/home/presentation/blocs/company_details_bloc/company_details_bloc.dart';
+import 'package:dawrni/features/profile/data/data_source/profile_data_source.dart';
+import 'package:dawrni/features/profile/data/data_source/profile_remote_data_source_imp.dart';
+import 'package:dawrni/features/profile/data/repository/profile_repository_imp.dart';
+import 'package:dawrni/features/profile/domain/repository/profile_repository.dart';
+import 'package:dawrni/features/profile/presentation/blocs/profile_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
@@ -59,6 +64,7 @@ class ServicesLocator {
     sl.registerFactory(() => BookBloc(sl()));
     sl.registerFactory(() => ClientAppointmentsBloc(sl()));
     sl.registerFactory(() => DeleteClientAppointmentBloc(sl()));
+    sl.registerFactory(() => ProfileBloc(sl()));
 
     sl.registerLazySingleton(() => AppConfigBloc());
 
@@ -66,11 +72,13 @@ class ServicesLocator {
     sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImp(sl()));
     sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImp(sl()));
     sl.registerLazySingleton<AppointmentsRepository>(() => AppointmentsRepositoryImp(sl()));
+    sl.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImp(sl()));
 
     //// DATA SOURCES
     sl.registerLazySingleton<AuthDataSource>(() => AuthRemoteDataSourceImp(auth: sl(), store: sl()));
     sl.registerLazySingleton<HomeDataSource>(() => HomeRemoteDataSourceImp());
     sl.registerLazySingleton<AppointmentsDataSource>(() => AppointmentsRemoteDataSourceImp());
+    sl.registerLazySingleton<ProfileDataSource>(() => ProfileRemoteDataSourceImp());
 
     final auth = FirebaseAuth.instance;
 
