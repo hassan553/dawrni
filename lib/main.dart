@@ -24,6 +24,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'features/auth/presentation/blocs/login/login_bloc.dart';
 
 late SharedPreferences sharedPreferences;
+
 void main() async {
   // dynamic s = {
   //   "email": [
@@ -49,39 +50,44 @@ class Dawrni extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(428, 926),
-      builder: (_, child) {
-        return AdaptiveTheme(
-            light: AppTheme().darkTheme,
-            dark: AppTheme().darkTheme,
-            initial: AdaptiveThemeMode.dark,
-            builder: (theme, darkTheme) {
-              return BlocBuilder<AppConfigBloc, AppConfigState>(
-                bloc: sl(),
-                builder: (context, state) {
-                  return MaterialApp.router(
-                    debugShowCheckedModeBanner: false,
-                    //useInheritedMediaQuery: true,
-                    // locale: DevicePreview.locale(context),
-                    //builder: DevicePreview.appBuilder,
-                    title: 'Dawrni',
-                    theme: theme,
-                    darkTheme: darkTheme,
-                    routerConfig: AppRoutes.router,
-                    locale: AppLocale().currentLanguage().locale,
-                    localizationsDelegates: const [
-                      S.delegate,
-                      GlobalWidgetsLocalizations.delegate,
-                      GlobalMaterialLocalizations.delegate,
-                      GlobalCupertinoLocalizations.delegate,
-                    ],
-                    supportedLocales: S.delegate.supportedLocales,
-                  );
-                },
-              );
-            });
-      },
+    return BlocProvider(
+      create: (_) => sl<AppConfigBloc>(),
+      child: ScreenUtilInit(
+        designSize: const Size(428, 926),
+        builder: (_, child) {
+          return AdaptiveTheme(
+              light: AppTheme().darkTheme,
+              dark: AppTheme().darkTheme,
+              initial: AdaptiveThemeMode.dark,
+              builder: (theme, darkTheme) {
+                return BlocBuilder<AppConfigBloc, AppConfigState>(
+                  bloc: sl(),
+                  builder: (context, state) {
+                    return MaterialApp.router(
+                      debugShowCheckedModeBanner: false,
+                      //useInheritedMediaQuery: true,
+                      // locale: DevicePreview.locale(context),
+                      //builder: DevicePreview.appBuilder,
+                      title: 'Dawrni',
+                      theme: theme,
+                      darkTheme: darkTheme,
+                      routerConfig: AppRoutes.router,
+                      locale: AppLocale()
+                          .currentLanguage()
+                          .locale,
+                      localizationsDelegates: const [
+                        S.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                      ],
+                      supportedLocales: S.delegate.supportedLocales,
+                    );
+                  },
+                );
+              });
+        },
+      ),
     );
   }
 }
