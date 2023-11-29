@@ -3,6 +3,7 @@ import 'package:dawrni/core/services/api_services.dart';
 import 'package:dawrni/core/utils/app_response.dart';
 import 'package:dawrni/features/appointments/data/data_source/appointments_data_source.dart';
 import 'package:dawrni/features/appointments/data/models/client_appointments_model.dart';
+import 'package:dawrni/features/appointments/domain/parameters/delete_client_appointment_parameters.dart';
 import 'package:dawrni/features/appointments/domain/parameters/get_client_appointments_parameters.dart';
 
 class AppointmentsRemoteDataSourceImp extends AppointmentsDataSource {
@@ -19,5 +20,11 @@ class AppointmentsRemoteDataSourceImp extends AppointmentsDataSource {
         ClientAppointmentModel(id: 3, categoryId: 3, checked: true, companyImage: "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg", companyName: "Al Hussein company service", date: DateTime.now()),
       ]
     );
+  }
+
+  @override
+  Future<void> deleteClientAppointment(DeleteClientAppointmentParameters parameters) async {
+    // await ApiServices().delete(ApisUrls.deleteClientAppointment(parameters.toQueryParameters()));
+    await Future.delayed(const Duration(seconds: 2));
   }
 }

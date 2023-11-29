@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "احصل على حل لمشكلتك مع خدمتنا السريعة"),
         "bookNow": MessageLookupByLibrary.simpleMessage("احجز الآن"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelAppointmentConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Do you want to cancel the appointment?"),
         "category10Description": MessageLookupByLibrary.simpleMessage(
             "Get your problem fixed with our fast service"),
         "category10Name":
@@ -164,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "personalizeYourExperience":
             MessageLookupByLibrary.simpleMessage("تخصيص تجربتك"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+        "pleaseWait": MessageLookupByLibrary.simpleMessage("Please Wait"),
         "please_add_your_location": MessageLookupByLibrary.simpleMessage(
             "يرجى إضافة موقعك أولاً لتأكيد الموعد"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),

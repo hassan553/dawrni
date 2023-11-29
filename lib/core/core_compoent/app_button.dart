@@ -34,6 +34,7 @@ class AppButton extends StatelessWidget {
       : super(key: key) {
     color = switch (type) {
       AppButtonType.solidPrimary => AppColors.primaryColor,
+      AppButtonType.solidBlack => AppColors.secondColor,
       _ => null
     };
 
@@ -125,4 +126,4 @@ class AppButton extends StatelessWidget {
   }
 }
 
-enum AppButtonType { solidPrimary, gradientPrimary }
+enum AppButtonType { solidPrimary, gradientPrimary, solidBlack}

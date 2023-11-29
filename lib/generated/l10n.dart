@@ -1499,6 +1499,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Do you want to cancel the appointment?`
+  String get cancelAppointmentConfirmation {
+    return Intl.message(
+      'Do you want to cancel the appointment?',
+      name: 'cancelAppointmentConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Wait`
+  String get pleaseWait {
+    return Intl.message(
+      'Please Wait',
+      name: 'pleaseWait',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

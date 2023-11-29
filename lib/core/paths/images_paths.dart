@@ -39,6 +39,7 @@ class ImagesPaths {
   static const String twitterPng = '${_baseImagesPath}Icon.png';
   static const String facebookPng = '${_baseImagesPath}Icon2.png';
   static const String linkedInPng = '${_baseImagesPath}Group 215.png';
+  static const String alertPng = '${_baseImagesPath}Alert.png';
 
 
 }

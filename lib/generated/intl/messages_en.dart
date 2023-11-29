@@ -51,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Get your problem fixed with our fast service"),
         "bookNow": MessageLookupByLibrary.simpleMessage("Book Now"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelAppointmentConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Do you want to cancel the appointment?"),
         "category10Description": MessageLookupByLibrary.simpleMessage(
             "Get your problem fixed with our fast service"),
         "category10Name":
@@ -167,6 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "personalizeYourExperience":
             MessageLookupByLibrary.simpleMessage("Personalize your experience"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "pleaseWait": MessageLookupByLibrary.simpleMessage("Please Wait"),
         "please_add_your_location": MessageLookupByLibrary.simpleMessage(
             "Please add your location first to confirm the appointment"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),

@@ -9,4 +9,7 @@ sealed class ClientAppointmentsEvent extends Equatable {
 class FetchClientAppointmentsEvent extends ClientAppointmentsEvent {
   final bool refresh;
   const FetchClientAppointmentsEvent({this.refresh = false});
+
+  @override
+  List<Object> get props => [refresh];
 }

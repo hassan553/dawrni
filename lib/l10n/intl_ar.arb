@@ -143,5 +143,7 @@
   "success": "Success",
   "selectDate": "Select Date",
   "selectTime": "Select time",
-  "clientAppointmentsMessage": "Your Appointments"
+  "clientAppointmentsMessage": "Your Appointments",
+  "cancelAppointmentConfirmation": "Do you want to cancel the appointment?",
+  "pleaseWait": "Please Wait"
 }
