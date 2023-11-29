@@ -2,7 +2,8 @@ import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/widgets/custom_drawer.dart';
-import 'package:dawrni/features/appointments/presentation/views/appointments_view.dart';
+import 'package:dawrni/features/appointments/presentation/blocs/client_appointments_bloc/client_appointments_bloc.dart';
+import 'package:dawrni/features/appointments/presentation/views/client_appointments_view.dart';
 import 'package:dawrni/features/chats/presentation/views/chats_view.dart';
 import 'package:dawrni/features/favourites/presentation/views/favourites_view.dart';
 import 'package:dawrni/features/home/presentation/blocs/companies_bloc/companies_bloc.dart';
@@ -30,7 +31,9 @@ class _MainViewState extends State<MainView> {
     BlocProvider(
       create: (_) => sl<CompaniesBloc>()..add(const FetchCompaniesEvent()),
         child: const HomeView()),
-    const AppointmentsView(),
+    BlocProvider(
+        create: (_) => sl<ClientAppointmentsBloc>()..add(const FetchClientAppointmentsEvent(refresh: true)),
+        child: ClientAppointmentsView()),
     const FavouriteView(),
     const ChatHomeScreen(),
     if (CacheStorageServices().isCompany) const CompanyProfileView() else const ClientProfileView(),

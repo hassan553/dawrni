@@ -30,6 +30,7 @@ class AppColors {
   static const offBlack = Color(0xff262626);
   static const secondColor = Color(0xff3B3B3B);
   static const white = Colors.white;
+  static const white2 = Color(0xFFDFDFDF);
   static Color offWhite = Colors.white.withOpacity(.6);
   static Color blackWithOpacity4 = Colors.black.withOpacity(.4);
   static Color blackWithOpacity1 = Colors.black.withOpacity(.1);

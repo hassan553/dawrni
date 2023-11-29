@@ -1489,6 +1489,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Your Appointments`
+  String get clientAppointmentsMessage {
+    return Intl.message(
+      'Your Appointments',
+      name: 'clientAppointmentsMessage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -26,4 +26,7 @@ class ApisUrls {
       '$_baseApiUrl/companies/$id';
   static String bookAppointment = '$_baseApiUrl/book/';
 
+  /// Appointments Feature APIs
+  static String getClientAppointments(String parameters) => '$_baseApiUrl/client_appointments/$parameters';
+
 }

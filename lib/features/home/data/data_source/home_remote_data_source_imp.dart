@@ -34,6 +34,6 @@ class HomeRemoteDataSourceImp extends HomeDataSource {
 
   @override
   Future<void> bookAppointment(BookParameters parameters) async {
-    await ApiServices().get(ApisUrls.bookAppointment);
+    await ApiServices().post(ApisUrls.bookAppointment);
   }
 }

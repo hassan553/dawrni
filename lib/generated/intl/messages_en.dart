@@ -92,6 +92,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "checkVerificationEmail":
             MessageLookupByLibrary.simpleMessage("Check Verification Email"),
         "client": MessageLookupByLibrary.simpleMessage("Client"),
+        "clientAppointmentsMessage":
+            MessageLookupByLibrary.simpleMessage("Your Appointments"),
         "company": MessageLookupByLibrary.simpleMessage("Company"),
         "company_description": MessageLookupByLibrary.simpleMessage(
             "From minor repairs to major installations, we tackle each project with precision and care, ensuring that your plumbing systems are in optimal condition."),

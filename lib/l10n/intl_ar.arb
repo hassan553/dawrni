@@ -142,5 +142,6 @@
   "cancel": "Cancel",
   "success": "Success",
   "selectDate": "Select Date",
-  "selectTime": "Select time"
+  "selectTime": "Select time",
+  "clientAppointmentsMessage": "Your Appointments"
 }
