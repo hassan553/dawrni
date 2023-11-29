@@ -37,10 +37,13 @@ class BaseState<T> extends Equatable {
   // Represents the data associated with the request
   final T? data;
 
+  final bool enablePullUp;
+
   const BaseState({
     this.requestStatus = RequestStatus.init,
     this.failure = const Failure('init Failure'),
     this.data,
+    this.enablePullUp = true
   });
 
   // Creates a copy of the BaseState object with optional parameter values overridden
@@ -48,15 +51,17 @@ class BaseState<T> extends Equatable {
     RequestStatus? requestStatus,
     Failure? failure,
     T? data,
+    bool? enablePullUp
   }) =>
       BaseState<T>(
         data: data ?? this.data,
         failure: failure ?? this.failure,
         requestStatus: requestStatus ?? this.requestStatus,
+        enablePullUp: enablePullUp ?? this.enablePullUp
       );
 
   @override
-  List<Object?> get props => [requestStatus, failure, data];
+  List<Object?> get props => [requestStatus, failure, data, enablePullUp];
 
   // Returns a new BaseState object with the request status set to loading
   BaseState<T> loading() {
@@ -64,8 +69,8 @@ class BaseState<T> extends Equatable {
   }
 
   // Returns a new BaseState object with the request status set to success and new data
-  BaseState<T> success(T newData) {
-    return copyWith(requestStatus: RequestStatus.success, data: newData);
+  BaseState<T> success(T newData, {bool? enablePullUp}) {
+    return copyWith(requestStatus: RequestStatus.success, data: newData, enablePullUp: enablePullUp);
   }
 
   // Returns a new BaseState object with the request status set to error and new failure

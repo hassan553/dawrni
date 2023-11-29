@@ -1449,6 +1449,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success`
+  String get success {
+    return Intl.message(
+      'Success',
+      name: 'success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Date`
+  String get selectDate {
+    return Intl.message(
+      'Select Date',
+      name: 'selectDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select time`
+  String get selectTime {
+    return Intl.message(
+      'Select time',
+      name: 'selectTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Appointments`
+  String get clientAppointmentsMessage {
+    return Intl.message(
+      'Your Appointments',
+      name: 'clientAppointmentsMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to cancel the appointment?`
+  String get cancelAppointmentConfirmation {
+    return Intl.message(
+      'Do you want to cancel the appointment?',
+      name: 'cancelAppointmentConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Wait`
+  String get pleaseWait {
+    return Intl.message(
+      'Please Wait',
+      name: 'pleaseWait',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
