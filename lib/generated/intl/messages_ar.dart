@@ -48,6 +48,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "bodyTitle2": MessageLookupByLibrary.simpleMessage(
             "احصل على حل لمشكلتك مع خدمتنا السريعة"),
         "bookNow": MessageLookupByLibrary.simpleMessage("احجز الآن"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelAppointmentConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Do you want to cancel the appointment?"),
         "category10Description": MessageLookupByLibrary.simpleMessage(
             "Get your problem fixed with our fast service"),
         "category10Name":
@@ -89,6 +92,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "checkVerificationEmail": MessageLookupByLibrary.simpleMessage(
             "تحقق من البريد الإلكتروني للتحقق"),
         "client": MessageLookupByLibrary.simpleMessage("عميل"),
+        "clientAppointmentsMessage":
+            MessageLookupByLibrary.simpleMessage("Your Appointments"),
         "company": MessageLookupByLibrary.simpleMessage("شركة"),
         "company_description": MessageLookupByLibrary.simpleMessage(
             "من الإصلاحات البسيطة إلى التركيبات الكبيرة، نتعامل مع كل مشروع بدقة وعناية، مما يضمن أن أنظمة السباكة لديك في حالة مثالية."),
@@ -162,6 +167,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "personalizeYourExperience":
             MessageLookupByLibrary.simpleMessage("تخصيص تجربتك"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+        "pleaseWait": MessageLookupByLibrary.simpleMessage("Please Wait"),
         "please_add_your_location": MessageLookupByLibrary.simpleMessage(
             "يرجى إضافة موقعك أولاً لتأكيد الموعد"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
@@ -179,8 +185,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ابحث عن رسالتك .."),
         "search_your_service":
             MessageLookupByLibrary.simpleMessage("ابحث عن خدمتك .."),
+        "selectDate": MessageLookupByLibrary.simpleMessage("Select Date"),
         "selectLanguage": MessageLookupByLibrary.simpleMessage(
             "الرجاء اختيار اللغة المفضلة لديك"),
+        "selectTime": MessageLookupByLibrary.simpleMessage("Select time"),
         "sendEmail": MessageLookupByLibrary.simpleMessage("ارسل بريد الكتروني"),
         "sendMessage": MessageLookupByLibrary.simpleMessage("إرسال رسالة"),
         "service_category": MessageLookupByLibrary.simpleMessage("فئة الخدمة"),
@@ -203,6 +211,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "عذرًا، لا توجد نتائج لهذا البحث. الرجاء محاولة اسم آخر .."),
         "sorryThereIsNoNotifications":
             MessageLookupByLibrary.simpleMessage("عذرًا، لا توجد إشعارات .."),
+        "success": MessageLookupByLibrary.simpleMessage("Success"),
         "thankYou": MessageLookupByLibrary.simpleMessage("شكرًا لك"),
         "theAppointmentHaveBeenCancelledSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم إلغاء الموعد بنجاح"),
