@@ -15,7 +15,7 @@ import 'package:go_router/go_router.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ClientAppointmentsView extends StatelessWidget {
-  ClientAppointmentsView({super.key});
+  const ClientAppointmentsView({super.key});
 
   @override
   Widget build(BuildContext context) {

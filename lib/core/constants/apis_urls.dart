@@ -36,4 +36,9 @@ class ApisUrls {
   static const String postUserProfielInfo =
       'https://test-b16ab-default-rtdb.firebaseio.com/profile.json';
 
+  ///Favorites Feature APIs
+  static String getFavorites(String parameters) => '$_baseApiUrl/favorite_list/$parameters';
+  static String addToFavorites(String parameters) => '$_baseApiUrl/favorite/$parameters';
+  static String deleteFromFavorites(String parameters) => '$_baseApiUrl/favorite/$parameters';
+
 }

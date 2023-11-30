@@ -62,6 +62,7 @@ class CompanyModel extends BaseModel<CompanyEntity> {
   String? image;
   bool? isCertified;
   int? user;
+  bool? isFavorite;
 
   @override
   CompanyEntity toEntity() {
@@ -73,6 +74,7 @@ class CompanyModel extends BaseModel<CompanyEntity> {
       image: image ?? '',
       address: addressEn ?? '' ,
       isCertified: isCertified ?? false,
+      isFavorite: isFavorite ?? false,
     );
   }
 }

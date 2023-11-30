@@ -6,8 +6,7 @@ import 'package:dawrni/features/appointments/presentation/blocs/client_appointme
 import 'package:dawrni/features/appointments/presentation/blocs/delete_client_appointment_bloc/delete_client_appointment_bloc.dart';
 import 'package:dawrni/features/appointments/presentation/views/client_appointments_view.dart';
 import 'package:dawrni/features/chats/presentation/views/chats_view.dart';
-import 'package:dawrni/features/favourites/presentation/views/favourites_view.dart';
-import 'package:dawrni/features/home/presentation/blocs/companies_bloc/companies_bloc.dart';
+import 'package:dawrni/features/home/presentation/views/favorites_view.dart';
 import 'package:dawrni/features/home/presentation/views/home_view.dart';
 import 'package:dawrni/features/notifications/presentation/routes/notifications_route.dart';
 import 'package:dawrni/features/profile/presentation/views/user_profile_view.dart';
@@ -28,24 +27,24 @@ class _MainViewState extends State<MainView> {
   int _currentIndex = 0;
 
   List screens = [
-    BlocProvider(
-      create: (_) => sl<CompaniesBloc>()..add(const FetchCompaniesEvent()),
-        child: const HomeView()),
+    const HomeView(),
     MultiBlocProvider(
-  providers: [
-    BlocProvider(
-        create: (_) => sl<ClientAppointmentsBloc>()..add(const FetchClientAppointmentsEvent(refresh: true)),
+      providers: [
+        BlocProvider(
+          create: (_) => sl<ClientAppointmentsBloc>()
+            ..add(const FetchClientAppointmentsEvent(refresh: true)),
         ),
-    BlocProvider(
-      create: (context) => sl<DeleteClientAppointmentBloc>(),
+        BlocProvider(
+          create: (context) => sl<DeleteClientAppointmentBloc>(),
+        ),
+      ],
+      child: const ClientAppointmentsView(),
     ),
-  ],
-  child: ClientAppointmentsView(),
-),
-    const FavouriteView(),
+    const FavoritesView(),
     const ChatHomeScreen(),
- //if (CacheStorageServices().isCompany) const CompanyProfileView() else const ClientProfileView(),
-    const UserProfileView(),  ];
+    //if (CacheStorageServices().isCompany) const CompanyProfileView() else const ClientProfileView(),
+    const UserProfileView(),
+  ];
 
   final _advancedDrawerController = AdvancedDrawerController();
 
@@ -187,7 +186,6 @@ class _MainViewState extends State<MainView> {
           ),
           InkWell(
             onTap: () => context.push(NotificationsRoute.name),
-            
             child: Container(
               width: 40,
               height: 40,
