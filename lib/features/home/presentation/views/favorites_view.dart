@@ -63,7 +63,7 @@ class FavoritesView extends StatelessWidget {
                         child: ListView(
                           children: [
                             const SizedBox(height: 40),
-                            Text(S.of(context).clientAppointmentsMessage,
+                            Text(S.of(context).favoritesMessage,
                                 style: context.f28800),
                             const SizedBox(height: 20),
                             ...state.data?.companies

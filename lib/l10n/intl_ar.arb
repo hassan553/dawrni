@@ -150,5 +150,6 @@
   "clientAppointmentsMessage": "Your Appointments",
   "cancelAppointmentConfirmation": "Do you want to cancel the appointment?",
   "pleaseWait": "Please Wait",
-  "logout": "Logout"
+  "logout": "Logout",
+  "favoritesMessage": "Your Favorites"
 }

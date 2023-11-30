@@ -9,22 +9,22 @@ import 'package:dawrni/features/appointments/domain/parameters/get_client_appoin
 class AppointmentsRemoteDataSourceImp extends AppointmentsDataSource {
   @override
   Future<ClientAppointmentsModel> getClientAppointments(GetClientAppointmentsParameters parameters) async {
-    // AppResponse response = await ApiServices()
-    //     .get(ApisUrls.getClientAppointments(parameters.toParameters()));
-    // return ClientAppointmentsModel.fromJson(response.data);
-    await Future.delayed(const Duration(seconds: 2));
-    return ClientAppointmentsModel(
-      appointments: [
-        ClientAppointmentModel(id: 1, categoryId: 1, checked: true, companyImage: "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg", companyName: "Al Hikma company service", date: DateTime.now()),
-        ClientAppointmentModel(id: 2, categoryId: 2, checked: false, companyImage: "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg", companyName: "High Tech Company service", date: DateTime.now()),
-        ClientAppointmentModel(id: 3, categoryId: 3, checked: true, companyImage: "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg", companyName: "Al Hussein company service", date: DateTime.now()),
-      ]
-    );
+    AppResponse response = await ApiServices()
+        .get(ApisUrls.getClientAppointments(parameters.toQueryParameters()));
+    return ClientAppointmentsModel.fromJson(response.data);
+    // await Future.delayed(const Duration(seconds: 2));
+    // return ClientAppointmentsModel(
+    //   appointments: [
+    //     ClientAppointmentModel(id: 1, categoryId: 1, checked: true, companyImage: "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg", companyName: "Al Hikma company service", date: DateTime.now()),
+    //     ClientAppointmentModel(id: 2, categoryId: 2, checked: false, companyImage: "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg", companyName: "High Tech Company service", date: DateTime.now()),
+    //     ClientAppointmentModel(id: 3, categoryId: 3, checked: true, companyImage: "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg", companyName: "Al Hussein company service", date: DateTime.now()),
+    //   ]
+    // );
   }
 
   @override
   Future<void> deleteClientAppointment(DeleteClientAppointmentParameters parameters) async {
-    // await ApiServices().delete(ApisUrls.deleteClientAppointment(parameters.toQueryParameters()));
-    await Future.delayed(const Duration(seconds: 2));
+    await ApiServices().delete(ApisUrls.deleteClientAppointment(parameters.toQueryParameters()));
+    // await Future.delayed(const Duration(seconds: 2));
   }
 }

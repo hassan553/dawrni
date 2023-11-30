@@ -12,7 +12,7 @@ class CompaniesModel extends BaseModel<CompaniesEntity> {
 
 
   CompaniesModel.fromJson(dynamic json) {
-    companies = (json as List).map((e) => CompanyModel.fromJson(e)).toList();
+    companies = (json['results'] as List).map((e) => CompanyModel.fromJson(e)).toList();
   }
   
   @override

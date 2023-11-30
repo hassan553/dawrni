@@ -11,7 +11,7 @@ class ClientAppointmentsModel extends BaseModel<ClientAppointmentsEntity> {
 
   ClientAppointmentsModel.fromJson(dynamic json) {
     appointments =
-        (json as List).map((e) => ClientAppointmentModel.fromJson(e)).toList();
+        (json['results'] as List).map((e) => ClientAppointmentModel.fromJson(e)).toList();
   }
 
   @override
@@ -37,6 +37,7 @@ class ClientAppointmentModel extends BaseModel<ClientAppointmentEntity> {
     categoryId = json['category_id'];
     checked = json['checked'];
     date = json['date'];
+    time = json['time'];
   }
 
   int? id;
@@ -44,7 +45,8 @@ class ClientAppointmentModel extends BaseModel<ClientAppointmentEntity> {
   String? companyImage;
   int? categoryId;
   bool? checked;
-  DateTime? date;
+  String? date;
+  String? time;
 
   @override
   ClientAppointmentEntity toEntity() {
@@ -53,9 +55,10 @@ class ClientAppointmentModel extends BaseModel<ClientAppointmentEntity> {
       companyName: companyName ?? '',
       companyImage: companyImage ?? '',
       companyCategory:
-          AppConstants.categories.firstWhere((element) => element.id == id),
+          ///todo: remove orElse
+          AppConstants.categories.firstWhere((element) => element.id == categoryId, orElse: () => AppConstants.categories.first),
       checked: checked ?? false,
-      date: date!,
+      date: DateTime.parse("$date $time"),
     );
   }
 }

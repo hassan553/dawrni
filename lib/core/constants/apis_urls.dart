@@ -21,7 +21,7 @@ class ApisUrls {
   static const String verifyEmailCode= '$_baseApiUrl/verify/';
 
   /// Companies Feature APIs
-  static const String getCompanies = '$_baseApiUrl/companies/';
+  static const String getCompanies = '$_baseApiUrl/companies?limit=10&offset=0';
   static String getCompanyDetails(String id) =>
       '$_baseApiUrl/companies/$id';
   static String bookAppointment = '$_baseApiUrl/book/';

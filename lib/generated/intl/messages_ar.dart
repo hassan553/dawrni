@@ -117,6 +117,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
         "enterTheOtpCodeSentToNumber": m0,
         "facebook": MessageLookupByLibrary.simpleMessage("فيسبوك"),
+        "favoritesMessage":
+            MessageLookupByLibrary.simpleMessage("Your Favorites"),
         "forYourPatience": MessageLookupByLibrary.simpleMessage(" من أجل صبرك"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
