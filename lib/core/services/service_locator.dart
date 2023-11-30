@@ -19,6 +19,8 @@ import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_conf
 import 'package:dawrni/features/home/presentation/blocs/book_bloc/book_bloc.dart';
 import 'package:dawrni/features/home/presentation/blocs/companies_bloc/companies_bloc.dart';
 import 'package:dawrni/features/home/presentation/blocs/company_details_bloc/company_details_bloc.dart';
+import 'package:dawrni/features/home/presentation/blocs/edit_favorites_bloc/edit_favorites_bloc.dart';
+import 'package:dawrni/features/home/presentation/blocs/favorites_bloc/favorites_bloc.dart';
 import 'package:dawrni/features/profile/data/data_source/profile_data_source.dart';
 import 'package:dawrni/features/profile/data/data_source/profile_remote_data_source_imp.dart';
 import 'package:dawrni/features/profile/data/repository/profile_repository_imp.dart';
@@ -55,7 +57,9 @@ final sl = GetIt.instance;
 // TODO: add (BLOCs , REPOSITORIES , DATA SOURCES)
 class ServicesLocator {
   static ServicesLocator? _instance;
+
   ServicesLocator._();
+
   factory ServicesLocator() => _instance ??= ServicesLocator._();
 
   void init() {
@@ -69,6 +73,8 @@ class ServicesLocator {
     sl.registerFactory(() => ClientAppointmentsBloc(sl()));
     sl.registerFactory(() => DeleteClientAppointmentBloc(sl()));
     sl.registerFactory(() => ProfileBloc(sl()));
+    sl.registerFactory(() => FavoritesBloc(sl()));
+    sl.registerFactory(() => EditFavoritesBloc(sl()));
 
     sl.registerLazySingleton(() => AppConfigBloc());
 
@@ -77,14 +83,19 @@ class ServicesLocator {
     sl.registerLazySingleton<ChatRepository>(() => ChatRepositoryImp(sl()));
     // sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImp(sl()));
     sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImp(sl()));
-    sl.registerLazySingleton<AppointmentsRepository>(() => AppointmentsRepositoryImp(sl()));
-    sl.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImp(sl()));
+    sl.registerLazySingleton<AppointmentsRepository>(
+        () => AppointmentsRepositoryImp(sl()));
+    sl.registerLazySingleton<ProfileRepository>(
+        () => ProfileRepositoryImp(sl()));
 
     //// DATA SOURCES
-    sl.registerLazySingleton<AuthDataSource>(() => AuthRemoteDataSourceImp(auth: sl(), store: sl()));
+    sl.registerLazySingleton<AuthDataSource>(
+        () => AuthRemoteDataSourceImp(auth: sl(), store: sl()));
     sl.registerLazySingleton<HomeDataSource>(() => HomeRemoteDataSourceImp());
-    sl.registerLazySingleton<AppointmentsDataSource>(() => AppointmentsRemoteDataSourceImp());
-    sl.registerLazySingleton<ProfileDataSource>(() => ProfileRemoteDataSourceImp());
+    sl.registerLazySingleton<AppointmentsDataSource>(
+        () => AppointmentsRemoteDataSourceImp());
+    sl.registerLazySingleton<ProfileDataSource>(
+        () => ProfileRemoteDataSourceImp());
     sl.registerLazySingleton<ChatDataSource>(() => ChatRemoteDataSourceImp());
 
     final auth = FirebaseAuth.instance;

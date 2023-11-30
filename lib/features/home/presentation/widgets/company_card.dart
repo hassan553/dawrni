@@ -2,8 +2,10 @@ import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/core_compoent/app_network_image.dart';
 import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
 import 'package:dawrni/features/home/domain/entities/companies_entity.dart';
+import 'package:dawrni/features/home/presentation/blocs/edit_favorites_bloc/edit_favorites_bloc.dart';
 import 'package:dawrni/features/home/presentation/routes/company_details_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class CompanyCard extends StatelessWidget {
@@ -55,7 +57,12 @@ class CompanyCard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: Icon(Icons.bookmark_border, color: AppColors.primaryColor.withOpacity(0.6), size: 30),
+              child: IconButton(
+                onPressed: () {
+                  EditFavoritesEvent event = company.isFavorite ? DeleteFromFavoritesEvent(id: company.id) : AddToFavoritesEvent(id: company.id);
+                  context.read<EditFavoritesBloc>().add(event);
+                },
+                  icon: Icon(Icons.bookmark_border, color: AppColors.primaryColor.withOpacity(0.6), size: 30)),
             ),
 
           ],

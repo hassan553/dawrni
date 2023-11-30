@@ -20,6 +20,7 @@ class CompanyEntity extends BaseEntity {
     required this.image,
     required this.address,
     required this.isCertified,
+    required this.isFavorite,
   });
 
   final int id;
@@ -29,7 +30,8 @@ class CompanyEntity extends BaseEntity {
   final String about;
   final String image;
   final bool isCertified;
+  final bool isFavorite;
 
   @override
-  List<Object?> get props => [id, category, name, address, about, image, isCertified];
+  List<Object?> get props => [id, category, name, address, about, image, isCertified, isFavorite];
 }
