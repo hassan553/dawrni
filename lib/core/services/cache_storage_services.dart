@@ -56,10 +56,26 @@ class CacheStorageServices {
 
   String get token => _preferences?.getString(_Keys.token) ?? 'no token';
 
+  Future setFirstLaunch() async {
+    await _preferences?.setBool( _Keys.firstLaunch, false);
+  }
+
+  bool get firstLaunch => _preferences?.getBool(_Keys.firstLaunch) ?? true;
+
+  Future clearAll() async {
+    await _preferences?.clear();
+  }
+
+  Future<void> setEmail(String email) async => await _preferences?.setString(_Keys.email, email);
+
+  String get email => _preferences?.getString(_Keys.email) ?? 'no email';
+
 }
 
 class _Keys {
   static const String token = 'token';
   static const String userType = 'userType';
   static const String locale = 'locale';
+  static const String firstLaunch = 'firstLaunch';
+  static const String email = 'email';
 }

@@ -1,3 +1,4 @@
+import 'package:dawrni/core/enums/app_state.dart';
 import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
 import 'package:dawrni/core/extension/ui_extensions/container_decoration.dart';
 import 'package:dawrni/core/paths/images_paths.dart';
@@ -6,7 +7,9 @@ import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/utils/base_state.dart';
 import 'package:dawrni/features/auth/domain/entities/user_entity.dart';
 import 'package:dawrni/features/auth/presentation/blocs/login/login_bloc.dart';
+import 'package:dawrni/features/auth/presentation/routes/otp_verify_route.dart';
 import 'package:dawrni/features/auth/presentation/widgets/top_logo.dart';
+import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:dawrni/features/home/presentation/routes/main_route.dart';
 import 'package:dawrni/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -48,35 +51,46 @@ class _LoginViewState extends State<LoginView> {
     return Scaffold(
       body: BlocProvider(
         create: (_) => sl<LoginBloc>(),
-        child: BlocListener<LoginBloc, BaseState<UserEntity>>(
+        child: BlocListener<AppConfigBloc, AppConfigState>(
           listener: (context, state) {
-            if (state.isSuccess) {
-              showToast(message: S.of(context).signedInSuccessfully);
+            if (state.appState == AppState.loggedIn) {
               context.go(MainRoute.name);
-            } else if (state.isError) {
-              FailureComponent.handleFailure(
-                  context: context, failure: state.failure);
             }
           },
-          child: Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: Theme.of(context).authDecoration,
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 80),
-                    const TopLogo(),
-                    const SizedBox(height: 50),
-                    buildForm(),
-                    SizedBox(height: 3.h),
-                    buildButton(context),
-                    SizedBox(height: 2.h),
-                    signUpButton()
-                  ],
+          child: BlocListener<LoginBloc, BaseState<UserEntity>>(
+            listener: (context, state) {
+              if (state.isSuccess) {
+                showToast(message: S.of(context).signedInSuccessfully);
+                if(state.data!.isVerified) {
+                  context.read<AppConfigBloc>().add(LogInEvent(user: state.data!));
+                } else {
+                  context.push(OtpVerifyRoute.name, extra: state.data!);
+                }
+              } else if (state.isError) {
+                FailureComponent.handleFailure(
+                    context: context, failure: state.failure);
+              }
+            },
+            child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: Theme.of(context).authDecoration,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 80),
+                      const TopLogo(),
+                      const SizedBox(height: 50),
+                      buildForm(),
+                      SizedBox(height: 3.h),
+                      buildButton(context),
+                      SizedBox(height: 2.h),
+                      signUpButton()
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -108,6 +122,8 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Widget buildButton(BuildContext context) {
+    return BlocBuilder<AppConfigBloc, AppConfigState>(
+  builder: (ctx, appState) {
     return BlocBuilder<LoginBloc, BaseState<UserEntity>>(
         builder: (context, state) {
       return state.isLoading
@@ -117,9 +133,11 @@ class _LoginViewState extends State<LoginView> {
               onPressed: () {
                 _loginTapped(context);
               },
-              loading: state.isLoading,
+              loading: state.isLoading || appState.loading,
             );
     });
+  },
+);
   }
 
   void _loginTapped(BuildContext context) {

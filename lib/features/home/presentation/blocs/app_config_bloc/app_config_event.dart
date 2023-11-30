@@ -13,3 +13,18 @@ class ChangeLanguageEvent extends AppConfigEvent {
   @override
   List<Object> get props => [language];
 }
+
+class LogOutEvent extends AppConfigEvent {
+  const LogOutEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class LogInEvent extends AppConfigEvent {
+  final UserEntity user;
+  const LogInEvent({required this.user});
+
+  @override
+  List<Object> get props => [user];
+}

@@ -1,10 +1,10 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/paths/images_paths.dart';
+import 'package:dawrni/core/services/cache_storage_services.dart';
+import 'package:dawrni/features/home/presentation/routes/main_route.dart';
 import 'package:dawrni/features/onboarding/presentation/routes/onboarding_route.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import '../routes/select_language_route.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -14,11 +14,20 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-  _navigationToOnBoardingView(){
+  _navigationToOnBoardingView() {
     Future.delayed(
-        const Duration(seconds: 1), 
-        () => context.pushReplacement(OnboardingRoute.name),);
+      const Duration(seconds: 1),
+      () {
+        if (CacheStorageServices().firstLaunch) {
+          CacheStorageServices().setFirstLaunch();
+          context.pushReplacement(OnboardingRoute.name);
+        } else {
+          context.pushReplacement(MainRoute.name);
+        }
+      },
+    );
   }
+
   @override
   void initState() {
     super.initState();

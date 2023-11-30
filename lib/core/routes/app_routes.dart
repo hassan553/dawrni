@@ -25,7 +25,7 @@ import '../../features/profile/presentation/routes/company_profile_route.dart';
 
 class AppRoutes {
   static final router = GoRouter(
-    initialLocation: MainRoute.name,
+    initialLocation: SplashRoute.name,
 
     // TODO: add pages route here
     routes: [

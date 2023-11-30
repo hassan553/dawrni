@@ -1,4 +1,5 @@
 import 'package:dawrni/core/services/service_locator.dart';
+import 'package:dawrni/features/auth/domain/entities/user_entity.dart';
 import 'package:dawrni/features/auth/presentation/blocs/verify_email/verify_email_bloc.dart';
 import 'package:dawrni/features/auth/presentation/views/otp_verify_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +13,7 @@ class OtpVerifyRoute {
     builder: (context, state) =>
         BlocProvider(
           create: (context) => sl<VerifyEmailBloc>(),
-          child: OtpVerifyView(email: state.extra as String),
+          child: OtpVerifyView(user: state.extra as UserEntity),
         ),
   );
 }

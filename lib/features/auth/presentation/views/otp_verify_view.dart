@@ -6,25 +6,24 @@ import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart
 import 'package:dawrni/core/extension/ui_extensions/container_decoration.dart';
 import 'package:dawrni/core/utils/app_validator.dart';
 import 'package:dawrni/core/utils/base_state.dart';
+import 'package:dawrni/features/auth/domain/entities/user_entity.dart';
 import 'package:dawrni/features/auth/domain/entities/verify_email_code_entity.dart';
 import 'package:dawrni/features/auth/presentation/blocs/verify_email/verify_email_bloc.dart';
 import 'package:dawrni/features/auth/presentation/widgets/top_logo.dart';
-import 'package:dawrni/features/home/presentation/routes/home_route.dart';
-import 'package:dawrni/features/home/presentation/routes/main_route.dart';
+import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:dawrni/generated/l10n.dart';
 
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpVerifyView extends StatefulWidget {
-  final String email;
+  final UserEntity user;
 
-  const OtpVerifyView({super.key, required this.email});
+  const OtpVerifyView({super.key, required this.user});
 
   @override
   State<OtpVerifyView> createState() => _OtpVerifyViewState();
@@ -44,7 +43,7 @@ class _OtpVerifyViewState extends State<OtpVerifyView> {
             listener: (context, state) {
               if (state.isSuccess) {
                 showToast(message: S.of(context).verifiedSuccessfully);
-                context.go(MainRoute.name);
+                context.read<AppConfigBloc>().add(LogInEvent(user: widget.user));
               } else if (state.isError) {
                 FailureComponent.handleFailure(
                     context: context, failure: state.failure);
@@ -65,7 +64,7 @@ class _OtpVerifyViewState extends State<OtpVerifyView> {
                 const SizedBox(height: 50),
                 Text(S.of(context).otpVerification, style: context.f20700),
                 const SizedBox(height: 20),
-                Text(S.of(context).enterTheOtpCodeSentToNumber(widget.email), style: context.f14400?.copyWith(height: 1.6), textAlign: TextAlign.center),
+                Text(S.of(context).enterTheOtpCodeSentToNumber(widget.user.email), style: context.f14400?.copyWith(height: 1.6), textAlign: TextAlign.center),
                 const SizedBox(height: 50),
                 buildForm(),
                 const SizedBox(height: 30),
@@ -81,19 +80,23 @@ class _OtpVerifyViewState extends State<OtpVerifyView> {
   }
 
   Widget buildButton(BuildContext context) {
+    return BlocBuilder<AppConfigBloc, AppConfigState>(
+  builder: (ctx, appState) {
     return BlocBuilder<VerifyEmailBloc, BaseState<VerifyEmailCodeEntity>>(
         builder: (context, state) {
       return AppButton(
         text: S.of(context).confirm,
         onPressed: () => _confirmTapped(context),
-        loading: state.isLoading,
+        loading: state.isLoading || appState.loading,
       );
     });
+  },
+);
   }
 
   void _confirmTapped(BuildContext context) {
     if (formKey.currentState?.validate() ?? false) {
-      context.read<VerifyEmailBloc>().add(VerifyEmailButtonTappedEvent(email: widget.email, code: codeController.text));
+      context.read<VerifyEmailBloc>().add(VerifyEmailButtonTappedEvent(email: widget.user.email, code: codeController.text));
     }
   }
 

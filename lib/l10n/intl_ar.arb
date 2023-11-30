@@ -149,5 +149,6 @@
   "selectTime": "Select time",
   "clientAppointmentsMessage": "Your Appointments",
   "cancelAppointmentConfirmation": "Do you want to cancel the appointment?",
-  "pleaseWait": "Please Wait"
+  "pleaseWait": "Please Wait",
+  "logout": "Logout"
 }

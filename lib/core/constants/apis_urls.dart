@@ -6,7 +6,7 @@
 
 class ApisUrls {
   /// [_baseUrl] base server url
-  static const String _baseUrl = 'https://dawrniapp.azurewebsites.net';
+  static const String _baseUrl = 'https://whale-app-wg8b6.ondigitalocean.app';
 
   /// [_baseApiUrl] base API url
   static const String _baseApiUrl = '$_baseUrl/api';

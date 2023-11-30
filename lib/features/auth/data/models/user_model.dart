@@ -8,7 +8,7 @@ class UserModel extends BaseModel<UserEntity> {
       this.token,});
 
   UserModel.fromJson(dynamic json) {
-    userInfo = json['user_info'] != null ? UserInfo.fromJson(json['user_info']) : null;
+    userInfo = json['user'] != null ? UserInfo.fromJson(json['user']) : null;
     token = json['token'];
   }
   UserInfo? userInfo;
@@ -18,7 +18,9 @@ class UserModel extends BaseModel<UserEntity> {
   UserEntity toEntity() {
     return UserEntity(
         email: userInfo!.email!,
-        type: userInfo!.userType!.toUserType()!);
+        type: userInfo!.userType!.toUserType()!,
+    isVerified: userInfo!.isVerified ?? true,
+    token: token ?? '');
   }
 
 }
@@ -26,19 +28,23 @@ class UserModel extends BaseModel<UserEntity> {
 class UserInfo {
   UserInfo({
       this.email, 
-      this.userType,});
+      this.userType,
+  this.isVerified});
 
   UserInfo.fromJson(dynamic json) {
     email = json['email'];
     userType = json['user_type'];
+    isVerified = json['is_verified'];
   }
   String? email;
   String? userType;
+  bool? isVerified;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['email'] = email;
     map['user_type'] = userType;
+    map['is_verified'] = isVerified;
     return map;
   }
 

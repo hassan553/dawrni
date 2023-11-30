@@ -1,12 +1,16 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
+import 'package:dawrni/features/auth/presentation/routes/login_route.dart';
+import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:dawrni/features/home/presentation/routes/main_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/about_us_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/contact_us_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/privacy_policy_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/setting_route.dart';
+import 'package:dawrni/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -96,13 +100,16 @@ class CustomDrawer extends StatelessWidget {
                () => context.push(SettingsRoute.name)),
             const Spacer(flex: 1),
             customListTile(
-                'Logout',
+                S.of(context).logout,
                 Icon(
                   Icons.logout,
                   size: 30,
                   color: AppColors.offWhite,
                 ),
-                () {}),
+                () {
+                  context.read<AppConfigBloc>().add(const LogOutEvent());
+                  context.go(LoginRoute.name);
+                }),
             const Spacer(flex: 2),
           ],
         ),

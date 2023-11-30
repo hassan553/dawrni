@@ -29,7 +29,7 @@ class AuthRepositoryImp extends AuthRepository {
     try {
       final UserModel res = await authDataSource.register(parameters);
       final user = res.toEntity();
-      await CacheStorageServices().setToken(res.token!);
+      // await CacheStorageServices().setToken(res.token!);
       return Right(user);
     } catch (e) {
       return Left(ErrorsHandler.failureThrower(e));

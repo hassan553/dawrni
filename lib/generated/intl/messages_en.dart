@@ -145,6 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Let’s Find What\nYou Need !"),
         "linkedin": MessageLookupByLibrary.simpleMessage("LinkedIn"),
         "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "message": MessageLookupByLibrary.simpleMessage("Message"),
         "mobileIsNotValid":
             MessageLookupByLibrary.simpleMessage("Mobile is not valid"),

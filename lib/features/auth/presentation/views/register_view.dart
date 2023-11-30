@@ -50,7 +50,7 @@ class _RegisterViewState extends State<RegisterView> {
         listener: (context, state) {
           if (state.isSuccess) {
             showToast(message: S.of(context).verificationCodeHasBeenSentToYourEmail);
-            context.go(OtpVerifyRoute.name, extra: emailController.text);
+            context.go(OtpVerifyRoute.name, extra: state.data!);
           } else if (state.isError) {
             FailureComponent.handleFailure(
                 context: context, failure: state.failure);

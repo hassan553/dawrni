@@ -15,9 +15,10 @@ class AppHeaders {
 
 // TODO : customize your Header
   Map<String, String> get baseHeaders => {
-        // if (CacheStorageServices().hasToken)
-        //   "Authorization": "Bearer ${CacheStorageServices().token}",
-        "Accept-Encoding": "gzip, deflate, br",
+        if (CacheStorageServices().hasToken)
+          "Authorization": "Token ${CacheStorageServices().token}",
+        // "Accept-Encoding": "gzip, deflate, br, application/json",
+        "Accept-Encoding": "application/json",
         "Content-Type": "multipart/form-data",
         "Accept-Language": "en",
         "app": "android",
