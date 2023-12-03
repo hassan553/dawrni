@@ -6,8 +6,7 @@ import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/themes/app_theme.dart';
 import 'package:dawrni/core/translations/app_local.dart';
 import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
-
-import 'package:dawrni/features/profile/data/repository/company_profile_repo.dart';
+import 'package:dawrni/features/profile/presentation/blocs/company_profile_bloc/company_profile_bloc.dart';
 
 
 import 'package:dawrni/generated/l10n.dart';
@@ -17,11 +16,8 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'features/auth/presentation/blocs/login/login_bloc.dart';
 
 late SharedPreferences sharedPreferences;
 
@@ -50,8 +46,15 @@ class Dawrni extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => sl<AppConfigBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => sl<AppConfigBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => sl<CompanyProfileBloc>(),
+        )
+      ],
       child: ScreenUtilInit(
         designSize: const Size(428, 926),
         builder: (_, child) {

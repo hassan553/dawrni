@@ -67,6 +67,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   galleryimage: ^2.0.1
   flutter_svg: ^2.0.9
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_lints: ^2.0.0

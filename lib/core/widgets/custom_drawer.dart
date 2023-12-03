@@ -1,9 +1,16 @@
 import 'package:dawrni/core/constants/app_colors.dart';
+import 'package:dawrni/core/core_compoent/app_network_image.dart';
+import 'package:dawrni/core/core_compoent/failuer_component.dart';
+import 'package:dawrni/core/core_compoent/loading_compoent.dart';
+import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
+import 'package:dawrni/core/utils/base_state.dart';
 import 'package:dawrni/core/widgets/custom_sized_box.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/auth/presentation/routes/login_route.dart';
 import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:dawrni/features/home/presentation/routes/main_route.dart';
+import 'package:dawrni/features/profile/domain/entities/company_profile_entity.dart';
+import 'package:dawrni/features/profile/presentation/blocs/company_profile_bloc/company_profile_bloc.dart';
 import 'package:dawrni/features/settings/presentation/routes/about_us_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/contact_us_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/privacy_policy_route.dart';
@@ -29,37 +36,8 @@ class CustomDrawer extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // const Row(
-            //   children: [
-            //     Icon(Icons.add),
-            //     Spacer(),
-            //     Icon(Icons.add),
-            //   ],
-            // ),
             const Spacer(flex: 1),
-            Container(
-              width: 64,
-              height: 64,
-              margin: const EdgeInsetsDirectional.only(start: 15),
-              decoration: ShapeDecoration(
-                image: const DecorationImage(
-                  image: AssetImage("assets/Rectangle 18.png"),
-                  fit: BoxFit.fill,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-            ),
-            const SizedBox(height: 15),
-            const Padding(
-              padding: EdgeInsetsDirectional.only(start: 15),
-              child: ResponsiveText(
-                text: 'Hey 👋 Abdullah',
-                color: Colors.white,
-                scaleFactor: .04,
-              ),
-            ),
+            buildProfileInfo(),
             const CustomSizedBox(value: .1),
             customListTile(
                 'Home',
@@ -115,6 +93,44 @@ class CustomDrawer extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget buildProfileInfo() {
+    return BlocBuilder<CompanyProfileBloc, BaseState<CompanyProfileEntity>>(
+        builder: (context, state) {
+      if (state.isLoading) {
+        return const LoadingComponent();
+      } else if (state.isError) {
+        return FailureComponent(
+            failure: state.failure,
+            refresh: true,
+            retry: () {
+              context
+                  .read<CompanyProfileBloc>()
+                  .add(const FetchCompanyProfileEvent());
+            });
+      }
+      if (state.isSuccess) {
+        return Padding(
+          padding: const EdgeInsetsDirectional.only(start: 15),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if(state.data?.imageUrl?.isNotEmpty ?? false)
+                SizedBox(
+                  width: 90,
+                    height: 90,
+                    child: AppNetworkImage(url: state.data!.imageUrl!, borderRadius: BorderRadius.circular(50))),
+              const SizedBox(height: 15),
+              Text("${S.of(context).hey} 👋 ", style: context.f20400),
+              Text(state.data?.nameEn ?? '', style: context.f20700),
+            ],
+          ),
+        );
+      }
+      return const SizedBox.shrink();
+    });
   }
 
   ListTile customListTile(String title, Widget icon, Function function) {

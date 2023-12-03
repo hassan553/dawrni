@@ -31,7 +31,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "تم إرسال رابط التحقق إلى عنوان بريدك الإلكتروني. يرجى التحقق من صندوق الوارد الخاص بك والنقر على الرابط للتحقق من بريدك الإلكتروني"),
         "about": MessageLookupByLibrary.simpleMessage("عن الشركة"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("من نحن"),
+        "addImage": MessageLookupByLibrary.simpleMessage("Add Image"),
         "add_your_location": MessageLookupByLibrary.simpleMessage("أضف موقعك"),
+        "address": MessageLookupByLibrary.simpleMessage("Address"),
         "anyQuestionsOrRemarksJustWriteUsAMessage":
             MessageLookupByLibrary.simpleMessage(
                 "Any questions or remarks ?  Just write us a message"),
@@ -150,6 +152,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mobile is not valid"),
         "mustBeAtLeastMinlength": m1,
         "myAppointments": MessageLookupByLibrary.simpleMessage("مواعيدي"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Abdullah Otaibi"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),

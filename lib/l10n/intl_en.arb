@@ -151,5 +151,8 @@
   "cancelAppointmentConfirmation": "Do you want to cancel the appointment?",
   "pleaseWait": "Please Wait",
   "logout": "Logout",
-  "favoritesMessage": "Your Favorites"
+  "favoritesMessage": "Your Favorites",
+  "name": "Name",
+  "address": "Address",
+  "addImage": "Add Image"
 }

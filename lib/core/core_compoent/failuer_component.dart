@@ -21,10 +21,11 @@ import 'package:go_router/go_router.dart';
 // TODO: customize failure Components view
 
 class FailureComponent extends StatelessWidget {
-  const FailureComponent({super.key, required this.failure, this.retry});
+  const FailureComponent({super.key, required this.failure, this.retry, this.refresh = false});
 
   final Failure failure;
   final VoidCallback? retry;
+  final bool refresh;
 
   static void handleFailure({required BuildContext context,required Failure failure}) {
     switch (failure.runtimeType) {
@@ -53,6 +54,15 @@ class FailureComponent extends StatelessWidget {
       _logout(context);
 
       return const SizedBox();
+    }
+    if(refresh) {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: IconButton(
+          icon: Icon(Icons.refresh, size: 40.w, color: Colors.white),
+          onPressed: retry,
+        ),
+      );
     }
     return Container(
       width: double.infinity,

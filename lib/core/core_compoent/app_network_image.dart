@@ -22,7 +22,9 @@ class AppNetworkImage extends StatelessWidget {
         height: double.infinity,
         width: double.infinity,
         child: ExtendedImage.network(
-          ApisUrls.baseImagesUrl(url),
+          ///todo change this
+          // ApisUrls.baseImagesUrl(url),
+          url,
           fit: BoxFit.cover,
           cache: true,
           maxBytes: maxByte ?? 100000,
