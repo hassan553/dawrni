@@ -21,20 +21,17 @@ class ApisUrls {
   static const String verifyEmailCode= '$_baseApiUrl/verify/';
 
   /// Companies Feature APIs
-  static const String getCompanies = '$_baseApiUrl/companies?limit=10&offset=0';
+  static String getCompanies(String parameters) => '$_baseApiUrl/companies/$parameters';
   static String getCompanyDetails(String id) =>
       '$_baseApiUrl/companies/$id';
-  static String bookAppointment = '$_baseApiUrl/book/';
+  static String bookAppointment(String id) => '$_baseApiUrl/book_appointment/$id';
 
   /// Appointments Feature APIs
   static String getClientAppointments(String parameters) => '$_baseApiUrl/client_appointments/$parameters';
   static String deleteClientAppointment(String parameters) => '$_baseApiUrl/delete_appointment/$parameters';
 
   /// user Profile
-  static const String getProfile =
-      '$_baseApiUrl/user';
-  static const String postUserProfielInfo =
-      'https://test-b16ab-default-rtdb.firebaseio.com/profile.json';
+  static const String getProfile = '$_baseApiUrl/profile/';
 
   ///Favorites Feature APIs
   static String getFavorites(String parameters) => '$_baseApiUrl/favorite_list/$parameters';

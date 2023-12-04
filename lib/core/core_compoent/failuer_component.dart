@@ -124,7 +124,7 @@ class FailureComponent extends StatelessWidget {
   static void _logout(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback(
           (timeStamp) {
-        // context.read<AppConfigBloc>().add(const LogOutEvent());
+        context.read<AppConfigBloc>().add(const LogOutEvent());
         context.go(LoginRoute.name);
       },
     );

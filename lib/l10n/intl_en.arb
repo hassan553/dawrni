@@ -154,5 +154,8 @@
   "favoritesMessage": "Your Favorites",
   "name": "Name",
   "address": "Address",
-  "addImage": "Add Image"
+  "addImage": "Add Image",
+  "companies": "Companies",
+  "searchCompaniesMessage": "Search through companies",
+  "allCompanies": "All Companies"
 }

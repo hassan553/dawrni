@@ -1,3 +1,4 @@
+import 'package:dawrni/core/core_models/entities/company_photo_entity.dart';
 import 'package:dawrni/core/entities/base_entity.dart';
 import 'package:dawrni/features/home/domain/entities/category_entity.dart';
 
@@ -21,6 +22,7 @@ class CompanyEntity extends BaseEntity {
     required this.address,
     required this.isCertified,
     required this.isFavorite,
+    required this.photos
   });
 
   final int id;
@@ -31,7 +33,8 @@ class CompanyEntity extends BaseEntity {
   final String image;
   final bool isCertified;
   final bool isFavorite;
+  final List<CompanyPhotoEntity> photos;
 
   @override
-  List<Object?> get props => [id, category, name, address, about, image, isCertified, isFavorite];
+  List<Object?> get props => [id, category, name, address, about, image, isCertified, isFavorite, photos];
 }

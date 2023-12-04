@@ -41,28 +41,26 @@ class ClientAppointmentsView extends StatelessWidget {
           } else if (state.isError) {
             return FailureComponent(failure: state.failure, retry: () => getClientAppointments(context));
           } else if (state.isSuccess) {
-            return Expanded(
-              child: SmartRefresher(
-                controller: context.read<ClientAppointmentsBloc>().refreshController,
-                onRefresh: () => getClientAppointments(context, refresh: true),
-                onLoading: () => getClientAppointments(context),
-                enablePullUp: state.enablePullUp,
-                child: ListView(
-                  children: [
-                    const SizedBox(height: 40),
-                    Text(S.of(context).clientAppointmentsMessage, style: context.f28800),
-                    const SizedBox(height: 20),
-                    ...state.data?.appointments.map((e) => ClientAppointmentCard(appointment: e)).toList() ?? [],
-                    const SizedBox(height: 30),
-                  ],
-                ),
+            return SmartRefresher(
+              controller: context.read<ClientAppointmentsBloc>().refreshController,
+              onRefresh: () => getClientAppointments(context, refresh: true),
+              onLoading: () => getClientAppointments(context),
+              enablePullUp: state.enablePullUp,
+              child: ListView(
+                children: [
+                  const SizedBox(height: 40),
+                  Text(S.of(context).clientAppointmentsMessage, style: context.f28800),
+                  const SizedBox(height: 20),
+                  ...state.data?.appointments.map((e) => ClientAppointmentCard(appointment: e)).toList() ?? [],
+                  const SizedBox(height: 30),
+                ],
               ),
             );
           }
           return const SizedBox();
         },
       ),
-),
+      ),
     );
   }
 

@@ -30,6 +30,10 @@ class ErrorsHandler {
       // logger.e(
       //     "==================== Dio Exception ====================== \n ${e.toString()} \n ${e.response?.data}");
 
+      if(e.response?.statusCode == 401) {
+        throw SessionExpiredException();
+      }
+
       // if back end return an error response and its json format
       if (e.response != null && e.response!.data is Map<String, dynamic>) {
         throw ServerException(ErrorMessageModel.fromJson(e.response!));

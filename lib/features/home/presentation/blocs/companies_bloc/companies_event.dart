@@ -9,5 +9,6 @@ sealed class CompaniesEvent extends Equatable {
 class FetchCompaniesEvent extends CompaniesEvent {
   final bool refresh;
   final String searchQuery;
-  const FetchCompaniesEvent({this.refresh = false, this.searchQuery = ''});
+  final String category;
+  const FetchCompaniesEvent({this.refresh = false, this.searchQuery = '', this.category = ''});
 }

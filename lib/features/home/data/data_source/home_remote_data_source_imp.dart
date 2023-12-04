@@ -14,7 +14,7 @@ class HomeRemoteDataSourceImp extends HomeDataSource {
   @override
   Future<CompaniesModel> getCompanies(GetCompaniesParameters parameters) async {
     AppResponse response = await ApiServices()
-        .get(ApisUrls.getCompanies, data: parameters.toJson());
+        .get(ApisUrls.getCompanies(parameters.toQueryParameters()));
     return CompaniesModel.fromJson(response.data);
     // await Future.delayed(const Duration(seconds: 2));
     // return CompaniesModel(
@@ -29,7 +29,7 @@ class HomeRemoteDataSourceImp extends HomeDataSource {
   @override
   Future<CompanyModel> getCompanyDetails(GetCompanyDetailsParameters parameters) async {
     await Future.delayed(const Duration(seconds: 2));
-    return CompanyModel(id: 2, aboutAr: '', aboutEn: '', addressAr: '', addressEn: '', category: Category(id: 2, name: 'ad'), isCertified: true, nameAr: 'Al Husein repairing', nameEn: 'Al Husein repairing', user: 1);
+    return CompanyModel(id: 2, about: '', address: '', categoryId: 2, isCertified: true, name: 'Al Husein repairing', user: "1");
     AppResponse response = await ApiServices()
         .get(ApisUrls.getCompanyDetails(parameters.id));
     return CompanyModel.fromJson(response.data);
@@ -37,7 +37,7 @@ class HomeRemoteDataSourceImp extends HomeDataSource {
 
   @override
   Future<void> bookAppointment(BookParameters parameters) async {
-    await ApiServices().post(ApisUrls.bookAppointment);
+    await ApiServices().post(ApisUrls.bookAppointment(parameters.toQueryParameters()), data: parameters.toJson());
   }
 
   @override
@@ -57,13 +57,11 @@ class HomeRemoteDataSourceImp extends HomeDataSource {
 
   @override
   Future<void> addToFavorites(AddToFavoritesParameters parameters) async {
-    await Future.delayed(const Duration(seconds: 2));
-    // await ApiServices().post(ApisUrls.addToFavorites(parameters.toQueryParameters()));
+    await ApiServices().post(ApisUrls.addToFavorites(parameters.toQueryParameters()));
   }
 
   @override
   Future<void> deleteFromFavorites(DeleteFromFavoritesParameters parameters) async {
-    await Future.delayed(const Duration(seconds: 2));
-    // await ApiServices().delete(ApisUrls.deleteFromFavorites(parameters.toQueryParameters()));
+    await ApiServices().delete(ApisUrls.deleteFromFavorites(parameters.toQueryParameters()));
   }
 }

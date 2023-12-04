@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_your_location":
             MessageLookupByLibrary.simpleMessage("Add your location"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
+        "allCompanies": MessageLookupByLibrary.simpleMessage("All Companies"),
         "anyQuestionsOrRemarksJustWriteUsAMessage":
             MessageLookupByLibrary.simpleMessage(
                 "Any questions or remarks ?  Just write us a message"),
@@ -98,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "client": MessageLookupByLibrary.simpleMessage("Client"),
         "clientAppointmentsMessage":
             MessageLookupByLibrary.simpleMessage("Your Appointments"),
+        "companies": MessageLookupByLibrary.simpleMessage("Companies"),
         "company": MessageLookupByLibrary.simpleMessage("Company"),
         "company_description": MessageLookupByLibrary.simpleMessage(
             "From minor repairs to major installations, we tackle each project with precision and care, ensuring that your plumbing systems are in optimal condition."),
@@ -189,6 +191,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "restoreTheInternet":
             MessageLookupByLibrary.simpleMessage("Restore the internet"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
+        "searchCompaniesMessage":
+            MessageLookupByLibrary.simpleMessage("Search through companies"),
         "searchServiceHint":
             MessageLookupByLibrary.simpleMessage("Search your service .."),
         "searchYourMessage":

@@ -34,6 +34,7 @@ class AppTextField extends StatefulWidget {
   final String? labelText;
   final bool password;
   final Color? fillColor;
+  final bool enabled;
 
   const AppTextField({
     Key? key,
@@ -65,7 +66,8 @@ class AppTextField extends StatefulWidget {
     this.borderRadius,
     this.labelText,
     this.password = false,
-    this.fillColor
+    this.fillColor,
+    this.enabled = true
   }) : super(key: key);
 
   @override
@@ -104,6 +106,7 @@ class _AppTextFieldState extends State<AppTextField> {
             onChanged: widget.onChanged,
             keyboardType: widget.keyboardType,
             maxLength: widget.maxLength,
+            enabled: widget.enabled,
             onTapOutside: (_) {
               FocusManager.instance.primaryFocus?.unfocus();
             },

@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addImage": MessageLookupByLibrary.simpleMessage("Add Image"),
         "add_your_location": MessageLookupByLibrary.simpleMessage("أضف موقعك"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
+        "allCompanies": MessageLookupByLibrary.simpleMessage("All Companies"),
         "anyQuestionsOrRemarksJustWriteUsAMessage":
             MessageLookupByLibrary.simpleMessage(
                 "Any questions or remarks ?  Just write us a message"),
@@ -96,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "client": MessageLookupByLibrary.simpleMessage("عميل"),
         "clientAppointmentsMessage":
             MessageLookupByLibrary.simpleMessage("Your Appointments"),
+        "companies": MessageLookupByLibrary.simpleMessage("Companies"),
         "company": MessageLookupByLibrary.simpleMessage("شركة"),
         "company_description": MessageLookupByLibrary.simpleMessage(
             "من الإصلاحات البسيطة إلى التركيبات الكبيرة، نتعامل مع كل مشروع بدقة وعناية، مما يضمن أن أنظمة السباكة لديك في حالة مثالية."),
@@ -185,6 +187,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "restoreTheInternet":
             MessageLookupByLibrary.simpleMessage("استعادة الاتصال بالإنترنت"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
+        "searchCompaniesMessage":
+            MessageLookupByLibrary.simpleMessage("Search through companies"),
         "searchServiceHint":
             MessageLookupByLibrary.simpleMessage("Search your service .."),
         "searchYourMessage":

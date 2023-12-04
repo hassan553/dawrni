@@ -8,7 +8,7 @@ class UserModel extends BaseModel<UserEntity> {
       this.token,});
 
   UserModel.fromJson(dynamic json) {
-    userInfo = json['user'] != null ? UserInfo.fromJson(json['user']) : null;
+    userInfo = json['user_info'] != null ? UserInfo.fromJson(json['user_info']) : json['user'] != null ? UserInfo.fromJson(json['user']) : null;
     token = json['token'];
   }
   UserInfo? userInfo;

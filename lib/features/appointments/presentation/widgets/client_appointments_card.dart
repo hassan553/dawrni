@@ -66,7 +66,7 @@ class ClientAppointmentCard extends StatelessWidget {
                 children: [
                   const Icon(Icons.calendar_today_outlined),
                   const SizedBox(width: 10),
-                  Text(DateFormat('dd MMM yyyy').format(appointment.date), style: context.f12400?.copyWith(color: AppColors.lighterGrey),),
+                  Text(DateFormat('dd MMM yyyy HH:mm:ss').format(appointment.date), style: context.f12400?.copyWith(color: AppColors.lighterGrey),),
                   const Spacer(),
                   SizedBox(
                     width: 35,

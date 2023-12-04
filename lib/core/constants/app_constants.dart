@@ -15,4 +15,5 @@ class AppConstants{
     CategoryEntity(id: 9, nameEn: S.current.category9Name, nameAr: '', descriptionEn: S.current.category9Description, descriptionAr: '', image: ImagesPaths.category9Png),
     CategoryEntity(id: 10, nameEn: S.current.category10Name, nameAr: '', descriptionEn: S.current.category10Description, descriptionAr: '', image: ImagesPaths.category10Png),
   ];
+  static const String appointmentPendingStatus = 'pending';
 }

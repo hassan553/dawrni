@@ -1,6 +1,6 @@
 import 'package:dawrni/core/constants/app_constants.dart';
+import 'package:dawrni/core/core_models/entities/company_photo_entity.dart';
 import 'package:dawrni/core/models/base_model.dart';
-import 'package:dawrni/features/profile/domain/entities/company_photo_entity.dart';
 import 'package:dawrni/features/profile/domain/entities/company_profile_entity.dart';
 
 class CompanyProfileModel extends BaseModel<CompanyProfileEntity> {

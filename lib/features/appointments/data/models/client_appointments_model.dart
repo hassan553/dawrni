@@ -32,10 +32,11 @@ class ClientAppointmentModel extends BaseModel<ClientAppointmentEntity> {
 
   ClientAppointmentModel.fromJson(dynamic json) {
     id = json['id'];
-    companyName = json['company_name'];
-    companyImage = json['company_image'];
-    categoryId = json['category_id'];
-    checked = json['checked'];
+    companyName = json['company']['name'];
+    companyImage = json['company']['image'];
+    categoryId = json['company']['category_id'];
+    ///todo: fix this
+    checked = json['status'] != 'pending';
     date = json['date'];
     time = json['time'];
   }

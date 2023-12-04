@@ -68,6 +68,7 @@ dependencies:
   galleryimage: ^2.0.1
   flutter_svg: ^2.0.9
   percent_indicator: ^4.2.3
+  bloc_concurrency: ^0.2.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0

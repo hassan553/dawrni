@@ -11,7 +11,7 @@ part 'book_event.dart';
 class BookBloc extends Bloc<BookEvent, BaseState<void>> {
   final HomeRepository homeRepository;
 
-  BookBloc(this.homeRepository) : super(const BaseState<CompanyEntity>()) {
+  BookBloc(this.homeRepository) : super(const BaseState<void>()) {
     on<BookButtonPressedEvent>(_book);
   }
 

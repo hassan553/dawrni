@@ -10,8 +10,8 @@ import 'package:dawrni/features/home/presentation/views/favorites_view.dart';
 import 'package:dawrni/features/home/presentation/views/home_view.dart';
 import 'package:dawrni/features/notifications/presentation/routes/notifications_route.dart';
 import 'package:dawrni/features/profile/presentation/blocs/company_profile_bloc/company_profile_bloc.dart';
+import 'package:dawrni/features/profile/presentation/views/client_profile_view.dart';
 import 'package:dawrni/features/profile/presentation/views/company_profile_view.dart';
-import 'package:dawrni/features/profile/presentation/views/user_profile_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
@@ -30,22 +30,38 @@ class _MainViewState extends State<MainView> {
 
   List screens = [
     const HomeView(),
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => sl<ClientAppointmentsBloc>()
-            ..add(const FetchClientAppointmentsEvent(refresh: true)),
-        ),
-        BlocProvider(
-          create: (context) => sl<DeleteClientAppointmentBloc>(),
-        ),
-      ],
-      child: const ClientAppointmentsView(),
-    ),
+    if (CacheStorageServices().isCompany)...{
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) =>
+            sl<ClientAppointmentsBloc>()
+              ..add(const FetchClientAppointmentsEvent(refresh: true)),
+          ),
+          BlocProvider(
+            create: (context) => sl<DeleteClientAppointmentBloc>(),
+          ),
+        ],
+        child: const ClientAppointmentsView(),
+      ),
+    } else...{
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) =>
+            sl<ClientAppointmentsBloc>()
+              ..add(const FetchClientAppointmentsEvent(refresh: true)),
+          ),
+          BlocProvider(
+            create: (context) => sl<DeleteClientAppointmentBloc>(),
+          ),
+        ],
+        child: const ClientAppointmentsView(),
+      ),
+    },
     const FavoritesView(),
     const ChatHomeScreen(),
-    // if (CacheStorageServices().isCompany) const CompanyProfileView() else const ClientProfileView(),
-    const CompanyProfileView(),
+    if (CacheStorageServices().isCompany) const CompanyProfileView() else const ClientProfileView(),
   ];
 
   final _advancedDrawerController = AdvancedDrawerController();

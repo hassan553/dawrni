@@ -1609,6 +1609,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Companies`
+  String get companies {
+    return Intl.message(
+      'Companies',
+      name: 'companies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search through companies`
+  String get searchCompaniesMessage {
+    return Intl.message(
+      'Search through companies',
+      name: 'searchCompaniesMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Companies`
+  String get allCompanies {
+    return Intl.message(
+      'All Companies',
+      name: 'allCompanies',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

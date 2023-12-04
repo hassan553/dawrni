@@ -24,6 +24,9 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
   final searchFocuseNode = FocusNode();
   @override
   Widget build(BuildContext context) {
+    return Center(
+      child: Text('Not Implemented Yet', style: context.f20700),
+    );
     return Scaffold(
       body: SafeArea(
         child: Padding(

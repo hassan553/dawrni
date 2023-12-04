@@ -8,6 +8,7 @@ import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart
 import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/core/utils/app_validator.dart';
 import 'package:dawrni/core/utils/base_state.dart';
+import 'package:dawrni/features/home/domain/entities/companies_entity.dart';
 import 'package:dawrni/features/home/presentation/blocs/book_bloc/book_bloc.dart';
 import 'package:dawrni/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -17,23 +18,15 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 class CompanyDetailsView extends StatelessWidget {
-  final String id;
+  final CompanyEntity company;
 
-  CompanyDetailsView({Key? key, required this.id})
+  CompanyDetailsView({Key? key, required this.company})
       : super(key: key); // Fix the constructor
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
   DateTime? pickedDate;
   TimeOfDay? pickedTime;
-  List<String> listOfUrls = [
-    "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg",
-    "https://scx2.b-cdn.net/gfx/news/hires/2019/2-nature.jpg",
-    "https://isha.sadhguru.org/blog/wp-content/uploads/2016/05/natures-temples.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/7/77/Big_Nature_%28155420955%29.jpeg",
-    "https://s23574.pcdn.co/wp-content/uploads/Singular-1140x703.jpg",
-    "https://www.expatica.com/app/uploads/sites/9/2017/06/Lake-Oeschinen-1200x675.jpg",
-  ];
   late final BookBloc _bloc;
 
   @override
@@ -41,6 +34,9 @@ class CompanyDetailsView extends StatelessWidget {
     _bloc = context.read<BookBloc>();
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text(company.name),
+      ),
       body: BlocListener<BookBloc, BaseState<void>>(
         listener: (context, state) {
           if (state.isSuccess) {
@@ -85,11 +81,12 @@ class CompanyDetailsView extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Al Husein Repairing", style: context.f25700),
+                  Text(company.name, style: context.f25700),
                   const SizedBox(height: 20),
-                  Text("Apartment repair", style: context.f20400),
+                  Text(company.category.name, style: context.f20400),
                 ],
               ),
+              if(company.isCertified)
               Column(
                 children: [
                   Image.asset(ImagesPaths.certifiedPng, height: 40, width: 40),
@@ -103,12 +100,12 @@ class CompanyDetailsView extends StatelessWidget {
           Text(S.of(context).about, style: context.f20700),
           const SizedBox(height: 20),
           Text(
-              "From minor repairs to major installations, we tackle each project with precision and care, ensuring that your plumbing systems are in optimal condition.",
+              company.about,
               style: context.f15300),
           const SizedBox(height: 20),
           GalleryImage(
-            imageUrls: listOfUrls,
-            numOfShowImages: 6,
+            imageUrls: company.photos.map((e) => e.imageUrl).toList(),
+            numOfShowImages: company.photos.length,
             titleGallery: "Title",
           ),
           const SizedBox(height: 30),
@@ -151,7 +148,7 @@ class CompanyDetailsView extends StatelessWidget {
           width: 160,
           child: AppNetworkImage(
             url:
-                "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg",
+                company.image,
             borderRadius: BorderRadius.circular(50),
           ),
         ),
@@ -270,7 +267,7 @@ class CompanyDetailsView extends StatelessWidget {
                                   pickedTime!.hour,
                                   pickedTime!.minute,
                                 );
-                                _bloc.add(BookButtonPressedEvent(companyId: int.parse(id), dateTime: selectedDate));
+                                _bloc.add(BookButtonPressedEvent(companyId: company.id, dateTime: selectedDate));
                               }
                             }),
                       ),

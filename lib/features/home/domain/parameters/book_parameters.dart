@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:intl/intl.dart';
 
 class BookParameters extends Equatable {
   final int companyId;
@@ -9,9 +10,11 @@ class BookParameters extends Equatable {
 });
 
   Map<String, dynamic> toJson() => {
-    'id' : companyId,
-    'dateTime' : dateTime.toIso8601String()
+    'date' : DateFormat('yyyy-MM-dd').format(dateTime),
+    'time' : DateFormat('HH:mm:ss').format(dateTime)
   };
+
+  String toQueryParameters() => "$companyId";
 
   @override
   List<Object> get props => [companyId, dateTime];

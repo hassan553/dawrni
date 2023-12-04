@@ -14,6 +14,7 @@ import 'package:dawrni/features/home/domain/entities/companies_entity.dart';
 import 'package:dawrni/features/home/presentation/blocs/companies_bloc/companies_bloc.dart';
 import 'package:dawrni/features/home/presentation/blocs/edit_favorites_bloc/edit_favorites_bloc.dart';
 import 'package:dawrni/features/home/presentation/routes/all_company_route.dart';
+import 'package:dawrni/features/home/presentation/routes/search_companies_route.dart';
 import 'package:dawrni/features/home/presentation/widgets/category_card.dart';
 import 'package:dawrni/features/home/presentation/widgets/company_card.dart';
 import 'package:dawrni/features/home/presentation/widgets/company_widget.dart';
@@ -32,10 +33,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final _searchController = TextEditingController();
   int _current = 0;
   final CarouselController _controller = CarouselController();
-  final RefreshController refreshController = RefreshController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +72,9 @@ class _HomeViewState extends State<HomeView> {
                 );
               } else if (state.isSuccess) {
                 return SmartRefresher(
-                  controller: refreshController,
+                  controller: context.read<CompaniesBloc>().refreshController,
                   onRefresh: () => getCompanies(context, refresh: true),
-                  // onLoading: () => getCompanies(context),
+                  onLoading: () => getCompanies(context),
                   enablePullUp: false,
                   child: ListView(
                     children: [
@@ -93,43 +92,6 @@ class _HomeViewState extends State<HomeView> {
                               .map((e) => CompanyCard(company: e))
                               .toList() ??
                           [],
-                      if (false)
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const ResponsiveText(
-                              text: 'Our Best Services',
-                              color: AppColors.white,
-                              scaleFactor: .04,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            InkWell(
-                              onTap: () => context.push(AllCompanyRoute.name),
-                              child: ResponsiveText(
-                                text: 'View All >>',
-                                color: AppColors.offWhite,
-                                scaleFactor: .03,
-                              ),
-                            ),
-                          ],
-                        ),
-                      const SizedBox(height: 30),
-                      if (false)
-                        Expanded(
-                            child: SingleChildScrollView(
-                          child: Column(
-                            children: List.generate(
-                              10,
-                              (index) => const CompanyWidget(),
-                            ),
-                          ),
-                        )
-                            // child: ListView.separated(
-                            //   itemBuilder: (context, index) => const CompanyWidget(),
-                            //   separatorBuilder: (context, index) => const SizedBox(height: 8),
-                            //   itemCount: 5,
-                            // ),
-                            ),
                     ],
                   ),
                 );
@@ -143,17 +105,22 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void getCompanies(BuildContext context,
-      {bool refresh = false, String searchQuery = ''}) {
+      {bool refresh = false}) {
     context
         .read<CompaniesBloc>()
-        .add(FetchCompaniesEvent(refresh: refresh, searchQuery: searchQuery));
+        .add(FetchCompaniesEvent(refresh: refresh, searchQuery: ''));
   }
 
-  AppTextField buildSearch(BuildContext context) {
-    return AppTextField(
-      controller: _searchController,
-      hintText: S.of(context).searchServiceHint,
-      suffixIcon: Image.asset(ImagesPaths.searchPng),
+  Widget buildSearch(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        context.push(SearchCompaniesRoute.name);
+      },
+      child: AppTextField(
+        hintText: S.of(context).searchServiceHint,
+        suffixIcon: Image.asset(ImagesPaths.searchPng),
+        enabled: false,
+      ),
     );
   }
 

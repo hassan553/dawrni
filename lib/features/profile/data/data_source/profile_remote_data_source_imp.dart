@@ -2,26 +2,31 @@ import 'package:dawrni/core/constants/apis_urls.dart';
 import 'package:dawrni/core/services/api_services.dart';
 import 'package:dawrni/core/utils/app_response.dart';
 import 'package:dawrni/features/profile/data/data_source/profile_data_source.dart';
+import 'package:dawrni/features/profile/data/models/client_profile_model.dart';
 import 'package:dawrni/features/profile/data/models/company_profile_model.dart';
-import 'package:dawrni/features/profile/data/models/user_profile_model.dart';
 import 'package:dawrni/features/profile/domain/parameters/profile_parameter.dart';
-import 'package:dio/dio.dart';
 
 // TODO: add urls and implemente post and get methods
 class ProfileRemoteDataSourceImp extends ProfileDataSource {
   @override
-  Future<UserProfileModel> getUserProfile() async {
-    AppResponse appResponse = await ApiServices().get(ApisUrls.getProfile);
-    return UserProfileModel.fromJson(appResponse.data);
+  Future<ClientProfileModel> getClientProfile() async {
+    // AppResponse appResponse = await ApiServices().get(ApisUrls.getProfile);
+    // return ClientProfileModel.fromJson(appResponse.data);
+    await Future.delayed(const Duration(seconds: 2));
+    return ClientProfileModel(
+        nameEn: 'Abdullah Otaibi',
+        nameAr: 'عبدالله العتيبي',
+        imageUrl: "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg",
+    );
   }
 
   @override
-  Future<UserProfileModel> postUserInfo(
-      UserProfileParameters userProfileParameters) async {
+  Future<ClientProfileModel> postUserInfo(
+      UserProfileParameters clientProfileParameters) async {
     AppResponse appResponse = await ApiServices().post(
-        ApisUrls.postUserProfielInfo,
-        data: userProfileParameters.toJson());
-    return UserProfileModel.fromJson(appResponse.data);
+        'ApisUrls.postUserProfielInfo',
+        data: clientProfileParameters.toJson());
+    return ClientProfileModel.fromJson(appResponse.data);
   }
 
   @override
@@ -50,4 +55,5 @@ class ProfileRemoteDataSourceImp extends ProfileDataSource {
       categoryId: 1
     );
   }
+
 }

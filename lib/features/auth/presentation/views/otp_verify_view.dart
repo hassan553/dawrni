@@ -2,6 +2,7 @@ import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/core_compoent/app_button.dart';
 import 'package:dawrni/core/core_compoent/failuer_component.dart';
 import 'package:dawrni/core/core_compoent/show_toast.dart';
+import 'package:dawrni/core/enums/app_state.dart';
 import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
 import 'package:dawrni/core/extension/ui_extensions/container_decoration.dart';
 import 'package:dawrni/core/utils/app_validator.dart';
@@ -11,12 +12,14 @@ import 'package:dawrni/features/auth/domain/entities/verify_email_code_entity.da
 import 'package:dawrni/features/auth/presentation/blocs/verify_email/verify_email_bloc.dart';
 import 'package:dawrni/features/auth/presentation/widgets/top_logo.dart';
 import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
+import 'package:dawrni/features/home/presentation/routes/main_route.dart';
 import 'package:dawrni/generated/l10n.dart';
 
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -39,7 +42,13 @@ class _OtpVerifyViewState extends State<OtpVerifyView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: BlocListener<VerifyEmailBloc, BaseState<VerifyEmailCodeEntity>>(
+          child: BlocListener<AppConfigBloc, AppConfigState>(
+            listener: (context, state) {
+              if (state.appState == AppState.loggedIn) {
+                context.go(MainRoute.name);
+              }
+            },
+  child: BlocListener<VerifyEmailBloc, BaseState<VerifyEmailCodeEntity>>(
             listener: (context, state) {
               if (state.isSuccess) {
                 showToast(message: S.of(context).verifiedSuccessfully);
@@ -75,6 +84,7 @@ class _OtpVerifyViewState extends State<OtpVerifyView> {
           ),
         ),
       ),
+),
 )),
     );
   }

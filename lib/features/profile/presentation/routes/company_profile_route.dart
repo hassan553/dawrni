@@ -1,6 +1,6 @@
 import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/features/auth/presentation/routes/login_route.dart';
-import 'package:dawrni/features/home/presentation/views/company_details_view.dart';
+import 'package:dawrni/features/profile/presentation/views/company_profile_view.dart';
 import 'package:go_router/go_router.dart';
 
 class CompanyProfileRoute {
@@ -11,6 +11,6 @@ class CompanyProfileRoute {
       if (!CacheStorageServices().hasToken) return LoginRoute.name;
       return null;
     },
-    builder: (context, state) => CompanyDetailsView(id: '',),
+    builder: (context, state) => const CompanyProfileView(),
   );
 }
