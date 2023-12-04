@@ -3,8 +3,10 @@ import 'package:dawrni/core/services/api_services.dart';
 import 'package:dawrni/core/utils/app_response.dart';
 import 'package:dawrni/features/appointments/data/data_source/appointments_data_source.dart';
 import 'package:dawrni/features/appointments/data/models/client_appointments_model.dart';
+import 'package:dawrni/features/appointments/data/models/company_appointments_model.dart';
 import 'package:dawrni/features/appointments/domain/parameters/delete_client_appointment_parameters.dart';
 import 'package:dawrni/features/appointments/domain/parameters/get_client_appointments_parameters.dart';
+import 'package:dawrni/features/appointments/domain/parameters/get_company_appointments_parameters.dart';
 
 class AppointmentsRemoteDataSourceImp extends AppointmentsDataSource {
   @override
@@ -26,5 +28,12 @@ class AppointmentsRemoteDataSourceImp extends AppointmentsDataSource {
   Future<void> deleteClientAppointment(DeleteClientAppointmentParameters parameters) async {
     await ApiServices().delete(ApisUrls.deleteClientAppointment(parameters.toQueryParameters()));
     // await Future.delayed(const Duration(seconds: 2));
+  }
+
+  @override
+  Future<CompanyAppointmentsModel> getCompanyAppointments(GetCompanyAppointmentsParameters parameters) async {
+    AppResponse response = await ApiServices()
+        .get(ApisUrls.getCompanyAppointments(parameters.toQueryParameters()));
+    return CompanyAppointmentsModel.fromJson(response.data);
   }
 }

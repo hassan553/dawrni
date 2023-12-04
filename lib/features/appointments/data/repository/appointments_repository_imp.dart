@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:dawrni/features/appointments/data/data_source/appointments_data_source.dart';
 import 'package:dawrni/features/appointments/domain/entities/client_appointment_entity.dart';
+import 'package:dawrni/features/appointments/domain/entities/company_appointment_entity.dart';
 import 'package:dawrni/features/appointments/domain/parameters/delete_client_appointment_parameters.dart';
 import 'package:dawrni/features/appointments/domain/parameters/get_client_appointments_parameters.dart';
+import 'package:dawrni/features/appointments/domain/parameters/get_company_appointments_parameters.dart';
 import 'package:dawrni/features/appointments/domain/repository/appointments_repository.dart';
 
 import '../../../../core/errors/errors_handler.dart';
@@ -28,5 +30,11 @@ class AppointmentsRepositoryImp extends AppointmentsRepository {
     } catch (e) {
       return Left(ErrorsHandler.failureThrower(e));
     }
+  }
+
+  @override
+  Future<Either<Failure, CompanyAppointmentsEntity>> getCompanyAppointments(GetCompanyAppointmentsParameters parameters) {
+    return ErrorsHandler.handleEither(
+            () => appointmentsDataSource.getCompanyAppointments(parameters));
   }
 }

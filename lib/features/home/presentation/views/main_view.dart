@@ -3,8 +3,10 @@ import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/widgets/custom_drawer.dart';
 import 'package:dawrni/features/appointments/presentation/blocs/client_appointments_bloc/client_appointments_bloc.dart';
+import 'package:dawrni/features/appointments/presentation/blocs/company_appointments_bloc/company_appointments_bloc.dart';
 import 'package:dawrni/features/appointments/presentation/blocs/delete_client_appointment_bloc/delete_client_appointment_bloc.dart';
 import 'package:dawrni/features/appointments/presentation/views/client_appointments_view.dart';
+import 'package:dawrni/features/appointments/presentation/views/company_appointments_view.dart';
 import 'package:dawrni/features/chats/presentation/views/chats_view.dart';
 import 'package:dawrni/features/home/presentation/views/favorites_view.dart';
 import 'package:dawrni/features/home/presentation/views/home_view.dart';
@@ -35,14 +37,14 @@ class _MainViewState extends State<MainView> {
         providers: [
           BlocProvider(
             create: (_) =>
-            sl<ClientAppointmentsBloc>()
-              ..add(const FetchClientAppointmentsEvent(refresh: true)),
+            sl<CompanyAppointmentsBloc>()
+              ..add(const FetchCompanyAppointmentsEvent(refresh: true)),
           ),
-          BlocProvider(
-            create: (context) => sl<DeleteClientAppointmentBloc>(),
-          ),
+          // BlocProvider(
+          //   create: (context) => sl<DeleteCompanyAppointmentBloc>(),
+          // ),
         ],
-        child: const ClientAppointmentsView(),
+        child: const CompanyAppointmentsView(),
       ),
     } else...{
       MultiBlocProvider(

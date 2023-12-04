@@ -4,6 +4,7 @@ import 'package:dawrni/features/appointments/data/data_source/appointments_remot
 import 'package:dawrni/features/appointments/data/repository/appointments_repository_imp.dart';
 import 'package:dawrni/features/appointments/domain/repository/appointments_repository.dart';
 import 'package:dawrni/features/appointments/presentation/blocs/client_appointments_bloc/client_appointments_bloc.dart';
+import 'package:dawrni/features/appointments/presentation/blocs/company_appointments_bloc/company_appointments_bloc.dart';
 import 'package:dawrni/features/appointments/presentation/blocs/delete_client_appointment_bloc/delete_client_appointment_bloc.dart';
 import 'package:dawrni/features/auth/data/data_source/auth_data_source.dart';
 import 'package:dawrni/features/auth/data/data_source/auth_remote_data_source_imp.dart';
@@ -71,6 +72,7 @@ class ServicesLocator {
     sl.registerFactory(() => CompaniesBloc(sl()));
     sl.registerFactory(() => CompanyDetailsBloc(sl()));
     sl.registerFactory(() => BookBloc(sl()));
+    sl.registerFactory(() => CompanyAppointmentsBloc(sl()));
     sl.registerFactory(() => ClientAppointmentsBloc(sl()));
     sl.registerFactory(() => DeleteClientAppointmentBloc(sl()));
     sl.registerFactory(() => FavoritesBloc(sl()));

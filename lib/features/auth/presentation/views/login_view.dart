@@ -126,9 +126,7 @@ class _LoginViewState extends State<LoginView> {
   builder: (ctx, appState) {
     return BlocBuilder<LoginBloc, BaseState<UserEntity>>(
         builder: (context, state) {
-      return state.isLoading
-          ? const CustomLoadingWidget()
-          : AppButton(
+      return AppButton(
               text: S.of(context).sign_in,
               onPressed: () {
                 _loginTapped(context);
