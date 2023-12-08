@@ -33,6 +33,10 @@ class ApisUrls {
 
   /// user Profile
   static const String getProfile = '$_baseApiUrl/profile/';
+  static const String updateCompanyProfile = '$_baseApiUrl/update_company/';
+  static const String deleteCompanyProfileImage = '$_baseApiUrl/company_profile/';
+  static String addCompanyPhoto = '$_baseApiUrl/company_photos/';
+  static String deleteCompanyPhoto(String parameters) => '$_baseApiUrl/company_photos/$parameters';
 
   ///Favorites Feature APIs
   static String getFavorites(String parameters) => '$_baseApiUrl/favorite_list/$parameters';

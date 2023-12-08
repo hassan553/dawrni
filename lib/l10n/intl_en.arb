@@ -157,5 +157,19 @@
   "addImage": "Add Image",
   "companies": "Companies",
   "searchCompaniesMessage": "Search through companies",
-  "allCompanies": "All Companies"
+  "allCompanies": "All Companies",
+  "nameEnHint": "Abdullah Otaibi",
+  "nameEn": "Name En",
+  "nameAr": "Name Ar",
+  "nameArHint": "عبد الله العتيبي",
+  "addressEn": "Address En",
+  "addressEnHint": "Kuwait",
+  "addressAr": "Address Ar",
+  "addressArHint": "الكويت",
+  "aboutEn": "About En",
+  "aboutEnHint": "Best Company",
+  "aboutAr": "About Ar",
+  "aboutArHint": "الشركة الأفضل",
+  "editProfile": "Edit Profile",
+  "category": "Category"
 }

@@ -30,11 +30,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "A verification link has been sent to your email address. Please check your inbox and click on the link to verify your email."),
         "about": MessageLookupByLibrary.simpleMessage("About"),
+        "aboutAr": MessageLookupByLibrary.simpleMessage("About Ar"),
+        "aboutArHint": MessageLookupByLibrary.simpleMessage("الشركة الأفضل"),
+        "aboutEn": MessageLookupByLibrary.simpleMessage("About En"),
+        "aboutEnHint": MessageLookupByLibrary.simpleMessage("Best Company"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
         "addImage": MessageLookupByLibrary.simpleMessage("Add Image"),
         "add_your_location":
             MessageLookupByLibrary.simpleMessage("Add your location"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
+        "addressAr": MessageLookupByLibrary.simpleMessage("Address Ar"),
+        "addressArHint": MessageLookupByLibrary.simpleMessage("الكويت"),
+        "addressEn": MessageLookupByLibrary.simpleMessage("Address En"),
+        "addressEnHint": MessageLookupByLibrary.simpleMessage("Kuwait"),
         "allCompanies": MessageLookupByLibrary.simpleMessage("All Companies"),
         "anyQuestionsOrRemarksJustWriteUsAMessage":
             MessageLookupByLibrary.simpleMessage(
@@ -56,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cancelAppointmentConfirmation": MessageLookupByLibrary.simpleMessage(
             "Do you want to cancel the appointment?"),
+        "category": MessageLookupByLibrary.simpleMessage("Category"),
         "category10Description": MessageLookupByLibrary.simpleMessage(
             "Get your problem fixed with our fast service"),
         "category10Name":
@@ -116,6 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "3. Disclosure of your personal data"),
         "doYouWantToCancelTheAppointment": MessageLookupByLibrary.simpleMessage(
             "Do you want to cancel the appointment ?"),
+        "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailHint": MessageLookupByLibrary.simpleMessage("abdullah@gmail.com"),
         "emailIsNotValid":
@@ -159,6 +169,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "myAppointments":
             MessageLookupByLibrary.simpleMessage("My appointments"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "nameAr": MessageLookupByLibrary.simpleMessage("Name Ar"),
+        "nameArHint": MessageLookupByLibrary.simpleMessage("عبد الله العتيبي"),
+        "nameEn": MessageLookupByLibrary.simpleMessage("Name En"),
+        "nameEnHint": MessageLookupByLibrary.simpleMessage("Abdullah Otaibi"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Abdullah Otaibi"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),

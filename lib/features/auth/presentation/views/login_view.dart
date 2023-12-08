@@ -22,7 +22,6 @@ import '../../../../core/core_compoent/app_text_field.dart';
 import '../../../../core/core_compoent/failuer_component.dart';
 import '../../../../core/core_compoent/show_toast.dart';
 import '../../../../core/utils/app_validator.dart';
-import '../../../../core/widgets/custom_loading_widget.dart';
 import '../../../../core/widgets/responsive_text.dart';
 import '../routes/register_route.dart';
 
@@ -54,7 +53,11 @@ class _LoginViewState extends State<LoginView> {
         child: BlocListener<AppConfigBloc, AppConfigState>(
           listener: (context, state) {
             if (state.appState == AppState.loggedIn) {
-              context.go(MainRoute.name);
+              WidgetsBinding.instance.addPostFrameCallback(
+                    (timeStamp) {
+                      context.go(MainRoute.name);
+                },
+              );
             }
           },
           child: BlocListener<LoginBloc, BaseState<UserEntity>>(

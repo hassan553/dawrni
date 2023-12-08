@@ -4,7 +4,10 @@ import 'package:dawrni/core/errors/failure.dart';
 import 'package:dawrni/features/profile/data/data_source/profile_data_source.dart';
 import 'package:dawrni/features/profile/domain/entities/client_profile_entity.dart';
 import 'package:dawrni/features/profile/domain/entities/company_profile_entity.dart';
+import 'package:dawrni/features/profile/domain/parameters/add_company_photo_parameters.dart';
+import 'package:dawrni/features/profile/domain/parameters/delete_company_photo_parameters.dart';
 import 'package:dawrni/features/profile/domain/parameters/profile_parameter.dart';
+import 'package:dawrni/features/profile/domain/parameters/update_company_profile_parameters.dart';
 import 'package:dawrni/features/profile/domain/repository/profile_repository.dart';
 
 class ProfileRepositoryImp extends ProfileRepository {
@@ -25,5 +28,45 @@ class ProfileRepositoryImp extends ProfileRepository {
   @override
   Future<Either<Failure, CompanyProfileEntity>> getCompanyProfile() {
     return ErrorsHandler.handleEither(() => profileDataSource.getCompanyProfile());
+  }
+
+  @override
+  Future<Either<Failure, void>> updateCompanyProfile(UpdateCompanyProfileParameters parameters) async {
+    try {
+      await profileDataSource.updateCompanyProfile(parameters);
+      return const Right(null);
+    } catch (e) {
+      return Left(ErrorsHandler.failureThrower(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteCompanyProfileImage() async {
+    try {
+      await profileDataSource.deleteCompanyProfileImage();
+      return const Right(null);
+    } catch (e) {
+      return Left(ErrorsHandler.failureThrower(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> addCompanyPhoto(AddCompanyPhotoParameters parameters) async {
+    try {
+      await profileDataSource.addCompanyPhoto(parameters);
+      return const Right(null);
+    } catch (e) {
+      return Left(ErrorsHandler.failureThrower(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteCompanyPhoto(DeleteCompanyPhotoParameters parameters) async {
+    try {
+      await profileDataSource.deleteCompanyPhoto(parameters);
+      return const Right(null);
+    } catch (e) {
+      return Left(ErrorsHandler.failureThrower(e));
+    }
   }
 }

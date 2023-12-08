@@ -28,6 +28,7 @@ import 'package:dawrni/features/profile/data/repository/profile_repository_imp.d
 import 'package:dawrni/features/profile/domain/repository/profile_repository.dart';
 import 'package:dawrni/features/profile/presentation/blocs/client_profile_bloc/client_profile_bloc.dart';
 import 'package:dawrni/features/profile/presentation/blocs/company_profile_bloc/company_profile_bloc.dart';
+import 'package:dawrni/features/profile/presentation/blocs/update_profile_bloc/update_profile_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
@@ -77,6 +78,7 @@ class ServicesLocator {
     sl.registerFactory(() => DeleteClientAppointmentBloc(sl()));
     sl.registerFactory(() => FavoritesBloc(sl()));
     sl.registerFactory(() => EditFavoritesBloc(sl()));
+    sl.registerFactory(() => UpdateProfileBloc(sl()));
 
     sl.registerLazySingleton(() => AppConfigBloc());
     sl.registerLazySingleton(() => CompanyProfileBloc(sl()));
@@ -85,7 +87,6 @@ class ServicesLocator {
     //// REPOSITORIES
     sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImp(sl()));
     sl.registerLazySingleton<ChatRepository>(() => ChatRepositoryImp(sl()));
-    // sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImp(sl()));
     sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImp(sl()));
     sl.registerLazySingleton<AppointmentsRepository>(
         () => AppointmentsRepositoryImp(sl()));

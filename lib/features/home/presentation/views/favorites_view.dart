@@ -2,6 +2,7 @@ import 'package:dawrni/core/core_compoent/failuer_component.dart';
 import 'package:dawrni/core/core_compoent/loading_compoent.dart';
 import 'package:dawrni/core/core_compoent/show_toast.dart';
 import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
+import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/utils/base_state.dart';
 import 'package:dawrni/features/home/domain/entities/companies_entity.dart';
@@ -19,6 +20,11 @@ class FavoritesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (CacheStorageServices().isCompany) {
+      return Center(
+        child: Text("No Favorites for Companies"),
+      );
+    }
     return MultiBlocProvider(
       providers: [
         BlocProvider(

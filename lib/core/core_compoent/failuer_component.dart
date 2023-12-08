@@ -28,6 +28,8 @@ class FailureComponent extends StatelessWidget {
   final bool refresh;
 
   static void handleFailure({required BuildContext context,required Failure failure}) {
+    print(
+        "============== handle failure ================= \n ${failure.runtimeType.toString()}");
     switch (failure.runtimeType) {
       case SessionExpiredFailure:
         _logout(context);
@@ -47,8 +49,8 @@ class FailureComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // logger.d(
-    //     "============== build failure ================= \n ${failure.runtimeType.toString()}");
+    print(
+        "============== build failure ================= \n ${failure.runtimeType.toString()}");
 
     if(failure is SessionExpiredFailure) {
       _logout(context);

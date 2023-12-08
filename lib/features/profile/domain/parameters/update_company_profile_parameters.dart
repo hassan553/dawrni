@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UpdateCompanyProfileParameters extends Equatable {
   final String? nameEn;
@@ -13,7 +14,7 @@ class UpdateCompanyProfileParameters extends Equatable {
   final int? categoryId;
   final double? lat;
   final double? lng;
-  final File? image;
+  final XFile? image;
 
   const UpdateCompanyProfileParameters(
       {
@@ -43,13 +44,13 @@ class UpdateCompanyProfileParameters extends Equatable {
   if(aboutAr != null)
     "about_ar": aboutAr,
   if(categoryId != null)
-    "category_id": categoryId,
+    "category": categoryId,
   if(lat != null)
     "lat": lat,
   if(lng != null)
     "lng": lng,
   if(image != null)
-    "image" : await MultipartFile.fromFile(image!.path, filename: 'image')
+    "image" : await MultipartFile.fromFile(image!.path, filename: image!.name)
   };
 
   @override

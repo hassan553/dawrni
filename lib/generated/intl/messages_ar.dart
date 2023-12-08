@@ -30,10 +30,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "تم إرسال رابط التحقق إلى عنوان بريدك الإلكتروني. يرجى التحقق من صندوق الوارد الخاص بك والنقر على الرابط للتحقق من بريدك الإلكتروني"),
         "about": MessageLookupByLibrary.simpleMessage("عن الشركة"),
+        "aboutAr": MessageLookupByLibrary.simpleMessage("About Ar"),
+        "aboutArHint": MessageLookupByLibrary.simpleMessage("الشركة الأفضل"),
+        "aboutEn": MessageLookupByLibrary.simpleMessage("About En"),
+        "aboutEnHint": MessageLookupByLibrary.simpleMessage("Best Company"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("من نحن"),
         "addImage": MessageLookupByLibrary.simpleMessage("Add Image"),
         "add_your_location": MessageLookupByLibrary.simpleMessage("أضف موقعك"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
+        "addressAr": MessageLookupByLibrary.simpleMessage("Address Ar"),
+        "addressArHint": MessageLookupByLibrary.simpleMessage("الكويت"),
+        "addressEn": MessageLookupByLibrary.simpleMessage("Address En"),
+        "addressEnHint": MessageLookupByLibrary.simpleMessage("Kuwait"),
         "allCompanies": MessageLookupByLibrary.simpleMessage("All Companies"),
         "anyQuestionsOrRemarksJustWriteUsAMessage":
             MessageLookupByLibrary.simpleMessage(
@@ -54,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cancelAppointmentConfirmation": MessageLookupByLibrary.simpleMessage(
             "Do you want to cancel the appointment?"),
+        "category": MessageLookupByLibrary.simpleMessage("Category"),
         "category10Description": MessageLookupByLibrary.simpleMessage(
             "Get your problem fixed with our fast service"),
         "category10Name":
@@ -114,6 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("3. كشف بياناتك الشخصية"),
         "doYouWantToCancelTheAppointment":
             MessageLookupByLibrary.simpleMessage("هل ترغب في إلغاء الموعد؟"),
+        "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "emailHint": MessageLookupByLibrary.simpleMessage("abdullah@gmail.com"),
         "emailIsNotValid":
@@ -155,6 +165,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "mustBeAtLeastMinlength": m1,
         "myAppointments": MessageLookupByLibrary.simpleMessage("مواعيدي"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "nameAr": MessageLookupByLibrary.simpleMessage("Name Ar"),
+        "nameArHint": MessageLookupByLibrary.simpleMessage("عبد الله العتيبي"),
+        "nameEn": MessageLookupByLibrary.simpleMessage("Name En"),
+        "nameEnHint": MessageLookupByLibrary.simpleMessage("Abdullah Otaibi"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Abdullah Otaibi"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),

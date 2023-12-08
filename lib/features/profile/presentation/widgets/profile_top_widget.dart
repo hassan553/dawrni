@@ -49,9 +49,7 @@ class ProfileTopWidget extends StatelessWidget {
                           shape: BoxShape.circle
                       ),
                       child: IconButton(
-                          onPressed: () {
-
-                          },
+                          onPressed: onEdit,
                           icon: const Icon(Icons.edit, color: AppColors.primaryColor)),
                     ),
                   ),
@@ -65,9 +63,7 @@ class ProfileTopWidget extends StatelessWidget {
                             shape: BoxShape.circle
                         ),
                         child: IconButton(
-                            onPressed: () {
-
-                            },
+                            onPressed: onDelete,
                             icon: const Icon(Icons.remove, color: Colors.red)),
                       ),
                     ),

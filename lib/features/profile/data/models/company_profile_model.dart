@@ -1,5 +1,6 @@
 import 'package:dawrni/core/constants/app_constants.dart';
 import 'package:dawrni/core/core_models/entities/company_photo_entity.dart';
+import 'package:dawrni/core/core_models/models/company_photo_model.dart';
 import 'package:dawrni/core/models/base_model.dart';
 import 'package:dawrni/features/profile/domain/entities/company_profile_entity.dart';
 
@@ -14,7 +15,8 @@ class CompanyProfileModel extends BaseModel<CompanyProfileEntity> {
   final double? lat;
   final double? lng;
   final String? imageUrl;
-  final List<String>? photos;
+  List<CompanyPhotoModel>? photos;
+
   CompanyProfileModel(
       {
         this.nameEn,
@@ -42,7 +44,7 @@ class CompanyProfileModel extends BaseModel<CompanyProfileEntity> {
       lat: json['lat'],
       lng: json['lng'],
       imageUrl: json['image'],
-      photos: json['photos'],
+      photos: (json['photos'] as List).map((e) => CompanyPhotoModel.fromJson(e)).toList(),
     );
   }
 
@@ -59,7 +61,7 @@ class CompanyProfileModel extends BaseModel<CompanyProfileEntity> {
       imageUrl: imageUrl,
       lat: lat,
       lng: lng,
-      photos: photos?.map((e) => CompanyPhotoEntity(id: 1, imageUrl: e)).toList()
+      photos: photos?.map((e) => e.toEntity()).toList() ?? []
     );
   }
 }

@@ -45,7 +45,11 @@ class _OtpVerifyViewState extends State<OtpVerifyView> {
           child: BlocListener<AppConfigBloc, AppConfigState>(
             listener: (context, state) {
               if (state.appState == AppState.loggedIn) {
-                context.go(MainRoute.name);
+                WidgetsBinding.instance.addPostFrameCallback(
+                      (timeStamp) {
+                    context.go(MainRoute.name);
+                  },
+                );
               }
             },
   child: BlocListener<VerifyEmailBloc, BaseState<VerifyEmailCodeEntity>>(

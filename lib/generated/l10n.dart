@@ -1639,6 +1639,146 @@ class S {
       args: [],
     );
   }
+
+  /// `Abdullah Otaibi`
+  String get nameEnHint {
+    return Intl.message(
+      'Abdullah Otaibi',
+      name: 'nameEnHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name En`
+  String get nameEn {
+    return Intl.message(
+      'Name En',
+      name: 'nameEn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name Ar`
+  String get nameAr {
+    return Intl.message(
+      'Name Ar',
+      name: 'nameAr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `عبد الله العتيبي`
+  String get nameArHint {
+    return Intl.message(
+      'عبد الله العتيبي',
+      name: 'nameArHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address En`
+  String get addressEn {
+    return Intl.message(
+      'Address En',
+      name: 'addressEn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kuwait`
+  String get addressEnHint {
+    return Intl.message(
+      'Kuwait',
+      name: 'addressEnHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address Ar`
+  String get addressAr {
+    return Intl.message(
+      'Address Ar',
+      name: 'addressAr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الكويت`
+  String get addressArHint {
+    return Intl.message(
+      'الكويت',
+      name: 'addressArHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About En`
+  String get aboutEn {
+    return Intl.message(
+      'About En',
+      name: 'aboutEn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Best Company`
+  String get aboutEnHint {
+    return Intl.message(
+      'Best Company',
+      name: 'aboutEnHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About Ar`
+  String get aboutAr {
+    return Intl.message(
+      'About Ar',
+      name: 'aboutAr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الشركة الأفضل`
+  String get aboutArHint {
+    return Intl.message(
+      'الشركة الأفضل',
+      name: 'aboutArHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Profile`
+  String get editProfile {
+    return Intl.message(
+      'Edit Profile',
+      name: 'editProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message(
+      'Category',
+      name: 'category',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

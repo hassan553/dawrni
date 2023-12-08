@@ -1,6 +1,7 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/core_compoent/app_network_image.dart';
 import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
+import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/features/home/domain/entities/companies_entity.dart';
 import 'package:dawrni/features/home/presentation/blocs/edit_favorites_bloc/edit_favorites_bloc.dart';
 import 'package:dawrni/features/home/presentation/routes/company_details_route.dart';
@@ -55,6 +56,7 @@ class CompanyCard extends StatelessWidget {
                 ],
               ),
             ),
+            if(CacheStorageServices().isClient)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: IconButton(
