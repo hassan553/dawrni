@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dawrni/features/appointments/data/data_source/appointments_data_source.dart';
 import 'package:dawrni/features/appointments/domain/entities/client_appointment_entity.dart';
 import 'package:dawrni/features/appointments/domain/entities/company_appointment_entity.dart';
+import 'package:dawrni/features/appointments/domain/parameters/change_company_appointment_status_parameters.dart';
 import 'package:dawrni/features/appointments/domain/parameters/delete_client_appointment_parameters.dart';
 import 'package:dawrni/features/appointments/domain/parameters/get_client_appointments_parameters.dart';
 import 'package:dawrni/features/appointments/domain/parameters/get_company_appointments_parameters.dart';
@@ -23,7 +24,8 @@ class AppointmentsRepositoryImp extends AppointmentsRepository {
   }
 
   @override
-  Future<Either<Failure, void>> deleteClientAppointment(DeleteClientAppointmentParameters parameters) async {
+  Future<Either<Failure, void>> deleteClientAppointment(
+      DeleteClientAppointmentParameters parameters) async {
     try {
       await appointmentsDataSource.deleteClientAppointment(parameters);
       return const Right(null);
@@ -33,8 +35,20 @@ class AppointmentsRepositoryImp extends AppointmentsRepository {
   }
 
   @override
-  Future<Either<Failure, CompanyAppointmentsEntity>> getCompanyAppointments(GetCompanyAppointmentsParameters parameters) {
+  Future<Either<Failure, CompanyAppointmentsEntity>> getCompanyAppointments(
+      GetCompanyAppointmentsParameters parameters) {
     return ErrorsHandler.handleEither(
-            () => appointmentsDataSource.getCompanyAppointments(parameters));
+        () => appointmentsDataSource.getCompanyAppointments(parameters));
+  }
+
+  @override
+  Future<Either<Failure, void>> changeCompanyAppointmentStatus(
+      ChangeCompanyAppointmentStatusParameters parameters) async {
+    try {
+      await appointmentsDataSource.changeCompanyAppointmentStatus(parameters);
+      return const Right(null);
+    } catch (e) {
+      return Left(ErrorsHandler.failureThrower(e));
+    }
   }
 }

@@ -4,13 +4,15 @@ import 'package:dawrni/core/utils/app_response.dart';
 import 'package:dawrni/features/appointments/data/data_source/appointments_data_source.dart';
 import 'package:dawrni/features/appointments/data/models/client_appointments_model.dart';
 import 'package:dawrni/features/appointments/data/models/company_appointments_model.dart';
+import 'package:dawrni/features/appointments/domain/parameters/change_company_appointment_status_parameters.dart';
 import 'package:dawrni/features/appointments/domain/parameters/delete_client_appointment_parameters.dart';
 import 'package:dawrni/features/appointments/domain/parameters/get_client_appointments_parameters.dart';
 import 'package:dawrni/features/appointments/domain/parameters/get_company_appointments_parameters.dart';
 
 class AppointmentsRemoteDataSourceImp extends AppointmentsDataSource {
   @override
-  Future<ClientAppointmentsModel> getClientAppointments(GetClientAppointmentsParameters parameters) async {
+  Future<ClientAppointmentsModel> getClientAppointments(
+      GetClientAppointmentsParameters parameters) async {
     AppResponse response = await ApiServices()
         .get(ApisUrls.getClientAppointments(parameters.toQueryParameters()));
     return ClientAppointmentsModel.fromJson(response.data);
@@ -25,15 +27,26 @@ class AppointmentsRemoteDataSourceImp extends AppointmentsDataSource {
   }
 
   @override
-  Future<void> deleteClientAppointment(DeleteClientAppointmentParameters parameters) async {
-    await ApiServices().delete(ApisUrls.deleteClientAppointment(parameters.toQueryParameters()));
+  Future<void> deleteClientAppointment(
+      DeleteClientAppointmentParameters parameters) async {
+    await ApiServices().delete(
+        ApisUrls.deleteClientAppointment(parameters.toQueryParameters()));
     // await Future.delayed(const Duration(seconds: 2));
   }
 
   @override
-  Future<CompanyAppointmentsModel> getCompanyAppointments(GetCompanyAppointmentsParameters parameters) async {
+  Future<CompanyAppointmentsModel> getCompanyAppointments(
+      GetCompanyAppointmentsParameters parameters) async {
     AppResponse response = await ApiServices()
         .get(ApisUrls.getCompanyAppointments(parameters.toQueryParameters()));
     return CompanyAppointmentsModel.fromJson(response.data);
+  }
+
+  @override
+  Future<void> changeCompanyAppointmentStatus(
+      ChangeCompanyAppointmentStatusParameters parameters) async {
+    await ApiServices().post(
+        ApisUrls.changeCompanyAppointmentStatus(parameters.toQueryParameters()),
+        data: parameters.toJson());
   }
 }

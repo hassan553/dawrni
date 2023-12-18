@@ -3,6 +3,7 @@ import 'package:dawrni/features/appointments/data/data_source/appointments_data_
 import 'package:dawrni/features/appointments/data/data_source/appointments_remote_data_source_imp.dart';
 import 'package:dawrni/features/appointments/data/repository/appointments_repository_imp.dart';
 import 'package:dawrni/features/appointments/domain/repository/appointments_repository.dart';
+import 'package:dawrni/features/appointments/presentation/blocs/change_company_appointment_status_bloc%20copy/change_company_appointment_status_bloc.dart';
 import 'package:dawrni/features/appointments/presentation/blocs/client_appointments_bloc/client_appointments_bloc.dart';
 import 'package:dawrni/features/appointments/presentation/blocs/company_appointments_bloc/company_appointments_bloc.dart';
 import 'package:dawrni/features/appointments/presentation/blocs/delete_client_appointment_bloc/delete_client_appointment_bloc.dart';
@@ -79,6 +80,7 @@ class ServicesLocator {
     sl.registerFactory(() => FavoritesBloc(sl()));
     sl.registerFactory(() => EditFavoritesBloc(sl()));
     sl.registerFactory(() => UpdateProfileBloc(sl()));
+    sl.registerFactory(() => ChangeCompanyAppointmentStatusBloc(sl()));
 
     sl.registerLazySingleton(() => AppConfigBloc());
     sl.registerLazySingleton(() => CompanyProfileBloc(sl()));

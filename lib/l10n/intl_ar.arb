@@ -171,5 +171,7 @@
   "aboutAr": "About Ar",
   "aboutArHint": "الشركة الأفضل",
   "editProfile": "Edit Profile",
-  "category": "Category"
+  "category": "Category",
+  "changeAppointmentStatus": "Change Appointment Status",
+  "pending": "Pending"
 }

@@ -99,6 +99,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Get your problem fixed with our fast service"),
         "category9Name": MessageLookupByLibrary.simpleMessage("Legal Service"),
         "certified": MessageLookupByLibrary.simpleMessage("معتمد"),
+        "changeAppointmentStatus":
+            MessageLookupByLibrary.simpleMessage("Change Appointment Status"),
         "checkTheSettings":
             MessageLookupByLibrary.simpleMessage("تحقق من الإعدادات"),
         "checkVerificationEmail": MessageLookupByLibrary.simpleMessage(
@@ -186,6 +188,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordConfirmation":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "passwordHint": MessageLookupByLibrary.simpleMessage("123456qwe!Q"),
+        "pending": MessageLookupByLibrary.simpleMessage("Pending"),
         "personalizeYourExperience":
             MessageLookupByLibrary.simpleMessage("تخصيص تجربتك"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),

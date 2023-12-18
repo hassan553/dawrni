@@ -2,6 +2,7 @@ import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/widgets/custom_drawer.dart';
+import 'package:dawrni/features/appointments/presentation/blocs/change_company_appointment_status_bloc%20copy/change_company_appointment_status_bloc.dart';
 import 'package:dawrni/features/appointments/presentation/blocs/client_appointments_bloc/client_appointments_bloc.dart';
 import 'package:dawrni/features/appointments/presentation/blocs/company_appointments_bloc/company_appointments_bloc.dart';
 import 'package:dawrni/features/appointments/presentation/blocs/delete_client_appointment_bloc/delete_client_appointment_bloc.dart';
@@ -32,26 +33,24 @@ class _MainViewState extends State<MainView> {
 
   List screens = [
     const HomeView(),
-    if (CacheStorageServices().isCompany)...{
+    if (CacheStorageServices().isCompany) ...{
       MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (_) =>
-            sl<CompanyAppointmentsBloc>()
+            create: (_) => sl<CompanyAppointmentsBloc>()
               ..add(const FetchCompanyAppointmentsEvent(refresh: true)),
           ),
-          // BlocProvider(
-          //   create: (context) => sl<DeleteCompanyAppointmentBloc>(),
-          // ),
+          BlocProvider(
+            create: (context) => sl<ChangeCompanyAppointmentStatusBloc>(),
+          ),
         ],
         child: const CompanyAppointmentsView(),
       ),
-    } else...{
+    } else ...{
       MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (_) =>
-            sl<ClientAppointmentsBloc>()
+            create: (_) => sl<ClientAppointmentsBloc>()
               ..add(const FetchClientAppointmentsEvent(refresh: true)),
           ),
           BlocProvider(
@@ -63,7 +62,10 @@ class _MainViewState extends State<MainView> {
     },
     const FavoritesView(),
     const ChatHomeScreen(),
-    if (CacheStorageServices().isCompany) const CompanyProfileView() else const ClientProfileView(),
+    if (CacheStorageServices().isCompany)
+      const CompanyProfileView()
+    else
+      const ClientProfileView(),
   ];
 
   final _advancedDrawerController = AdvancedDrawerController();

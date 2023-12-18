@@ -1,4 +1,5 @@
 import 'package:dawrni/core/entities/base_entity.dart';
+import 'package:dawrni/core/enums/company_appointment_status.dart';
 import 'package:dawrni/features/home/domain/entities/category_entity.dart';
 
 class CompanyAppointmentsEntity extends BaseEntity {
@@ -13,21 +14,19 @@ class CompanyAppointmentsEntity extends BaseEntity {
 class CompanyAppointmentEntity extends BaseEntity {
   CompanyAppointmentEntity({
     required this.id,
-    required this.companyName,
-    required this.companyImage,
-    required this.companyCategory,
-    required this.checked,
+    required this.clientName,
+    required this.clientImage,
+    required this.status,
     required this.date,
   });
 
   final int id;
-  final String companyName;
-  final String companyImage;
-  final CategoryEntity companyCategory;
-  final bool checked;
+  final String clientName;
+  final String clientImage;
+  final CompanyAppointmentStatus status;
   final DateTime date;
 
   @override
   List<Object?> get props =>
-      [id, companyName, companyImage, companyCategory, checked, date];
+      [id, clientName, clientImage, status, date];
 }

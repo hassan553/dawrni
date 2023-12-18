@@ -1779,6 +1779,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Change Appointment Status`
+  String get changeAppointmentStatus {
+    return Intl.message(
+      'Change Appointment Status',
+      name: 'changeAppointmentStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending`
+  String get pending {
+    return Intl.message(
+      'Pending',
+      name: 'pending',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

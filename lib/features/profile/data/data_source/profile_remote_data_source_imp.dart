@@ -6,30 +6,14 @@ import 'package:dawrni/features/profile/data/models/client_profile_model.dart';
 import 'package:dawrni/features/profile/data/models/company_profile_model.dart';
 import 'package:dawrni/features/profile/domain/parameters/add_company_photo_parameters.dart';
 import 'package:dawrni/features/profile/domain/parameters/delete_company_photo_parameters.dart';
-import 'package:dawrni/features/profile/domain/parameters/profile_parameter.dart';
+import 'package:dawrni/features/profile/domain/parameters/update_client_profile_parameters.dart';
 import 'package:dawrni/features/profile/domain/parameters/update_company_profile_parameters.dart';
 
 // TODO: add urls and implemente post and get methods
 class ProfileRemoteDataSourceImp extends ProfileDataSource {
   @override
   Future<ClientProfileModel> getClientProfile() async {
-    // AppResponse appResponse = await ApiServices().get(ApisUrls.getProfile);
-    // return ClientProfileModel.fromJson(appResponse.data);
-    await Future.delayed(const Duration(seconds: 2));
-    return ClientProfileModel(
-      nameEn: 'Abdullah Otaibi',
-      nameAr: 'عبدالله العتيبي',
-      imageUrl:
-          "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg",
-    );
-  }
-
-  @override
-  Future<ClientProfileModel> postUserInfo(
-      UserProfileParameters clientProfileParameters) async {
-    AppResponse appResponse = await ApiServices().post(
-        'ApisUrls.postUserProfielInfo',
-        data: clientProfileParameters.toJson());
+    AppResponse appResponse = await ApiServices().get(ApisUrls.getProfile);
     return ClientProfileModel.fromJson(appResponse.data);
   }
 
@@ -80,5 +64,16 @@ class ProfileRemoteDataSourceImp extends ProfileDataSource {
   @override
   Future<void> deleteCompanyPhoto(DeleteCompanyPhotoParameters parameters) async {
     await ApiServices().delete(ApisUrls.deleteCompanyPhoto(parameters.toQueryParameters()));
+  }
+
+  @override
+  Future<void> updateClientProfile(UpdateClientProfileParameters parameters) async {
+    await ApiServices()
+        .put(ApisUrls.updateClientProfile, data: await parameters.toJson());
+  }
+
+  @override
+  Future<void> deleteClientProfileImage() async {
+    await ApiServices().delete(ApisUrls.deleteClientProfileImage);
   }
 }

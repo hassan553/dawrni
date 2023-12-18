@@ -16,7 +16,7 @@ class ClientProfileModel extends BaseModel<ClientProfileEntity> {
     return ClientProfileModel(
       nameEn: json['name_en'],
       nameAr: json['name_ar'],
-      imageUrl: json['image'],
+      imageUrl: json['photo'],
     );
   }
 

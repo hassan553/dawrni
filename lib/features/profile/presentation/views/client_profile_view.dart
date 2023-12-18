@@ -11,6 +11,8 @@ import 'package:dawrni/core/utils/base_state.dart';
 import 'package:dawrni/core/widgets/custom_loading_widget.dart';
 import 'package:dawrni/features/profile/domain/entities/client_profile_entity.dart';
 import 'package:dawrni/features/profile/presentation/blocs/client_profile_bloc/client_profile_bloc.dart';
+import 'package:dawrni/features/profile/presentation/blocs/update_profile_bloc/update_profile_bloc.dart';
+import 'package:dawrni/features/profile/presentation/routes/client_edit_profile_route.dart';
 import 'package:dawrni/features/profile/presentation/widgets/container_location.dart';
 import 'package:dawrni/features/profile/presentation/widgets/custom_list_tile.dart';
 import 'package:dawrni/features/profile/presentation/widgets/password_field.dart';
@@ -19,6 +21,8 @@ import 'package:dawrni/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 class ClientProfileView extends StatefulWidget {
   const ClientProfileView({super.key});
 
@@ -28,6 +32,9 @@ class ClientProfileView extends StatefulWidget {
 
 class _ClientProfileViewState extends State<ClientProfileView> {
   late final ClientProfileBloc _bloc;
+  late final UpdateProfileBloc _updateBloc;
+
+  final ImagePicker picker = ImagePicker();
 
 
   @override
@@ -48,39 +55,61 @@ class _ClientProfileViewState extends State<ClientProfileView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ClientProfileBloc, BaseState<ClientProfileEntity>>(
-        builder: (context, state) {
-          return Column(
-            children: [
-              ProfileTopWidget(image: state.isSuccess ? state.data?.imageUrl ?? '' : '', onEdit: _onImageEdit, onDelete: _onImageDelete),
-              const SizedBox(height: 25),
-              if(state.isLoading)...[
-                const SizedBox(height: 50),
-                const LoadingComponent(),
-              ]
-              else if(state.isError)...{
-                FailureComponent(failure: state.failure, retry: getProfile),
-              } else if(state.isSuccess)...{
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: ListView(
-                      children: [
-                        Text(state.data!.name, style: context.f25700?.copyWith(letterSpacing: 1.6), textAlign: TextAlign.center),
-                        const SizedBox(height: 20),
-                        buildEmail(context),
-                        const SizedBox(height: 20),
-                        buildProfileInfo(context, state),
-                        const SizedBox(height: 40),
-                      ],
+    return BlocProvider(
+      create: (context) => sl<UpdateProfileBloc>(),
+  child: Builder(
+    builder: (context) {
+      _updateBloc = context.read<UpdateProfileBloc>();
+      return BlocListener<UpdateProfileBloc, BaseState<void>>(
+        listener: (context, state) {
+          if(state.isLoading) {
+            LoadingComponent.showProgressModal(context);
+          } else if (state.isError) {
+            FailureComponent.handleFailure(context: context, failure: state.failure);
+            context.pop();
+          } else if (state.isSuccess) {
+            showToast(message: S.of(context).success);
+            getProfile();
+            context.pop();
+          }
+        },
+          child: BlocBuilder<ClientProfileBloc, BaseState<ClientProfileEntity>>(
+            builder: (context, state) {
+              return Column(
+                children: [
+                  ProfileTopWidget(image: state.isSuccess ? state.data?.imageUrl ?? '' : '', onEdit: _onImageEdit, onDelete: _onImageDelete),
+                  const SizedBox(height: 25),
+                  if(state.isLoading)...[
+                    const SizedBox(height: 50),
+                    const LoadingComponent(),
+                  ]
+                  else if(state.isError)...{
+                    FailureComponent(failure: state.failure, retry: getProfile),
+                  } else if(state.isSuccess)...{
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: ListView(
+                          children: [
+                            Text(state.data!.name, style: context.f25700?.copyWith(letterSpacing: 1.6), textAlign: TextAlign.center),
+                            const SizedBox(height: 20),
+                            buildEmail(context),
+                            const SizedBox(height: 20),
+                            buildProfileInfo(context, state),
+                            const SizedBox(height: 40),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              }
-            ],
-          );
-        }
-    );
+                  }
+                ],
+              );
+            }
+        ),
+);
+    }
+  ),
+);
   }
 
   Widget buildEmail(BuildContext context) {
@@ -107,7 +136,7 @@ class _ClientProfileViewState extends State<ClientProfileView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(),
+              const Row(),
               Text("${S.of(context).name}:", style: context.f15700),
               const SizedBox(height: 5),
               Text(state.data!.name, style: context.f15400),
@@ -123,14 +152,23 @@ class _ClientProfileViewState extends State<ClientProfileView> {
                     color: AppColors.primaryColor,
                     shape: BoxShape.circle
                 ),
-                child: IconButton(onPressed: () {
-
-                }, icon: const Icon(Icons.edit)))),
+                child: IconButton(onPressed: () => _editProfileInfo(state.data!), icon: const Icon(Icons.edit)))),
       ],
     );
   }
 
-  void _onImageEdit () {}
+  Future<void> _onImageEdit () async {
+    XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if(image != null) {
+      _updateBloc.add(UpdateClientProfileImageEvent(image: image));
+    }
+  }
 
-  void _onImageDelete () {}
+  void _editProfileInfo (ClientProfileEntity profile) async {
+    context.push(ClientEditProfileRoute.name, extra: profile);
+  }
+
+  void _onImageDelete () {
+    _updateBloc.add(const DeleteClientProfileImageEvent());
+  }
 }

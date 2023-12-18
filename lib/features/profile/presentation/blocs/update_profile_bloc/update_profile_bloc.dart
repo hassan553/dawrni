@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:dawrni/features/profile/domain/parameters/add_company_photo_parameters.dart';
 import 'package:dawrni/features/profile/domain/parameters/delete_company_photo_parameters.dart';
+import 'package:dawrni/features/profile/domain/parameters/update_client_profile_parameters.dart';
 import 'package:dawrni/features/profile/domain/parameters/update_company_profile_parameters.dart';
 import 'package:dawrni/features/profile/domain/repository/profile_repository.dart';
 import 'package:equatable/equatable.dart';
@@ -14,11 +15,39 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, BaseState<void>> {
   final ProfileRepository profileRepository;
 
   UpdateProfileBloc(this.profileRepository) : super(const BaseState<void>()) {
+    on<UpdateClientProfileEvent>(_updateClientProfile);
+    on<UpdateClientProfileImageEvent>(_updateClientProfileImage);
+    on<DeleteClientProfileImageEvent>(_deleteClientProfileImage);
     on<UpdateCompanyProfileEvent>(_updateCompanyProfile);
     on<UpdateCompanyProfileImageEvent>(_updateCompanyProfileImage);
     on<DeleteCompanyProfileImageEvent>(_deleteCompanyProfileImage);
     on<AddCompanyPhotoEvent>(_addCompanyPhoto);
     on<DeleteCompanyPhotoEvent>(_deleteCompanyPhoto);
+  }
+
+  FutureOr<void> _updateClientProfile(
+      UpdateClientProfileEvent event, emit) async {
+    emit(state.loading());
+    final result = await profileRepository.updateClientProfile(
+        UpdateClientProfileParameters(
+            nameEn: event.nameEn,
+            nameAr: event.nameAr));
+    result.fold((l) => emit(state.error(l)), (r) => emit(state.success(r)));
+  }
+
+  FutureOr<void> _updateClientProfileImage(
+      UpdateClientProfileImageEvent event, emit) async {
+    emit(state.loading());
+    final result = await profileRepository
+        .updateClientProfile(UpdateClientProfileParameters(image: event.image));
+    result.fold((l) => emit(state.error(l)), (r) => emit(state.success(r)));
+  }
+
+  FutureOr<void> _deleteClientProfileImage(
+      DeleteClientProfileImageEvent event, emit) async {
+    emit(state.loading());
+    final result = await profileRepository.deleteClientProfileImage();
+    result.fold((l) => emit(state.error(l)), (r) => emit(state.success(r)));
   }
 
   FutureOr<void> _updateCompanyProfile(

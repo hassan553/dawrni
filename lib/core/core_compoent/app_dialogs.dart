@@ -1,5 +1,7 @@
 import 'package:dawrni/core/constants/app_colors.dart';
 import 'package:dawrni/core/core_compoent/app_button.dart';
+import 'package:dawrni/core/enums/company_appointment_status.dart';
+import 'package:dawrni/core/extension/company_appointment_extentions/company_appointments_extention.dart';
 import 'package:dawrni/core/extension/theme_extensions/text_theme_extension.dart';
 import 'package:dawrni/core/paths/images_paths.dart';
 import 'package:dawrni/generated/l10n.dart';
@@ -67,6 +69,66 @@ class AppDialogs {
       );
     }).then((value) {
       result = value ?? false;
+    });
+    return result;
+  }
+
+  static Future<CompanyAppointmentStatus?> changeCompanyAppointmentStatusDialog(BuildContext context) async {
+    CompanyAppointmentStatus? result;
+    await showDialog(context: context,
+        builder: (context) {
+          return Dialog(
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+            child: Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.offBlack,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  margin: EdgeInsets.only(top: 100.w),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(height: 50.w),
+                      Text(S.of(context).changeAppointmentStatus, style: context.f15400, textAlign: TextAlign.center),
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AppButton(
+                                text: CompanyAppointmentStatus.canceled.text,
+                                type: AppButtonType.solidBlack,
+                                onPressed: () {
+                                  context.pop(CompanyAppointmentStatus.canceled);
+                                }),
+                          ),
+                          const SizedBox(width: 30),
+                          Expanded(
+                            child: AppButton(
+                                text: CompanyAppointmentStatus.confirmed.text,
+                                type: AppButtonType.solidPrimary,
+                                onPressed: () {
+                                  context.pop(CompanyAppointmentStatus.confirmed);
+                                }),
+                          ),
+                        ],
+                      )
+                    ],),
+                ),
+                Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child: Image.asset(ImagesPaths.alertPng, height: 200.w)),
+              ],
+            ),
+          );
+        }).then((value) {
+      result = value;
     });
     return result;
   }

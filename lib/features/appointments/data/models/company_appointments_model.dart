@@ -1,4 +1,4 @@
-import 'package:dawrni/core/constants/app_constants.dart';
+import 'package:dawrni/core/enums/company_appointment_status.dart';
 import 'package:dawrni/core/models/base_model.dart';
 import 'package:dawrni/features/appointments/domain/entities/company_appointment_entity.dart';
 
@@ -24,28 +24,24 @@ class CompanyAppointmentsModel extends BaseModel<CompanyAppointmentsEntity> {
 class CompanyAppointmentModel extends BaseModel<CompanyAppointmentEntity> {
   CompanyAppointmentModel(
       {this.id,
-      this.companyName,
-      this.companyImage,
-      this.categoryId,
-      this.checked,
+      this.clientName,
+      this.clientImage,
+      this.status,
       this.date});
 
   CompanyAppointmentModel.fromJson(dynamic json) {
     id = json['id'];
-    companyName = json['company']['name'];
-    companyImage = json['company']['image'];
-    categoryId = json['company']['category_id'];
-    ///todo: fix this
-    checked = json['status'] != 'pending';
+    clientName = json['client']['name'];
+    clientImage = json['client']['photo'];
+    status = CompanyAppointmentStatus.values.byName(json['status'] ?? 'pending');
     date = json['date'];
     time = json['time'];
   }
 
   int? id;
-  String? companyName;
-  String? companyImage;
-  int? categoryId;
-  bool? checked;
+  String? clientName;
+  String? clientImage;
+  CompanyAppointmentStatus? status;
   String? date;
   String? time;
 
@@ -53,12 +49,9 @@ class CompanyAppointmentModel extends BaseModel<CompanyAppointmentEntity> {
   CompanyAppointmentEntity toEntity() {
     return CompanyAppointmentEntity(
       id: id!,
-      companyName: companyName ?? '',
-      companyImage: companyImage ?? '',
-      companyCategory:
-          ///todo: remove orElse
-          AppConstants.categories.firstWhere((element) => element.id == categoryId, orElse: () => AppConstants.categories.first),
-      checked: checked ?? false,
+      clientName: clientName ?? '',
+      clientImage: clientImage ?? '',
+      status: status ?? CompanyAppointmentStatus.pending,
       date: DateTime.parse("$date $time"),
     );
   }

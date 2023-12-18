@@ -10,6 +10,7 @@ import 'package:dawrni/features/home/presentation/routes/home_route.dart';
 import 'package:dawrni/features/home/presentation/routes/main_route.dart';
 import 'package:dawrni/features/home/presentation/routes/search_companies_route.dart';
 import 'package:dawrni/features/onboarding/presentation/routes/onboarding_route.dart';
+import 'package:dawrni/features/profile/presentation/routes/client_edit_profile_route.dart';
 import 'package:dawrni/features/profile/presentation/routes/client_profile_route.dart';
 import 'package:dawrni/features/profile/presentation/routes/company_edit_profile_route.dart';
 import 'package:dawrni/features/settings/presentation/routes/about_us_route.dart';
@@ -55,7 +56,8 @@ class AppRoutes {
       PrivacyPolicyRoute.route,
       SettingsRoute.route,
       SearchCompaniesRoute.route,
-      CompanyEditProfileRoute.route
+      CompanyEditProfileRoute.route,
+      ClientEditProfileRoute.route
     ],
   );
 }
