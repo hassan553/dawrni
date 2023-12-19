@@ -159,6 +159,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("If you have an account?"),
         "internetIsRestored":
             MessageLookupByLibrary.simpleMessage("Internet is restored !"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "let_find_what_you_need":
             MessageLookupByLibrary.simpleMessage("Let’s Find What\nYou Need !"),
         "linkedin": MessageLookupByLibrary.simpleMessage("LinkedIn"),

@@ -9,6 +9,7 @@ import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/utils/base_state.dart';
 import 'package:dawrni/core/widgets/custom_loading_widget.dart';
+import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:dawrni/features/profile/domain/entities/client_profile_entity.dart';
 import 'package:dawrni/features/profile/presentation/blocs/client_profile_bloc/client_profile_bloc.dart';
 import 'package:dawrni/features/profile/presentation/blocs/update_profile_bloc/update_profile_bloc.dart';
@@ -23,6 +24,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 class ClientProfileView extends StatefulWidget {
   const ClientProfileView({super.key});
 
@@ -35,11 +37,13 @@ class _ClientProfileViewState extends State<ClientProfileView> {
   late final UpdateProfileBloc _updateBloc;
 
   final ImagePicker picker = ImagePicker();
+  final RefreshController _refreshController = RefreshController();
 
 
   @override
   void initState() {
     _bloc = context.read<ClientProfileBloc>();
+    _updateBloc = context.read<UpdateProfileBloc>();
     _bloc.add(const FetchClientProfileEvent());
     super.initState();
   }
@@ -55,41 +59,48 @@ class _ClientProfileViewState extends State<ClientProfileView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<UpdateProfileBloc>(),
-  child: Builder(
-    builder: (context) {
-      _updateBloc = context.read<UpdateProfileBloc>();
-      return BlocListener<UpdateProfileBloc, BaseState<void>>(
-        listener: (context, state) {
-          if(state.isLoading) {
-            LoadingComponent.showProgressModal(context);
-          } else if (state.isError) {
-            FailureComponent.handleFailure(context: context, failure: state.failure);
-            context.pop();
-          } else if (state.isSuccess) {
-            showToast(message: S.of(context).success);
-            getProfile();
-            context.pop();
-          }
-        },
-          child: BlocBuilder<ClientProfileBloc, BaseState<ClientProfileEntity>>(
-            builder: (context, state) {
-              return Column(
-                children: [
-                  ProfileTopWidget(image: state.isSuccess ? state.data?.imageUrl ?? '' : '', onEdit: _onImageEdit, onDelete: _onImageDelete),
-                  const SizedBox(height: 25),
-                  if(state.isLoading)...[
-                    const SizedBox(height: 50),
-                    const LoadingComponent(),
-                  ]
-                  else if(state.isError)...{
-                    FailureComponent(failure: state.failure, retry: getProfile),
-                  } else if(state.isSuccess)...{
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+    return BlocListener<AppConfigBloc, AppConfigState>(
+      listenWhen: (prev, curr) => prev.language != curr.language,
+      listener: (context, state) {
+        getProfile();
+      },
+  child: BlocListener<UpdateProfileBloc, BaseState<void>>(
+      listener: (context, state) {
+        if(state.isLoading) {
+          LoadingComponent.showProgressModal(context);
+        } else if (state.isError) {
+          FailureComponent.handleFailure(context: context, failure: state.failure);
+          context.pop();
+        } else if (state.isSuccess) {
+          showToast(message: S.of(context).success);
+          getProfile();
+          context.pop();
+        }
+      },
+      child: BlocBuilder<ClientProfileBloc, BaseState<ClientProfileEntity>>(
+          builder: (context, state) {
+            return Column(
+              children: [
+                ProfileTopWidget(image: state.isSuccess ? state.data?.imageUrl ?? '' : '', onEdit: _onImageEdit, onDelete: _onImageDelete),
+                const SizedBox(height: 25),
+                if(state.isLoading)...[
+                  const SizedBox(height: 50),
+                  const LoadingComponent(),
+                ]
+                else if(state.isError)...{
+                  FailureComponent(failure: state.failure, retry: getProfile),
+                } else if(state.isSuccess)...{
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: SmartRefresher(
+                        controller: _refreshController,
+                        enablePullDown: true,
+                        enablePullUp: false,
+                        onRefresh: getProfile,
+                        physics: const BouncingScrollPhysics(),
                         child: ListView(
+                          physics: const NeverScrollableScrollPhysics(),
                           children: [
                             Text(state.data!.name, style: context.f25700?.copyWith(letterSpacing: 1.6), textAlign: TextAlign.center),
                             const SizedBox(height: 20),
@@ -101,14 +112,13 @@ class _ClientProfileViewState extends State<ClientProfileView> {
                         ),
                       ),
                     ),
-                  }
-                ],
-              );
-            }
-        ),
-);
-    }
-  ),
+                  ),
+                }
+              ],
+            );
+          }
+      ),
+    ),
 );
   }
 

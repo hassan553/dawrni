@@ -3,6 +3,7 @@ import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/features/auth/presentation/routes/login_route.dart';
 import 'package:dawrni/features/home/domain/entities/category_entity.dart';
 import 'package:dawrni/features/home/presentation/blocs/companies_bloc/companies_bloc.dart';
+import 'package:dawrni/features/home/presentation/blocs/edit_favorites_bloc/edit_favorites_bloc.dart';
 import 'package:dawrni/features/home/presentation/views/search_companies_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -16,8 +17,17 @@ class SearchCompaniesRoute {
       if (!CacheStorageServices().hasToken) return LoginRoute.name;
       return null;
     },
-    builder: (context, state) => BlocProvider(
-        create: (_) => sl<CompaniesBloc>(),
-        child: SearchCompaniesView(category: state.extra as CategoryEntity?)),
+    builder: (context, state) =>
+        MultiBlocProvider(
+          providers: [
+            BlocProvider(
+                create: (_) => sl<CompaniesBloc>(),
+                ),
+            BlocProvider(
+              create: (_) => sl<EditFavoritesBloc>(),
+            ),
+          ],
+          child: SearchCompaniesView(category: state.extra as CategoryEntity?),
+        ),
   );
 }

@@ -12,7 +12,9 @@ import 'package:dawrni/features/chats/presentation/views/chats_view.dart';
 import 'package:dawrni/features/home/presentation/views/favorites_view.dart';
 import 'package:dawrni/features/home/presentation/views/home_view.dart';
 import 'package:dawrni/features/notifications/presentation/routes/notifications_route.dart';
+import 'package:dawrni/features/profile/presentation/blocs/client_profile_bloc/client_profile_bloc.dart';
 import 'package:dawrni/features/profile/presentation/blocs/company_profile_bloc/company_profile_bloc.dart';
+import 'package:dawrni/features/profile/presentation/blocs/update_profile_bloc/update_profile_bloc.dart';
 import 'package:dawrni/features/profile/presentation/views/client_profile_view.dart';
 import 'package:dawrni/features/profile/presentation/views/company_profile_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,7 +33,7 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   int _currentIndex = 0;
 
-  List screens = [
+  List<Widget> screens = [
     const HomeView(),
     if (CacheStorageServices().isCompany) ...{
       MultiBlocProvider(
@@ -63,16 +65,24 @@ class _MainViewState extends State<MainView> {
     const FavoritesView(),
     const ChatHomeScreen(),
     if (CacheStorageServices().isCompany)
-      const CompanyProfileView()
+      BlocProvider(
+          create: (context) => sl<UpdateProfileBloc>(),
+          child: const CompanyProfileView())
     else
-      const ClientProfileView(),
+      BlocProvider(
+          create: (context) => sl<UpdateProfileBloc>(),
+          child: const ClientProfileView()),
   ];
 
   final _advancedDrawerController = AdvancedDrawerController();
 
   @override
   void initState() {
-    context.read<CompanyProfileBloc>().add(const FetchCompanyProfileEvent());
+    if (CacheStorageServices().isCompany) {
+      context.read<CompanyProfileBloc>().add(const FetchCompanyProfileEvent());
+    } else {
+      context.read<ClientProfileBloc>().add(const FetchClientProfileEvent());
+    }
     super.initState();
   }
 
@@ -100,7 +110,10 @@ class _MainViewState extends State<MainView> {
       drawer: const CustomDrawer(),
       child: Scaffold(
         appBar: customAppBar(_advancedDrawerController),
-        body: screens[_currentIndex],
+        body: IndexedStack(
+          index: _currentIndex,
+          children: screens,
+        ),
         bottomNavigationBar: customBottomNavBar(),
       ),
     );

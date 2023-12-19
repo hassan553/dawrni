@@ -29,7 +29,7 @@ class ErrorsHandler {
       // check on Dio Exception
       // logger.e(
       //     "==================== Dio Exception ====================== \n ${e.toString()} \n ${e.response?.data}");
-
+      print("==================== Dio Exception ====================== \n ${e.toString()} \n ${e.response?.data}");
       if(e.response?.statusCode == 401) {
         throw SessionExpiredException();
       }
@@ -52,7 +52,7 @@ class ErrorsHandler {
     } catch (e) {
       // logger.d(
       //     "================== Exception ======================  \n ${e.toString()} \n ${e.runtimeType}");
-
+      print("================== Exception ======================  \n ${e.toString()} \n ${e.runtimeType}");
       // in json parsion error
       if (e is TypeError) {
         throw ParsingException(parsingMessage: e.toString());
@@ -71,9 +71,10 @@ class ErrorsHandler {
       /// first call your [FutureFunction] function
       final result = await future();
       return Right(result.toEntity() as T);
-    } catch (e) {
+    } catch (e, s) {
       /// then catch any errors + check types then return [Left] appropriate [Failure]
-
+      print(e);
+      print(s);
       return Left(failureThrower(e));
     }
   }

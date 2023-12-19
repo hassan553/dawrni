@@ -35,7 +35,7 @@ class CompanyModel extends BaseModel<CompanyEntity> {
 
   CompanyModel.fromJson(dynamic json) {
     id = json['id'];
-    categoryId = json['category'];
+    categoryId = json['category'] ?? json['category_id'];
     name = json['name'];
     address = json['address'];
     about = json['about'];

@@ -173,5 +173,6 @@
   "editProfile": "Edit Profile",
   "category": "Category",
   "changeAppointmentStatus": "Change Appointment Status",
-  "pending": "Pending"
+  "pending": "Pending",
+  "language": "Language"
 }

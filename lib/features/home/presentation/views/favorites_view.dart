@@ -6,6 +6,7 @@ import 'package:dawrni/core/services/cache_storage_services.dart';
 import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/utils/base_state.dart';
 import 'package:dawrni/features/home/domain/entities/companies_entity.dart';
+import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:dawrni/features/home/presentation/blocs/edit_favorites_bloc/edit_favorites_bloc.dart';
 import 'package:dawrni/features/home/presentation/blocs/favorites_bloc/favorites_bloc.dart';
 import 'package:dawrni/features/home/presentation/widgets/company_card.dart';
@@ -28,16 +29,18 @@ class FavoritesView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) =>
-            sl<FavoritesBloc>()..add(const FetchFavoritesEvent(refresh: true))),
-        BlocProvider(
-            create: (context) =>
-                sl<EditFavoritesBloc>())
+            create: (context) => sl<FavoritesBloc>()
+              ..add(const FetchFavoritesEvent(refresh: true))),
+        BlocProvider(create: (context) => sl<EditFavoritesBloc>())
       ],
-      child: Builder(
-        builder: (context) {
-          return Padding(
-            padding: const EdgeInsetsDirectional.symmetric(horizontal: 25),
+      child: Builder(builder: (context) {
+        return Padding(
+          padding: const EdgeInsetsDirectional.symmetric(horizontal: 25),
+          child: BlocListener<AppConfigBloc, AppConfigState>(
+            listenWhen: (prev, curr) => prev.language != curr.language,
+            listener: (context, state) {
+              getFavorites(context, refresh: true);
+            },
             child: BlocListener<EditFavoritesBloc, BaseState<void>>(
               listener: (context, state) {
                 if (state.isLoading) {
@@ -58,11 +61,13 @@ class FavoritesView extends StatelessWidget {
                     return const LoadingComponent();
                   } else if (state.isError) {
                     return FailureComponent(
-                        failure: state.failure, retry: () => getFavorites(context));
+                        failure: state.failure,
+                        retry: () => getFavorites(context));
                   } else if (state.isSuccess) {
                     return Expanded(
                       child: SmartRefresher(
-                        controller: context.read<FavoritesBloc>().refreshController,
+                        controller:
+                            context.read<FavoritesBloc>().refreshController,
                         onRefresh: () => getFavorites(context, refresh: true),
                         onLoading: () => getFavorites(context),
                         enablePullUp: state.enablePullUp,
@@ -86,9 +91,9 @@ class FavoritesView extends StatelessWidget {
                 },
               ),
             ),
-          );
-        }
-      ),
+          ),
+        );
+      }),
     );
   }
 

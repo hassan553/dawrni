@@ -11,6 +11,7 @@ import 'package:dawrni/core/services/service_locator.dart';
 import 'package:dawrni/core/utils/base_state.dart';
 import 'package:dawrni/core/widgets/responsive_text.dart';
 import 'package:dawrni/features/home/domain/entities/companies_entity.dart';
+import 'package:dawrni/features/home/presentation/blocs/app_config_bloc/app_config_bloc.dart';
 import 'package:dawrni/features/home/presentation/blocs/companies_bloc/companies_bloc.dart';
 import 'package:dawrni/features/home/presentation/blocs/edit_favorites_bloc/edit_favorites_bloc.dart';
 import 'package:dawrni/features/home/presentation/routes/all_company_route.dart';
@@ -45,61 +46,71 @@ class _HomeViewState extends State<HomeView> {
         BlocProvider(
             create: (_) => sl<EditFavoritesBloc>()),
       ],
-      child: Padding(
-        padding: const EdgeInsetsDirectional.symmetric(horizontal: 25),
-        child: BlocListener<EditFavoritesBloc, BaseState<void>>(
-          listener: (context, state) {
-            if (state.isLoading) {
-              LoadingComponent.showProgressModal(context);
-            } else if (state.isError) {
-              FailureComponent.handleFailure(
-                  context: context, failure: state.failure);
-              context.pop();
-            } else if (state.isSuccess) {
-              showToast(message: S.of(context).success);
-              getCompanies(context, refresh: true);
-              context.pop();
-            }
-          },
-          child: BlocBuilder<CompaniesBloc, BaseState<CompaniesEntity>>(
-            builder: (context, state) {
-              if (state.isLoading) {
-                return const LoadingComponent();
-              } else if (state.isError) {
-                return FailureComponent(
-                  failure: state.failure,
-                  retry: () => getCompanies(context),
-                );
-              } else if (state.isSuccess) {
-                return SmartRefresher(
-                  controller: context.read<CompaniesBloc>().refreshController,
-                  onRefresh: () => getCompanies(context, refresh: true),
-                  onLoading: () => getCompanies(context),
-                  enablePullUp: false,
-                  child: ListView(
-                    children: [
-                      const SizedBox(height: 40),
-                      Text(S.of(context).homeMessage, style: context.f28800),
-                      const SizedBox(height: 40),
-                      buildSearch(context),
-                      buildCategories(),
-                      const SizedBox(height: 20),
-                      buildIndicator(context),
-                      const SizedBox(height: 20),
-                      Text(S.of(context).ourBestServices, style: context.f20700),
-                      const SizedBox(height: 20),
-                      ...state.data?.companies
-                              .map((e) => CompanyCard(company: e))
-                              .toList() ??
-                          [],
-                    ],
-                  ),
-                );
-              }
-              return const SizedBox();
-            },
-          ),
-        ),
+      child: Builder(
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsetsDirectional.symmetric(horizontal: 25),
+            child: BlocListener<AppConfigBloc, AppConfigState>(
+              listenWhen: (prev, curr) => prev.language != curr.language,
+              listener: (context, state) {
+                getCompanies(context, refresh: true);
+              },
+              child: BlocListener<EditFavoritesBloc, BaseState<void>>(
+                listener: (context, state) {
+                  if (state.isLoading) {
+                    LoadingComponent.showProgressModal(context);
+                  } else if (state.isError) {
+                    FailureComponent.handleFailure(
+                        context: context, failure: state.failure);
+                    context.pop();
+                  } else if (state.isSuccess) {
+                    showToast(message: S.of(context).success);
+                    getCompanies(context, refresh: true);
+                    context.pop();
+                  }
+                },
+                child: BlocBuilder<CompaniesBloc, BaseState<CompaniesEntity>>(
+                  builder: (context, state) {
+                    if (state.isLoading) {
+                      return const LoadingComponent();
+                    } else if (state.isError) {
+                      return FailureComponent(
+                        failure: state.failure,
+                        retry: () => getCompanies(context),
+                      );
+                    } else if (state.isSuccess) {
+                      return SmartRefresher(
+                        controller: context.read<CompaniesBloc>().refreshController,
+                        onRefresh: () => getCompanies(context, refresh: true),
+                        onLoading: () => getCompanies(context),
+                        enablePullUp: false,
+                        child: ListView(
+                          children: [
+                            const SizedBox(height: 40),
+                            Text(S.of(context).homeMessage, style: context.f28800),
+                            const SizedBox(height: 40),
+                            buildSearch(context),
+                            buildCategories(),
+                            const SizedBox(height: 20),
+                            buildIndicator(context),
+                            const SizedBox(height: 20),
+                            Text(S.of(context).ourBestServices, style: context.f20700),
+                            const SizedBox(height: 20),
+                            ...state.data?.companies
+                                .map((e) => CompanyCard(company: e))
+                                .toList() ??
+                                [],
+                          ],
+                        ),
+                      );
+                    }
+                    return const SizedBox();
+                  },
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

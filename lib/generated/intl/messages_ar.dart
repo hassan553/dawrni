@@ -156,6 +156,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("إذا كان لديك حساب؟"),
         "internetIsRestored": MessageLookupByLibrary.simpleMessage(
             "تم استعادة الاتصال بالإنترنت!"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "let_find_what_you_need":
             MessageLookupByLibrary.simpleMessage("لنجد ما تحتاجه!"),
         "linkedin": MessageLookupByLibrary.simpleMessage("لينكد إن"),

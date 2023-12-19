@@ -36,7 +36,7 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  runApp(Dawrni());
+  runApp(const Dawrni());
   // runApp(DevicePreview(
   //   builder: (context) => Dawrni(),
   // ));
