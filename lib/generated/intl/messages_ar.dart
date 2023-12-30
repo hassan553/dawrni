@@ -20,9 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(number) => "Enter the OTP code sent to ${number}";
+  static String m0(number) => "أدخل رمز التحقق المرسل إلى ${number}";
 
-  static String m1(minLength) => "must be at least ${minLength}";
+  static String m1(minLength) => "يجب أن يكون ${minLength} أحرف على الأقل";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -30,22 +30,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "تم إرسال رابط التحقق إلى عنوان بريدك الإلكتروني. يرجى التحقق من صندوق الوارد الخاص بك والنقر على الرابط للتحقق من بريدك الإلكتروني"),
         "about": MessageLookupByLibrary.simpleMessage("عن الشركة"),
-        "aboutAr": MessageLookupByLibrary.simpleMessage("About Ar"),
+        "aboutAr": MessageLookupByLibrary.simpleMessage("حول الشركة بالعربية"),
         "aboutArHint": MessageLookupByLibrary.simpleMessage("الشركة الأفضل"),
-        "aboutEn": MessageLookupByLibrary.simpleMessage("About En"),
+        "aboutEn":
+            MessageLookupByLibrary.simpleMessage("حول الشركة بالإنكليزية"),
         "aboutEnHint": MessageLookupByLibrary.simpleMessage("Best Company"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("من نحن"),
-        "addImage": MessageLookupByLibrary.simpleMessage("Add Image"),
+        "addImage": MessageLookupByLibrary.simpleMessage("أضف صورة"),
         "add_your_location": MessageLookupByLibrary.simpleMessage("أضف موقعك"),
-        "address": MessageLookupByLibrary.simpleMessage("Address"),
-        "addressAr": MessageLookupByLibrary.simpleMessage("Address Ar"),
+        "address": MessageLookupByLibrary.simpleMessage("العنوان"),
+        "addressAr": MessageLookupByLibrary.simpleMessage("العنوان بالعربية"),
         "addressArHint": MessageLookupByLibrary.simpleMessage("الكويت"),
-        "addressEn": MessageLookupByLibrary.simpleMessage("Address En"),
+        "addressEn":
+            MessageLookupByLibrary.simpleMessage("العنوان بالإنكليزية"),
         "addressEnHint": MessageLookupByLibrary.simpleMessage("Kuwait"),
-        "allCompanies": MessageLookupByLibrary.simpleMessage("All Companies"),
+        "allCompanies": MessageLookupByLibrary.simpleMessage("جميع الشركات"),
         "anyQuestionsOrRemarksJustWriteUsAMessage":
             MessageLookupByLibrary.simpleMessage(
-                "Any questions or remarks ?  Just write us a message"),
+                "أي سؤال أو ملاحظة؟ فقط اترك لنا رسالة"),
         "anyQuestionsOrRemarksJustWriteUsMessage":
             MessageLookupByLibrary.simpleMessage(
                 "أي أسئلة أو ملاحظات؟ فقط اكتب لنا رسالة"),
@@ -59,56 +61,56 @@ class MessageLookup extends MessageLookupByLibrary {
         "bodyTitle2": MessageLookupByLibrary.simpleMessage(
             "احصل على حل لمشكلتك مع خدمتنا السريعة"),
         "bookNow": MessageLookupByLibrary.simpleMessage("احجز الآن"),
-        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
-        "cancelAppointmentConfirmation": MessageLookupByLibrary.simpleMessage(
-            "Do you want to cancel the appointment?"),
-        "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "cancelAppointmentConfirmation":
+            MessageLookupByLibrary.simpleMessage("هل تريد إلغاء الموعد؟"),
+        "category": MessageLookupByLibrary.simpleMessage("الصنف"),
         "category10Description": MessageLookupByLibrary.simpleMessage(
-            "Get your problem fixed with our fast service"),
+            "قم بإصلاح مشاكلك عن طريق خدماتنا السريعة"),
         "category10Name":
-            MessageLookupByLibrary.simpleMessage("Bokhour and Perfumes"),
+            MessageLookupByLibrary.simpleMessage("البخور والعطور"),
         "category1Description": MessageLookupByLibrary.simpleMessage(
-            "Get your problem fixed with our fast service"),
-        "category1Name": MessageLookupByLibrary.simpleMessage("Cars Service"),
+            "قم بإصلاح مشاكلك عن طريق خدماتنا السريعة"),
+        "category1Name": MessageLookupByLibrary.simpleMessage("خدمة السيارات"),
         "category2Description": MessageLookupByLibrary.simpleMessage(
-            "Get your problem fixed with our fast service"),
+            "قم بإصلاح مشاكلك عن طريق خدماتنا السريعة"),
         "category2Name":
-            MessageLookupByLibrary.simpleMessage("Outdoors Service"),
+            MessageLookupByLibrary.simpleMessage("الخدمات الخارجية"),
         "category3Description": MessageLookupByLibrary.simpleMessage(
-            "Get your problem fixed with our fast service"),
-        "category3Name":
-            MessageLookupByLibrary.simpleMessage("The Mall Service"),
+            "قم بإصلاح مشاكلك عن طريق خدماتنا السريعة"),
+        "category3Name": MessageLookupByLibrary.simpleMessage("خدمة البريد"),
         "category4Description": MessageLookupByLibrary.simpleMessage(
-            "Get your problem fixed with our fast service"),
-        "category4Name": MessageLookupByLibrary.simpleMessage("Salons Service"),
+            "قم بإصلاح مشاكلك عن طريق خدماتنا السريعة"),
+        "category4Name": MessageLookupByLibrary.simpleMessage("خدمة التجميل"),
         "category5Description": MessageLookupByLibrary.simpleMessage(
-            "Get your problem fixed with our fast service"),
+            "قم بإصلاح مشاكلك عن طريق خدماتنا السريعة"),
         "category5Name":
-            MessageLookupByLibrary.simpleMessage("Food and Beverages"),
+            MessageLookupByLibrary.simpleMessage("الأطعمة والأغذية"),
         "category6Description": MessageLookupByLibrary.simpleMessage(
-            "Get your problem fixed with our fast service"),
-        "category6Name": MessageLookupByLibrary.simpleMessage("Video Games"),
+            "قم بإصلاح مشاكلك عن طريق خدماتنا السريعة"),
+        "category6Name": MessageLookupByLibrary.simpleMessage("ألعاب الفيديو"),
         "category7Description": MessageLookupByLibrary.simpleMessage(
-            "Get your problem fixed with our fast service"),
-        "category7Name": MessageLookupByLibrary.simpleMessage("Pets Service"),
+            "قم بإصلاح مشاكلك عن طريق خدماتنا السريعة"),
+        "category7Name":
+            MessageLookupByLibrary.simpleMessage("خدمة الحيوانات الأليفة"),
         "category8Description": MessageLookupByLibrary.simpleMessage(
-            "Get your problem fixed with our fast service"),
-        "category8Name":
-            MessageLookupByLibrary.simpleMessage("Clinics Service"),
+            "قم بإصلاح مشاكلك عن طريق خدماتنا السريعة"),
+        "category8Name": MessageLookupByLibrary.simpleMessage("خدمة العيادات"),
         "category9Description": MessageLookupByLibrary.simpleMessage(
-            "Get your problem fixed with our fast service"),
-        "category9Name": MessageLookupByLibrary.simpleMessage("Legal Service"),
+            "قم بإصلاح مشاكلك عن طريق خدماتنا السريعة"),
+        "category9Name":
+            MessageLookupByLibrary.simpleMessage("الخدمات القانونية"),
         "certified": MessageLookupByLibrary.simpleMessage("معتمد"),
         "changeAppointmentStatus":
-            MessageLookupByLibrary.simpleMessage("Change Appointment Status"),
+            MessageLookupByLibrary.simpleMessage("تغيير حالة الموعد"),
         "checkTheSettings":
             MessageLookupByLibrary.simpleMessage("تحقق من الإعدادات"),
         "checkVerificationEmail": MessageLookupByLibrary.simpleMessage(
             "تحقق من البريد الإلكتروني للتحقق"),
         "client": MessageLookupByLibrary.simpleMessage("عميل"),
         "clientAppointmentsMessage":
-            MessageLookupByLibrary.simpleMessage("Your Appointments"),
-        "companies": MessageLookupByLibrary.simpleMessage("Companies"),
+            MessageLookupByLibrary.simpleMessage("مواعيدك"),
+        "companies": MessageLookupByLibrary.simpleMessage("شركات"),
         "company": MessageLookupByLibrary.simpleMessage("شركة"),
         "company_description": MessageLookupByLibrary.simpleMessage(
             "من الإصلاحات البسيطة إلى التركيبات الكبيرة، نتعامل مع كل مشروع بدقة وعناية، مما يضمن أن أنظمة السباكة لديك في حالة مثالية."),
@@ -125,16 +127,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("3. كشف بياناتك الشخصية"),
         "doYouWantToCancelTheAppointment":
             MessageLookupByLibrary.simpleMessage("هل ترغب في إلغاء الموعد؟"),
-        "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
+        "editProfile":
+            MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "emailHint": MessageLookupByLibrary.simpleMessage("abdullah@gmail.com"),
         "emailIsNotValid":
-            MessageLookupByLibrary.simpleMessage("Email is not valid"),
+            MessageLookupByLibrary.simpleMessage("البريد الإلكتروني غير صالح"),
         "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
         "enterTheOtpCodeSentToNumber": m0,
         "facebook": MessageLookupByLibrary.simpleMessage("فيسبوك"),
-        "favoritesMessage":
-            MessageLookupByLibrary.simpleMessage("Your Favorites"),
+        "favoritesMessage": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "forYourPatience": MessageLookupByLibrary.simpleMessage(" من أجل صبرك"),
         "forget_password":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
@@ -150,29 +152,28 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تعرف على المزيد عن خدماتنا"),
         "hey": MessageLookupByLibrary.simpleMessage("مرحبًا"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
-        "homeMessage":
-            MessageLookupByLibrary.simpleMessage("Let’s Find What You Need !"),
+        "homeMessage": MessageLookupByLibrary.simpleMessage("لنبحث عما تريد !"),
         "if_you_have_account":
             MessageLookupByLibrary.simpleMessage("إذا كان لديك حساب؟"),
         "internetIsRestored": MessageLookupByLibrary.simpleMessage(
             "تم استعادة الاتصال بالإنترنت!"),
-        "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "let_find_what_you_need":
             MessageLookupByLibrary.simpleMessage("لنجد ما تحتاجه!"),
         "linkedin": MessageLookupByLibrary.simpleMessage("لينكد إن"),
         "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
-        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "message": MessageLookupByLibrary.simpleMessage("الرسالة"),
         "mobileIsNotValid":
-            MessageLookupByLibrary.simpleMessage("Mobile is not valid"),
+            MessageLookupByLibrary.simpleMessage("رقم الموبايل غير صالح"),
         "mustBeAtLeastMinlength": m1,
         "myAppointments": MessageLookupByLibrary.simpleMessage("مواعيدي"),
-        "name": MessageLookupByLibrary.simpleMessage("Name"),
-        "nameAr": MessageLookupByLibrary.simpleMessage("Name Ar"),
+        "name": MessageLookupByLibrary.simpleMessage("الاسم"),
+        "nameAr": MessageLookupByLibrary.simpleMessage("الاسم بالعربية"),
         "nameArHint": MessageLookupByLibrary.simpleMessage("عبد الله العتيبي"),
-        "nameEn": MessageLookupByLibrary.simpleMessage("Name En"),
+        "nameEn": MessageLookupByLibrary.simpleMessage("الاسم بالانكليزية"),
         "nameEnHint": MessageLookupByLibrary.simpleMessage("Abdullah Otaibi"),
-        "nameHint": MessageLookupByLibrary.simpleMessage("Abdullah Otaibi"),
+        "nameHint": MessageLookupByLibrary.simpleMessage("عبدالله العتيبي"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "noInternetConnection":
@@ -180,43 +181,43 @@ class MessageLookup extends MessageLookupByLibrary {
         "noResults": MessageLookupByLibrary.simpleMessage("لا توجد نتائج!"),
         "opps": MessageLookupByLibrary.simpleMessage("عذراً!"),
         "otpVerification":
-            MessageLookupByLibrary.simpleMessage("OTP Verification"),
-        "ourBestServices":
-            MessageLookupByLibrary.simpleMessage("Our Best Services"),
+            MessageLookupByLibrary.simpleMessage("إدخال كود التحقق"),
+        "ourBestServices": MessageLookupByLibrary.simpleMessage("أفضل خدماتنا"),
         "our_best_services":
             MessageLookupByLibrary.simpleMessage("أفضل خدماتنا"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordConfirmation":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "passwordHint": MessageLookupByLibrary.simpleMessage("123456qwe!Q"),
-        "pending": MessageLookupByLibrary.simpleMessage("Pending"),
+        "pending": MessageLookupByLibrary.simpleMessage("قيد الإنتظار"),
         "personalizeYourExperience":
             MessageLookupByLibrary.simpleMessage("تخصيص تجربتك"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
-        "pleaseWait": MessageLookupByLibrary.simpleMessage("Please Wait"),
+        "pleaseWait": MessageLookupByLibrary.simpleMessage("الرجاء الانتظار"),
         "please_add_your_location": MessageLookupByLibrary.simpleMessage(
             "يرجى إضافة موقعك أولاً لتأكيد الموعد"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "promotions": MessageLookupByLibrary.simpleMessage("العروض والتخفيضات"),
-        "requiredField": MessageLookupByLibrary.simpleMessage("Required Field"),
+        "requiredField":
+            MessageLookupByLibrary.simpleMessage("هذا الحقل مطلوب"),
         "resendVerificationEmail":
             MessageLookupByLibrary.simpleMessage("إعادة ارسال بريد التحقق"),
         "restoreTheInternet":
             MessageLookupByLibrary.simpleMessage("استعادة الاتصال بالإنترنت"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
         "searchCompaniesMessage":
-            MessageLookupByLibrary.simpleMessage("Search through companies"),
+            MessageLookupByLibrary.simpleMessage("ابحث بين الشركات"),
         "searchServiceHint":
-            MessageLookupByLibrary.simpleMessage("Search your service .."),
+            MessageLookupByLibrary.simpleMessage("ابحث عم خدمتك"),
         "searchYourMessage":
             MessageLookupByLibrary.simpleMessage("ابحث عن رسالتك .."),
         "search_your_service":
             MessageLookupByLibrary.simpleMessage("ابحث عن خدمتك .."),
-        "selectDate": MessageLookupByLibrary.simpleMessage("Select Date"),
+        "selectDate": MessageLookupByLibrary.simpleMessage("اختر تاريخاً"),
         "selectLanguage": MessageLookupByLibrary.simpleMessage(
             "الرجاء اختيار اللغة المفضلة لديك"),
-        "selectTime": MessageLookupByLibrary.simpleMessage("Select time"),
+        "selectTime": MessageLookupByLibrary.simpleMessage("اختر وقتاً"),
         "sendEmail": MessageLookupByLibrary.simpleMessage("ارسل بريد الكتروني"),
         "sendMessage": MessageLookupByLibrary.simpleMessage("إرسال رسالة"),
         "service_category": MessageLookupByLibrary.simpleMessage("فئة الخدمة"),
@@ -229,7 +230,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signedInSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تسجبل الدخوال بنجاح"),
         "signedUpSuccessfully":
-            MessageLookupByLibrary.simpleMessage("Signed Up Successfully"),
+            MessageLookupByLibrary.simpleMessage("تم التسجيل بنجاح"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطى"),
         "somethingWrongWithYourConnection":
             MessageLookupByLibrary.simpleMessage(
@@ -239,7 +240,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "عذرًا، لا توجد نتائج لهذا البحث. الرجاء محاولة اسم آخر .."),
         "sorryThereIsNoNotifications":
             MessageLookupByLibrary.simpleMessage("عذرًا، لا توجد إشعارات .."),
-        "success": MessageLookupByLibrary.simpleMessage("Success"),
+        "success": MessageLookupByLibrary.simpleMessage("نمت العملية بنجاح"),
         "thankYou": MessageLookupByLibrary.simpleMessage("شكرًا لك"),
         "theAppointmentHaveBeenCancelledSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم إلغاء الموعد بنجاح"),
@@ -254,7 +255,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "today": MessageLookupByLibrary.simpleMessage("اليوم"),
         "todayAppointments":
             MessageLookupByLibrary.simpleMessage("مواعيد اليوم"),
-        "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
+        "tryAgain": MessageLookupByLibrary.simpleMessage("حاول مجدداً"),
         "try_again": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
         "twitter": MessageLookupByLibrary.simpleMessage("تويتر"),
         "typesDataWeCollect": MessageLookupByLibrary.simpleMessage(
@@ -263,9 +264,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("2. استخدام بياناتك الشخصية"),
         "verificationCodeHasBeenSentToYourEmail":
             MessageLookupByLibrary.simpleMessage(
-                "Verification code has been sent to your email"),
+                "تم إرسال كود التفعيل إلى بريدك الإلكتروني"),
         "verifiedSuccessfully":
-            MessageLookupByLibrary.simpleMessage("Verified Successfully"),
+            MessageLookupByLibrary.simpleMessage("تم التحقق بنجاح"),
         "verifyYourEmailAddress": MessageLookupByLibrary.simpleMessage(
             "تحقق من عنوان بريدك الإلكتروني"),
         "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل >>"),

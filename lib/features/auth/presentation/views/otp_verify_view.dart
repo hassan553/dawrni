@@ -117,39 +117,42 @@ class _OtpVerifyViewState extends State<OtpVerifyView> {
   Widget buildForm() {
     return Form(
       key: formKey,
-      child: PinCodeTextField(
-        appContext: context,
-        controller: codeController,
-        length: 4,
-        textStyle: const TextStyle(color: Colors.white),
-        pinTheme: PinTheme(
-          shape: PinCodeFieldShape.box,
-          borderRadius: BorderRadius.circular(10),
-          fieldHeight: 50,
-          fieldWidth: 40,
-          activeFillColor: AppColors.secondColor,
-          inactiveColor: AppColors.secondColor,
-          selectedColor: AppColors.secondColor,
-          activeColor: AppColors.offWhite,
-          selectedFillColor: AppColors.secondColor,
-          inactiveFillColor: AppColors.secondColor,
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: PinCodeTextField(
+          appContext: context,
+          controller: codeController,
+          length: 4,
+          textStyle: const TextStyle(color: Colors.white),
+          pinTheme: PinTheme(
+            shape: PinCodeFieldShape.box,
+            borderRadius: BorderRadius.circular(10),
+            fieldHeight: 50,
+            fieldWidth: 40,
+            activeFillColor: AppColors.secondColor,
+            inactiveColor: AppColors.secondColor,
+            selectedColor: AppColors.secondColor,
+            activeColor: AppColors.offWhite,
+            selectedFillColor: AppColors.secondColor,
+            inactiveFillColor: AppColors.secondColor,
+          ),
+          cursorColor: Colors.white,
+          animationDuration: const Duration(milliseconds: 300),
+          enableActiveFill: true,
+          keyboardType: TextInputType.number,
+          validator: AppValidator(
+            minLength: 4,
+            validators: [
+              InputValidator.requiredField,
+              InputValidator.minLength,
+            ]
+          ).validate,
+          onCompleted: (value) {
+            if (value.length == 6) {
+
+            }
+          },
         ),
-        cursorColor: Colors.white,
-        animationDuration: const Duration(milliseconds: 300),
-        enableActiveFill: true,
-        keyboardType: TextInputType.number,
-        validator: AppValidator(
-          minLength: 4,
-          validators: [
-            InputValidator.requiredField,
-            InputValidator.minLength,
-          ]
-        ).validate,
-        onCompleted: (value) {
-          if (value.length == 6) {
-            
-          }
-        },
       ),
     );
   }

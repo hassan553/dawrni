@@ -43,7 +43,7 @@ class CustomDrawer extends StatelessWidget {
             buildProfileInfo(),
             const CustomSizedBox(value: .1),
             customListTile(
-                'Home',
+                S.of(context).home,
                 Icon(
                   Icons.home,
                   color: AppColors.offWhite,
@@ -51,28 +51,28 @@ class CustomDrawer extends StatelessWidget {
                 ),
                 () => context.go(MainRoute.name)),
             customListTile(
-                'About us',
+                S.of(context).aboutUs,
                 Image.asset(
                   'assets/clarity_info-standard-line.png',
                   fit: BoxFit.fill,
                 ),
                 () => context.push(AboutUsRoute.name)),
             customListTile(
-                'Privacy Policy',
+                S.of(context).privacyPolicy,
                 Image.asset(
                   'assets/Group 34140.png',
                   fit: BoxFit.fill,
                 ),
                () => context.push(PrivacyPolicyRoute.name)),
             customListTile(
-                'Contact us',
+                S.of(context).contactUs,
                 Image.asset(
                   'assets/iconoir_headset-help.png',
                   fit: BoxFit.fill,
                 ),
              () => context.push(ContactUsRoute.name)),
             customListTile(
-                'Settings',
+                S.of(context).settings,
                 Icon(
                   Icons.settings,
                   color: AppColors.offWhite,

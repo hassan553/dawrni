@@ -20,7 +20,7 @@ class AppHeaders {
         // "Accept-Encoding": "gzip, deflate, br, application/json",
         "Accept-Encoding": "application/json",
         "Content-Type": "multipart/form-data",
-        "Accept-Language": "en",
+        "Accept-Language": CacheStorageServices().locale ?? 'en',
         "app": "android",
         "version": "1.2.0",
       };
